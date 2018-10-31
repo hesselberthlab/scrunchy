@@ -1,0 +1,25 @@
+Package: scrunchy
+Title: Single Cell Resolution of Functional Heterogeneity
+Version: 0.0.0.9000
+Authors@R: 
+    c(person("Jay", "Hesselberth", role = c("aut", "cre"),
+             email = "jay.hesselberth@gmail.com"),
+      person("Amanda", "Richer", role = "aut",
+             email = "mandy.l.richer@gmail.com"),
+      person("Kent", "Riemondy", role = "aut",
+             email = "kent.riemondy@gmail.com"))       
+Description: Processing and analysis of data from single-cell functional heterogeneity experiments.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr,
+    ggplot2,
+    SingleCellExperiment
+Suggests: 
+    knitr,
+    rmarkdown,
+    covr
+VignetteBuilder: knitr
+URL: https://scrunchy.hesselberthlab.org
+BugReports: https://github.com/hesselberthlab/scrunchy/issues

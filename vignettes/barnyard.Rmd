@@ -1,0 +1,16 @@
+---
+title: "Functional heterogeneity in single cells"
+author: "Jay Hesselberth"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Functional Heterogeneity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Overview
+
+# Data
+
+# Analysis
