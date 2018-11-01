@@ -1,13 +1,16 @@
 Package: scrunchy
 Title: Single Cell Resolution of Functional Heterogeneity
 Version: 0.0.0.9000
-Authors@R: 
-    c(person("Jay", "Hesselberth", role = c("aut", "cre"),
-             email = "jay.hesselberth@gmail.com"),
-      person("Amanda", "Richer", role = "aut",
-             email = "mandy.l.richer@gmail.com"),
-      person("Kent", "Riemondy", role = "aut",
-             email = "kent.riemondy@gmail.com"))       
+Authors@R: c(
+    person("Jay", "Hesselberth", role = c("aut", "cre"),
+           email = "jay.hesselberth@gmail.com",
+           comment = c(ORCID = '0000-0002-6299-179X')),
+    person("Amanda", "Richer", role = "aut",
+           email = "mandy.l.richer@gmail.com"),
+    person("Kent", "Riemondy", role = "aut",
+           email = "kent.riemondy@gmail.com",
+           comment = c(ORCID = '0000-0003-0750-1273'))
+    )
 Description: Processing and analysis of data from single-cell functional heterogeneity experiments.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -20,7 +23,10 @@ biocViews:
 Suggests: 
     knitr,
     rmarkdown,
-    covr
+    covr,
+    testthat
 VignetteBuilder: knitr
 URL: https://scrunchy.hesselberthlab.org
 BugReports: https://github.com/hesselberthlab/scrunchy/issues
+RoxygenNote: 6.1.0
+Roxygen: list(markdown = TRUE)
