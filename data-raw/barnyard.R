@@ -1,6 +1,7 @@
 # process mRNA and repair product data through Seurat pipeline
 
 library(Seurat)
+library(tidyverse)
 
 mrna_tab <- read.csv("data-raw/mrna.csv.gz", sep = ',', header = TRUE, row.names = 1)
 haircut_tab <- read.csv("data-raw/haircut.csv.gz", sep = ',', header = TRUE, row.names = 1)

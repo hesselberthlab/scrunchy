@@ -26,7 +26,7 @@ Suggests:
     covr,
     testthat
 VignetteBuilder: knitr
-URL: https://scrunchy.hesselberthlab.org
+URL: https://scrunchy.hesselberthlab.org, https://github.com/hesselberthlab/scrunchy
 BugReports: https://github.com/hesselberthlab/scrunchy/issues
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
