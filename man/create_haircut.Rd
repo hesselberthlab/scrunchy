@@ -5,7 +5,7 @@
 \title{Create a haircut object as a MultiAssayExperiment}
 \usage{
 create_haircut(rna_data, haircut_data, id_from_name = TRUE,
-  id_delim = ".", id_fields = 2)
+  id_delim = ".", id_fields = 2, adduct_positions = NULL)
 }
 \arguments{
 \item{rna_data}{UMI count matrix}
@@ -19,6 +19,11 @@ If false then the sample_id field will be populated with NA.}
 
 \item{id_fields}{index(es) of fields to extract from name for determining sample id from name
 (defaults to c(2))}
+
+\item{adduct_positions}{optional data.frame with positions of first and second adducts in each hairpin,
+must be a three column data.frame with the first column named hairpin containing with entries that match the adducts
+from haircut_data (i.e. Uracil from entry Uracil_1), a second column named adduct_position1 with the first adduct position,
+and a third column named adduct_position2 with the second adduct position}
 }
 \description{
 Create a haircut object as a MultiAssayExperiment

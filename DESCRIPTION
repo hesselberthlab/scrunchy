@@ -22,7 +22,9 @@ Imports:
     magrittr,
     Matrix,
     stringr,
-    readr
+    readr,
+    tibble,
+    purrr
 biocViews:
     SingleCellExperiment,
     MultiAssayExperiment
