@@ -17,14 +17,17 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    ggplot2
+    ggplot2,
+    Seurat,
+    magrittr
 biocViews:
     SingleCellExperiment
 Suggests: 
     knitr,
     rmarkdown,
     covr,
-    testthat
+    testthat,
+    radix
 VignetteBuilder: knitr
 URL: https://scrunchy.hesselberthlab.org, https://github.com/hesselberthlab/scrunchy
 BugReports: https://github.com/hesselberthlab/scrunchy/issues
