@@ -24,7 +24,8 @@ Imports:
     stringr,
     readr
 biocViews:
-    SingleCellExperiment
+    SingleCellExperiment,
+    MultiAssayExperiment
 Suggests: 
     knitr,
     rmarkdown,

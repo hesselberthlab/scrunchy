@@ -53,3 +53,95 @@ read_10x_matrix <- function(path,
   mat
 }
 
+#' Create a haircut object as a MultiAssayExperiment
+#'
+#' @param rna_data UMI count matrix
+#' @param haircut_data Functional count matrix
+#' @param id_from_name Extract sample id from cell name (default = TRUE)
+#' If false then the sample_id field will be populated with NA.
+#' @param id_delim delimiter to split cell name (default = ".")
+#' @param id_fields index(es) of fields to extract from name for determining sample id from name
+#' (defaults to c(2))
+#'
+#' @importFrom stringr fixed str_split
+#' @import SingleCellExperiment
+#' @import MultiAssayExperiment
+#' @export
+create_haircut <- function(rna_data,
+                           haircut_data,
+                           id_from_name = TRUE,
+                           id_delim = ".",
+                           id_fields = 2){
+
+  # keep umis as sparseMatrix
+  rna_mat <- as(as.matrix(rna_data), "sparseMatrix")
+
+  # haircut data is not sparse
+  hcut_mat <- as.matrix(haircut_data)
+
+  sce_mrna <- SingleCellExperiment(assays = list(
+    counts = rna_mat))
+
+  sce_hcut <- SingleCellExperiment(assays = list(
+    counts = hcut_mat))
+
+  expr_list <- ExperimentList(list(rna = sce_mrna,
+                                   hcut = sce_hcut))
+
+  ## make map between cell ids and experimental assay
+  rna_cells <- colnames(rna_mat)
+  hcut_cells <- colnames(hcut_mat)
+
+  nshared_cells <- intersect(rna_cells, hcut_cells)
+
+  if(length(nshared_cells) == 0){
+    warning("No cell ids were shared between the haircut data and rna data")
+  }
+
+  rna_cell_map <- data.frame(
+    primary = rna_cells,
+    colname = rna_cells,
+    stringsAsFactors = FALSE
+  )
+
+  hcut_cell_map <- data.frame(
+    primary = hcut_cells,
+    colname = hcut_cells,
+    stringsAsFactors = FALSE
+  )
+
+  maplist <- list(rna = rna_cell_map,
+                  hcut = hcut_cell_map)
+
+  sampMap <- listToMap(maplist)
+
+  ## build colData
+  cell_ids <- unique(rna_cells,
+                     hcut_cells)
+
+  if (id_from_name){
+    sample_ids <- stringr::str_split(cell_ids,
+                                     stringr::fixed(id_delim),
+                                     simplify = TRUE)
+
+    if(!all(id_fields %in% 1:ncol(sample_ids))){
+      warning(paste0("supplied id_fields not found in cell_ids\n",
+                     "replacing all sample_ids with NA"))
+      sample_ids <- rep(NA, length(cell_ids))
+    } else {
+      sample_ids <- sample_ids[, id_fields]
+    }
+  } else {
+    sample_ids <- rep(NA, length(cell_ids))
+  }
+
+  colDat <- data.frame(
+    row.names = cell_ids,
+    sample_id = sample_ids
+  )
+
+  hce <- MultiAssayExperiment::MultiAssayExperiment(experiments = expr_list,
+                                                    colData = colDat,
+                                                    sampleMap = sampMap)
+  hce
+}
