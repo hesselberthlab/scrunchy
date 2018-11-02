@@ -19,7 +19,10 @@ Imports:
     dplyr,
     ggplot2,
     Seurat,
-    magrittr
+    magrittr,
+    Matrix,
+    stringr,
+    readr
 biocViews:
     SingleCellExperiment
 Suggests: 
