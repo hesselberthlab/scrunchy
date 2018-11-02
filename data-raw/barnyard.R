@@ -14,7 +14,7 @@ sce_mrna <- CreateSeuratObject(raw.data = mrna_tab) %>%
   FindClusters(dims.use = 1:6, print.output = FALSE) %>%
   RunTSNE(dims.use = 1:6)
 
-# TSNEPlot(sce, do.label = TRUE, pt.size = 0.5)
+TSNEPlot(sce_mrna, do.label = TRUE, pt.size = 0.5)
 
 sce_fxn <- SetAssayData(
   sce_mrna, assay.type = 'CITE',
@@ -24,8 +24,8 @@ sce_fxn <- SetAssayData(
   NormalizeData(assay.type = "CITE", normalization.method = "genesCLR") %>%
   ScaleData(assay.type = "CITE", display.progress = FALSE)
 
-# FeaturePlot(
-#   sce_fxn,
-#   features.plot = c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922"),
-#   cols.use = c("lightgrey", "blue")
-# )
+FeaturePlot(
+  sce_fxn,
+  features.plot = c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922"),
+  cols.use = c("lightgrey", "blue")
+)
