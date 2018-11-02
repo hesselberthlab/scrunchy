@@ -1,0 +1,89 @@
+---
+title: "Example usage of the scrunchy package"
+author: "Kent Riemondy"
+date: "`r Sys.Date()`"
+output: radix::radix_article
+vignette: >
+  %\VignetteIndexEntry{Basic Usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Install the package
+
+```{r install, eval = FALSE}
+devtools::install_github("hesselberthlab/scrunchy")
+```
+
+# Create a Haircut object
+
+```{r create_sce}
+suppressMessages(library(scrunchy))
+suppressMessages(library(SingleCellExperiment))
+
+# load mRNA UMI data
+mrna <- scrunchy:::load_csv(scrunchy:::scrunchy_data("mrna.csv.gz"))
+mrna[1:5, 1:5]
+
+# load haircut UMI data
+hcut <- scrunchy:::load_csv(scrunchy:::scrunchy_data("haircut.csv.gz"))
+hcut[1:5, 1:5]
+
+
+hce <- create_haircut(mrna, hcut)
+```
+
+`hce` is an object of class MultiAssayExperiment, which can contain data from multiple modalities, and
+importantly does not require that each modality has the same number of cells or features. 
+
+```{r}
+# rna stores RNA info
+hce[["rna"]]
+counts(hce[["rna"]])[1:5, 1:5]
+
+# hcut stores functional data
+hce[["hcut"]]
+counts(hce[["hcut"]])[1:5, 1:5]
+
+# row annotations contain info about each row in the matrix
+rowData(hce[["hcut"]])
+
+# column annotations contain info about each row in the matrix, 
+# or about each unique cell present in any of the experiments
+colData(hce)
+```
+
+# Plots
+
+`plot_hairpin` produces a coverage plot across each hairpin in the data.
+
+```{r hairpin_plot}
+plot_hairpin(hce)
+```
+
+Specific adduct positions can be highlighted by including this information in the `hce` object.
+
+```{r hairpin_w_adduct_pos}
+# add in adduct information when building hce object
+adducts <- data.frame(hairpin = c("Uracil", "riboG"),
+                      adduct_position1 = c(1, 10),
+                      adduct_position2 = c(10, 50),
+                      stringsAsFactors = FALSE)
+
+hce <- create_haircut(mrna, hcut, adduct_positions = adducts)
+
+rowData(hce[["hcut"]])
+
+plot_hairpin(hce)
+```
+
+```{r}
+## subset which cells are used for plots
+plot_hairpin(hce,
+             cells_to_plot = sample(colnames(hce[["hcut"]]), 1))
+```
+
