@@ -4,7 +4,7 @@
 \alias{log_normalize}
 \title{Simple normalization for scrna-seq}
 \usage{
-log_normalize(mat, constant = 1e+05)
+log_normalize(mat, constant = 10000)
 }
 \arguments{
 \item{mat}{input matrix}

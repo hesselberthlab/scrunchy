@@ -37,7 +37,7 @@ normalize_fce <- function(fce,
 #' @return matrix of normalized values. Normalization performed by dividing by column sums
 #' (total counts per cell) and scaled by a scaling factor. Log values are returned with a pseudocount of 1
 #' @importFrom Matrix colSums
-log_normalize <- function(mat, constant = 1e5){
+log_normalize <- function(mat, constant = 1e4){
   mat <- constant * (mat / Matrix::colSums(mat))
   log1p(mat)
 }
