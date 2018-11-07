@@ -5,8 +5,8 @@
 \title{Generate 2D cell embeddings using UMAP}
 \usage{
 calc_umap(fce, expt = "sce", dr = "PCA", n_dims = NULL,
-  n_neighbors = 30, min_dist = 0.3, metric = "pearson2", seed = NA,
-  ...)
+  n_neighbors = 30, min_dist = 0.3, metric = "euclidean",
+  seed = NA, ...)
 }
 \arguments{
 \item{fce}{fce object}
@@ -29,10 +29,10 @@ preserve local structure.}
 
 \item{seed}{seed to generate reproducible UMAP projection. Defaults to no seed.}
 
-\item{...}{}
+\item{...}{additional arguments to pass to \code{\link[umap:umap]{umap::umap()}}}
 }
 \value{
-fce object with PCA values added to reducedDims
+fce object with UMAP values added to reducedDims
 }
 \description{
 See (https://umap-learn.readthedocs.io/en/latest/index.html) for

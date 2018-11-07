@@ -93,10 +93,65 @@ RNA data is log normalized and scaled to total UMI count for each cell. Function
 
 Normalized data is stored in the `logcounts` slot of each `SingleCellExperiment` object.
 
+
 ```{r}
 # normalize rna and functional data
-fce <- normalize_fce(fce)
+fce <- normalize_counts(fce)
 
 logcounts(fce[["fsce"]])[1:5, 1:3]
 ```
 
+# Feature selection and PCA
+
+
+```{r}
+# get variable genes
+var_genes <- get_var_genes(fce, n_genes = 5000) 
+
+# calc PCA and embed in 2D
+fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
+```
+
+# Embed cells in 2D using UMAP or tSNE
+
+
+```{r}
+fce <- calc_umap(fce, n_dims = 6)
+
+fce <- calc_tsne(fce, n_dims = 6)
+```
+
+
+Cell embeddings are stored in the `reducedDims` slot of the `SingleCellExperiment` and can be accessed as a named list.
+
+
+```{r}
+reducedDims(fce[["sce"]])
+
+reducedDims(fce[["sce"]])$UMAP[1:4, ]
+```
+
+# Visualization
+
+Cell features can be visulized with the `plot_cells` function which will plot gene/function assay values or cell metadata. 
+
+
+```{r}
+features <- c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922")
+ 
+plot_cells(fce, features)
+
+plot_cells(fce, features, dr = "TSNE")
+```
+
+
+# Clustering
+  
+  Kmeans clustering is implemented at this time, but additional functionality will be added. 
+  
+  
+```{r kmeans}
+fce <- run_kmeans(fce, 2)
+
+plot_feature(fce, "k_cluster")
+```

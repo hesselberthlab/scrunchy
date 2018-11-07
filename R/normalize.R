@@ -5,7 +5,7 @@
 #'
 #' @return fce object with log normalized counts returned in the logcounts slot
 #' @export
-normalize_fce <- function(fce,
+normalize_counts <- function(fce,
                           rna_method = "log_normalize",
                           functional_method = "clr") {
 
@@ -38,7 +38,7 @@ normalize_fce <- function(fce,
 #' (total counts per cell) and scaled by a scaling factor. Log values are returned with a pseudocount of 1
 #' @importFrom Matrix colSums
 log_normalize <- function(mat, constant = 1e4){
-  mat <- constant * (mat / Matrix::colSums(mat))
+  mat <- constant * (sweep(mat, 2, Matrix::colSums(mat), "/"))
   log1p(mat)
 }
 
