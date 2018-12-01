@@ -1,22 +1,15 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
+language: r
+r: bioc-release
 sudo: false
 cache: packages
 
-matrix:
-  include:
-  - r: devel
-  - r: release
-    after_success:
-    - Rscript -e 'covr::codecov()'
-    before_deploy:
-    - Rscript -e 'devtools::install_github("r-lib/pkgdown")'
-    deploy:
-      provider: script
-      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
-      skip_cleanup: true
-  - r: release
-    os: osx
-  allow_failures:
-  - os: osx
+after_success:
+- Rscript -e 'covr::codecov()'
+before_deploy:
+- Rscript -e 'devtools::install_github("r-lib/pkgdown")'
+deploy:
+  provider: script
+  script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+  skip_cleanup: true
