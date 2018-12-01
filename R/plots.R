@@ -10,8 +10,7 @@ plot_hairpin <- function(fce,
                          cells_to_plot = NULL,
                          return_df = FALSE,
                          ...) {
-
-  if (is.null(cells_to_plot)){
+  if (is.null(cells_to_plot)) {
     cells_to_plot <- colnames(counts(fce[["fsce"]]))
   }
 
@@ -22,12 +21,13 @@ plot_hairpin <- function(fce,
 
   ## compute per sample per adduct position counts
   plt_dat <- purrr::map_dfr(per_sample_cell_ids,
-                            function(cell_ids) {
-                              hairpin_info <- as.data.frame(rowData(fce[["fsce"]]))
-                              hairpin_info$count <- rowSums(counts[, cell_ids, drop = FALSE])
-                              hairpin_info
-                            },
-                            .id = "sample")
+    function(cell_ids) {
+      hairpin_info <- as.data.frame(rowData(fce[["fsce"]]))
+      hairpin_info$count <- rowSums(counts[, cell_ids, drop = FALSE])
+      hairpin_info
+    },
+    .id = "sample"
+  )
 
   ## fix types
   plt_dat$sample <- as.character(plt_dat$sample)
@@ -38,7 +38,6 @@ plot_hairpin <- function(fce,
   }
 
   plot_hairpin_coverage(plt_dat, "position", "count", ...)
-
 }
 
 #' Plot coverage across hairpins
@@ -69,8 +68,6 @@ plot_hairpin_coverage <- function(df,
                                   pt_alpha = 0.7,
                                   pt_size = 0.8,
                                   xlimits = NULL) {
-
-
   p <- ggplot(df, aes_string(x = x, y = y)) +
     geom_line(aes_string(color = col), alpha = pt_alpha, size = pt_size) +
     cowplot::theme_cowplot() +
@@ -78,7 +75,7 @@ plot_hairpin_coverage <- function(df,
     ylab(y_lab) +
     xlab(x_lab)
 
-  if (all(c("adduct_position1", "adduct_position2") %in% colnames(df))){
+  if (all(c("adduct_position1", "adduct_position2") %in% colnames(df))) {
     p <- p +
       geom_vline(
         xintercept = df$adduct_position1[1],
@@ -89,12 +86,12 @@ plot_hairpin_coverage <- function(df,
       geom_vline(
         xintercept = df$adduct_position2[1],
         linetype = "dotted",
-        color = 'black',
+        color = "black",
         size = 1
       )
   }
 
-  if (!is.null(xlimits)){
+  if (!is.null(xlimits)) {
     p + xlim(xlimits)
   }
 
@@ -103,7 +100,7 @@ plot_hairpin_coverage <- function(df,
   }
 
   if (facet_by_hairpin) {
-    p <- p + facet_wrap( ~ hairpin)
+    p <- p + facet_wrap(~hairpin)
   }
   p
 }
@@ -117,10 +114,10 @@ plot_hairpin_coverage <- function(df,
 #' @param ... additional arguments to pass to plot_feature
 #'
 #' @export
-plot_cells <- function(fce, features, ...){
+plot_cells <- function(fce, features, ...) {
   plts <- list()
 
-  for( i in seq_along(features)){
+  for (i in seq_along(features)) {
     plts[[i]] <- plot_feature(fce, feature = features[i], ...)
   }
 
@@ -169,21 +166,21 @@ plot_feature <- function(fce,
                          col_pal = "Reds",
                          max_y = NULL,
                          plot_title = NULL,
-                         dims_to_plot = c(1, 2)){
+                         dims_to_plot = c(1, 2)) {
 
   # check inputs
-  if(!expt %in% names(assays(fce))) {
+  if (!expt %in% names(assays(fce))) {
     stop("expt not found in fce object")
   }
 
-  if(!dr %in% names(reducedDims(fce[[expt]]))) {
+  if (!dr %in% names(reducedDims(fce[[expt]]))) {
     stop(paste0("embedding method ", dr, " not found in fce object"))
   }
 
   embed_dat <- reducedDim(fce[[expt]], dr)
   embed_dat <- embed_dat[, dims_to_plot]
 
-  if(is.null(colnames(embed_dat))){
+  if (is.null(colnames(embed_dat))) {
     colnames(embed_dat) <- paste0(dr, dims_to_plot)
   }
 
@@ -201,16 +198,14 @@ plot_feature <- function(fce,
 
   meta_data_col <- TRUE
 
-  if(feature %in% sce_cols && feature %in% fsce_cols){
+  if (feature %in% sce_cols && feature %in% fsce_cols) {
     # get feature from supplied expt
     mdata <- as.data.frame(colData(fce[[expt]])[cell_ids, , drop = F]) %>%
       tibble::rownames_to_column("cell")
-
   } else if (feature %in% sce_cols) {
     # get feature from sce
     mdata <- as.data.frame(colData(fce[["sce"]])[cell_ids, , drop = F]) %>%
       tibble::rownames_to_column("cell")
-
   } else if (feature %in% fsce_cols) {
     # get feature from fsce
     mdata <- as.data.frame(colData(fce[["fsce"]])[cell_ids, , drop = F]) %>%
@@ -219,31 +214,32 @@ plot_feature <- function(fce,
     meta_data_col <- FALSE
   }
 
-  if(meta_data_col) {
+  if (meta_data_col) {
     embed_dat <- left_join(mdata, embed_dat, by = "cell")
   }
 
-  if (!is.null(cell_filter)){
-    embed_dat <- dplyr::filter(embed_dat,
-                               cell %in% cell_filter)
+  if (!is.null(cell_filter)) {
+    embed_dat <- dplyr::filter(
+      embed_dat,
+      cell %in% cell_filter
+    )
   }
 
   ## get expression data
   if (!meta_data_col) {
     feature_dat <- fce[feature, , ]
 
-    if(length(feature_dat) == 0){
+    if (length(feature_dat) == 0) {
       stop("feature not found in object")
     }
 
-    if(length(feature_dat) > 1){
+    if (length(feature_dat) > 1) {
       # get feature from supplied expt
       feature_dat <- assay(feature_dat[[expt]], "logcounts")[, cell_ids, drop = F] %>%
         as.matrix() %>% # coerces sparseMatrix
         t() %>%
         as.data.frame() %>%
         tibble::rownames_to_column("cell")
-
     } else {
       feature_dat <- assay(feature_dat[[1]], "logcounts")[, cell_ids, drop = F] %>%
         as.matrix() %>% # coerces sparseMatrix
@@ -255,7 +251,7 @@ plot_feature <- function(fce,
     embed_dat <- left_join(embed_dat, feature_dat, by = "cell")
   }
 
-  if (!is.null(plot_dat)){
+  if (!is.null(plot_dat)) {
     embed_dat <- left_join(embed_dat, plot_dat, by = "cell")
   }
 
@@ -264,11 +260,14 @@ plot_feature <- function(fce,
   color_aes_str_q <- quo(color_aes_str)
   embed_dat <- embed_dat %>% dplyr::arrange_at(.vars = color_aes_str)
 
-  p <- ggplot(embed_dat,
-              aes_string(xcol, ycol)) +
+  p <- ggplot(
+    embed_dat,
+    aes_string(xcol, ycol)
+  ) +
     geom_point(aes_string(color = color_aes_str),
-               size = pt_size,
-               alpha = pt_alpha)
+      size = pt_size,
+      alpha = pt_alpha
+    )
 
   ## discrete or continuous data?
   if (typeof(embed_dat[[feature]]) %in% c(
@@ -287,19 +286,25 @@ plot_feature <- function(fce,
   }
 
   if (label_text) {
-    if(discrete) {
+    if (discrete) {
       tsne_mean_dat <- embed_dat %>%
         group_by_at(vars(one_of(feature))) %>%
-        summarize(med_dim_1 = median(!!rlang::parse_quosure(xcol)),
-                  med_dim_2 = median(!!rlang::parse_quosure(ycol)))
+        summarize(
+          med_dim_1 = median(!!rlang::parse_quosure(xcol)),
+          med_dim_2 = median(!!rlang::parse_quosure(ycol))
+        )
 
       p <- p +
-        geom_text(data = tsne_mean_dat,
-                  aes_string(x = "med_dim_1",
-                             y = "med_dim_2",
-                             label = feature),
-                  size = label_size,
-                  color = label_color)
+        geom_text(
+          data = tsne_mean_dat,
+          aes_string(
+            x = "med_dim_1",
+            y = "med_dim_2",
+            label = feature
+          ),
+          size = label_size,
+          color = label_color
+        )
     } else {
       warning("label_text not compatible with continuous features")
     }
@@ -308,43 +313,50 @@ plot_feature <- function(fce,
   ## handle legend limit
   if (is.null(max_y) & !discrete) {
     max_y <- c(0, max(embed_dat[[color_aes_str]]))
-  } else if (discrete & is.null(max_y)){
+  } else if (discrete & is.null(max_y)) {
     max_y <- c(NA, NA)
   }
 
   # loupe-like colors
   cols <- rev(RColorBrewer::brewer.pal(11, "RdGy")[c(1:5, 7)])
 
-  #handle legend name
-  if(is.null(plot_title)) plot_title <- color_aes_str
+  # handle legend name
+  if (is.null(plot_title)) plot_title <- color_aes_str
 
   ## handle zero expression
-  if (!all(is.na(max_y)) && all(max_y == c(0, 0))){
+  if (!all(is.na(max_y)) && all(max_y == c(0, 0))) {
     p <- p + scale_color_gradient(low = cols[1], high = cols[1])
     return(p)
   }
 
   ## handle colors
-  if (is.null(.cols) && !discrete){
+  if (is.null(.cols) && !discrete) {
     if (palette_type == "viridis") {
-      p <- p + scale_color_viridis_c(discrete = F,
-                                   direction = -1,
-                                   option = col_pal,
-                                   limits = max_y)
+      p <- p + scale_color_viridis_c(
+        discrete = F,
+        direction = -1,
+        option = col_pal,
+        limits = max_y
+      )
     } else if (palette_type == "brewer") {
-      p <- p + scale_color_distiller(limits = max_y,
-                                     palette = col_pal,
-                                     direction = 1)
+      p <- p + scale_color_distiller(
+        limits = max_y,
+        palette = col_pal,
+        direction = 1
+      )
     } else if (palette_type == "cloupe") {
-      p <- p + scale_color_gradientn(limits = max_y,
-                                     colors = cols)
+      p <- p + scale_color_gradientn(
+        limits = max_y,
+        colors = cols
+      )
     }
-  } else if (!is.null(.cols) && !discrete){
-    p <- p + scale_color_gradientn(limits = max_y,
-                                   colors = .cols)
+  } else if (!is.null(.cols) && !discrete) {
+    p <- p + scale_color_gradientn(
+      limits = max_y,
+      colors = .cols
+    )
   } else {
-
-    if(!is.null(.cols)) {
+    if (!is.null(.cols)) {
       # use colors provided
       p <- p + scale_color_manual(
         values = .cols

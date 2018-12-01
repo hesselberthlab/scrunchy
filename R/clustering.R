@@ -15,18 +15,18 @@ run_kmeans <- function(fce,
                        n_dims = NULL,
                        ...) {
   ## check inputs
-  if(!expt %in% names(assays(fce))) {
+  if (!expt %in% names(assays(fce))) {
     stop("expt not found in fce object")
   }
 
-  if(!dr %in% names(reducedDims(fce[[expt]]))) {
+  if (!dr %in% names(reducedDims(fce[[expt]]))) {
     stop("dr method not found in fce object")
   }
 
   dr_mat <- reducedDim(fce[[expt]], dr)
 
-  if (!is.null(n_dims)){
-    if(n_dims > ncol(dr_mat)){
+  if (!is.null(n_dims)) {
+    if (n_dims > ncol(dr_mat)) {
       stop("n_dims larger than dimensality reduction matrix")
     }
     dr_mat <- dr_mat[, 1:n_dims]

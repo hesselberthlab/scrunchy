@@ -10,15 +10,15 @@
 #'
 #' @export
 get_var_genes <- function(fce,
-                      expt = "sce",
-                      n_genes = 1000){
+                          expt = "sce",
+                          n_genes = 1000) {
 
   ## check inputs
-  if(!expt %in% names(fce)) {
+  if (!expt %in% names(fce)) {
     stop("expt not found in fce object")
   }
 
-  if(!"logcounts" %in% names(assays(fce[[expt]]))) {
+  if (!"logcounts" %in% names(assays(fce[[expt]]))) {
     stop("logcounts not found in fce object, run normalize_counts first")
   }
   log_counts <- assay(fce[[expt]], "logcounts")

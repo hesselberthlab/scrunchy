@@ -12,7 +12,6 @@ read_10x_matrix <- function(path,
                             cell_prefix = NULL,
                             strip_10x_suffix = TRUE,
                             use_gene_symbols = TRUE) {
-
   fns <- dir(path)
   fns_needed <- c("barcodes.tsv", "genes.tsv", "matrix.mtx")
 
@@ -81,7 +80,8 @@ create_fce <- function(rna_data,
   f_mat <- as.matrix(functional_data)
 
   sce <- SingleCellExperiment(assays = list(
-    counts = rna_mat))
+    counts = rna_mat
+  ))
 
   rna_cells <- colnames(rna_mat)
   f_cells <- colnames(f_mat)
@@ -90,10 +90,11 @@ create_fce <- function(rna_data,
   # for now assume rownames of input f_matrix have this structure
   # ADDUCTID_POS
   hairpin_fields <- stringr::str_split(rownames(f_mat),
-                                       "_",
-                                       simplify = T)
+    "_",
+    simplify = T
+  )
 
-  if(ncol(hairpin_fields) != 2){
+  if (ncol(hairpin_fields) != 2) {
     stop("expecting hairpins to be named as ADDUCTNAME_POS, e.g. Uracil_1")
   }
 
@@ -107,28 +108,32 @@ create_fce <- function(rna_data,
     stringsAsFactors = FALSE
   )
 
-  if (!is.null(adduct_positions)){
+  if (!is.null(adduct_positions)) {
     adduct_data <- tibble::rownames_to_column(adduct_data, "hairpin_pos")
     adduct_data <- dplyr::left_join(adduct_data, adduct_positions, by = c("hairpin"))
     adduct_data <- tibble::column_to_rownames(adduct_data, "hairpin_pos")
 
-    if(nrow(adduct_data) != nrow(f_mat)){
+    if (nrow(adduct_data) != nrow(f_mat)) {
       stop("unable to add adduct_data to rowData for hairpin object")
     }
-
   }
 
-  fsce <- SingleCellExperiment(assays = list(
-    counts = f_mat),
-    rowData = adduct_data)
+  fsce <- SingleCellExperiment(
+    assays = list(
+      counts = f_mat
+    ),
+    rowData = adduct_data
+  )
 
-  expr_list <- ExperimentList(list(sce = sce,
-                                   fsce = fsce))
+  expr_list <- ExperimentList(list(
+    sce = sce,
+    fsce = fsce
+  ))
 
   ## make map between cell ids and experimental assay
   nshared_cells <- intersect(rna_cells, f_cells)
 
-  if(length(nshared_cells) == 0){
+  if (length(nshared_cells) == 0) {
     warning("No cell ids were shared between the haircut data and rna data")
   }
 
@@ -144,23 +149,30 @@ create_fce <- function(rna_data,
     stringsAsFactors = FALSE
   )
 
-  maplist <- list(sce = rna_cell_map,
-                  fsce = f_cell_map)
+  maplist <- list(
+    sce = rna_cell_map,
+    fsce = f_cell_map
+  )
 
   sampMap <- listToMap(maplist)
 
   ## build colData
-  cell_ids <- unique(rna_cells,
-                     f_cells)
+  cell_ids <- unique(
+    rna_cells,
+    f_cells
+  )
 
-  if (id_from_name){
+  if (id_from_name) {
     sample_ids <- stringr::str_split(cell_ids,
-                                     stringr::fixed(id_delim),
-                                     simplify = TRUE)
+      stringr::fixed(id_delim),
+      simplify = TRUE
+    )
 
-    if(!all(id_fields %in% 1:ncol(sample_ids))){
-      warning(paste0("supplied id_fields not found in cell_ids\n",
-                     "replacing all sample_ids with NA"))
+    if (!all(id_fields %in% 1:ncol(sample_ids))) {
+      warning(paste0(
+        "supplied id_fields not found in cell_ids\n",
+        "replacing all sample_ids with NA"
+      ))
       sample_ids <- rep(NA, length(cell_ids))
     } else {
       sample_ids <- sample_ids[, id_fields]
@@ -174,9 +186,11 @@ create_fce <- function(rna_data,
     sample_id = sample_ids
   )
 
-  fce <- MultiAssayExperiment::MultiAssayExperiment(experiments = expr_list,
-                                                    colData = colDat,
-                                                    sampleMap = sampMap)
+  fce <- MultiAssayExperiment::MultiAssayExperiment(
+    experiments = expr_list,
+    colData = colDat,
+    sampleMap = sampMap
+  )
 
   ## set colData for each assay
   colData(fce[["sce"]]) <- colData(fce)[rna_cells, , drop = F]

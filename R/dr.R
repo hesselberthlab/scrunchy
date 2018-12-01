@@ -12,28 +12,28 @@
 #'
 #' @export
 calc_pca <- function(fce,
-                    expt = "sce",
-                    assay = "logcounts",
-                    genes = NULL,
-                    n_pcs = 20,
-                    scale = TRUE){
+                     expt = "sce",
+                     assay = "logcounts",
+                     genes = NULL,
+                     n_pcs = 20,
+                     scale = TRUE) {
 
   ## check inputs
-  if(!expt %in% names(assays(fce))) {
+  if (!expt %in% names(assays(fce))) {
     stop("expt not found in fce object")
   }
 
-  if(!assay %in% names(assays(fce[[expt]]))) {
+  if (!assay %in% names(assays(fce[[expt]]))) {
     stop("assay not found in fce object")
   }
 
-  if(is.null(genes)){
+  if (is.null(genes)) {
     genes <- rownames(fce[[expt]])
   } else {
     genes <- genes[genes %in% rownames(fce[[expt]])]
   }
 
-  if(length(genes) == 0){
+  if (length(genes) == 0) {
     stop("input genes not found in fce object")
   }
 
@@ -42,7 +42,7 @@ calc_pca <- function(fce,
   ## remove rows without counts
   in_data <- in_data[Matrix::rowSums(in_data) > 0, ]
 
-  if(scale){
+  if (scale) {
     message("scaling data")
     dr_mat <- scale(t(as.matrix(in_data)), center = TRUE, scale = TRUE)
   } else {
@@ -52,9 +52,10 @@ calc_pca <- function(fce,
   message("calculating pcs")
   n_pcs <- min(c(n_pcs, dim(dr_mat) - 1))
   pcs <- irlba::prcomp_irlba(dr_mat,
-                             n = n_pcs,
-                             center = FALSE,
-                             scale. = FALSE)
+    n = n_pcs,
+    center = FALSE,
+    scale. = FALSE
+  )
 
   reducedDims(fce[[expt]]) <- SimpleList(PCA = pcs$x)
 
@@ -84,41 +85,42 @@ calc_pca <- function(fce,
 #' @return fce object with UMAP values added to reducedDims
 #' @export
 calc_umap <- function(fce,
-                    expt = "sce",
-                    dr = "PCA",
-                    n_dims = NULL,
-                    n_neighbors = 30,
-                    min_dist = 0.3,
-                    metric = "euclidean",
-                    seed = NA,
-                    ...){
+                      expt = "sce",
+                      dr = "PCA",
+                      n_dims = NULL,
+                      n_neighbors = 30,
+                      min_dist = 0.3,
+                      metric = "euclidean",
+                      seed = NA,
+                      ...) {
 
   ## check inputs
-  if(!expt %in% names(assays(fce))) {
+  if (!expt %in% names(assays(fce))) {
     stop("expt not found in fce object")
   }
 
-  if(!dr %in% names(reducedDims(fce[[expt]]))) {
+  if (!dr %in% names(reducedDims(fce[[expt]]))) {
     stop("dr method not found in fce object")
   }
 
   dr_mat <- reducedDim(fce[[expt]], dr)
 
-  if (!is.null(n_dims)){
-    if(n_dims > ncol(dr_mat)){
+  if (!is.null(n_dims)) {
+    if (n_dims > ncol(dr_mat)) {
       stop("n_dims larger than dimensality reduction matrix")
     }
     dr_mat <- dr_mat[, 1:n_dims]
   }
 
   umap_res <- umap::umap(dr_mat,
-                         method = "naive",
-                         metric = metric,
-                         random_state = seed,
-                         min_dist = min_dist,
-                         n_neighbors = n_neighbors,
-                         n_components = 2,
-                         ...)
+    method = "naive",
+    metric = metric,
+    random_state = seed,
+    min_dist = min_dist,
+    n_neighbors = n_neighbors,
+    n_components = 2,
+    ...
+  )
 
   reducedDims(fce[[expt]])$UMAP <- umap_res$layout
 
@@ -150,35 +152,36 @@ calc_tsne <- function(fce,
                       perplexity = 30,
                       theta = 0.5,
                       seed = NA,
-                      ...){
+                      ...) {
 
   ## check inputs
-  if(!expt %in% names(assays(fce))) {
+  if (!expt %in% names(assays(fce))) {
     stop("expt not found in fce object")
   }
 
-  if(!dr %in% names(reducedDims(fce[[expt]]))) {
+  if (!dr %in% names(reducedDims(fce[[expt]]))) {
     stop("dr method not found in fce object")
   }
 
   dr_mat <- reducedDim(fce[[expt]], dr)
 
-  if (!is.null(n_dims)){
-    if(n_dims > ncol(dr_mat)){
+  if (!is.null(n_dims)) {
+    if (n_dims > ncol(dr_mat)) {
       stop("n_dims larger than dimensality reduction matrix")
     }
     dr_mat <- dr_mat[, 1:n_dims]
   }
 
   tsne_res <- Rtsne::Rtsne(dr_mat,
-                           perplexity = perplexity,
-                           theta = theta,
-                           check_duplicates = FALSE,
-                           dims = 2,
-                           pca = FALSE,
-                           verbose = FALSE,
-                           pca_center = FALSE,
-                           ...)
+    perplexity = perplexity,
+    theta = theta,
+    check_duplicates = FALSE,
+    dims = 2,
+    pca = FALSE,
+    verbose = FALSE,
+    pca_center = FALSE,
+    ...
+  )
 
   rownames(tsne_res$Y) <- rownames(dr_mat)
 

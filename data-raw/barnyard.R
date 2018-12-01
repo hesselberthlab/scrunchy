@@ -3,8 +3,8 @@
 library(Seurat)
 library(tidyverse)
 
-mrna_tab <- read.csv("data-raw/mrna.csv.gz", sep = ',', header = TRUE, row.names = 1)
-haircut_tab <- read.csv("data-raw/haircut.csv.gz", sep = ',', header = TRUE, row.names = 1)
+mrna_tab <- read.csv("data-raw/mrna.csv.gz", sep = ",", header = TRUE, row.names = 1)
+haircut_tab <- read.csv("data-raw/haircut.csv.gz", sep = ",", header = TRUE, row.names = 1)
 
 sce <- CreateSeuratObject(raw.data = mrna_tab) %>%
   NormalizeData() %>%
@@ -17,7 +17,8 @@ sce <- CreateSeuratObject(raw.data = mrna_tab) %>%
 TSNEPlot(sce, do.label = TRUE, pt.size = 0.5)
 
 sce <- SetAssayData(
-  sce, assay.type = 'CITE',
+  sce,
+  assay.type = "CITE",
   slot = "raw.data",
   new.data = haircut_tab
 ) %>%
@@ -26,6 +27,6 @@ sce <- SetAssayData(
 
 FeaturePlot(
   sce,
-  features.plot = c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922"),
+  features.plot = c("Uracil_45", "riboG_44", "ENSG00000076248", "ENSG00000172922"),
   cols.use = c("lightgrey", "blue")
 )
