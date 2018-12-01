@@ -4,12 +4,12 @@
 \alias{plot_cells}
 \title{Plot cells in reduced dimensionality 2D space}
 \usage{
-plot_cells(fce, feature, ...)
+plot_cells(fce, features, ...)
 }
 \arguments{
 \item{fce}{fce object of class MultiAssayExperiment}
 
-\item{feature}{features to plot, either gene names or columns in colData}
+\item{features}{features to plot, either gene names or columns in colData}
 
 \item{...}{additional arguments to pass to plot_feature}
 }
