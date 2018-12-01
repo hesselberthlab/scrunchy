@@ -1,34 +1,34 @@
 #' Normalize single cell rna and functional data
-#' @param hcut_obj haircut object
+#' @param fce fce object generted by [`create_fce()`]
 #' @param rna_method normalization method for RNA data
-#' @param hcut_method normalization method for functional data
+#' @param functional_method normalization method for functional data
 #'
-#' @return hcut_obj with log normalized counts returned in the logcounts slot
+#' @return fce object with log normalized counts returned in the logcounts slot
 #' @export
-normalize <- function(hcut_obj,
-                      rna_method = "log_normalize",
-                      hcut_method = "clr"){
+normalize_counts <- function(fce,
+                          rna_method = "log_normalize",
+                          functional_method = "clr") {
 
   # check inputs
   rna_norm_methods <- c("log_normalize")
-  hcut_norm_methods <- c("clr")
+  f_norm_methods <- c("clr")
   if(!rna_method %in% rna_norm_methods){
     stop( "rna_method must be one of ", paste0(rna_norm_methods, collapse = ","))
   }
 
-  if(!hcut_method %in% hcut_norm_methods){
-    stop( "hcut_method must be one of ", paste0(hcut_norm_methods, collapse = ","))
+  if(!functional_method %in% f_norm_methods){
+    stop( "functional_method must be one of ", paste0(f_norm_methods, collapse = ","))
   }
 
   if(rna_method == "log_normalize") {
-    assays(hcut_obj[["rna"]])$logcounts <- log_normalize(counts(hcut_obj[["rna"]]))
+    assays(fce[["sce"]])$logcounts <- log_normalize(counts(fce[["sce"]]))
   }
 
-  if(hcut_method == "clr") {
-    assays(hcut_obj[["hcut"]])$logcounts <- clr_normalize(counts(hcut_obj[["hcut"]]))
+  if(functional_method == "clr") {
+    assays(fce[["fsce"]])$logcounts <- clr_normalize(counts(fce[["fsce"]]))
   }
 
-  hcut_obj
+  fce
 }
 
 #' Simple normalization for scrna-seq
@@ -37,8 +37,8 @@ normalize <- function(hcut_obj,
 #' @return matrix of normalized values. Normalization performed by dividing by column sums
 #' (total counts per cell) and scaled by a scaling factor. Log values are returned with a pseudocount of 1
 #' @importFrom Matrix colSums
-log_normalize <- function(mat, constant = 1e5){
-  mat <- constant * (mat / Matrix::colSums(mat))
+log_normalize <- function(mat, constant = 1e4){
+  mat <- constant * (sweep(mat, 2, Matrix::colSums(mat), "/"))
   log1p(mat)
 }
 

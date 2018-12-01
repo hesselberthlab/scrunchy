@@ -24,7 +24,13 @@ Imports:
     stringr,
     readr,
     tibble,
-    purrr
+    purrr,
+    irlba,
+    umap,
+    rlang,
+    RColorBrewer,
+    matrixStats,
+    Rtsne
 biocViews:
     SingleCellExperiment,
     MultiAssayExperiment

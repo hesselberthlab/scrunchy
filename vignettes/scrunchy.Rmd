@@ -19,9 +19,9 @@ knitr::opts_chunk$set(echo = TRUE)
 devtools::install_github("hesselberthlab/scrunchy")
 ```
 
-# Create a Haircut object
+# Create a Functional Cell Experiment (fce) object
 
-```{r create_sce}
+```{r create_fce}
 suppressMessages(library(scrunchy))
 suppressMessages(library(SingleCellExperiment))
 
@@ -34,27 +34,27 @@ hcut <- scrunchy:::load_csv(scrunchy:::scrunchy_data("haircut.csv.gz"))
 hcut[1:5, 1:5]
 
 
-hce <- create_haircut(mrna, hcut)
+fce <- create_fce(mrna, hcut)
 ```
 
-`hce` is an object of class MultiAssayExperiment, which can contain data from multiple modalities, and
+`fce` is an object of class MultiAssayExperiment, which can contain data from multiple modalities, and
 importantly does not require that each modality has the same number of cells or features. 
 
 ```{r}
-# rna stores RNA info
-hce[["rna"]]
-counts(hce[["rna"]])[1:5, 1:5]
+# sce stores RNA info
+fce[["sce"]]
+counts(fce[["sce"]])[1:5, 1:5]
 
-# hcut stores functional data
-hce[["hcut"]]
-counts(hce[["hcut"]])[1:5, 1:5]
+# fsce stores functional data
+fce[["fsce"]]
+counts(fce[["fsce"]])[1:5, 1:5]
 
 # row annotations contain info about each row in the matrix
-rowData(hce[["hcut"]])
+rowData(fce[["fsce"]])
 
 # column annotations contain info about each row in the matrix, 
 # or about each unique cell present in any of the experiments
-colData(hce)
+colData(fce)
 ```
 
 # Plots
@@ -62,28 +62,96 @@ colData(hce)
 `plot_hairpin` produces a coverage plot across each hairpin in the data.
 
 ```{r hairpin_plot}
-plot_hairpin(hce)
+plot_hairpin(fce)
 ```
 
-Specific adduct positions can be highlighted by including this information in the `hce` object.
+Specific adduct positions can be highlighted by including this information in the `fce` object.
 
 ```{r hairpin_w_adduct_pos}
-# add in adduct information when building hce object
+# add in adduct information when building fce object
 adducts <- data.frame(hairpin = c("Uracil", "riboG"),
                       adduct_position1 = c(1, 10),
                       adduct_position2 = c(10, 50),
                       stringsAsFactors = FALSE)
 
-hce <- create_haircut(mrna, hcut, adduct_positions = adducts)
+fce <- create_fce(mrna, hcut, adduct_positions = adducts)
 
-rowData(hce[["hcut"]])
+rowData(fce[["fsce"]])
 
-plot_hairpin(hce)
+plot_hairpin(fce)
 ```
 
 ```{r}
 ## subset which cells are used for plots
-plot_hairpin(hce,
-             cells_to_plot = sample(colnames(hce[["hcut"]]), 1))
+plot_hairpin(fce,
+             cells_to_plot = sample(colnames(fce[["fsce"]]), 1))
 ```
 
+# Normalize
+
+RNA data is log normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-Seq analysis.
+
+Normalized data is stored in the `logcounts` slot of each `SingleCellExperiment` object.
+
+
+```{r}
+# normalize rna and functional data
+fce <- normalize_counts(fce)
+
+logcounts(fce[["fsce"]])[1:5, 1:3]
+```
+
+# Feature selection and PCA
+
+
+```{r}
+# get variable genes
+var_genes <- get_var_genes(fce, n_genes = 5000) 
+
+# calc PCA and embed in 2D
+fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
+```
+
+# Embed cells in 2D using UMAP or tSNE
+
+
+```{r}
+fce <- calc_umap(fce, n_dims = 6)
+
+fce <- calc_tsne(fce, n_dims = 6)
+```
+
+
+Cell embeddings are stored in the `reducedDims` slot of the `SingleCellExperiment` and can be accessed as a named list.
+
+
+```{r}
+reducedDims(fce[["sce"]])
+
+reducedDims(fce[["sce"]])$UMAP[1:4, ]
+```
+
+# Visualization
+
+Cell features can be visulized with the `plot_cells` function which will plot gene/function assay values or cell metadata. 
+
+
+```{r}
+features <- c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922")
+ 
+plot_cells(fce, features)
+
+plot_cells(fce, features, dr = "TSNE")
+```
+
+
+# Clustering
+  
+  Kmeans clustering is implemented at this time, but additional functionality will be added. 
+  
+  
+```{r kmeans}
+fce <- run_kmeans(fce, 2)
+
+plot_feature(fce, "k_cluster")
+```

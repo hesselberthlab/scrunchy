@@ -55,10 +55,10 @@ read_10x_matrix <- function(path,
   mat
 }
 
-#' Create a haircut object as a MultiAssayExperiment
+#' Create a functional cell experiment (fce) object as a MultiAssayExperiment
 #'
 #' @param rna_data UMI count matrix
-#' @param haircut_data Functional count matrix
+#' @param functional_data Functional count matrix
 #' @param id_from_name Extract sample id from cell name (default = TRUE)
 #' If false then the sample_id field will be populated with NA.
 #' @param id_delim delimiter to split cell name (default = ".")
@@ -69,33 +69,35 @@ read_10x_matrix <- function(path,
 #'  from haircut_data (i.e. Uracil from entry Uracil_1), a second column named adduct_position1 with the first adduct position,
 #'  and a third column named adduct_position2 with the second adduct position
 #'
+#' @return fce object of class MultiAssayExperiment containing SingleCellExperiments. mRNA data
+#' is stored in slot "sce", and functional data is stored in slot "fsce"
 #' @importFrom stringr fixed str_split
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
 #' @export
-create_haircut <- function(rna_data,
-                           haircut_data,
-                           id_from_name = TRUE,
-                           id_delim = ".",
-                           id_fields = 2,
-                           adduct_positions = NULL){
+create_fce <- function(rna_data,
+                       functional_data,
+                       id_from_name = TRUE,
+                       id_delim = ".",
+                       id_fields = 2,
+                       adduct_positions = NULL) {
 
   # keep umis as sparseMatrix
   rna_mat <- as(as.matrix(rna_data), "sparseMatrix")
 
   # haircut data is not sparse
-  hcut_mat <- as.matrix(haircut_data)
+  f_mat <- as.matrix(functional_data)
 
-  sce_mrna <- SingleCellExperiment(assays = list(
+  sce <- SingleCellExperiment(assays = list(
     counts = rna_mat))
 
   rna_cells <- colnames(rna_mat)
-  hcut_cells <- colnames(hcut_mat)
+  f_cells <- colnames(f_mat)
 
   # get info for adduct id and position
-  # for now assume rownames of input hcut_matrix have this structure
+  # for now assume rownames of input f_matrix have this structure
   # ADDUCTID_POS
-  hairpin_fields <- stringr::str_split(rownames(hcut_mat),
+  hairpin_fields <- stringr::str_split(rownames(f_mat),
                                        "_",
                                        simplify = T)
 
@@ -107,7 +109,7 @@ create_haircut <- function(rna_data,
   hairpin_pos <- hairpin_fields[, 2]
 
   adduct_data <- data.frame(
-    row.names = rownames(hcut_mat),
+    row.names = rownames(f_mat),
     hairpin = hairpin_id,
     position = hairpin_pos,
     stringsAsFactors = FALSE
@@ -118,21 +120,21 @@ create_haircut <- function(rna_data,
     adduct_data <- dplyr::left_join(adduct_data, adduct_positions, by = c("hairpin"))
     adduct_data <- tibble::column_to_rownames(adduct_data, "hairpin_pos")
 
-    if(nrow(adduct_data) != nrow(hcut_mat)){
+    if(nrow(adduct_data) != nrow(f_mat)){
       stop("unable to add adduct_data to rowData for hairpin object")
     }
 
   }
 
-  sce_hcut <- SingleCellExperiment(assays = list(
-    counts = hcut_mat),
+  fsce <- SingleCellExperiment(assays = list(
+    counts = f_mat),
     rowData = adduct_data)
 
-  expr_list <- ExperimentList(list(rna = sce_mrna,
-                                   hcut = sce_hcut))
+  expr_list <- ExperimentList(list(sce = sce,
+                                   fsce = fsce))
 
   ## make map between cell ids and experimental assay
-  nshared_cells <- intersect(rna_cells, hcut_cells)
+  nshared_cells <- intersect(rna_cells, f_cells)
 
   if(length(nshared_cells) == 0){
     warning("No cell ids were shared between the haircut data and rna data")
@@ -144,20 +146,20 @@ create_haircut <- function(rna_data,
     stringsAsFactors = FALSE
   )
 
-  hcut_cell_map <- data.frame(
-    primary = hcut_cells,
-    colname = hcut_cells,
+  f_cell_map <- data.frame(
+    primary = f_cells,
+    colname = f_cells,
     stringsAsFactors = FALSE
   )
 
-  maplist <- list(rna = rna_cell_map,
-                  hcut = hcut_cell_map)
+  maplist <- list(sce = rna_cell_map,
+                  fsce = f_cell_map)
 
   sampMap <- listToMap(maplist)
 
   ## build colData
   cell_ids <- unique(rna_cells,
-                     hcut_cells)
+                     f_cells)
 
   if (id_from_name){
     sample_ids <- stringr::str_split(cell_ids,
@@ -180,13 +182,13 @@ create_haircut <- function(rna_data,
     sample_id = sample_ids
   )
 
-  hce <- MultiAssayExperiment::MultiAssayExperiment(experiments = expr_list,
+  fce <- MultiAssayExperiment::MultiAssayExperiment(experiments = expr_list,
                                                     colData = colDat,
                                                     sampleMap = sampMap)
 
   ## set colData for each assay
-  colData(hce[["rna"]]) <- colData(hce)[rna_cells, , drop = F]
-  colData(hce[["hcut"]]) <- colData(hce)[hcut_cells, , drop = F]
+  colData(fce[["sce"]]) <- colData(fce)[rna_cells, , drop = F]
+  colData(fce[["fsce"]]) <- colData(fce)[f_cells, , drop = F]
 
-  hce
+  fce
 }
