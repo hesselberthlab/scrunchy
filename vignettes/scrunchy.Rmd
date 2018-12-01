@@ -1,46 +1,34 @@
 ---
 title: "Introduction to scrunchy"
-author: "Kent Riemondy"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{scrunchy}
+  %\VignetteIndexEntry{Introduction to scrunchy}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r}
+```{r echo=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE
 )
 ```
 
-# Install the package
-
-```{r install, eval = FALSE}
-devtools::install_github("hesselberthlab/scrunchy")
-```
-
 # Create a Functional Cell Experiment (fce) object
 
-```{r create_fce}
-suppressMessages(library(scrunchy))
-suppressMessages(library(SingleCellExperiment))
+```{r create_fce, message=FALSE}
+library(scrunchy)
+library(SingleCellExperiment)
 
 # load mRNA UMI data
-mrna <- scrunchy:::load_csv(scrunchy:::scrunchy_data("mrna.csv.gz"))
-mrna[1:5, 1:5]
+mrna <- load_csv(scrunchy_data("mrna.csv.gz"))
 
 # load haircut UMI data
-hcut <- scrunchy:::load_csv(scrunchy:::scrunchy_data("haircut.csv.gz"))
-hcut[1:5, 1:5]
-
+hcut <- load_csv(scrunchy_data("haircut.csv.gz"))
 
 fce <- create_fce(mrna, hcut)
 ```
 
-`fce` is an object of class MultiAssayExperiment, which can contain data from multiple modalities, and
-importantly does not require that each modality has the same number of cells or features. 
+`fce` is an object of class `MultiAssayExperiment`, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. 
 
 ```{r}
 # sce stores RNA info
@@ -71,10 +59,12 @@ Specific adduct positions can be highlighted by including this information in th
 
 ```{r hairpin_w_adduct_pos}
 # add in adduct information when building fce object
-adducts <- data.frame(hairpin = c("Uracil", "riboG"),
-                      adduct_position1 = c(1, 10),
-                      adduct_position2 = c(10, 50),
-                      stringsAsFactors = FALSE)
+adducts <- data.frame(
+  hairpin = c("Uracil", "riboG"),
+  adduct_position1 = c(1, 10),
+  adduct_position2 = c(10, 50),
+  stringsAsFactors = FALSE
+)
 
 fce <- create_fce(mrna, hcut, adduct_positions = adducts)
 
@@ -85,16 +75,17 @@ plot_hairpin(fce)
 
 ```{r}
 ## subset which cells are used for plots
-plot_hairpin(fce,
-             cells_to_plot = sample(colnames(fce[["fsce"]]), 1))
+plot_hairpin(
+  fce,
+  cells_to_plot = sample(colnames(fce[["fsce"]]), 1)
+)
 ```
 
-# Normalize
+# Normalization
 
-RNA data is log normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-Seq analysis.
+RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.
 
 Normalized data is stored in the `logcounts` slot of each `SingleCellExperiment` object.
-
 
 ```{r}
 # normalize rna and functional data
@@ -115,16 +106,13 @@ fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
 
 # Embed cells in 2D using UMAP or tSNE
 
-
 ```{r}
 fce <- calc_umap(fce, n_dims = 6)
 
 fce <- calc_tsne(fce, n_dims = 6)
 ```
 
-
 Cell embeddings are stored in the `reducedDims` slot of the `SingleCellExperiment` and can be accessed as a named list.
-
 
 ```{r}
 reducedDims(fce[["sce"]])
@@ -136,7 +124,6 @@ reducedDims(fce[["sce"]])$UMAP[1:4, ]
 
 Cell features can be visulized with the `plot_cells` function which will plot gene/function assay values or cell metadata. 
 
-
 ```{r}
 features <- c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922")
  
@@ -147,8 +134,7 @@ plot_cells(fce, features, dr = "TSNE")
 
 # Clustering
   
-  Kmeans clustering is implemented at this time, but additional functionality will be added. 
-  
+Kmeans clustering is implemented at this time, but additional functionality will be added. 
   
 ```{r kmeans}
 fce <- run_kmeans(fce, 2)
