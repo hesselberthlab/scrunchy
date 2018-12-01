@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to scrunchy">
@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scrunchy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -79,9 +79,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Introduction to scrunchy</h1>
-                        <h4 class="author">Kent Riemondy</h4>
             
-            <h4 class="date">2018-12-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hesselberthlab/scrunchy/blob/master/vignettes/scrunchy.Rmd"><code>vignettes/scrunchy.Rmd</code></a></small>
       <div class="hidden name"><code>scrunchy.Rmd</code></div>
@@ -90,54 +88,22 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">echo =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">)</a></code></pre></div>
-<div id="install-the-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#install-the-package" class="anchor"></a>Install the package</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"hesselberthlab/scrunchy"</span>)</a></code></pre></div>
-</div>
 <div id="create-a-functional-cell-experiment-fce-object" class="section level1">
 <h1 class="hasAnchor">
 <a href="#create-a-functional-cell-experiment-fce-object" class="anchor"></a>Create a Functional Cell Experiment (fce) object</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy))</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment))</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># load mRNA UMI data</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">mrna &lt;-<span class="st"> </span>scrunchy<span class="op">:::</span><span class="kw">load_csv</span>(scrunchy<span class="op">:::</span><span class="kw">scrunchy_data</span>(<span class="st">"mrna.csv.gz"</span>))</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">mrna[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
-<pre><code>##                 AAACCTGAGATATGCA.1 AAACCTGAGGCGATAC.1 AAACCTGCAGGACGTA.1
-## ENSG00000243485                  0                  0                  0
-## ENSG00000237613                  0                  0                  0
-## ENSG00000186092                  0                  0                  0
-## ENSG00000238009                  0                  0                  0
-## ENSG00000239945                  0                  0                  0
-##                 AAACCTGGTACCGGCT.1 AAACCTGTCCAAATGC.1
-## ENSG00000243485                  0                  0
-## ENSG00000237613                  0                  0
-## ENSG00000186092                  0                  0
-## ENSG00000238009                  0                  0
-## ENSG00000239945                  0                  0</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># load haircut UMI data</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">hcut &lt;-<span class="st"> </span>scrunchy<span class="op">:::</span><span class="kw">load_csv</span>(scrunchy<span class="op">:::</span><span class="kw">scrunchy_data</span>(<span class="st">"haircut.csv.gz"</span>))</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">hcut[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
-<pre><code>##          AAACCTGAGATATGCA.1 AAACCTGAGGCGATAC.1 AAACCTGCAGGACGTA.1
-## riboG_1                   5                  3                  6
-## riboG_10                  9                  6                  9
-## riboG_11                 11                  9                 11
-## riboG_12                  5                  3                  8
-## riboG_13                 23                 15                 19
-##          AAACCTGGTACCGGCT.1 AAACCTGTCCAAATGC.1
-## riboG_1                   5                  7
-## riboG_10                  5                  6
-## riboG_11                  6                 14
-## riboG_12                  4                  3
-## riboG_13                 22                 25</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fce.html">create_fce</a></span>(mrna, hcut)</a></code></pre></div>
-<p><code>fce</code> is an object of class MultiAssayExperiment, which can contain data from multiple modalities, and importantly does not require that each modality has the same number of cells or features.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># sce stores RNA info</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">fce[[<span class="st">"sce"</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># load mRNA UMI data</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">mrna &lt;-<span class="st"> </span><span class="kw">load_csv</span>(<span class="kw">scrunchy_data</span>(<span class="st">"mrna.csv.gz"</span>))</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># load haircut UMI data</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">hcut &lt;-<span class="st"> </span><span class="kw">load_csv</span>(<span class="kw">scrunchy_data</span>(<span class="st">"haircut.csv.gz"</span>))</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fce.html">create_fce</a></span>(mrna, hcut)</a></code></pre></div>
+<p><code>fce</code> is an object of class <code>MultiAssayExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># sce stores RNA info</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">fce[[<span class="st">"sce"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 33694 2255 
 ## metadata(0):
@@ -150,7 +116,7 @@
 ## colData names(1): sample_id
 ## reducedDimNames(0):
 ## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fce[[<span class="st">"sce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fce[[<span class="st">"sce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
 ##                 AAACCTGAGATATGCA.1 AAACCTGAGGCGATAC.1 AAACCTGCAGGACGTA.1
 ## ENSG00000243485                  .                  .                  .
@@ -164,8 +130,8 @@
 ## ENSG00000186092                  .                  .
 ## ENSG00000238009                  .                  .
 ## ENSG00000239945                  .                  .</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># fsce stores functional data</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">fce[[<span class="st">"fsce"</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># fsce stores functional data</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">fce[[<span class="st">"fsce"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 122 2255 
 ## metadata(0):
@@ -177,7 +143,7 @@
 ## colData names(1): sample_id
 ## reducedDimNames(0):
 ## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fce[[<span class="st">"fsce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fce[[<span class="st">"fsce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##          AAACCTGAGATATGCA.1 AAACCTGAGGCGATAC.1 AAACCTGCAGGACGTA.1
 ## riboG_1                   5                  3                  6
 ## riboG_10                  9                  6                  9
@@ -190,8 +156,8 @@
 ## riboG_11                  6                 14
 ## riboG_12                  4                  3
 ## riboG_13                 22                 25</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># row annotations contain info about each row in the matrix</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">rowData</span>(fce[[<span class="st">"fsce"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># row annotations contain info about each row in the matrix</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">rowData</span>(fce[[<span class="st">"fsce"</span>]])</a></code></pre></div>
 <pre><code>## DataFrame with 122 rows and 2 columns
 ##               hairpin    position
 ##           &lt;character&gt; &lt;character&gt;
@@ -206,9 +172,9 @@
 ## Uracil_7       Uracil           7
 ## Uracil_8       Uracil           8
 ## Uracil_9       Uracil           9</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># column annotations contain info about each row in the matrix, </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co"># or about each unique cell present in any of the experiments</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">colData</span>(fce)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># column annotations contain info about each row in the matrix, </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># or about each unique cell present in any of the experiments</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">colData</span>(fce)</a></code></pre></div>
 <pre><code>## DataFrame with 2255 rows and 1 column
 ##                    sample_id
 ##                     &lt;factor&gt;
@@ -228,18 +194,20 @@
 <h1 class="hasAnchor">
 <a href="#plots" class="anchor"></a>Plots</h1>
 <p><code>plot_hairpin</code> produces a coverage plot across each hairpin in the data.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(fce)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(fce)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/hairpin_plot-1.png" width="700"></p>
 <p>Specific adduct positions can be highlighted by including this information in the <code>fce</code> object.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># add in adduct information when building fce object</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">adducts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">hairpin =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil"</span>, <span class="st">"riboG"</span>),</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">                      <span class="dt">adduct_position1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">                      <span class="dt">adduct_position2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">50</span>),</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">                      <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fce.html">create_fce</a></span>(mrna, hcut, <span class="dt">adduct_positions =</span> adducts)</a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="kw">rowData</span>(fce[[<span class="st">"fsce"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># add in adduct information when building fce object</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">adducts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">hairpin =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil"</span>, <span class="st">"riboG"</span>),</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">adduct_position1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">  <span class="dt">adduct_position2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">50</span>),</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fce.html">create_fce</a></span>(mrna, hcut, <span class="dt">adduct_positions =</span> adducts)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="kw">rowData</span>(fce[[<span class="st">"fsce"</span>]])</a></code></pre></div>
 <pre><code>## DataFrame with 122 rows and 4 columns
 ##               hairpin    position adduct_position1 adduct_position2
 ##           &lt;character&gt; &lt;character&gt;        &lt;numeric&gt;        &lt;numeric&gt;
@@ -254,22 +222,24 @@
 ## Uracil_7       Uracil           7                1               10
 ## Uracil_8       Uracil           8                1               10
 ## Uracil_9       Uracil           9                1               10</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(fce)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(fce)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/hairpin_w_adduct_pos-1.png" width="700"></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">## subset which cells are used for plots</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(fce,</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">             <span class="dt">cells_to_plot =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(fce[[<span class="st">"fsce"</span>]]), <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## subset which cells are used for plots</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="../reference/plot_hairpin.html">plot_hairpin</a></span>(</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">  fce,</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">  <span class="dt">cells_to_plot =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(fce[[<span class="st">"fsce"</span>]]), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
-<div id="normalize" class="section level1">
+<div id="normalization" class="section level1">
 <h1 class="hasAnchor">
-<a href="#normalize" class="anchor"></a>Normalize</h1>
-<p>RNA data is log normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-Seq analysis.</p>
+<a href="#normalization" class="anchor"></a>Normalization</h1>
+<p>RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.</p>
 <p>Normalized data is stored in the <code>logcounts</code> slot of each <code>SingleCellExperiment</code> object.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># normalize rna and functional data</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/normalize_counts.html">normalize_counts</a></span>(fce)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fce[[<span class="st">"fsce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># normalize rna and functional data</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/normalize_counts.html">normalize_counts</a></span>(fce)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fce[[<span class="st">"fsce"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>##          AAACCTGAGATATGCA.1 AAACCTGAGGCGATAC.1 AAACCTGCAGGACGTA.1
 ## riboG_1            1.024823          0.7053563           1.041781
 ## riboG_10           1.438859          1.1148582           1.322127
@@ -280,49 +250,49 @@
 <div id="feature-selection-and-pca" class="section level1">
 <h1 class="hasAnchor">
 <a href="#feature-selection-and-pca" class="anchor"></a>Feature selection and PCA</h1>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># get variable genes</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">var_genes &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_var_genes.html">get_var_genes</a></span>(fce, <span class="dt">n_genes =</span> <span class="dv">5000</span>) </a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co"># calc PCA and embed in 2D</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_pca.html">calc_pca</a></span>(fce, <span class="dt">n_pcs =</span> <span class="dv">20</span>, <span class="dt">genes =</span> var_genes)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># get variable genes</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">var_genes &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_var_genes.html">get_var_genes</a></span>(fce, <span class="dt">n_genes =</span> <span class="dv">5000</span>) </a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># calc PCA and embed in 2D</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_pca.html">calc_pca</a></span>(fce, <span class="dt">n_pcs =</span> <span class="dv">20</span>, <span class="dt">genes =</span> var_genes)</a></code></pre></div>
 <pre><code>## scaling data</code></pre>
 <pre><code>## calculating pcs</code></pre>
 </div>
 <div id="embed-cells-in-2d-using-umap-or-tsne" class="section level1">
 <h1 class="hasAnchor">
 <a href="#embed-cells-in-2d-using-umap-or-tsne" class="anchor"></a>Embed cells in 2D using UMAP or tSNE</h1>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_umap.html">calc_umap</a></span>(fce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_tsne.html">calc_tsne</a></span>(fce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_umap.html">calc_umap</a></span>(fce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_tsne.html">calc_tsne</a></span>(fce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a></code></pre></div>
 <p>Cell embeddings are stored in the <code>reducedDims</code> slot of the <code>SingleCellExperiment</code> and can be accessed as a named list.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fce[[<span class="st">"sce"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fce[[<span class="st">"sce"</span>]])</a></code></pre></div>
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fce[[<span class="st">"sce"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                         [,1]       [,2]
-## AAACCTGAGATATGCA.1 0.7805874 -1.5918535
-## AAACCTGAGGCGATAC.1 2.1621524 -1.1456798
-## AAACCTGCAGGACGTA.1 3.3273344  3.1127655
-## AAACCTGGTACCGGCT.1 0.6450165 -0.9225038</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fce[[<span class="st">"sce"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
+<pre><code>##                          [,1]       [,2]
+## AAACCTGAGATATGCA.1 0.76524103 -1.6542817
+## AAACCTGAGGCGATAC.1 1.69758859 -1.7517698
+## AAACCTGCAGGACGTA.1 3.28573853  2.9899012
+## AAACCTGGTACCGGCT.1 0.05109606 -0.8228366</code></pre>
 </div>
 <div id="visualization" class="section level1">
 <h1 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h1>
 <p>Cell features can be visulized with the <code>plot_cells</code> function which will plot gene/function assay values or cell metadata.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">features &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>,<span class="st">"ENSG00000076248"</span>, <span class="st">"ENSG00000172922"</span>)</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"> </a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">features &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>,<span class="st">"ENSG00000076248"</span>, <span class="st">"ENSG00000172922"</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"> </a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features, <span class="dt">dr =</span> <span class="st">"TSNE"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features, <span class="dt">dr =</span> <span class="st">"TSNE"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
 </div>
 <div id="clustering" class="section level1">
 <h1 class="hasAnchor">
 <a href="#clustering" class="anchor"></a>Clustering</h1>
 <p>Kmeans clustering is implemented at this time, but additional functionality will be added.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/run_kmeans.html">run_kmeans</a></span>(fce, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw"><a href="../reference/plot_feature.html">plot_feature</a></span>(fce, <span class="st">"k_cluster"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/run_kmeans.html">run_kmeans</a></span>(fce, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="../reference/plot_feature.html">plot_feature</a></span>(fce, <span class="st">"k_cluster"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/kmeans-1.png" width="700"></p>
 </div>
   </div>
@@ -332,10 +302,9 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#install-the-package">Install the package</a></li>
-      <li><a href="#create-a-functional-cell-experiment-fce-object">Create a Functional Cell Experiment (fce) object</a></li>
+<li><a href="#create-a-functional-cell-experiment-fce-object">Create a Functional Cell Experiment (fce) object</a></li>
       <li><a href="#plots">Plots</a></li>
-      <li><a href="#normalize">Normalize</a></li>
+      <li><a href="#normalization">Normalization</a></li>
       <li><a href="#feature-selection-and-pca">Feature selection and PCA</a></li>
       <li><a href="#embed-cells-in-2d-using-umap-or-tsne">Embed cells in 2D using UMAP or tSNE</a></li>
       <li><a href="#visualization">Visualization</a></li>
@@ -348,7 +317,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jay Hesselberth, Amanda Richer, Kent Riemondy.</p>
+  <p>Developed by <a href="https://hesselberthlab.org">Jay Hesselberth</a>, Amanda Richer, Kent Riemondy.</p>
 </div>
 
 <div class="pkgdown">
