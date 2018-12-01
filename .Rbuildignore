@@ -7,3 +7,4 @@
 ^LICENSE\.md$
 ^scrunchy\.Rproj$
 ^\.Rproj\.user$
+$travis_setup\.sh$
