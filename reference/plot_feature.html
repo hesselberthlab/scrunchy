@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • scrunchy</title>
+<title>Plot cells in reduced dimensionality 2D space — plot_feature • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Plot cells in reduced dimensionality 2D space — plot_feature" />
+
+<meta property="og:description" content="Cells can be colored by gene or feature in meta.data dataframe" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -57,7 +59,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,126 +112,110 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Plot cells in reduced dimensionality 2D space</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/plots.R'><code>R/plots.R</code></a></small>
+    <div class="hidden name"><code>plot_feature.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Cells can be colored by gene or feature in meta.data dataframe</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="calc_pca.html">calc_pca()</a></code> </p>
-        </td>
-        <td><p>Calculate PCs use irlba</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="calc_tsne.html">calc_tsne()</a></code> </p>
-        </td>
-        <td><p>Generate 2D cell embeddings using tSNE</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="calc_umap.html">calc_umap()</a></code> </p>
-        </td>
-        <td><p>Generate 2D cell embeddings using UMAP</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clr_normalize.html">clr_normalize()</a></code> </p>
-        </td>
-        <td><p>Simple normalization for functional data using centered log ratio</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_fce.html">create_fce()</a></code> </p>
-        </td>
-        <td><p>Create a functional cell experiment (fce) object as a MultiAssayExperiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_var_genes.html">get_var_genes()</a></code> </p>
-        </td>
-        <td><p>Get variable genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_normalize.html">log_normalize()</a></code> </p>
-        </td>
-        <td><p>Simple normalization for scrna-seq</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="normalize_counts.html">normalize_counts()</a></code> </p>
-        </td>
-        <td><p>Normalize single cell rna and functional data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_cells.html">plot_cells()</a></code> </p>
-        </td>
-        <td><p>Plot cells in reduced dimensionality 2D space</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_feature.html">plot_feature()</a></code> </p>
-        </td>
-        <td><p>Plot cells in reduced dimensionality 2D space</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_hairpin.html">plot_hairpin()</a></code> </p>
-        </td>
-        <td><p>Calculate and plot coverage across hairpins</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_hairpin_coverage.html">plot_hairpin_coverage()</a></code> </p>
-        </td>
-        <td><p>Plot coverage across hairpins</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_10x_matrix.html">read_10x_matrix()</a></code> </p>
-        </td>
-        <td><p>Load 10x mtx matrix as sparseMatrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_kmeans.html">run_kmeans()</a></code> </p>
-        </td>
-        <td><p>Perform Kmeans clustering</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scrunchy.html">scrunchy</a></code> </p>
-        </td>
-        <td><p>scrunchy: single-cell analysis of functional heterogeneity</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>plot_feature</span>(<span class='no'>fce</span>, <span class='kw'>feature</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+  <span class='kw'>plot_dat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pt_size</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>pt_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>label_text</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
+  <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cell_filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>palette_type</span> <span class='kw'>=</span> <span class='st'>"cloupe"</span>,
+  <span class='kw'>col_pal</span> <span class='kw'>=</span> <span class='st'>"Reds"</span>, <span class='kw'>max_y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot_title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dims_to_plot</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fce</th>
+      <td><p>fce object of class MultiAssayExperiment</p></td>
+    </tr>
+    <tr>
+      <th>feature</th>
+      <td><p>single feature to plot, either gene name or column in colData</p></td>
+    </tr>
+    <tr>
+      <th>expt</th>
+      <td><p>Data type to use for plot, one of either sce (rna data, the default)
+or fsce (functional data). Defaults to "sce"</p></td>
+    </tr>
+    <tr>
+      <th>dr</th>
+      <td><p>dimensionality reduction to use for plotting. defaults to UMAP</p></td>
+    </tr>
+    <tr>
+      <th>plot_dat</th>
+      <td><p>supplemental data.frame containing feature to plot.
+Must have a column named cell that contains matching colnames in colData</p></td>
+    </tr>
+    <tr>
+      <th>pt_size</th>
+      <td><p>size of points produced by geom_point</p></td>
+    </tr>
+    <tr>
+      <th>pt_alpha</th>
+      <td><p>alpha value for points plotted by geom_point</p></td>
+    </tr>
+    <tr>
+      <th>label_text</th>
+      <td><p>if TRUE display feature labels on plot</p></td>
+    </tr>
+    <tr>
+      <th>label_size</th>
+      <td><p>size of label text</p></td>
+    </tr>
+    <tr>
+      <th>label_color</th>
+      <td><p>color of label text</p></td>
+    </tr>
+    <tr>
+      <th>.cols</th>
+      <td><p>vector of colors to use for plot.</p></td>
+    </tr>
+    <tr>
+      <th>cell_filter</th>
+      <td><p>character vector of cell names to include in plot</p></td>
+    </tr>
+    <tr>
+      <th>palette_type</th>
+      <td><p>color palette type to use (either viridis, brewer, or cloupe)
+defaults to using cellranger loupe-like colors</p></td>
+    </tr>
+    <tr>
+      <th>col_pal</th>
+      <td><p>palette name to use if palette_type is brewer</p></td>
+    </tr>
+    <tr>
+      <th>max_y</th>
+      <td><p>maximum feature value to set scale to. Defaults to max of the feature</p></td>
+    </tr>
+    <tr>
+      <th>plot_title</th>
+      <td><p>string to supply for title for the plot, otherwise title is the feature</p></td>
+    </tr>
+    <tr>
+      <th>dims_to_plot</th>
+      <td><p>number of dimensions</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
+
   </div>
 </div>
 

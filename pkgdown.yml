@@ -1,6 +1,9 @@
 pandoc: '2.2'
-pkgdown: 1.1.0.9000
-pkgdown_sha: 36bedb20e8d68ee91d33834c76f0e3dd03d5086a
+pkgdown: 1.2.0.9000
+pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
-  barnyard: barnyard.html
+  scrunchy: scrunchy.html
+urls:
+  reference: https://scrunchy.hesselberthlab.org/reference
+  article: https://scrunchy.hesselberthlab.org/articles
 

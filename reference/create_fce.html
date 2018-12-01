@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • scrunchy</title>
+<title>Create a functional cell experiment (fce) object as a MultiAssayExperiment — create_fce • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,9 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Create a functional cell experiment (fce) object as a MultiAssayExperiment — create_fce" />
+
+<meta property="og:description" content="Create a functional cell experiment (fce) object as a MultiAssayExperiment" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -57,7 +59,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -112,17 +114,69 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Create a functional cell experiment (fce) object as a MultiAssayExperiment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>create_fce.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="scrunchy.html">Introduction to scrunchy</a></li>
-      </ul>
+    <div class="ref-description">
+    
+    <p>Create a functional cell experiment (fce) object as a MultiAssayExperiment</p>
+    
     </div>
+
+    <pre class="usage"><span class='fu'>create_fce</span>(<span class='no'>rna_data</span>, <span class='no'>functional_data</span>, <span class='kw'>id_from_name</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>id_delim</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>id_fields</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>adduct_positions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>rna_data</th>
+      <td><p>UMI count matrix</p></td>
+    </tr>
+    <tr>
+      <th>functional_data</th>
+      <td><p>Functional count matrix</p></td>
+    </tr>
+    <tr>
+      <th>id_from_name</th>
+      <td><p>Extract sample id from cell name (default = TRUE)
+If false then the sample_id field will be populated with NA.</p></td>
+    </tr>
+    <tr>
+      <th>id_delim</th>
+      <td><p>delimiter to split cell name (default = ".")</p></td>
+    </tr>
+    <tr>
+      <th>id_fields</th>
+      <td><p>index(es) of fields to extract from name for determining sample id from name
+(defaults to c(2))</p></td>
+    </tr>
+    <tr>
+      <th>adduct_positions</th>
+      <td><p>optional data.frame with positions of first and second adducts in each hairpin,
+must be a three column data.frame with the first column named hairpin containing with entries that match the adducts
+from haircut_data (i.e. Uracil from entry Uracil_1), a second column named adduct_position1 with the first adduct position,
+and a third column named adduct_position2 with the second adduct position</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>fce object of class MultiAssayExperiment containing SingleCellExperiments. mRNA data
+is stored in slot "sce", and functional data is stored in slot "fsce"</p>
+    
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 

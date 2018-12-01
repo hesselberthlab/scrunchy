@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • scrunchy</title>
+<title>Generate 2D cell embeddings using tSNE — calc_tsne • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,10 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Generate 2D cell embeddings using tSNE — calc_tsne" />
+
+<meta property="og:description" content="See (https://github.com/jkrijthe/Rtsne) for
+a detailed description of parameters." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -57,7 +60,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -112,17 +115,72 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Generate 2D cell embeddings using tSNE</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/dr.R'><code>R/dr.R</code></a></small>
+    <div class="hidden name"><code>calc_tsne.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="scrunchy.html">Introduction to scrunchy</a></li>
-      </ul>
+    <div class="ref-description">
+    
+    <p>See (https://github.com/jkrijthe/Rtsne) for
+a detailed description of parameters.</p>
+    
     </div>
+
+    <pre class="usage"><span class='fu'>calc_tsne</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>perplexity</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fce</th>
+      <td><p>fce object</p></td>
+    </tr>
+    <tr>
+      <th>expt</th>
+      <td><p>Data to use for tSNE, one of either sce (rna data, the default) or fsce (functional data)</p></td>
+    </tr>
+    <tr>
+      <th>dr</th>
+      <td><p>select which dimenality reduction data to use for tSNE, defaults to PCA</p></td>
+    </tr>
+    <tr>
+      <th>n_dims</th>
+      <td><p>number of dimensions to pass to tSNE, defaults to all present in dr matrix</p></td>
+    </tr>
+    <tr>
+      <th>perplexity</th>
+      <td><p>Defaults to 30.</p></td>
+    </tr>
+    <tr>
+      <th>theta</th>
+      <td><p>Defaults to 0.5</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>seed to generate reproducible tSNE projection. Defaults to no seed.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/Rtsne/topics/Rtsne'>Rtsne::Rtsne()</a></code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>fce object with tSNE values added to reducedDims</p>
+    
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 
