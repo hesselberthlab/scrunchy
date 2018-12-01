@@ -18,7 +18,6 @@ LazyData: true
 Imports: 
     dplyr,
     ggplot2,
-    Seurat,
     magrittr,
     Matrix,
     stringr,
@@ -31,7 +30,6 @@ Imports:
     RColorBrewer,
     matrixStats,
     Rtsne
-biocViews:
     SingleCellExperiment,
     MultiAssayExperiment
 Suggests: 

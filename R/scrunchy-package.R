@@ -30,7 +30,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom irlba prcomp_irlba
 #' @importFrom Rtsne Rtsne
-#' @import Seurat
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
 "_PACKAGE"
