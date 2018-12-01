@@ -5,20 +5,21 @@ sudo: required
 cache: packages
 warnings_are_errors: false
 
-r:
-- bioc-release
-- bioc-devel
-
 bioc_packages:
 - SingleCellExperiment
 - Rtsne
 
-after_success:
-- Rscript -e 'covr::codecov()'
+matrix:
+  include:
+  - r: bioc-release
+    after_success:
+    - Rscript -e 'covr::codecov()'
+    before_deploy:
+    - Rscript -e 'devtools::install_github("r-lib/pkgdown")'
+    deploy:
+      provider: script
+      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+      skip_cleanup: true
+  - r: bioc-devel
 
-before_deploy:
-- Rscript -e 'devtools::install_github("r-lib/pkgdown")'
-deploy:
-  provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
-  skip_cleanup: true
+
