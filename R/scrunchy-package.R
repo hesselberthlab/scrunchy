@@ -29,7 +29,8 @@
 #' @importFrom stats kmeans
 #' @importFrom magrittr %>%
 #' @importFrom irlba prcomp_irlba
-#' @importFrom Rtsne Rtsne
+#' @import Rtsne
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
+#' @import Seurat
 "_PACKAGE"

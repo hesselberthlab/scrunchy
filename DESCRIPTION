@@ -31,7 +31,8 @@ Imports:
     matrixStats,
     Rtsne,
     SingleCellExperiment,
-    MultiAssayExperiment
+    MultiAssayExperiment,
+    Seurat
 Suggests: 
     knitr,
     rmarkdown,

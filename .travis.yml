@@ -8,9 +8,15 @@ r:
 - bioc-release
 - bioc-devel
 
+addons:
+  apt:
+    packages:
+      - libhdf5-serial-dev
+
 bioc_packages:
 - SingleCellExperiment
 - Rtsne
+- Seurat
 
 after_success:
 - Rscript -e 'covr::codecov()'
