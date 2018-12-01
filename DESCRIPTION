@@ -16,8 +16,10 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
+    cowplot,
     dplyr,
     ggplot2,
+    fs,
     magrittr,
     Matrix,
     stringr,
