@@ -2,7 +2,7 @@
 title: "Barnyard experiment to evaluate functional heterogeneity in single cells"
 author: "Jay Hesselberth"
 date: "`r Sys.Date()`"
-output: radix::radix_article
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Functional Heterogeneity}
   %\VignetteEngine{knitr::rmarkdown}

@@ -3,7 +3,7 @@
 ^README\.Rmd$
 ^\.travis\.yml$
 ^docs$
-^_pkgdown\.yml$
+^pkgdown$
 ^LICENSE\.md$
 ^scrunchy\.Rproj$
 ^\.Rproj\.user$
