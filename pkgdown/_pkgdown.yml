@@ -1,1 +1,39 @@
 url: https://scrunchy.hesselberthlab.org
+
+template:
+  params:
+    bootswatch: yeti
+
+authors:
+  Jay Hesselberth:
+    href: https://hesselberthlab.org
+
+development:
+  mode: unreleased
+
+reference:
+  - title: Functional Single Cell Experiment
+    contents:
+    - '`create_fce`'
+  - title: Data Import and Processing
+    contents:
+    - '`calc_pca`'
+    - '`calc_tsne`'
+    - '`calc_umap`'
+    - '`clr_normalize`'
+    - '`get_var_genes`'
+    - '`log_normalize`'
+    - '`read_10x_matrix`'
+    - '`normalize_counts`'
+    - '`run_kmeans`'
+
+  - title: Plotting
+    contents:
+    - '`plot_cells`'
+    - '`plot_feature`'
+    - '`plot_hairpin`'
+    - '`plot_hairpin_coverage`'
+
+  - title: Miscellaneous
+    contents:
+    - '`scrunchy`'
