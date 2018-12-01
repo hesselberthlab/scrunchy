@@ -9,7 +9,7 @@ log_normalize(mat, constant = 10000)
 \arguments{
 \item{mat}{input matrix}
 
-\item{scaling_factor}{scalar to multiply normalized counts by to prevent
+\item{constant}{scalar to multiply normalized counts by to prevent
 small numbers (1e5)}
 }
 \value{

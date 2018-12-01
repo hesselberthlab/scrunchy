@@ -4,19 +4,14 @@
 \alias{plot_cells}
 \title{Plot cells in reduced dimensionality 2D space}
 \usage{
-plot_cells(fce, features, ...)
+plot_cells(fce, feature, ...)
 }
 \arguments{
 \item{fce}{fce object of class MultiAssayExperiment}
 
-\item{...}{additional arguments to pass to plot_feature}
-
 \item{feature}{features to plot, either gene names or columns in colData}
 
-\item{expt}{Data type to use for plot, one of either sce (rna data, the default)
-or fsce (functional data). Defaults to "sce"}
-
-\item{dr}{dimensionality reduction to use for plotting. defaults to UMAP}
+\item{...}{additional arguments to pass to plot_feature}
 }
 \description{
 Plot cells in 2D. Cells can be colored by gene or feature in meta.data dataframe

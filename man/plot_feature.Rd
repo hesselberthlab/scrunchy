@@ -46,6 +46,8 @@ defaults to using cellranger loupe-like colors}
 \item{max_y}{maximum feature value to set scale to. Defaults to max of the feature}
 
 \item{plot_title}{string to supply for title for the plot, otherwise title is the feature}
+
+\item{dims_to_plot}{number of dimensions}
 }
 \description{
 Cells can be colored by gene or feature in meta.data dataframe

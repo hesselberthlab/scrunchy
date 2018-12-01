@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2018 Jay Hesselberth
+Copyright (c) 2018 Jay Hesselberth, Kent Riemondy, Amanda Richer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,16 +1,18 @@
 ---
-title: "Example usage of the scrunchy package"
+title: "Introduction to scrunchy"
 author: "Kent Riemondy"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Basic Usage}
+  %\VignetteIndexEntry{scrunchy}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = TRUE
+)
 ```
 
 # Install the package
@@ -103,7 +105,6 @@ logcounts(fce[["fsce"]])[1:5, 1:3]
 
 # Feature selection and PCA
 
-
 ```{r}
 # get variable genes
 var_genes <- get_var_genes(fce, n_genes = 5000) 
@@ -143,7 +144,6 @@ plot_cells(fce, features)
 
 plot_cells(fce, features, dr = "TSNE")
 ```
-
 
 # Clustering
   

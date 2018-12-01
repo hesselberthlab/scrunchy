@@ -32,7 +32,7 @@ plot_hairpin_coverage(df, x, y, col = "sample", x_lab = "Position",
 
 \item{pt_size}{passed to pt.size argument for \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} (defaults to 0.8)}
 
-\item{xlimits}{two element numeric vector to supply to \code{\link[ggplot:xlim]{ggplot::xlim()}} (defaults to NULL)}
+\item{xlimits}{two element numeric vector to supply to \code{\link[ggplot2:xlim]{ggplot2::xlim()}} (defaults to NULL)}
 }
 \description{
 Plot coverage across hairpins

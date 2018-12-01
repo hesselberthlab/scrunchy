@@ -54,7 +54,7 @@ plot_hairpin <- function(fce,
 #' @param facet_by_hairpin plot each hairpin individually (defaults to TRUE)
 #' @param pt_alpha passed to pt.alpha argument for [`ggplot2::geom_line()`] (defaults to 0.7)
 #' @param pt_size passed to pt.size argument for [`ggplot2::geom_line()`] (defaults to 0.8)
-#' @param xlimits two element numeric vector to supply to [`ggplot::xlim()`] (defaults to NULL)
+#' @param xlimits two element numeric vector to supply to [`ggplot2::xlim()`] (defaults to NULL)
 #'
 #' @export
 plot_hairpin_coverage <- function(df,
@@ -113,10 +113,7 @@ plot_hairpin_coverage <- function(df,
 #' @description Plot cells in 2D. Cells can be colored by gene or feature in meta.data dataframe
 #'
 #' @param fce fce object of class MultiAssayExperiment
-#' @param feature features to plot, either gene names or columns in colData
-#' @param expt Data type to use for plot, one of either sce (rna data, the default)
-#' or fsce (functional data). Defaults to "sce"
-#' @param dr dimensionality reduction to use for plotting. defaults to UMAP
+#' @param features features to plot, either gene names or columns in colData
 #' @param ... additional arguments to pass to plot_feature
 #'
 #' @export
@@ -153,6 +150,7 @@ plot_cells <- function(fce, features, ...){
 #' @param col_pal palette name to use if palette_type is brewer
 #' @param max_y maximum feature value to set scale to. Defaults to max of the feature
 #' @param plot_title string to supply for title for the plot, otherwise title is the feature
+#' @param dims_to_plot number of dimensions
 #'
 #' @export
 plot_feature <- function(fce,
@@ -329,7 +327,7 @@ plot_feature <- function(fce,
   ## handle colors
   if (is.null(.cols) && !discrete){
     if (palette_type == "viridis") {
-      p <- p + scale_color_viridis(discrete = F,
+      p <- p + scale_color_viridis_c(discrete = F,
                                    direction = -1,
                                    option = col_pal,
                                    limits = max_y)

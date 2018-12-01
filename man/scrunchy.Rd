@@ -14,7 +14,7 @@ To learn more about scrunchy, start with the vignette:
 \code{browseVignettes(package = "scrunchy")}
 }
 \seealso{
-Report bugs at \link{https://github.com/hesselberthlab/scrunchy/issues}
+Report bugs at \url{https://github.com/hesselberthlab/scrunchy/issues}
 }
 \author{
 Jay Hesselberth \href{mailto:jay.hesselberth@gmail.com}{jay.hesselberth@gmail.com}

@@ -3,27 +3,15 @@
 language: r
 sudo: required
 cache: packages
+warnings_are_errors: false
 
 r:
 - bioc-release
 - bioc-devel
 
-env:
-  global:
-    - _R_CHECK_FORCE_SUGGESTS_=FALSE
-    - ASAN="-fsanitize=address -fno-omit-frame-pointer"
-    - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-    - HDF5_VERSION=1.8.21
-    - HDF5_RELEASE_URL="https://support.hdfgroup.org/ftp/HDF5/releases"
-
-before_install:
-  - chmod +x travis_setup.sh
-  - ./travis_setup.sh
-
 bioc_packages:
 - SingleCellExperiment
 - Rtsne
-- Seurat
 
 after_success:
 - Rscript -e 'covr::codecov()'

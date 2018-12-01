@@ -13,24 +13,29 @@
 #' @docType package
 #' @name scrunchy
 #'
-#' @seealso Report bugs at [https://github.com/hesselberthlab/scrunchy/issues]
+#' @seealso Report bugs at <https://github.com/hesselberthlab/scrunchy/issues>
+#'
+#' @importFrom methods as
+#' @importFrom stats median var
+#' @importFrom utils read.csv
+#' @importFrom stats kmeans
 #'
 #' @import Matrix
 #' @import stringr
 #' @import readr
-#' @import cowplot
-#' @import rlang
 #' @import dplyr
 #' @import tibble
 #' @import fs
 #' @import purrr
 #' @import ggplot2
 #' @import umap
-#' @importFrom stats kmeans
+#' @importFrom cowplot theme_cowplot plot_grid
+#' @importFrom rlang parse_quosure
 #' @importFrom magrittr %>%
 #' @importFrom irlba prcomp_irlba
+#'
 #' @import Rtsne
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
-#' @import Seurat
+#' @importFrom S4Vectors SimpleList
 "_PACKAGE"

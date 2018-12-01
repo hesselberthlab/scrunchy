@@ -36,7 +36,7 @@ normalize_counts <- function(fce,
 #' Simple normalization for scrna-seq
 #'
 #' @param mat input matrix
-#' @param scaling_factor scalar to multiply normalized counts by to prevent
+#' @param constant scalar to multiply normalized counts by to prevent
 #'   small numbers (1e5)
 #'
 #' @return matrix of normalized values. Normalization performed by dividing by
