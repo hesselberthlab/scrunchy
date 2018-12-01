@@ -38,10 +38,9 @@ Suggests:
     knitr,
     rmarkdown,
     covr,
-    testthat,
-    radix
+    testthat
 VignetteBuilder: knitr
 URL: https://scrunchy.hesselberthlab.org, https://github.com/hesselberthlab/scrunchy
 BugReports: https://github.com/hesselberthlab/scrunchy/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)

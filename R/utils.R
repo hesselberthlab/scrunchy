@@ -7,12 +7,6 @@
 #' @param use_gene_symbols If TRUE use gene symbols as row.names, if false then
 #' gene_ids will be used (default = TRUE)
 #'
-#' @importFrom Matrix readMM
-#' @importFrom stringr str_c str_remove
-#' @importFrom readr read_tsv
-#' @importFrom dplyr left_join
-#' @importFrom tibble rownames_to_column column_to_rownames
-#'
 #' @export
 read_10x_matrix <- function(path,
                             cell_prefix = NULL,
@@ -71,9 +65,7 @@ read_10x_matrix <- function(path,
 #'
 #' @return fce object of class MultiAssayExperiment containing SingleCellExperiments. mRNA data
 #' is stored in slot "sce", and functional data is stored in slot "fsce"
-#' @importFrom stringr fixed str_split
-#' @import SingleCellExperiment
-#' @import MultiAssayExperiment
+#'
 #' @export
 create_fce <- function(rna_data,
                        functional_data,

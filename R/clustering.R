@@ -7,7 +7,6 @@
 #' @param n_dims specify the number of dimensions from "dr" to use for clustering, defaults to all dimensions
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
-#' @importFrom stats kmeans
 #' @export
 run_kmeans <- function(fce,
                        k,

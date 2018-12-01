@@ -4,9 +4,6 @@
 #' UNG and RNASEH2C Hap1 cells and A:U and rG hairpin
 #' substrates.
 #'
-#' @importFrom magrittr %>%
-#' @import Seurat
-#'
 #' @export
 barnyard_data <- function() {
 

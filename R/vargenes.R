@@ -7,7 +7,7 @@
 #' @param n_genes n variable genes to return
 #'
 #' @return Character vecctor
-#' @importFrom umap umap
+#'
 #' @export
 get_var_genes <- function(fce,
                       expt = "sce",

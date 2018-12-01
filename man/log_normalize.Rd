@@ -9,11 +9,13 @@ log_normalize(mat, constant = 10000)
 \arguments{
 \item{mat}{input matrix}
 
-\item{scaling_factor}{scalar to multiply normalized counts by to prevent small numbers (1e5)}
+\item{scaling_factor}{scalar to multiply normalized counts by to prevent
+small numbers (1e5)}
 }
 \value{
-matrix of normalized values. Normalization performed by dividing by column sums
-(total counts per cell) and scaled by a scaling factor. Log values are returned with a pseudocount of 1
+matrix of normalized values. Normalization performed by dividing by
+column sums (total counts per cell) and scaled by a scaling factor. Log
+values are returned with a pseudocount of 1
 }
 \description{
 Simple normalization for scrna-seq

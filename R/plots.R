@@ -5,7 +5,6 @@
 #' @param return_df return coverage values as data.frame (default = FALSE)
 #' @param ... additional arguments to pass to [`plot_hairpin_coverage`]
 #'
-#' @importFrom purrr map_dfr
 #' @export
 plot_hairpin <- function(fce,
                          cells_to_plot = NULL,
@@ -57,8 +56,6 @@ plot_hairpin <- function(fce,
 #' @param pt_size passed to pt.size argument for [`ggplot2::geom_line()`] (defaults to 0.8)
 #' @param xlimits two element numeric vector to supply to [`ggplot::xlim()`] (defaults to NULL)
 #'
-#' @import ggplot2
-#' @importFrom purrr map_dfr
 #' @export
 plot_hairpin_coverage <- function(df,
                                   x,
@@ -121,8 +118,7 @@ plot_hairpin_coverage <- function(df,
 #' or fsce (functional data). Defaults to "sce"
 #' @param dr dimensionality reduction to use for plotting. defaults to UMAP
 #' @param ... additional arguments to pass to plot_feature
-#' @importFrom purrr map
-#' @importFrom cowplot plot_grid
+#'
 #' @export
 plot_cells <- function(fce, features, ...){
   plts <- list()
@@ -158,10 +154,6 @@ plot_cells <- function(fce, features, ...){
 #' @param max_y maximum feature value to set scale to. Defaults to max of the feature
 #' @param plot_title string to supply for title for the plot, otherwise title is the feature
 #'
-#' @importFrom rlang parse_quosure
-#' @importFrom RColorBrewer brewer.pal
-#' @importFrom cowplot theme_cowplot
-#' @importFrom dplyr arrange_at
 #' @export
 plot_feature <- function(fce,
                          feature = NULL,
@@ -372,7 +364,7 @@ plot_feature <- function(fce,
 }
 
 #' Color palette
-#'@noRd
+#' @noRd
 discrete_palette_default <- c(
   RColorBrewer::brewer.pal(12, "Paired"),
   RColorBrewer::brewer.pal(9, "Set1"),

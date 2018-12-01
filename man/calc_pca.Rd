@@ -19,9 +19,10 @@ calc_pca(fce, expt = "sce", assay = "logcounts", genes = NULL,
 
 \item{n_pcs}{number of principle components to return}
 
-\item{scale}{perform PCA on input on scaled data, defaults to TRUE
-
-@return fce object with PCA values added to reducedDims}
+\item{scale}{perform PCA on input on scaled data, defaults to TRUE}
+}
+\value{
+fce object with PCA values added to reducedDims
 }
 \description{
 Calculate PCs use irlba

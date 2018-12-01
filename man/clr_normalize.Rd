@@ -10,8 +10,9 @@ clr_normalize(mat)
 \item{mat}{input matrix}
 }
 \value{
-matrix of normalized values. Normalization performed by dividing each function value by
-the geometric mean of all functional values for a cell, and returning log values
+matrix of normalized values. Normalization performed by dividing each
+function value by the geometric mean of all functional values for a cell,
+and returning log values
 }
 \description{
 Simple normalization for functional data using centered log ratio

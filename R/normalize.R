@@ -1,9 +1,11 @@
 #' Normalize single cell rna and functional data
+#'
 #' @param fce fce object generted by [`create_fce()`]
 #' @param rna_method normalization method for RNA data
 #' @param functional_method normalization method for functional data
 #'
 #' @return fce object with log normalized counts returned in the logcounts slot
+#'
 #' @export
 normalize_counts <- function(fce,
                           rna_method = "log_normalize",
@@ -32,11 +34,15 @@ normalize_counts <- function(fce,
 }
 
 #' Simple normalization for scrna-seq
+#'
 #' @param mat input matrix
-#' @param scaling_factor scalar to multiply normalized counts by to prevent small numbers (1e5)
-#' @return matrix of normalized values. Normalization performed by dividing by column sums
-#' (total counts per cell) and scaled by a scaling factor. Log values are returned with a pseudocount of 1
-#' @importFrom Matrix colSums
+#' @param scaling_factor scalar to multiply normalized counts by to prevent
+#'   small numbers (1e5)
+#'
+#' @return matrix of normalized values. Normalization performed by dividing by
+#'   column sums (total counts per cell) and scaled by a scaling factor. Log
+#'   values are returned with a pseudocount of 1
+#'
 log_normalize <- function(mat, constant = 1e4){
   mat <- constant * (sweep(mat, 2, Matrix::colSums(mat), "/"))
   log1p(mat)
@@ -44,9 +50,13 @@ log_normalize <- function(mat, constant = 1e4){
 
 
 #' Simple normalization for functional data using centered log ratio
+#'
 #' @param mat input matrix
-#' @return matrix of normalized values. Normalization performed by dividing each function value by
-#' the geometric mean of all functional values for a cell, and returning log values
+#'
+#' @return matrix of normalized values. Normalization performed by dividing each
+#'   function value by the geometric mean of all functional values for a cell,
+#'   and returning log values
+#'
 clr_normalize <- function(mat){
   ## norm method from Seurat
   ## geom mean from https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in

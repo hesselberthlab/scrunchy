@@ -8,9 +8,8 @@
 #' @param n_pcs number of principle components to return
 #' @param scale perform PCA on input on scaled data, defaults to TRUE
 #'
-#'  @return fce object with PCA values added to reducedDims
+#' @return fce object with PCA values added to reducedDims
 #'
-#' @importFrom irlba prcomp_irlba
 #' @export
 calc_pca <- function(fce,
                     expt = "sce",
@@ -83,7 +82,6 @@ calc_pca <- function(fce,
 #' @param ... additional arguments to pass to [`umap::umap()`]
 #'
 #' @return fce object with UMAP values added to reducedDims
-#' @importFrom umap umap
 #' @export
 calc_umap <- function(fce,
                     expt = "sce",
@@ -143,7 +141,6 @@ calc_umap <- function(fce,
 #' @param ...  additional arguments to pass to [`Rtsne::Rtsne()`]
 #'
 #' @return fce object with tSNE values added to reducedDims
-#' @importFrom Rtsne Rtsne
 #'
 #' @export
 calc_tsne <- function(fce,
