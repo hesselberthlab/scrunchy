@@ -22,6 +22,9 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/get_var_genes.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/load_csv.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/log_normalize.html</loc>
   </url>
   <url>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/scrunchy.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/scrunchy_data.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/articles/scrunchy.html</loc>

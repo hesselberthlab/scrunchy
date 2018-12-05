@@ -105,10 +105,10 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># load mRNA UMI data</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">exp &lt;-<span class="st"> </span><span class="kw">load_csv</span>(<span class="kw">scrunchy_data</span>(<span class="st">"mrna.csv.gz"</span>))</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">exp &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_csv.html">load_csv</a></span>(<span class="kw"><a href="reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna.csv.gz"</span>))</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># load haircut UMI data</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">fxn &lt;-<span class="st"> </span><span class="kw">load_csv</span>(<span class="kw">scrunchy_data</span>(<span class="st">"haircut.csv.gz"</span>))</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">fxn &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_csv.html">load_csv</a></span>(<span class="kw"><a href="reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut.csv.gz"</span>))</a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">fce &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_fce.html">create_fce</a></span>(exp, fxn)</a></code></pre></div>
 <p>The <code>fce</code> object now contains counts for mRNA expression and DNA repair activity for each cell.</p>
@@ -146,7 +146,7 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -189,7 +189,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
 </div>
       </footer>
 </div>
