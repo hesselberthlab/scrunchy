@@ -1,7 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
-sudo: required
+sudo: false
 cache: packages
 warnings_are_errors: false
 
@@ -15,7 +15,7 @@ matrix:
     after_success:
     - Rscript -e 'covr::codecov()'
     before_deploy:
-    - Rscript -e 'devtools::install_github("r-lib/pkgdown")'
+    - Rscript -e 'remotes::install_cran("r-lib/pkgdown")'
     deploy:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
