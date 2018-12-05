@@ -166,11 +166,11 @@ calc_tsne <- function(fce,
     stop("expt not found in fce object", call. = FALSE)
   }
 
-  if (!dr %in% names(reducedDims(fce[[expt]]))) {
+  if (!method %in% names(reducedDims(fce[[expt]]))) {
     stop("method not found in fce object", call. = FALSE)
   }
 
-  dr_mat <- reducedDim(fce[[expt]], dr)
+  dr_mat <- reducedDim(fce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
