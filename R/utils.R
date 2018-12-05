@@ -202,11 +202,19 @@ create_fce <- function(rna_data,
   fce
 }
 
+#' Provide path to scrunchy internal data
+#'
+#' @param x file name
+#'
 #' @export
 scrunchy_data <- function(x) {
   system.file("extdata", x, package = "scrunchy", mustWork = TRUE)
 }
 
+#' Load CSV format files
+#'
+#' @param x file name
+#'
 #' @export
 load_csv <- function(x) {
   read.csv(x, sep = ",", header = TRUE, row.names = 1)
