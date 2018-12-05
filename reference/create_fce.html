@@ -141,8 +141,8 @@
     </tr>
     <tr>
       <th>id_from_name</th>
-      <td><p>Extract sample id from cell name (default = TRUE)
-If false then the sample_id field will be populated with NA.</p></td>
+      <td><p>Extract sample id from cell name (default = TRUE) If
+false then the sample_id field will be populated with NA.</p></td>
     </tr>
     <tr>
       <th>id_delim</th>
@@ -150,22 +150,25 @@ If false then the sample_id field will be populated with NA.</p></td>
     </tr>
     <tr>
       <th>id_fields</th>
-      <td><p>index(es) of fields to extract from name for determining sample id from name
-(defaults to c(2))</p></td>
+      <td><p>index(es) of fields to extract from name for determining
+sample id from name (defaults to c(2))</p></td>
     </tr>
     <tr>
       <th>adduct_positions</th>
-      <td><p>optional data.frame with positions of first and second adducts in each hairpin,
-must be a three column data.frame with the first column named hairpin containing with entries that match the adducts
-from haircut_data (i.e. Uracil from entry Uracil_1), a second column named adduct_position1 with the first adduct position,
-and a third column named adduct_position2 with the second adduct position</p></td>
+      <td><p>optional data.frame with positions of first and
+second adducts in each hairpin, must be a three column data.frame with the
+first column named hairpin containing with entries that match the adducts
+from haircut_data (i.e. Uracil from entry Uracil_1), a second column named
+adduct_position1 with the first adduct position, and a third column named
+adduct_position2 with the second adduct position</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>fce object of class MultiAssayExperiment containing SingleCellExperiments. mRNA data
-is stored in slot "sce", and functional data is stored in slot "fsce"</p>
+    <p>fce object of class MultiAssayExperiment containing
+SingleCellExperiments. mRNA data is stored in slot "sce", and functional
+data is stored in slot "fsce"</p>
     
 
   </div>

@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_feature</span>(<span class='no'>fce</span>, <span class='kw'>feature</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
+    <pre class="usage"><span class='fu'>plot_feature</span>(<span class='no'>fce</span>, <span class='kw'>feature</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"UMAP"</span>,
   <span class='kw'>plot_dat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pt_size</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>pt_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label_text</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
   <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cell_filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>palette_type</span> <span class='kw'>=</span> <span class='st'>"cloupe"</span>,
@@ -149,8 +149,8 @@
 or fsce (functional data). Defaults to "sce"</p></td>
     </tr>
     <tr>
-      <th>dr</th>
-      <td><p>dimensionality reduction to use for plotting. defaults to UMAP</p></td>
+      <th>method</th>
+      <td><p>dimensionality reduction for plotting. defaults to UMAP</p></td>
     </tr>
     <tr>
       <th>plot_dat</th>

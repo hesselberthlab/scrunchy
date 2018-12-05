@@ -127,7 +127,7 @@ parameters.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>calc_umap</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>calc_umap</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>n_neighbors</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>min_dist</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>metric</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
     
@@ -144,8 +144,8 @@ parameters.</p>
 or fsce (functional data)</p></td>
     </tr>
     <tr>
-      <th>dr</th>
-      <td><p>select which dimenality reduction data to use for UMAP, defaults to
+      <th>method</th>
+      <td><p>dimenality reduction method to use for UMAP, defaults to
 PCA</p></td>
     </tr>
     <tr>

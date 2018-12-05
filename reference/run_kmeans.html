@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>run_kmeans</span>(<span class='no'>fce</span>, <span class='no'>k</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>run_kmeans</span>(<span class='no'>fce</span>, <span class='no'>k</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,8 +143,8 @@
       <td><p>experiment to cluster (either "sce" or "fsce, defaults to "sce")</p></td>
     </tr>
     <tr>
-      <th>dr</th>
-      <td><p>which dimensionality reduction to use for clustering (defaults to PCA)</p></td>
+      <th>method</th>
+      <td><p>dimensionality reduction method for clustering (defaults to PCA)</p></td>
     </tr>
     <tr>
       <th>n_dims</th>

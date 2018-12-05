@@ -270,10 +270,10 @@
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fce[[<span class="st">"sce"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
 <pre><code>##                         [,1]      [,2]
-## AAACCTGAGATATGCA.1 0.4040461 -1.934258
-## AAACCTGAGGCGATAC.1 1.8330499 -1.850052
-## AAACCTGCAGGACGTA.1 3.7834885  2.060996
-## AAACCTGGTACCGGCT.1 0.1759390 -1.474970</code></pre>
+## AAACCTGAGATATGCA.1 0.8592071 -1.765208
+## AAACCTGAGGCGATAC.1 2.1495696 -1.391258
+## AAACCTGCAGGACGTA.1 3.4382402  2.885736
+## AAACCTGGTACCGGCT.1 0.3782759 -1.423441</code></pre>
 </div>
 <div id="visualization" class="section level1">
 <h1 class="hasAnchor">
@@ -283,7 +283,7 @@
 <a class="sourceLine" id="cb29-2" data-line-number="2"> </a>
 <a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features, <span class="dt">dr =</span> <span class="st">"TSNE"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="../reference/plot_cells.html">plot_cells</a></span>(fce, features, <span class="dt">method =</span> <span class="st">"TSNE"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
 </div>
 <div id="clustering" class="section level1">
