@@ -12,8 +12,8 @@ read_10x_matrix(path, cell_prefix = NULL, strip_10x_suffix = TRUE,
 
 \item{cell_prefix}{string to prefix to cell_id  (default = NULL)}
 
-\item{strip_10x_suffix}{remove numeric suffix added by 10x
-e.g. change "TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)}
+\item{strip_10x_suffix}{remove numeric suffix added by 10x e.g. change
+"TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)}
 
 \item{use_gene_symbols}{If TRUE use gene symbols as row.names, if false then
 gene_ids will be used (default = TRUE)}

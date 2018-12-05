@@ -72,7 +72,7 @@ calc_pca <- function(fce,
 #' @param fce fce object
 #' @param expt Data to use for UMAP, one of either sce (rna data, the default)
 #'   or fsce (functional data)
-#' @param dr select which dimenality reduction data to use for UMAP, defaults to
+#' @param method dimenality reduction method to use for UMAP, defaults to
 #'   PCA
 #' @param n_dims number of dimensions to pass to UMAP, defaults to all present
 #'   in dr matrix
@@ -92,7 +92,7 @@ calc_pca <- function(fce,
 #' @export
 calc_umap <- function(fce,
                       expt = "sce",
-                      dr = "PCA",
+                      method = "PCA",
                       n_dims = NULL,
                       n_neighbors = 30,
                       min_dist = 0.3,
@@ -102,14 +102,14 @@ calc_umap <- function(fce,
 
   ## check inputs
   if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object")
+    stop("expt not found in fce object", call. = FALSE)
   }
 
-  if (!dr %in% names(reducedDims(fce[[expt]]))) {
-    stop("dr method not found in fce object")
+  if (!method %in% names(reducedDims(fce[[expt]]))) {
+    stop(paste0(c("method `", method, "` not found in fce object")), call. = FALSE)
   }
 
-  dr_mat <- reducedDim(fce[[expt]], dr)
+  dr_mat <- reducedDim(fce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {

@@ -4,7 +4,7 @@
 \alias{run_kmeans}
 \title{Perform Kmeans clustering}
 \usage{
-run_kmeans(fce, k, expt = "sce", dr = "PCA", n_dims = NULL, ...)
+run_kmeans(fce, k, expt = "sce", method = "PCA", n_dims = NULL, ...)
 }
 \arguments{
 \item{fce}{fce object}
@@ -13,7 +13,7 @@ run_kmeans(fce, k, expt = "sce", dr = "PCA", n_dims = NULL, ...)
 
 \item{expt}{experiment to cluster (either "sce" or "fsce, defaults to "sce")}
 
-\item{dr}{which dimensionality reduction to use for clustering (defaults to PCA)}
+\item{method}{dimensionality reduction method for clustering (defaults to PCA)}
 
 \item{n_dims}{specify the number of dimensions from "dr" to use for clustering, defaults to all dimensions}
 

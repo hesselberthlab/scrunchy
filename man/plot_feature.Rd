@@ -4,7 +4,7 @@
 \alias{plot_feature}
 \title{Plot cells in reduced dimensionality 2D space}
 \usage{
-plot_feature(fce, feature = NULL, expt = "sce", dr = "UMAP",
+plot_feature(fce, feature = NULL, expt = "sce", method = "UMAP",
   plot_dat = NULL, pt_size = 0.01, pt_alpha = 1,
   label_text = FALSE, label_size = 6, label_color = "grey",
   .cols = NULL, cell_filter = NULL, palette_type = "cloupe",
@@ -19,7 +19,7 @@ plot_feature(fce, feature = NULL, expt = "sce", dr = "UMAP",
 \item{expt}{Data type to use for plot, one of either sce (rna data, the default)
 or fsce (functional data). Defaults to "sce"}
 
-\item{dr}{dimensionality reduction to use for plotting. defaults to UMAP}
+\item{method}{dimensionality reduction for plotting. defaults to UMAP}
 
 \item{plot_dat}{supplemental data.frame containing feature to plot.
 Must have a column named cell that contains matching colnames in colData}

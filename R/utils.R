@@ -2,10 +2,10 @@
 #'
 #' @param path path to 10x directory with mtx matrix
 #' @param cell_prefix string to prefix to cell_id  (default = NULL)
-#' @param strip_10x_suffix remove numeric suffix added by 10x
-#' e.g. change "TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)
+#' @param strip_10x_suffix remove numeric suffix added by 10x e.g. change
+#'   "TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)
 #' @param use_gene_symbols If TRUE use gene symbols as row.names, if false then
-#' gene_ids will be used (default = TRUE)
+#'   gene_ids will be used (default = TRUE)
 #'
 #' @export
 read_10x_matrix <- function(path,
@@ -52,18 +52,21 @@ read_10x_matrix <- function(path,
 #'
 #' @param rna_data UMI count matrix
 #' @param functional_data Functional count matrix
-#' @param id_from_name Extract sample id from cell name (default = TRUE)
-#' If false then the sample_id field will be populated with NA.
+#' @param id_from_name Extract sample id from cell name (default = TRUE) If
+#'   false then the sample_id field will be populated with NA.
 #' @param id_delim delimiter to split cell name (default = ".")
-#' @param id_fields index(es) of fields to extract from name for determining sample id from name
-#' (defaults to c(2))
-#' @param adduct_positions optional data.frame with positions of first and second adducts in each hairpin,
-#'  must be a three column data.frame with the first column named hairpin containing with entries that match the adducts
-#'  from haircut_data (i.e. Uracil from entry Uracil_1), a second column named adduct_position1 with the first adduct position,
-#'  and a third column named adduct_position2 with the second adduct position
+#' @param id_fields index(es) of fields to extract from name for determining
+#'   sample id from name (defaults to c(2))
+#' @param adduct_positions optional data.frame with positions of first and
+#'   second adducts in each hairpin, must be a three column data.frame with the
+#'   first column named hairpin containing with entries that match the adducts
+#'   from haircut_data (i.e. Uracil from entry Uracil_1), a second column named
+#'   adduct_position1 with the first adduct position, and a third column named
+#'   adduct_position2 with the second adduct position
 #'
-#' @return fce object of class MultiAssayExperiment containing SingleCellExperiments. mRNA data
-#' is stored in slot "sce", and functional data is stored in slot "fsce"
+#' @return fce object of class MultiAssayExperiment containing
+#'   SingleCellExperiments. mRNA data is stored in slot "sce", and functional
+#'   data is stored in slot "fsce"
 #'
 #' @export
 create_fce <- function(rna_data,

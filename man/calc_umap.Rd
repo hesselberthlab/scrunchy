@@ -4,7 +4,7 @@
 \alias{calc_umap}
 \title{Generate 2D cell embeddings using UMAP}
 \usage{
-calc_umap(fce, expt = "sce", dr = "PCA", n_dims = NULL,
+calc_umap(fce, expt = "sce", method = "PCA", n_dims = NULL,
   n_neighbors = 30, min_dist = 0.3, metric = "euclidean",
   seed = NA, ...)
 }
@@ -14,7 +14,7 @@ calc_umap(fce, expt = "sce", dr = "PCA", n_dims = NULL,
 \item{expt}{Data to use for UMAP, one of either sce (rna data, the default)
 or fsce (functional data)}
 
-\item{dr}{select which dimenality reduction data to use for UMAP, defaults to
+\item{method}{dimenality reduction method to use for UMAP, defaults to
 PCA}
 
 \item{n_dims}{number of dimensions to pass to UMAP, defaults to all present

@@ -129,7 +129,7 @@ features <- c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922")
  
 plot_cells(fce, features)
 
-plot_cells(fce, features, dr = "TSNE")
+plot_cells(fce, features, method = "TSNE")
 ```
 
 # Clustering

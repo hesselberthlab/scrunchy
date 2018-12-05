@@ -132,7 +132,7 @@ plot_cells <- function(fce, features, ...) {
 #' @param feature single feature to plot, either gene name or column in colData
 #' @param expt Data type to use for plot, one of either sce (rna data, the default)
 #' or fsce (functional data). Defaults to "sce"
-#' @param dr dimensionality reduction to use for plotting. defaults to UMAP
+#' @param method dimensionality reduction for plotting. defaults to UMAP
 #' @param plot_dat supplemental data.frame containing feature to plot.
 #' Must have a column named cell that contains matching colnames in colData
 #' @param pt_size size of points produced by geom_point
@@ -153,7 +153,7 @@ plot_cells <- function(fce, features, ...) {
 plot_feature <- function(fce,
                          feature = NULL,
                          expt = "sce",
-                         dr = "UMAP",
+                         method = "UMAP",
                          plot_dat = NULL,
                          pt_size = 0.01,
                          pt_alpha = 1,
@@ -173,15 +173,15 @@ plot_feature <- function(fce,
     stop("expt not found in fce object")
   }
 
-  if (!dr %in% names(reducedDims(fce[[expt]]))) {
-    stop(paste0("embedding method ", dr, " not found in fce object"))
+  if (!method %in% names(reducedDims(fce[[expt]]))) {
+    stop(paste0("embedding method ", method, " not found in fce object"))
   }
 
-  embed_dat <- reducedDim(fce[[expt]], dr)
+  embed_dat <- reducedDim(fce[[expt]], method)
   embed_dat <- embed_dat[, dims_to_plot]
 
   if (is.null(colnames(embed_dat))) {
-    colnames(embed_dat) <- paste0(dr, dims_to_plot)
+    colnames(embed_dat) <- paste0(method, dims_to_plot)
   }
 
   xcol <- colnames(embed_dat)[1]

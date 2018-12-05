@@ -3,7 +3,7 @@
 #' @param fce fce object
 #' @param k specify k number of classes
 #' @param expt experiment to cluster (either "sce" or "fsce, defaults to "sce")
-#' @param dr which dimensionality reduction to use for clustering (defaults to PCA)
+#' @param method dimensionality reduction method for clustering (defaults to PCA)
 #' @param n_dims specify the number of dimensions from "dr" to use for clustering, defaults to all dimensions
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
@@ -11,7 +11,7 @@
 run_kmeans <- function(fce,
                        k,
                        expt = "sce",
-                       dr = "PCA",
+                       method = "PCA",
                        n_dims = NULL,
                        ...) {
   ## check inputs
@@ -19,11 +19,11 @@ run_kmeans <- function(fce,
     stop("expt not found in fce object")
   }
 
-  if (!dr %in% names(reducedDims(fce[[expt]]))) {
-    stop("dr method not found in fce object")
+  if (!method %in% names(reducedDims(fce[[expt]]))) {
+    stop(paste0(c("method `", method, "` not found in fce object")))
   }
 
-  dr_mat <- reducedDim(fce[[expt]], dr)
+  dr_mat <- reducedDim(fce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
