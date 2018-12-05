@@ -39,8 +39,8 @@
 
 <meta property="og:title" content="Generate 2D cell embeddings using UMAP — calc_umap" />
 
-<meta property="og:description" content="See (https://umap-learn.readthedocs.io/en/latest/index.html) for
-a detailed description of parameters." />
+<meta property="og:description" content="See https://umap-learn.readthedocs.io for a detailed description of
+parameters." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -116,14 +116,14 @@ a detailed description of parameters." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generate 2D cell embeddings using UMAP</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/dr.R'><code>R/dr.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/dims.R'><code>R/dims.R</code></a></small>
     <div class="hidden name"><code>calc_umap.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>See (https://umap-learn.readthedocs.io/en/latest/index.html) for
-a detailed description of parameters.</p>
+    <p>See <a href='https://umap-learn.readthedocs.io'>https://umap-learn.readthedocs.io</a> for a detailed description of
+parameters.</p>
     
     </div>
 
@@ -140,27 +140,31 @@ a detailed description of parameters.</p>
     </tr>
     <tr>
       <th>expt</th>
-      <td><p>Data to use for UMAP, one of either sce (rna data, the default) or fsce (functional data)</p></td>
+      <td><p>Data to use for UMAP, one of either sce (rna data, the default)
+or fsce (functional data)</p></td>
     </tr>
     <tr>
       <th>dr</th>
-      <td><p>select which dimenality reduction data to use for UMAP, defaults to PCA</p></td>
+      <td><p>select which dimenality reduction data to use for UMAP, defaults to
+PCA</p></td>
     </tr>
     <tr>
       <th>n_dims</th>
-      <td><p>number of dimensions to pass to UMAP, defaults to all present in dr matrix</p></td>
+      <td><p>number of dimensions to pass to UMAP, defaults to all present
+in dr matrix</p></td>
     </tr>
     <tr>
       <th>n_neighbors</th>
-      <td><p>number of nearest neighbors to use for learning the manifold. Low values will
-preserve local structure, at the expense missing higher order organization. Higher values will
-capture more global structure but miss fine grained detail. Defaults to 30.</p></td>
+      <td><p>number of nearest neighbors to use for learning the
+manifold. Low values will preserve local structure, at the expense missing
+higher order organization. Higher values will capture more global structure
+but miss fine grained detail. Defaults to 30.</p></td>
     </tr>
     <tr>
       <th>min_dist</th>
-      <td><p>Numeric between 0 and 0.99. min_dist controls how tightly points can be packed
-together in 2D space. Lower values will generate more clumpy projections, but more accurately
-preserve local structure.</p></td>
+      <td><p>Numeric between 0 and 0.99. min_dist controls how tightly
+points can be packed together in 2D space. Lower values will generate more
+clumpy projections, but more accurately preserve local structure.</p></td>
     </tr>
     <tr>
       <th>metric</th>
@@ -168,11 +172,12 @@ preserve local structure.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>seed to generate reproducible UMAP projection. Defaults to no seed.</p></td>
+      <td><p>seed to generate reproducible UMAP projection. Defaults to no
+seed.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/umap/topics/umap'>umap::umap()</a></code></p></td>
+      <td><p>additional arguments for <code><a href='https://www.rdocumentation.org/packages/umap/topics/umap'>umap::umap()</a></code></p></td>
     </tr>
     </table>
     

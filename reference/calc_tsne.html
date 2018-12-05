@@ -39,8 +39,7 @@
 
 <meta property="og:title" content="Generate 2D cell embeddings using tSNE — calc_tsne" />
 
-<meta property="og:description" content="See (https://github.com/jkrijthe/Rtsne) for
-a detailed description of parameters." />
+<meta property="og:description" content="See Rtsne::Rtsne() for a detailed description of parameters." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -116,18 +115,17 @@ a detailed description of parameters." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generate 2D cell embeddings using tSNE</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/dr.R'><code>R/dr.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/dims.R'><code>R/dims.R</code></a></small>
     <div class="hidden name"><code>calc_tsne.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>See (https://github.com/jkrijthe/Rtsne) for
-a detailed description of parameters.</p>
+    <p>See <code><a href='https://www.rdocumentation.org/packages/Rtsne/topics/Rtsne'>Rtsne::Rtsne()</a></code> for a detailed description of parameters.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>calc_tsne</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>dr</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>calc_tsne</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>perplexity</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -139,31 +137,32 @@ a detailed description of parameters.</p>
     </tr>
     <tr>
       <th>expt</th>
-      <td><p>Data to use for tSNE, one of either sce (rna data, the default) or fsce (functional data)</p></td>
+      <td><p>Data to use for tSNE, sce (rna data, the default)
+or fsce (functional data)</p></td>
     </tr>
     <tr>
-      <th>dr</th>
-      <td><p>select which dimenality reduction data to use for tSNE, defaults to PCA</p></td>
+      <th>method</th>
+      <td><p>dimensionality reduction method for tSNE</p></td>
     </tr>
     <tr>
       <th>n_dims</th>
-      <td><p>number of dimensions to pass to tSNE, defaults to all present in dr matrix</p></td>
+      <td><p>number of dimensions for tSNE</p></td>
     </tr>
     <tr>
       <th>perplexity</th>
-      <td><p>Defaults to 30.</p></td>
+      <td><p>tSNE perplexity value.</p></td>
     </tr>
     <tr>
       <th>theta</th>
-      <td><p>Defaults to 0.5</p></td>
+      <td><p>tSNE theta value.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>seed to generate reproducible tSNE projection. Defaults to no seed.</p></td>
+      <td><p>seed for generate reproducible tSNE projection.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/Rtsne/topics/Rtsne'>Rtsne::Rtsne()</a></code></p></td>
+      <td><p>additional arguments for <code><a href='https://www.rdocumentation.org/packages/Rtsne/topics/Rtsne'>Rtsne::Rtsne()</a></code></p></td>
     </tr>
     </table>
     
