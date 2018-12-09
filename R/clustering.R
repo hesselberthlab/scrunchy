@@ -1,10 +1,12 @@
-#' Perform Kmeans clustering
+#' K-means clustering
 #'
 #' @param fce fce object
-#' @param k specify k number of classes
+#' @param k number of classes
 #' @param expt experiment to cluster (either "sce" or "fsce, defaults to "sce")
-#' @param method dimensionality reduction method for clustering (defaults to PCA)
-#' @param n_dims specify the number of dimensions from "dr" to use for clustering, defaults to all dimensions
+#' @param method dimensionality reduction method for clustering (defaults to
+#'   PCA)
+#' @param n_dims specify the number of dimensions from "dr" to use for
+#'   clustering, defaults to all dimensions
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
 #' @export

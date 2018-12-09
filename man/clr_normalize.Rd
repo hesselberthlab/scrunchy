@@ -2,7 +2,7 @@
 % Please edit documentation in R/normalize.R
 \name{clr_normalize}
 \alias{clr_normalize}
-\title{Simple normalization for functional data using centered log ratio}
+\title{Centered log-ratio normalization}
 \usage{
 clr_normalize(mat)
 }
@@ -11,9 +11,12 @@ clr_normalize(mat)
 }
 \value{
 matrix of normalized values. Normalization performed by dividing each
-function value by the geometric mean of all functional values for a cell,
-and returning log values
+value by the geometric mean of all values for a cell, returning log values.
 }
 \description{
-Simple normalization for functional data using centered log ratio
+This normalization strategy is used for CITE-seq and other feature data in
+\href{https://satijalab.org/seurat/}{Seurat}.
+}
+\seealso{
+https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in
 }

@@ -206,7 +206,7 @@ create_fce <- function(rna_data,
 #'
 #' @param x file name
 #'
-#' @export
+#' @noRd
 scrunchy_data <- function(x) {
   system.file("extdata", x, package = "scrunchy", mustWork = TRUE)
 }
@@ -215,7 +215,7 @@ scrunchy_data <- function(x) {
 #'
 #' @param x file name
 #'
-#' @export
+#' @noRd
 load_csv <- function(x) {
   read.csv(x, sep = ",", header = TRUE, row.names = 1)
 }

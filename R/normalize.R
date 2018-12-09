@@ -33,15 +33,15 @@ normalize_counts <- function(fce,
   fce
 }
 
-#' Simple normalization for scrna-seq
+#' Log normalization
 #'
 #' @param mat input matrix
-#' @param constant scalar to multiply normalized counts by to prevent
-#'   small numbers (1e5)
+#' @param constant multiply normalized counts by this scalar to prevent
+#'   small numbers
 #'
 #' @return matrix of normalized values. Normalization performed by dividing by
-#'   column sums (total counts per cell) and scaled by a scaling factor. Log
-#'   values are returned with a pseudocount of 1
+#'   column sums (total counts per cell) and scaled by a constant. Log
+#'   values are returned with a pseudocount of 1.
 #'
 log_normalize <- function(mat, constant = 1e4) {
   mat <- constant * (sweep(mat, 2, Matrix::colSums(mat), "/"))
@@ -49,17 +49,19 @@ log_normalize <- function(mat, constant = 1e4) {
 }
 
 
-#' Simple normalization for functional data using centered log ratio
+#' Centered log-ratio normalization
+#'
+#' This normalization strategy is used for CITE-seq and other feature data in
+#' [Seurat](https://satijalab.org/seurat/).
 #'
 #' @param mat input matrix
 #'
+#' @seealso https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in
+#'
 #' @return matrix of normalized values. Normalization performed by dividing each
-#'   function value by the geometric mean of all functional values for a cell,
-#'   and returning log values
+#'   value by the geometric mean of all values for a cell, returning log values.
 #'
 clr_normalize <- function(mat) {
-  ## norm method from Seurat
-  ## geom mean from https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in
   apply(mat, 2, function(x) {
     log1p((x) /
       (exp(sum(log1p((x)[x > 0]), na.rm = TRUE) /
