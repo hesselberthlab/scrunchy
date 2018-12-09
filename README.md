@@ -90,4 +90,4 @@ features <- c(
 plot_cells(fce, features)
 ```
 
-<img src="man/figures/example_norm-1.png" width="100%" />
+<img src="man/figures/README-example_norm-1.png" width="100%" />
