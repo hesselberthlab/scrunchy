@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simple normalization for scrna-seq — log_normalize • scrunchy</title>
+<title>Log normalization — log_normalize • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="Simple normalization for scrna-seq — log_normalize" />
+<meta property="og:title" content="Log normalization — log_normalize" />
 
-<meta property="og:description" content="Simple normalization for scrna-seq" />
+<meta property="og:description" content="Log normalization" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -114,14 +114,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simple normalization for scrna-seq</h1>
+    <h1>Log normalization</h1>
     <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
     <div class="hidden name"><code>log_normalize.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Simple normalization for scrna-seq</p>
+    <p>Log normalization</p>
     
     </div>
 
@@ -136,16 +136,16 @@
     </tr>
     <tr>
       <th>constant</th>
-      <td><p>scalar to multiply normalized counts by to prevent
-small numbers (1e5)</p></td>
+      <td><p>multiply normalized counts by this scalar to prevent
+small numbers</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>matrix of normalized values. Normalization performed by dividing by
-column sums (total counts per cell) and scaled by a scaling factor. Log
-values are returned with a pseudocount of 1</p>
+column sums (total counts per cell) and scaled by a constant. Log
+values are returned with a pseudocount of 1.</p>
     
 
   </div>

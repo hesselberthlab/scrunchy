@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simple normalization for functional data using centered log ratio — clr_normalize • scrunchy</title>
+<title>Centered log-ratio normalization — clr_normalize • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,10 @@
 
 
 
-<meta property="og:title" content="Simple normalization for functional data using centered log ratio — clr_normalize" />
+<meta property="og:title" content="Centered log-ratio normalization — clr_normalize" />
 
-<meta property="og:description" content="Simple normalization for functional data using centered log ratio" />
+<meta property="og:description" content="This normalization strategy is used for CITE-seq and other feature data in
+Seurat." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -114,14 +115,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simple normalization for functional data using centered log ratio</h1>
+    <h1>Centered log-ratio normalization</h1>
     <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
     <div class="hidden name"><code>clr_normalize.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Simple normalization for functional data using centered log ratio</p>
+    <p>This normalization strategy is used for CITE-seq and other feature data in
+<a href='https://satijalab.org/seurat/'>Seurat</a>.</p>
     
     </div>
 
@@ -139,8 +141,11 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>matrix of normalized values. Normalization performed by dividing each
-function value by the geometric mean of all functional values for a cell,
-and returning log values</p>
+value by the geometric mean of all values for a cell, returning log values.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in</p></div>
     
 
   </div>
@@ -150,6 +155,8 @@ and returning log values</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>
