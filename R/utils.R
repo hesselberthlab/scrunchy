@@ -48,6 +48,39 @@ read_10x_matrix <- function(path,
   mat
 }
 
+#' Convert umitools flat format tsv to sparseMatrix .mtx format
+#'
+#'@param count_file path to umitools output file
+#'@param output_path path for output files. matrix.mtx, barcodes.tsv and genes.tsv
+#'will generated in supplied path
+#'@param ... additional arguments to pass to ['readr::read_tsv()']
+#'
+#'@export
+umitools_to_mtx <- function(count_file,
+                            output_path,
+                            ...) {
+
+  dat <- readr::read_tsv(count_file, ...)
+
+  barcodes <- unique(dat$cell)
+  genes <- unique(dat$gene)
+
+  dat$gene_idx <- match(dat$gene, genes)
+  dat$cell_idx <- match(dat$cell, barcodes)
+
+  mat <- Matrix::sparseMatrix(i = dat$gene_idx,
+                              j = dat$cell_idx,
+                              x = dat$count)
+
+  if(!dir.exists(output_path)) {
+    dir.create(output_path, recursive = TRUE)
+  }
+
+  Matrix::writeMM(mat, file.path(output_path, "out.mtx"))
+  writeLines(genes, file.path(output_path, "genes.tsv"))
+  writeLines(barcodes, file.path(output_path, "barcodes.tsv"))
+}
+
 #' Create a functional cell experiment (fce) object as a MultiAssayExperiment
 #'
 #' @param rna_data UMI count matrix
