@@ -1,0 +1,87 @@
+---
+title: "PBMC analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PBMC analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+## Experimental setup
+
+Peripheral mononuclear blood cells (PMBCs) from a healthy human were freshly prepared using Ficoll density separation. A suspension of ~10,000 cells in 30 microliters was prepared.
+
+Prior to capture, 5 microliters of a solution of polyadenylated DNA hairpin repair substrates was added, containing:
+
+1. A "normal" DNA substrate
+1. A:U
+1. G:U
+1. Ribonucleotide (rG)
+1. C:Inosine
+1. T:Inosine
+
+Cells were emulsified and the reactions were incubated at 37 ˚C for 1 hour prior to continuing with a single-cell RNA sequencing prep.
+
+```{r example_load, message=FALSE}
+library(scrunchy)
+library(tidyverse)
+library(SingleCellExperiment)
+
+# load mRNA UMI data
+exp <- load_csv(scrunchy_data("pbmc.gene.matrix.csv.gz"))
+
+# load haircut UMI data
+fxn <- load_csv(scrunchy_data("pbmc.haircut.matrix.csv.gz"))
+
+fce <- create_fce(exp, fxn)
+
+fce <- normalize_counts(fce)
+
+var_genes <- get_var_genes(fce, n_genes = 5000)
+fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
+fce <- calc_umap(fce, n_dims = 6)
+```
+
+### DNA repair activity
+
+```{r repair_plot}
+features <- c(
+  "Uracil_45",
+  "GU_45",
+  "riboG_44",
+  "Abasic_45",
+  "TI_45",
+  "CI_45"
+)
+
+plot_cells(fce, features)
+```
+
+### mRNA expression
+
+mRNA expression of genes catalying known repair events.
+
+```{r gene_features}
+gene_features <- tribble(
+  ~ensembl, ~common,
+  "ENSG00000076248", "UNG",
+  "ENSG00000129071", "MBD4",
+  "ENSG00000172922", "RNASEH2",
+  "ENSG00000100823", "APEX1",
+  "ENSG00000103152",  "MPG"
+)
+knitr::kable(gene_features)
+```
+
+```{r gene_plot}
+plot_cells(fce, gene_features$ensembl)
+```
+
