@@ -4,15 +4,16 @@
 \alias{umitools_to_mtx}
 \title{Convert umitools flat format tsv to sparseMatrix .mtx format}
 \usage{
-umitools_to_mtx(count_file, output_path, ...)
+umitools_to_mtx(count_file, output_path = NULL, ...)
 }
 \arguments{
 \item{count_file}{path to umitools output file}
 
 \item{output_path}{path for output files. matrix.mtx, barcodes.tsv and genes.tsv
-will generated in supplied path}
+will be generated in supplied path, or by default creates in same directory as
+the count_file.}
 
-\item{...}{additional arguments to pass to \link['readr:read_tsv()']{'readr::read_tsv()'}}
+\item{...}{additional arguments to pass to \code{\link[readr:read_tsv]{readr::read_tsv()}}}
 }
 \description{
 Convert umitools flat format tsv to sparseMatrix .mtx format

@@ -50,14 +50,20 @@ read_10x_matrix <- function(path,
 
 #' Convert umitools flat format tsv to sparseMatrix .mtx format
 #'
-#'@param count_file path to umitools output file
-#'@param output_path path for output files. matrix.mtx, barcodes.tsv and genes.tsv
-#'will generated in supplied path
-#'@param ... additional arguments to pass to ['readr::read_tsv()']
+#' @param count_file path to umitools output file
+#' @param output_path path for output files. matrix.mtx, barcodes.tsv and genes.tsv
+#' will be generated in supplied path, or by default creates in same directory as
+#' the count_file.
+#' @param ... additional arguments to pass to [`readr::read_tsv()`]
 #'
-#'@export
+#' @importFrom R.utils gzip
+#' @importFrom readr read_tsv
+#' @importFrom Matrix readMM
+#' @importFrom fs path_dir
+#'
+#' @export
 umitools_to_mtx <- function(count_file,
-                            output_path,
+                            output_path = NULL,
                             ...) {
 
   dat <- readr::read_tsv(count_file, ...)
@@ -72,11 +78,17 @@ umitools_to_mtx <- function(count_file,
                               j = dat$cell_idx,
                               x = dat$count)
 
+  if(is.null(output_path)) {
+    output_path <- fs::path_dir(count_file)
+  }
+
   if(!dir.exists(output_path)) {
     dir.create(output_path, recursive = TRUE)
   }
 
-  Matrix::writeMM(mat, file.path(output_path, "out.mtx"))
+  Matrix::writeMM(mat, file.path(output_path, "matrix.mtx"))
+  R.utils::gzip("matrix.mtx", overwrite = TRUE, remove = TRUE)
+
   writeLines(genes, file.path(output_path, "genes.tsv"))
   writeLines(barcodes, file.path(output_path, "barcodes.tsv"))
 }
