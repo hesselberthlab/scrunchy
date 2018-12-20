@@ -7,22 +7,25 @@
 status](https://travis-ci.org/hesselberthlab/scrunchy.svg?branch=master)](https://travis-ci.org/hesselberthlab/scrunchy)
 [![Codecov test
 coverage](https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg)](https://codecov.io/gh/hesselberthlab/scrunchy?branch=master)
+![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 
 scrunchy provides analysis tools for the **S**ingle-**c**ell
 **r**econstruction of f**unc**tional **h**eterogeneit**y**
 (**scrunchy**).
 
 Most single-cell analysis experiments provide information about the
-abundance of molecules in a cell (e.g., mRNAs). We expanded the
-capability single-cell mRNA sequencing experiments to recover
-**functional** information—i.e. the activites of cellular enzymes.
+abundance of molecules in a cell (e.g., mRNAs). We have expanded the
+capability of single-cell mRNA sequencing experiments to also recover
+**functional** information—i.e. the activites of enzymes in single
+cells.
 
 ## Installation
 
 Install the R package:
 
 ``` r
-devtools::install_github("hesselberthlab/scrunchy")
+# install.packages("remotes")
+remotes::install_github("hesselberthlab/scrunchy")
 ```
 
 # Example
