@@ -2,17 +2,18 @@
 % Please edit documentation in R/plots.R
 \name{plot_cells}
 \alias{plot_cells}
-\title{Plot cells in reduced dimensionality 2D space}
+\title{Plot cells in a reduced dimensionality space}
 \usage{
 plot_cells(fce, features, ...)
 }
 \arguments{
 \item{fce}{fce object of class MultiAssayExperiment}
 
-\item{features}{features to plot, either gene names or columns in colData}
+\item{features}{features to plot}
 
-\item{...}{additional arguments to pass to plot_feature}
+\item{...}{additional arguments for \code{plot_feature()}}
 }
 \description{
-Plot cells in 2D. Cells can be colored by gene or feature in meta.data dataframe
+Plot cells in two dimensions. Cells can be colored using \code{features}, which
+specifies gene names or columns in \code{colData}.
 }

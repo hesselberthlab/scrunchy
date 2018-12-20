@@ -11,9 +11,9 @@ plot_hairpin(fce, cells_to_plot = NULL, return_df = FALSE, ...)
 
 \item{cells_to_plot}{vector of cells ids to include in coverage calculation}
 
-\item{return_df}{return coverage values as data.frame (default = FALSE)}
+\item{return_df}{return coverage values as a \code{data.frame}}
 
-\item{...}{additional arguments to pass to \code{\link{plot_hairpin_coverage}}}
+\item{...}{additional arguments to pass to \code{\link[=plot_hairpin_coverage]{plot_hairpin_coverage()}}}
 }
 \description{
 Calculate and plot coverage across hairpins

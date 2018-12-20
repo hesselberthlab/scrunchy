@@ -16,13 +16,13 @@ plot_feature(fce, feature = NULL, expt = "sce", method = "UMAP",
 
 \item{feature}{single feature to plot, either gene name or column in colData}
 
-\item{expt}{Data type to use for plot, one of either sce (rna data, the default)
-or fsce (functional data). Defaults to "sce"}
+\item{expt}{Data type to use for plot, one of either sce (rna data, the
+default) or fsce (functional data). Defaults to "sce"}
 
 \item{method}{dimensionality reduction for plotting. defaults to UMAP}
 
-\item{plot_dat}{supplemental data.frame containing feature to plot.
-Must have a column named cell that contains matching colnames in colData}
+\item{plot_dat}{supplemental data.frame containing feature to plot. Must have
+a column named cell that contains matching colnames in colData}
 
 \item{pt_size}{size of points produced by geom_point}
 
@@ -38,14 +38,16 @@ Must have a column named cell that contains matching colnames in colData}
 
 \item{cell_filter}{character vector of cell names to include in plot}
 
-\item{palette_type}{color palette type to use (either viridis, brewer, or cloupe)
-defaults to using cellranger loupe-like colors}
+\item{palette_type}{color palette type to use (either viridis, brewer, or
+cloupe) defaults to using cellranger loupe-like colors}
 
 \item{col_pal}{palette name to use if palette_type is brewer}
 
-\item{max_y}{maximum feature value to set scale to. Defaults to max of the feature}
+\item{max_y}{maximum feature value to set scale to. Defaults to max of the
+feature}
 
-\item{plot_title}{string to supply for title for the plot, otherwise title is the feature}
+\item{plot_title}{string to supply for title for the plot, otherwise title is
+the feature}
 
 \item{dims_to_plot}{number of dimensions}
 }
