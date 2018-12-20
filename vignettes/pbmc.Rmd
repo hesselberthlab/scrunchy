@@ -32,7 +32,6 @@ Cells were emulsified and the reactions were incubated at 37 ˚C for 1 hour prio
 
 ```{r example_load, message=FALSE}
 library(scrunchy)
-library(tidyverse)
 library(SingleCellExperiment)
 
 # load mRNA UMI data
@@ -70,6 +69,7 @@ plot_cells(fce, features)
 mRNA expression of genes catalying known repair events.
 
 ```{r gene_features}
+library(tibble)
 gene_features <- tribble(
   ~ensembl, ~common,
   "ENSG00000076248", "UNG",
