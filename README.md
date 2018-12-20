@@ -7,7 +7,8 @@
 status](https://travis-ci.org/hesselberthlab/scrunchy.svg?branch=master)](https://travis-ci.org/hesselberthlab/scrunchy)
 [![Codecov test
 coverage](https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg)](https://codecov.io/gh/hesselberthlab/scrunchy?branch=master)
-![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![Lifecycle
+badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 scrunchy provides analysis tools for the **S**ingle-**c**ell
 **r**econstruction of f**unc**tional **h**eterogeneit**y**
