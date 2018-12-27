@@ -43,7 +43,9 @@ Imports:
     SingleCellExperiment,
     S4Vectors,
     MultiAssayExperiment,
-    R.utils
+    R.utils,
+    tidyr,
+    scales
 Suggests: 
     knitr,
     rmarkdown,
