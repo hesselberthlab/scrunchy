@@ -135,7 +135,7 @@ plot_cells <- function(fce, features, ...) {
 #'   default) or fsce (functional data). Defaults to "sce"
 #' @param method dimensionality reduction for plotting. defaults to UMAP
 #' @param plot_dat supplemental data.frame containing feature to plot. Must have
-#'   a column named cell that contains matching colnames in colData
+#'   a column named `cell` that contains matching colnames in colData
 #' @param pt_size size of points produced by geom_point
 #' @param pt_alpha alpha value for points plotted by geom_point
 #' @param label_text if TRUE display feature labels on plot
@@ -374,6 +374,29 @@ plot_feature <- function(fce,
   p <- p + cowplot::theme_cowplot()
   p <- p + theme(legend.title = element_blank())
   p
+}
+
+#' Plot activities per cluster
+#'
+#' @param data data to plot
+#' @param activity activity variable
+#' @param cluster cluster variable
+#'
+#' @export
+plot_activity <- function(data, activity, cluster) {
+
+  activity <- enquo(activity)
+  cluster <- enquo(cluster)
+
+  ggplot(data, aes(x = !! activity, y = !! cluster, color = !! cluster)) +
+    ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
+    colorblindr::scale_color_OkabeIto() +
+    cowplot::theme_cowplot() +
+    labs(
+      x = "Activity",
+      y = "Cluster",
+      title = glue::glue("Activity: {x}")
+    )
 }
 
 #' Color palette

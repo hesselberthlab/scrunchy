@@ -20,7 +20,9 @@ BugReports: https://github.com/hesselberthlab/scrunchy/issues
 Imports: 
     cowplot,
     dplyr,
+    ggbeeswarm,
     ggplot2,
+    glue,
     fs,
     magrittr,
     methods,
@@ -49,3 +51,5 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Remotes:
+    clauswilke/colorblindr
