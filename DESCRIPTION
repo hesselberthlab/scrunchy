@@ -42,7 +42,8 @@ Imports:
     Rtsne,
     SingleCellExperiment,
     S4Vectors,
-    MultiAssayExperiment
+    MultiAssayExperiment,
+    R.utils
 Suggests: 
     knitr,
     rmarkdown,
