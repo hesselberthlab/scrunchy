@@ -31,7 +31,6 @@
 #'
 #' @importFrom ggbeeswarm geom_quasirandom
 #' @importFrom glue glue
-#' @importFrom colorblindr scale_fill_OkabeIto scale_color_OkabeIto
 #' @importFrom cowplot theme_cowplot plot_grid
 #' @importFrom rlang parse_quosure
 #' @importFrom magrittr %>%
