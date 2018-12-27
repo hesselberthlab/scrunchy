@@ -87,7 +87,8 @@ umitools_to_mtx <- function(count_file,
   }
 
   Matrix::writeMM(mat, file.path(output_path, "matrix.mtx"))
-  R.utils::gzip("matrix.mtx", overwrite = TRUE, remove = TRUE)
+  R.utils::gzip(file.path(output_path, "matrix.mtx"),
+                overwrite = TRUE, remove = TRUE)
 
   writeLines(genes, file.path(output_path, "genes.tsv"))
   writeLines(barcodes, file.path(output_path, "barcodes.tsv"))
