@@ -4,7 +4,7 @@
 \name{scrunchy}
 \alias{scrunchy}
 \alias{scrunchy-package}
-\title{scrunchy: single-cell analysis of functional heterogeneity}
+\title{scrunchy: single-cell reconstruction of functional heterogeneity}
 \description{
 scrunchy provides tools to analyze and visualize data from
 single-cell assays for functional heterogeneity.

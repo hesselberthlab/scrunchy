@@ -22,7 +22,7 @@ default) or fsce (functional data). Defaults to "sce"}
 \item{method}{dimensionality reduction for plotting. defaults to UMAP}
 
 \item{plot_dat}{supplemental data.frame containing feature to plot. Must have
-a column named cell that contains matching colnames in colData}
+a column named \code{cell} that contains matching colnames in colData}
 
 \item{pt_size}{size of points produced by geom_point}
 

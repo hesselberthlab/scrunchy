@@ -1,4 +1,4 @@
-#' scrunchy: single-cell analysis of functional heterogeneity
+#' scrunchy: single-cell reconstruction of functional heterogeneity
 #'
 #' scrunchy provides tools to analyze and visualize data from
 #' single-cell assays for functional heterogeneity.
@@ -16,9 +16,8 @@
 #' @seealso Report bugs at <https://github.com/hesselberthlab/scrunchy/issues>
 #'
 #' @importFrom methods as
-#' @importFrom stats median var
+#' @importFrom stats median var kmeans
 #' @importFrom utils read.csv
-#' @importFrom stats kmeans
 #'
 #' @import Matrix
 #' @import stringr
@@ -29,12 +28,15 @@
 #' @import purrr
 #' @import ggplot2
 #' @import umap
+#'
+#' @importFrom ggbeeswarm geom_quasirandom
+#' @importFrom glue glue
 #' @importFrom cowplot theme_cowplot plot_grid
 #' @importFrom rlang parse_quosure
 #' @importFrom magrittr %>%
 #' @importFrom irlba prcomp_irlba
+#' @importFrom Rtsne Rtsne
 #'
-#' @import Rtsne
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
 #' @importFrom S4Vectors SimpleList
