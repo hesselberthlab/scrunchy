@@ -15,14 +15,12 @@ reference:
   - title: Functional Single Cell Experiment
     contents:
     - '`create_fce`'
+
   - title: Data Import and Processing
     contents:
-    - '`calc_pca`'
-    - '`calc_tsne`'
-    - '`calc_umap`'
-    - '`clr_normalize`'
+    - starts_with("calc_")
+    - ends_with("_normalize")
     - '`get_var_genes`'
-    - '`log_normalize`'
     - '`read_10x_matrix`'
     - '`normalize_counts`'
     - '`run_kmeans`'
@@ -33,6 +31,7 @@ reference:
     - '`plot_feature`'
     - '`plot_hairpin`'
     - '`plot_hairpin_coverage`'
+    - ends_with("OkabeIto")
 
   - title: Miscellaneous
     contents:
