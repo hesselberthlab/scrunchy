@@ -10,13 +10,13 @@ get_var_genes(fce, expt = "sce", n_genes = 1000)
 \item{fce}{fce object}
 
 \item{expt}{Data to use for calculating variable genes,
-one of either sce (rna data, the default) or fsce (functional data)}
+one of either \code{sce} (the default) or \code{fsce} (functional data)}
 
-\item{n_genes}{n variable genes to return}
+\item{n_genes}{number of variable genes to return}
 }
 \value{
-Character vecctor
+Names of variable genes
 }
 \description{
-Get variable genes
+Identify genes the most variance in the data set.
 }
