@@ -1,31 +1,66 @@
-#' Load 10x mtx matrix as sparseMatrix
+#' Load mtx formatted 10x or haircut matrices
 #'
-#' @param path path to 10x directory with mtx matrix
+#' @param path path to directory with mtx matrix
 #' @param cell_prefix string to prefix to cell_id  (default = NULL)
 #' @param strip_10x_suffix remove numeric suffix added by 10x e.g. change
 #'   "TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)
 #' @param use_gene_symbols If TRUE use gene symbols as row.names, if false then
 #'   gene_ids will be used (default = TRUE)
+#' @param matrix_fn filename for matrix
+#' @param features_fn filename for genes file
+#' @param barcodes_fn filename for barcodes file
 #'
 #' @export
-read_10x_matrix <- function(path,
-                            cell_prefix = NULL,
-                            strip_10x_suffix = TRUE,
-                            use_gene_symbols = TRUE) {
-  fns <- dir(path)
-  fns_needed <- c("barcodes.tsv", "genes.tsv", "matrix.mtx")
+read_matrix <- function(path,
+                        cell_prefix = NULL,
+                        strip_10x_suffix = TRUE,
+                        use_gene_symbols = TRUE,
+                        matrix_fn = "matrix.mtx.gz",
+                        features_fn = "features.tsv.gz",
+                        barcodes_fn = "barcodes.tsv.gz") {
 
-  if (!all(fns_needed %in% fns)) {
-    stop(paste0("missing required 10x file: ", fns_needed[!fns_needed %in% fns], "\n"))
+  filenames <- list(matrix = matrix_fn,
+                    features = features_fn,
+                    barcodes = barcodes_fn)
+
+  fns <- dir(path, full.names = TRUE)
+
+  filenames <- map(filenames, ~fs::path_join(c(path, .x)))
+
+  if (!all(filenames %in% fns)) {
+    # check for gzipped equivalents
+    gzipped_fns <- paste0(filenames, ".gz")
+    is_gzipped <- gzipped_fns %in% fns
+
+    # rename if found
+    if(any(is_gzipped)) {
+      filenames[is_gzipped] <- gzipped_fns[is_gzipped]
+    } else {
+      stop(paste0("missing required files: ",
+                  unlist(filenames[!filenames %in% fns]),
+                  "\n"))
+    }
   }
 
-  bcs <- readLines(file.path(path, "barcodes.tsv"))
-  genes <- suppressMessages(readr::read_tsv(
-    file.path(path, "genes.tsv"),
-    col_names = c("gene_id", "gene_symbol")
-  ))
+  # assign column names based on feature file type
+  n_fcols <- count_cols(filenames$features)
+  if (n_fcols == 3) {
+    col_args = fcols_10x_v3
+  } else if (n_fcols == 2) {
+    col_args = fcols_10x_v2
+  } else if (n_fcols == 1) {
+    col_args = fcols_haircut
+  } else {
+    stop("unknown feature file format", call. = FALSE)
+  }
 
-  mat <- Matrix::readMM(file.path(path, "matrix.mtx"))
+  features <- suppressMessages(do.call(readr::read_tsv,
+                                       c(file = filenames$features,
+                                         col_args)))
+
+  bcs <- readLines(filenames$barcodes)
+
+  mat <- Matrix::readMM(filenames$matrix)
 
   if (strip_10x_suffix) {
     bcs <- stringr::str_remove(bcs, "-[0-9]+$")
@@ -35,23 +70,45 @@ read_10x_matrix <- function(path,
     bcs <- stringr::str_c(cell_prefix, "_", bcs)
   }
 
-  if (use_gene_symbols) {
-    genes_out <- genes[["gene_symbol"]]
+  if (use_gene_symbols & ("gene_symbol" %in% colnames(features))) {
+    features_ids <- features[["gene_symbol"]]
   } else {
-    genes_out <- genes[["gene_id"]]
+    # default to first column
+    features_ids <- features[[1]]
   }
 
-  genes_out <- make.unique(genes_out)
-  rownames(mat) <- genes_out
+  features_ids <- make.unique(features_ids)
+  rownames(mat) <- features_ids
   colnames(mat) <- bcs
 
   mat
 }
 
+#' Return number of cols from first line of a file
+#' @noRd
+count_cols <- function(file,
+                       tokenizer_fun = tokenizer_tsv()){
+  readr::count_fields(file,
+                      tokenizer = tokenizer_fun, n_max = 1)
+}
+
+
+# Column definitions for features.tsv files -----------------------------
+
+#' @noRd
+fcols_10x_v3 <- list(col_types = 'ccc',
+                     col_names = c("gene_id", "gene_symbol", "type"))
+#' @noRd
+fcols_10x_v2 <- list(col_types = "cc",
+                     col_names = c("gene_id", "gene_symbol"))
+#' @noRd
+fcols_haircut <- list(col_types = "c",
+                      col_names = "feature")
+
 #' Convert umitools flat format tsv to sparseMatrix .mtx format
 #'
 #' @param count_file path to umitools output file
-#' @param output_path path for output files. matrix.mtx, barcodes.tsv and features.tsv
+#' @param output_path path for output files. matrix.mtx.gz, barcodes.tsv.gz and features.tsv.gz
 #' will be generated at the supplied path, or by default created in same directory as
 #' the `count_file`.
 #' @param ... additional arguments to pass to [`readr::read_tsv()`]
@@ -90,8 +147,8 @@ umitools_to_mtx <- function(count_file,
   R.utils::gzip(file.path(output_path, "matrix.mtx"),
                 overwrite = TRUE, remove = TRUE)
 
-  writeLines(genes, file.path(output_path, "features.tsv"))
-  writeLines(barcodes, file.path(output_path, "barcodes.tsv"))
+  readr::write_lines(genes, file.path(output_path, "features.tsv.gz"))
+  readr::write_lines(barcodes, file.path(output_path, "barcodes.tsv.gz"))
 }
 
 #' Create a functional cell experiment (fce) object as a MultiAssayExperiment

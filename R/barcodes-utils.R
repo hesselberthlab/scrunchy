@@ -3,7 +3,7 @@
 #'
 #' @param molecule_file molecule.tsv.gz flatfile produced by scrunchy pipeline
 #' @param return_ids convert barcodes and features to names rather than indexes in
-#' barcodes.tsv and features.tsv (default = TRUE)
+#' barcodes.tsv.gz and features.tsv.gz (default = TRUE)
 #'
 #' @importFrom fs path_join path_dir file_exists
 #' @importFrom readr read_tsv
@@ -108,8 +108,8 @@ filter_molecules <- function(molecule_file,
   base_path <- fs::path_dir(molecule_file)
   out_path <- fs::path_dir(output_file)
 
-  bcs_fn <- fs::path_join(c(base_path, "barcodes.tsv"))
-  features_fn <- fs::path_join(c(base_path, "features.tsv"))
+  bcs_fn <- fs::path_join(c(base_path, "barcodes.tsv.gz"))
+  features_fn <- fs::path_join(c(base_path, "features.tsv.gz"))
 
   bcs <- readr::read_tsv(bcs_fn, col_names = "barcode_seq", col_types = "c")
   features <- readr::read_tsv(features_fn, col_names = "feature_name", col_types = "c")
@@ -159,8 +159,11 @@ filter_molecules <- function(molecule_file,
   f_dat <- arrange(f_dat, f_idx)
 
   # write out barcodes and features to same directory as molecules
-  readr::write_lines(bc_dat[["barcode"]], fs::path_join(c(out_path, "barcodes.tsv")))
-  readr::write_lines(f_dat[["feature"]], fs::path_join(c(out_path, "features.tsv")))
+  readr::write_lines(bc_dat[["barcode"]],
+                     fs::path_join(c(out_path, "barcodes.tsv.gz")))
+
+  readr::write_lines(f_dat[["feature"]],
+                     fs::path_join(c(out_path, "features.tsv.gz")))
 }
 
 #' Plot sequencing saturation
