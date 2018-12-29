@@ -124,7 +124,6 @@ setMethod("normalize",
   signature("SCERnaSeq"),
   function(x, method = "log_normalize", ...) {
     logcounts(x) <- do.call(method, list(counts(x), ...))
-    x
   }
 )
 
@@ -132,6 +131,5 @@ setMethod("normalize",
   signature("SCEHaircut"),
   function(x, method = "clr_normalize", ...) {
     logcounts(x) <- do.call(method, list(counts(x), ...))
-    x
   }
 )
