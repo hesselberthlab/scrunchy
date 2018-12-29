@@ -20,3 +20,9 @@ Names of variable features
 \description{
 Identify features with the most variance in the data set.
 }
+\examples{
+calc_var_features(fsce_small)[1:5]
+
+calc_var_features(fsce_small, expt = "haircut")[1:5]
+
+}
