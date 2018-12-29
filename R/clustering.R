@@ -1,8 +1,9 @@
 #' K-means clustering
 #'
-#' @param fce fce object
+#' @param fsce [`FunctionalSingleCellExperiment`]
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @param k number of classes
-#' @param expt experiment to cluster (either "sce" or "fsce, defaults to "sce")
 #' @param method dimensionality reduction method for clustering (defaults to
 #'   PCA)
 #' @param n_dims specify the number of dimensions from "dr" to use for
@@ -10,22 +11,22 @@
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
 #' @export
-run_kmeans <- function(fce,
+run_kmeans <- function(fsce,
+                       expt = "rnaseq",
                        k,
-                       expt = "sce",
                        method = "PCA",
                        n_dims = NULL,
                        ...) {
   ## check inputs
-  if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object")
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce object"), call. = FALSE)
   }
 
-  if (!method %in% names(reducedDims(fce[[expt]]))) {
-    stop(paste0(c("method `", method, "` not found in fce object")))
+  if (!method %in% names(reducedDims(fsce[[expt]]))) {
+    stop(glue("method `{method}` not found in fsce object"), call. = FALSE)
   }
 
-  dr_mat <- reducedDim(fce[[expt]], method)
+  dr_mat <- reducedDim(fsce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
@@ -40,7 +41,7 @@ run_kmeans <- function(fce,
 
   km_res <- stats::kmeans(dr_mat, centers = k, ...)
 
-  colData(fce[[expt]])$k_cluster <- as.character(km_res$cluster)
+  colData(fsce[[expt]])$k_cluster <- as.character(km_res$cluster)
 
-  fce
+  fsce
 }

@@ -4,14 +4,16 @@
 \alias{run_kmeans}
 \title{K-means clustering}
 \usage{
-run_kmeans(fce, k, expt = "sce", method = "PCA", n_dims = NULL, ...)
+run_kmeans(fsce, expt = "rnaseq", k, method = "PCA", n_dims = NULL,
+  ...)
 }
 \arguments{
-\item{fce}{fce object}
+\item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}
+
+\item{expt}{Data to use for calculating variable features
+(default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
 \item{k}{number of classes}
-
-\item{expt}{experiment to cluster (either "sce" or "fsce, defaults to "sce")}
 
 \item{method}{dimensionality reduction method for clustering (defaults to
 PCA)}
