@@ -32,22 +32,22 @@ read_matrix <- function(path,
                     features = features_fn,
                     barcodes = barcodes_fn)
 
-  fns <- dir(path, full.names = TRUE)
+  filenames <- map(filenames, ~path_join(c(path, .x)))
 
-  filenames <- map(filenames, ~fs::path_join(c(path, .x)))
+  files_exist <- file_exists(unlist(filenames))
 
-  if (!all(filenames %in% fns)) {
+  if (!all(files_exist)) {
     # check for gzipped equivalents
     gzipped_fns <- paste0(filenames, ".gz")
-    is_gzipped <- gzipped_fns %in% fns
+    is_gzipped <- file_exists(gzipped_fns)
 
     # rename if found
     if(any(is_gzipped)) {
       filenames[is_gzipped] <- gzipped_fns[is_gzipped]
     } else {
-      stop(paste0("missing required files: ",
-                  unlist(filenames[!filenames %in% fns]),
-                  "\n"))
+      stop(paste("missing required files:",
+                 filenames[!files_exist], "\n"),
+           call. = FALSE)
     }
   }
 
