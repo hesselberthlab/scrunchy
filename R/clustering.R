@@ -19,24 +19,24 @@ run_kmeans <- function(fsce,
                        ...) {
   ## check inputs
   if (!expt %in% names(fsce)) {
-    stop(glue("expt `{expt}` not found in fsce object"), call. = FALSE)
+    stop(glue("expt `{expt}` not found in fsce "), call. = FALSE)
   }
 
   if (!method %in% names(reducedDims(fsce[[expt]]))) {
-    stop(glue("method `{method}` not found in fsce object"), call. = FALSE)
+    stop(glue("method `{method}` not found in fsce"), call. = FALSE)
   }
 
   dr_mat <- reducedDim(fsce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
-      stop("n_dims larger than dimensality reduction matrix")
+      stop("n_dims larger than dimensality reduction matrix", call. = FALSE)
     }
     dr_mat <- dr_mat[, 1:n_dims]
   }
 
   if (k > nrow(dr_mat)) {
-    stop("k is larger than observations in input matrix")
+    stop("k is larger than observations in input matrix", call. = FALSE)
   }
 
   km_res <- stats::kmeans(dr_mat, centers = k, ...)
