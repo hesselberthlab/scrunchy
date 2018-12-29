@@ -19,8 +19,6 @@ is stored in \code{logcounts}. Set to \code{NULL} to skip normalization.}
 Create a single-cell mRNA-seq experiment
 }
 \examples{
-\dontrun {
 create_sce_rnaseq(scrunchy_data("mrna/"))
-}
 
 }

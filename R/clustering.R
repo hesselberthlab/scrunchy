@@ -10,8 +10,16 @@
 #'   clustering, defaults to all dimensions
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
+#' @examples
+#' # calculate PCA for kmeans default method
+#' fsce <- calc_pca(fsce_small)
+#'
+#' fsce <- calc_kmeans(fsce, k=6)
+#'
+#' colData(fsce[["rnaseq"]], "k_cluster")
+#'
 #' @export
-run_kmeans <- function(fsce,
+calc_kmeans <- function(fsce,
                        expt = "rnaseq",
                        k,
                        method = "PCA",

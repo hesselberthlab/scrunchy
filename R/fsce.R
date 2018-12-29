@@ -13,17 +13,13 @@
 #' @return `MultiAssayExperiment` containing one or more `SingleCellExperiment`.
 #'
 #' @examples
-#'
-#' \dontrun{
-#' fsce <- create_fsce(
+#' # this is identical to the `fsce_small` data set:
+#' create_fsce(
 #'   list(
-#'     rnaseq  = sce_rnaseq(scrunchy_data("mrna.csv.gz")),
-#'     haircut = sce_haircut(scrunchy_data("haircut.csv.gz"))
+#'     rnaseq  = create_sce_rnaseq(scrunchy_data("mrna/")),
+#'     haircut = create_sce_haircut(scrunchy_data("haircut/"))
 #'   )
 #' )
-#'
-#' fsce
-#' }
 #'
 #' @export
 create_fsce <- function(expt_list) {

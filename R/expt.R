@@ -9,9 +9,7 @@
 #' @return `SCERnaSeq` containing a `sparseMatrix` of counts
 #'
 #' @examples
-#' \dontrun {
 #' create_sce_rnaseq(scrunchy_data("mrna/"))
-#' }
 #'
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
@@ -46,9 +44,7 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #' @return `SCEHaircut` containing a `matrix` of counts
 #'
 #' @examples
-#' \dontrun {
 #' create_sce_haircut(scrunchy_data("haircut/"))
-#' }
 #'
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {

@@ -10,7 +10,7 @@
 #' @return Names of variable features
 #'
 #' @export
-get_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
+calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 
   ## check inputs
   if (!expt %in% names(fsce)) {

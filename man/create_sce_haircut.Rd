@@ -22,8 +22,6 @@ two columns named \code{adduct} and \code{pos}.}
 Create a single-cell Haircut experiment
 }
 \examples{
-\dontrun {
 create_sce_haircut(scrunchy_data("haircut/"))
-}
 
 }

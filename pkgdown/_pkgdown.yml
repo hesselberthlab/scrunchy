@@ -12,27 +12,35 @@ development:
   mode: unreleased
 
 reference:
-  - title: Functional Single Cell Experiment
+
+  - title: Object creation
     contents:
-    - '`create_fce`'
+    - starts_with('create')
 
   - title: Data Import and Processing
     contents:
-    - starts_with("calc_")
-    - ends_with("_normalize")
-    - '`get_var_genes`'
-    - '`read_10x_matrix`'
-    - '`normalize_counts`'
-    - '`run_kmeans`'
+    - starts_with("calc")
+    - ends_with("normalize")
 
   - title: Plotting
     contents:
-    - '`plot_cells`'
-    - '`plot_feature`'
-    - '`plot_hairpin`'
-    - '`plot_hairpin_coverage`'
+    - starts_with("plot")
     - ends_with("OkabeIto")
 
-  - title: Miscellaneous
+  - title: Data sets
     contents:
-    - '`scrunchy`'
+    - fsce_small
+
+  - title: Objects
+    contents:
+    - FunctionalSingleCellExperiment
+    - starts_with("SCE")
+
+  - title: Utilities
+    contents:
+    - molecule_df
+    - is.molecule_df
+    - filter_molecules
+    - umitools_to_mtx
+    - starts_with("read")
+    - starts_with("scrunchy")

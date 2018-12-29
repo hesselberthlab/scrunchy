@@ -103,16 +103,16 @@ plot_hairpin_coverage <- function(df, x, y, col = "sample", points = FALSE, face
 #' Plot cells in two dimensions. Cells can be colored using `features`, which
 #' specifies gene names or columns in `colData`.
 #'
-#' @param fce fce object of class MultiAssayExperiment
+#' @param fsce [`FunctionalSingleCellExperiment`]
 #' @param features features to plot
 #' @param ... additional arguments for `plot_feature()`
 #'
 #' @export
-plot_cells <- function(fce, features, ...) {
+plot_cells <- function(fsce, features, ...) {
   plts <- list()
 
   for (i in seq_along(features)) {
-    plts[[i]] <- plot_feature(fce, feature = features[i], ...)
+    plts[[i]] <- plot_feature(fsce, feature = features[i], ...)
   }
 
   cowplot::plot_grid(plotlist = plts)
@@ -120,13 +120,13 @@ plot_cells <- function(fce, features, ...) {
 
 #' Plot cells in reduced dimensionality 2D space
 #'
-#' @description Cells can be colored by gene or feature in meta.data dataframe
+#' Cells can be colored by gene or feature in meta.data dataframe
 #'
-#' @param fce fce object of class MultiAssayExperiment
+#' @param fsce [`FunctionalSingleCellExperiment`]
 #' @param feature single feature to plot, either gene name or column in colData
-#' @param expt Data type to use for plot, one of either sce (rna data, the
-#'   default) or fsce (functional data). Defaults to "sce"
-#' @param method dimensionality reduction for plotting. defaults to UMAP
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#' @param method dimensionality reduction for plotting (defaults to UMAP)
 #' @param plot_dat supplemental data.frame containing feature to plot. Must have
 #'   a column named `cell` that contains matching colnames in colData
 #' @param pt_size size of points produced by geom_point
@@ -146,9 +146,9 @@ plot_cells <- function(fce, features, ...) {
 #' @param dims_to_plot number of dimensions
 #'
 #' @export
-plot_feature <- function(fce,
+plot_feature <- function(fsce,
                          feature = NULL,
-                         expt = "sce",
+                         expt = "rnaseq",
                          method = "UMAP",
                          plot_dat = NULL,
                          pt_size = 0.01,
@@ -165,15 +165,15 @@ plot_feature <- function(fce,
                          dims_to_plot = c(1, 2)) {
 
   # check inputs
-  if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object")
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
 
-  if (!method %in% names(reducedDims(fce[[expt]]))) {
-    stop(paste0("embedding method ", method, " not found in fce object"))
+  if (!method %in% names(reducedDims(fsce[[expt]]))) {
+    stop(glue("method `{method}` not found in fsce"), call. = FALSE)
   }
 
-  embed_dat <- reducedDim(fce[[expt]], method)
+  embed_dat <- reducedDim(fsce[[expt]], method)
   embed_dat <- embed_dat[, dims_to_plot]
 
   if (is.null(colnames(embed_dat))) {
@@ -189,22 +189,23 @@ plot_feature <- function(fce,
   cell_ids <- embed_dat$cell
 
   ## check if feature is in colData or in normalized counts
-  sce_cols <- colnames(colData(fce[["sce"]]))
-  fsce_cols <- colnames(colData(fce[["fsce"]]))
+  sce_cols <- colnames(colData(fsce[["rnaseq"]]))
+  # XXX FIXME
+  fsce_cols <- colnames(colData(fsce[["haircut"]]))
 
   meta_data_col <- TRUE
 
   if (feature %in% sce_cols && feature %in% fsce_cols) {
     # get feature from supplied expt
-    mdata <- as.data.frame(colData(fce[[expt]])[cell_ids, , drop = F]) %>%
+    mdata <- as.data.frame(colData(fsce[[expt]])[cell_ids, , drop = F]) %>%
       tibble::rownames_to_column("cell")
   } else if (feature %in% sce_cols) {
     # get feature from sce
-    mdata <- as.data.frame(colData(fce[["sce"]])[cell_ids, , drop = F]) %>%
+    mdata <- as.data.frame(colData(fsce[["rnaseq"]])[cell_ids, , drop = F]) %>%
       tibble::rownames_to_column("cell")
   } else if (feature %in% fsce_cols) {
     # get feature from fsce
-    mdata <- as.data.frame(colData(fce[["fsce"]])[cell_ids, , drop = F]) %>%
+    mdata <- as.data.frame(colData(fsce[["haircut"]])[cell_ids, , drop = F]) %>%
       tibble::rownames_to_column("cell")
   } else {
     meta_data_col <- FALSE
@@ -223,10 +224,10 @@ plot_feature <- function(fce,
 
   ## get expression data
   if (!meta_data_col) {
-    feature_dat <- fce[feature, , ]
+    feature_dat <- fsce[feature, , ]
 
     if (length(feature_dat) == 0) {
-      stop("feature not found in object")
+      stop(glue("feature `{feature}` not found in object"), call. = FALSE)
     }
 
     if (length(feature_dat) > 1) {
@@ -381,7 +382,7 @@ plot_activity <- function(data, activity, group = NULL) {
   activity <- enquo(activity)
   group <- enquo(group)
 
-  ggplot(data, aes(x = !! activity, y = !! cluster, color = !! group)) +
+  ggplot(data, aes(x = !! activity, y = !! group, color = !! group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
     scale_color_OkabeIto() +
     cowplot::theme_cowplot() +
