@@ -18,7 +18,7 @@ Contains sample data for a functional single-cell experiment.
 There are two \code{SingleCellExperiments}:
 \enumerate{
 \item \code{rnaseq}: a \code{SCERnaSeq} object containing a single-cell mRNA sequencing
-(10x Genomics V2 3´ ) cell/gene counts matrix in the \code{counts} slot.
+(10x Genomics V2 3 prime) cell/gene counts matrix in the \code{counts} slot.
 Log-normalized counts are in the \code{logcounts} slot.
 \item \code{haircut}: a \code{SCEHaircut} object containing a Haircut experiment using DNA
 repair oligos. Counts are in the \code{counts} slot, and centered log-ratio
@@ -33,5 +33,9 @@ Haircut repair substrates include:
 \item a uracil:adenosine base-pair, with uracil at position 45 (\code{Uracil_})
 \item a uracil:guanosine base-pair, with uracil at position 45 (\code{GU_})
 }
+
+Dimensionality reduction calculations are in the \code{rnaseq} experiment, including
+\code{PCA}, \code{UMAP}, and \code{TSNE} slots. In addition, k-means clusters are available as
+\code{rowData}.
 }
 \keyword{datasets}
