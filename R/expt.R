@@ -13,7 +13,7 @@
 #'
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
-  message(glue("Loading sc-rnaseq matrix: {path}"))
+  message(glue("Loading sc-rnaseq matrix files: {path}"))
 
   x <- read_matrix(path)
 
@@ -23,7 +23,7 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 
   colData(sce) <- DataFrame(
     row.names = colnames(x),
-    sample_ids = extract_sample_ids(colnames(x))
+    cell_id = extract_cell_ids(colnames(x))
   )
 
   if (!is.null(norm_method)) {
@@ -48,7 +48,7 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #'
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
-  message(glue("Loading haircut matrix: {path}", path = path))
+  message(glue("Loading haircut matrix files: {path}", path = path))
 
   x <- read_matrix(path)
 
@@ -73,7 +73,7 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
 
   colData(sce) <- DataFrame(
     row.names = colnames(x),
-    sample_ids = extract_sample_ids(colnames(x))
+    cell_id = extract_cell_ids(colnames(x))
   )
 
   if (!is.null(normalize)) {

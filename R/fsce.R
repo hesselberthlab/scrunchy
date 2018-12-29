@@ -33,13 +33,13 @@ create_fsce <- function(expt_list) {
   }
 
   sample_map <- build_sample_map(expt_list)
-  sample_ids <- extract_sample_ids(shared_cells)
+  cell_ids <- extract_cell_ids(shared_cells)
 
   FunctionalSingleCellExperiment(
     experiments = expt_list,
     colData = DataFrame(
         row.names = shared_cells,
-        sample_id = sample_ids
+        cell_id = cell_ids
       ),
     sampleMap = sample_map
   )
@@ -72,8 +72,8 @@ build_sample_map <- function(expt_list) {
   listToMap(expts)
 }
 
-extract_sample_ids <- function(x) {
-  unlist(purrr::map(strsplit(x, "-"), 1))
+extract_cell_ids <- function(x) {
+  unlist(purrr::map(strsplit(x, "\\."), 1))
 }
 
 build_cell_map <- function(cells) {
