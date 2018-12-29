@@ -1,44 +1,41 @@
 #' Calculate principal components using irlba
 #'
-#' @param fce fce object
-#' @param expt one of either sce (rna data, the default) or fsce (functional
-#'   data)
-#' @param assay select which assay data to use for PCA, defaults to logcounts
-#'   (i.e. log normalized data)
-#' @param genes vector of genes to include in PCA, defaults to all genes
+#' @param fsce [`FunctionalSingleCellExperiment`] object
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#' @param genes vector of genes to include in PCA (default is all genes)
 #' @param n_pcs number of principle components to return
-#' @param scale perform PCA on input on scaled data, defaults to TRUE
+#' @param scale If `TRUE`, perform PCA on input on scaled data
 #'
-#' @return fce object with PCA values added to reducedDims
+#' @return `fsce` with PCA values added to reducedDims
 #'
 #' @export
-calc_pca <- function(fce,
-                     expt = "sce",
-                     assay = "logcounts",
+calc_pca <- function(fsce,
+                     expt = "rnaseq",
                      genes = NULL,
                      n_pcs = 20,
                      scale = TRUE) {
 
   ## check inputs
-  if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object")
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
 
-  if (!assay %in% names(assays(fce[[expt]]))) {
-    stop("assay not found in fce object")
+  if (!"logcounts" %in% names(assays(fsce[[expt]]))) {
+    stop("`logcounts` not found in fsce")
   }
 
   if (is.null(genes)) {
-    genes <- rownames(fce[[expt]])
+    genes <- rownames(fsce[[expt]])
   } else {
-    genes <- genes[genes %in% rownames(fce[[expt]])]
+    genes <- genes[genes %in% rownames(fsce[[expt]])]
   }
 
   if (length(genes) == 0) {
-    stop("input genes not found in fce object")
+    stop("input genes not found in fsce", call. = FALSE)
   }
 
-  in_data <- logcounts(fce[[expt]])[genes, ]
+  in_data <- logcounts(fsce[[expt]])[genes, ]
 
   ## remove rows without counts
   in_data <- in_data[Matrix::rowSums(in_data) > 0, ]
@@ -58,22 +55,20 @@ calc_pca <- function(fce,
     scale. = FALSE
   )
 
-  reducedDims(fce[[expt]]) <- SimpleList(PCA = pcs$x)
+  reducedDims(fsce[[expt]]) <- SimpleList(PCA = pcs$x)
 
-  fce
+  fsce
 }
-
 
 #' Generate 2D cell embeddings using UMAP
 #'
-#' See <https://umap-learn.readthedocs.io> for a detailed description of
+#' @seealso See <https://umap-learn.readthedocs.io> for a detailed description of
 #' parameters.
 #'
-#' @param fce fce object
-#' @param expt Data to use for UMAP, one of either sce (rna data, the default)
-#'   or fsce (functional data)
-#' @param method dimenality reduction method to use for UMAP, defaults to
-#'   PCA
+#' @param fsce [`FunctionalSingleCellExperiment`] object
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#' @param method dimenality reduction method to use for UMAP (default is "PCA")
 #' @param n_dims number of dimensions to pass to UMAP, defaults to all present
 #'   in dr matrix
 #' @param n_neighbors number of nearest neighbors to use for learning the
@@ -88,10 +83,11 @@ calc_pca <- function(fce,
 #'   seed.
 #' @param ... additional arguments for [`umap::umap()`]
 #'
-#' @return fce object with UMAP values added to reducedDims
+#' @return `fsce` with UMAP values added to reducedDims
+#'
 #' @export
-calc_umap <- function(fce,
-                      expt = "sce",
+calc_umap <- function(fsce,
+                      expt = "rnaseq",
                       method = "PCA",
                       n_dims = NULL,
                       n_neighbors = 30,
@@ -101,19 +97,19 @@ calc_umap <- function(fce,
                       ...) {
 
   ## check inputs
-  if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object", call. = FALSE)
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
 
-  if (!method %in% names(reducedDims(fce[[expt]]))) {
-    stop(paste0(c("method `", method, "` not found in fce object")), call. = FALSE)
+  if (!method %in% names(reducedDims(fsce[[expt]]))) {
+    stop(glue("method `{method}` not found in fsce"), call. = FALSE)
   }
 
-  dr_mat <- reducedDim(fce[[expt]], method)
+  dr_mat <- reducedDim(fsce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
-      stop("n_dims larger than dimensality reduction matrix")
+      stop("n_dims larger than dimensality reduction matrix", call. = FALSE)
     }
     dr_mat <- dr_mat[, 1:n_dims]
   }
@@ -129,19 +125,20 @@ calc_umap <- function(fce,
     ...
   )
 
-  reducedDims(fce[[expt]])$UMAP <- umap_res$layout
+  reducedDims(fsce[[expt]])$UMAP <- umap_res$layout
 
-  fce
+  fsce
 }
 
 
 #' Generate 2D cell embeddings using tSNE
 #'
-#' See [`Rtsne::Rtsne()`] for a detailed description of parameters.
+#' @seealso See [`Rtsne::Rtsne()`] for a detailed description of parameters.
 #'
-#' @param fce fce object
-#' @param expt Data to use for tSNE, sce (rna data, the default)
-#'   or fsce (functional data)
+#'
+#' @param fsce [`FunctionalSingleCellExperiment`] object
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @param method dimensionality reduction method for tSNE
 #' @param n_dims number of dimensions for tSNE
 #' @param perplexity tSNE perplexity value.
@@ -152,8 +149,8 @@ calc_umap <- function(fce,
 #' @return fce object with tSNE values added to reducedDims
 #'
 #' @export
-calc_tsne <- function(fce,
-                      expt = "sce",
+calc_tsne <- function(fsce,
+                      expt = "rnaseq",
                       method = "PCA",
                       n_dims = NULL,
                       perplexity = 30,
@@ -162,15 +159,15 @@ calc_tsne <- function(fce,
                       ...) {
 
   ## check inputs
-  if (!expt %in% names(assays(fce))) {
-    stop("expt not found in fce object", call. = FALSE)
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
 
-  if (!method %in% names(reducedDims(fce[[expt]]))) {
-    stop("method not found in fce object", call. = FALSE)
+  if (!method %in% names(reducedDims(fsce[[expt]]))) {
+    stop(glue("method `{method}` not found in fsce"), call. = FALSE)
   }
 
-  dr_mat <- reducedDim(fce[[expt]], method)
+  dr_mat <- reducedDim(fsce[[expt]], method)
 
   if (!is.null(n_dims)) {
     if (n_dims > ncol(dr_mat)) {
@@ -193,7 +190,7 @@ calc_tsne <- function(fce,
 
   rownames(tsne_res$Y) <- rownames(dr_mat)
 
-  reducedDims(fce[[expt]])$TSNE <- tsne_res$Y
+  reducedDims(fsce[[expt]])$TSNE <- tsne_res$Y
 
-  fce
+  fsce
 }

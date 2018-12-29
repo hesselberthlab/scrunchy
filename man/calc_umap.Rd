@@ -4,18 +4,17 @@
 \alias{calc_umap}
 \title{Generate 2D cell embeddings using UMAP}
 \usage{
-calc_umap(fce, expt = "sce", method = "PCA", n_dims = NULL,
+calc_umap(fsce, expt = "rnaseq", method = "PCA", n_dims = NULL,
   n_neighbors = 30, min_dist = 0.3, metric = "euclidean",
   seed = NA, ...)
 }
 \arguments{
-\item{fce}{fce object}
+\item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}
 
-\item{expt}{Data to use for UMAP, one of either sce (rna data, the default)
-or fsce (functional data)}
+\item{expt}{Data to use for calculating variable features
+(default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
-\item{method}{dimenality reduction method to use for UMAP, defaults to
-PCA}
+\item{method}{dimenality reduction method to use for UMAP (default is "PCA")}
 
 \item{n_dims}{number of dimensions to pass to UMAP, defaults to all present
 in dr matrix}
@@ -37,9 +36,12 @@ seed.}
 \item{...}{additional arguments for \code{\link[umap:umap]{umap::umap()}}}
 }
 \value{
-fce object with UMAP values added to reducedDims
+\code{fsce} with UMAP values added to reducedDims
 }
 \description{
+Generate 2D cell embeddings using UMAP
+}
+\seealso{
 See \url{https://umap-learn.readthedocs.io} for a detailed description of
 parameters.
 }

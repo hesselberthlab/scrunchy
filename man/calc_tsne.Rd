@@ -4,14 +4,14 @@
 \alias{calc_tsne}
 \title{Generate 2D cell embeddings using tSNE}
 \usage{
-calc_tsne(fce, expt = "sce", method = "PCA", n_dims = NULL,
+calc_tsne(fsce, expt = "rnaseq", method = "PCA", n_dims = NULL,
   perplexity = 30, theta = 0.5, seed = NA, ...)
 }
 \arguments{
-\item{fce}{fce object}
+\item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}
 
-\item{expt}{Data to use for tSNE, sce (rna data, the default)
-or fsce (functional data)}
+\item{expt}{Data to use for calculating variable features
+(default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
 \item{method}{dimensionality reduction method for tSNE}
 
@@ -29,5 +29,8 @@ or fsce (functional data)}
 fce object with tSNE values added to reducedDims
 }
 \description{
+Generate 2D cell embeddings using tSNE
+}
+\seealso{
 See \code{\link[Rtsne:Rtsne]{Rtsne::Rtsne()}} for a detailed description of parameters.
 }

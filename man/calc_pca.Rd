@@ -4,26 +4,23 @@
 \alias{calc_pca}
 \title{Calculate principal components using irlba}
 \usage{
-calc_pca(fce, expt = "sce", assay = "logcounts", genes = NULL,
-  n_pcs = 20, scale = TRUE)
+calc_pca(fsce, expt = "rnaseq", genes = NULL, n_pcs = 20,
+  scale = TRUE)
 }
 \arguments{
-\item{fce}{fce object}
+\item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}
 
-\item{expt}{one of either sce (rna data, the default) or fsce (functional
-data)}
+\item{expt}{Data to use for calculating variable features
+(default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
-\item{assay}{select which assay data to use for PCA, defaults to logcounts
-(i.e. log normalized data)}
-
-\item{genes}{vector of genes to include in PCA, defaults to all genes}
+\item{genes}{vector of genes to include in PCA (default is all genes)}
 
 \item{n_pcs}{number of principle components to return}
 
-\item{scale}{perform PCA on input on scaled data, defaults to TRUE}
+\item{scale}{If \code{TRUE}, perform PCA on input on scaled data}
 }
 \value{
-fce object with PCA values added to reducedDims
+\code{fsce} with PCA values added to reducedDims
 }
 \description{
 Calculate principal components using irlba

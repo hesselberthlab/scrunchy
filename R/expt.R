@@ -22,7 +22,7 @@ sce_rnaseq <- function(csv, norm_method = "log_normalize") {
 
   sce <- SCERnaSeq(assays = list(counts = x))
 
-  int_metadata(sce) <- list(cells = colnames(x))
+  int_metadata(sce)$cells <- colnames(x)
 
   colData(sce) <- DataFrame(
     row.names = colnames(x),
@@ -75,7 +75,7 @@ sce_haircut <- function(csv, norm_method = "clr_normalize", adducts = NULL) {
     )
   )
 
-  int_metadata(sce) <- list(cells = colnames(x))
+  int_metadata(sce)$cells <- colnames(x)
 
   colData(sce) <- DataFrame(
     row.names = colnames(x),
