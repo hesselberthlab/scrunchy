@@ -46,34 +46,27 @@ plot_hairpin <- function(fce,
 #' @param x column to use for x-axis
 #' @param y column to use for y-axis
 #' @param col column to use for coloring lines (defaults to "Sample")
-#' @param x_lab label for x axis (defaults to "Position")
-#' @param y_lab label for y axis (defaults to "Counts")
-#' @param pal RcolorBrewer palette to use for coloring col (defaults to "Set1")
-#' @param point show points in addition to lines (defaults to FALSE)
+#' @param points show points in addition to lines (defaults to FALSE)
 #' @param facet_by_hairpin plot each hairpin individually (defaults to TRUE)
 #' @param pt_alpha passed to pt.alpha argument for [`ggplot2::geom_line()`] (defaults to 0.7)
 #' @param pt_size passed to pt.size argument for [`ggplot2::geom_line()`] (defaults to 0.8)
 #' @param xlimits two element numeric vector to supply to [`ggplot2::xlim()`] (defaults to NULL)
 #'
 #' @export
-plot_hairpin_coverage <- function(df,
-                                  x,
-                                  y,
-                                  col = "sample",
-                                  x_lab = "Position",
-                                  y_lab = "Counts",
-                                  pal = "Set1",
-                                  point = F,
-                                  facet_by_hairpin = TRUE,
-                                  pt_alpha = 0.7,
-                                  pt_size = 0.8,
-                                  xlimits = NULL) {
-  p <- ggplot(df, aes_string(x = x, y = y)) +
-    geom_line(aes_string(color = col), alpha = pt_alpha, size = pt_size) +
+plot_hairpin_coverage <- function(df, x, y, col = "sample", points = FALSE, facet_by_hairpin = TRUE, xlimits = NULL) {
+
+  x <- enquo(x)
+  y <- enquo(y)
+  col <- enquo(col)
+
+  p <- ggplot(df, aes(x = !! x, y = !! y)) +
+    geom_line(aes(color = !! col), alpha = 0.7, size = 0.8) +
     cowplot::theme_cowplot() +
-    scale_color_brewer(palette = pal) +
-    ylab(y_lab) +
-    xlab(x_lab)
+    scale_color_brewer(palette = "Set1") +
+    labs(
+      x = "Position",
+      y = "Counts"
+    )
 
   if (all(c("adduct_position1", "adduct_position2") %in% colnames(df))) {
     p <- p +
@@ -96,7 +89,7 @@ plot_hairpin_coverage <- function(df,
   }
 
   if (point) {
-    p <- p + geom_point(aes_string(color = col))
+    p <- p + geom_point(aes(color = !! col))
   }
 
   if (facet_by_hairpin) {
@@ -263,10 +256,10 @@ plot_feature <- function(fce,
   color_aes_str_q <- quo(color_aes_str)
   embed_dat <- embed_dat %>% dplyr::arrange_at(.vars = color_aes_str)
 
-  p <- ggplot(
-    embed_dat,
-    aes_string(xcol, ycol)
-  ) +
+  xcol <- enquo(xcol)
+  ycol <- enquo(ycol)
+
+  p <- ggplot(embed_dat, aes(x = !! xcol, y = !! ycol)) +
     geom_point(aes_string(color = color_aes_str),
       size = pt_size,
       alpha = pt_alpha
@@ -277,9 +270,9 @@ plot_feature <- function(fce,
     "character",
     "logical"
   ) | is.factor(embed_dat[[feature]])) {
-    discrete <- T
+    discrete <- TRUE
   } else {
-    discrete <- F
+    discrete <- FALSE
   }
 
   ## increase legend size
@@ -380,22 +373,22 @@ plot_feature <- function(fce,
 #'
 #' @param data data to plot
 #' @param activity activity variable
-#' @param cluster cluster variable
+#' @param group grouping variable
 #'
 #' @export
-plot_activity <- function(data, activity, cluster) {
+plot_activity <- function(data, activity, group = NULL) {
 
   activity <- enquo(activity)
-  cluster <- enquo(cluster)
+  group <- enquo(group)
 
-  ggplot(data, aes(x = !! activity, y = !! cluster, color = !! cluster)) +
+  ggplot(data, aes(x = !! activity, y = !! cluster, color = !! group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
     scale_color_OkabeIto() +
     cowplot::theme_cowplot() +
     labs(
       x = "Activity",
       y = "Cluster",
-      title = glue::glue("Activity: {x}")
+      title = glue::glue("Activity: {activity}", activity = activity)
     )
 }
 

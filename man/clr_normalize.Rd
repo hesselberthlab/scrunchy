@@ -2,7 +2,7 @@
 % Please edit documentation in R/normalize.R
 \name{clr_normalize}
 \alias{clr_normalize}
-\title{Centered log-ratio normalization}
+\title{Centered log-ratio normalize a matrix}
 \usage{
 clr_normalize(mat)
 }
@@ -10,10 +10,13 @@ clr_normalize(mat)
 \item{mat}{input matrix}
 }
 \value{
-matrix of normalized values. Normalization performed by dividing each
-value by the geometric mean of all values for a cell, returning log values.
+matrix of normalized values.
 }
 \description{
+Normalization performed by dividing each value by the geometric mean of all
+values for a cell, returning log values.
+}
+\details{
 This normalization strategy is used for CITE-seq and other feature data in
 \href{https://satijalab.org/seurat/}{Seurat}.
 }

@@ -7,8 +7,8 @@
 create_fsce(expt_list)
 }
 \arguments{
-\item{expt_list}{list mapping experiment names to \code{SingleCellExperiments} created
-by an \code{expt_} function.}
+\item{expt_list}{a list mapping experiment names to \code{SingleCellExperiments}
+created by an \code{sce_} function.}
 }
 \value{
 \code{MultiAssayExperiment} containing one or more \code{SingleCellExperiment}.
@@ -24,8 +24,8 @@ for single cells. Other \code{sce}s include functional data from haircut.
 \dontrun{
 fsce <- create_fsce(
   list(
-    rnaseq  = expt_rnaseq(scrunchy_data("mrna.csv.gz")),
-    haircut = expt_haircut(scrunchy_data("haircut.csv.gz"))
+    rnaseq  = sce_rnaseq(scrunchy_data("mrna.csv.gz")),
+    haircut = sce_haircut(scrunchy_data("haircut.csv.gz"))
   )
 )
 

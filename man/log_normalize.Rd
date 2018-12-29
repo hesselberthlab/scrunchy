@@ -2,21 +2,20 @@
 % Please edit documentation in R/normalize.R
 \name{log_normalize}
 \alias{log_normalize}
-\title{Log normalization}
+\title{Log-normalize a matrix}
 \usage{
 log_normalize(mat, constant = 10000)
 }
 \arguments{
 \item{mat}{input matrix}
 
-\item{constant}{multiply normalized counts by this scalar to prevent
-small numbers}
+\item{constant}{multiply normalized counts by this scalar to prevent small
+numbers}
 }
 \value{
-matrix of normalized values. Normalization performed by dividing by
-column sums (total counts per cell) and scaled by a constant. Log
-values are returned with a pseudocount of 1.
+matrix of normalized values.
 }
 \description{
-Log normalization
+Normalization performed by dividing by column sums (total counts per cell)
+and scaled by a constant. Log values are returned with a pseudocount of 1.
 }
