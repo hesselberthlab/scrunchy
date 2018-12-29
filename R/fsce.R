@@ -2,13 +2,13 @@
 
 #' Create a functional single-cell experiment
 #'
-#' A functional single-cell experiment (`fsce`) is implemented as a
+#' A  [`FunctionalSingleCellExperiment`] is implemented as a
 #' `MultiAssayExperiment` with one or more `SingleCellExperiment`s (`sce`). One
 #' of these is a single-cell mRNA sequencing experiment that defines mRNA counts
 #' for single cells. Other `sce`s include functional data from haircut.
 #'
 #' @param expt_list a list mapping experiment names to `SingleCellExperiments`
-#'   created by an `sce_` function.
+#'   created by an `create_` function.
 #'
 #' @return `MultiAssayExperiment` containing one or more `SingleCellExperiment`.
 #'

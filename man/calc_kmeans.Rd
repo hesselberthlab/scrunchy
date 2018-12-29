@@ -23,11 +23,14 @@ clustering, defaults to all dimensions}
 
 \item{...}{additional arguments to pass to \code{\link[stats:kmeans]{stats::kmeans()}}}
 }
+\value{
+fsce with \code{k_cluster} in \code{expt} colData.
+}
 \description{
 K-means clustering
 }
 \examples{
-# calculate PCA for kmeans default method
+# calculate PCA for k-means default method
 fsce <- calc_pca(fsce_small)
 
 fsce <- calc_kmeans(fsce, k=6)

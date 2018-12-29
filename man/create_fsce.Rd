@@ -8,13 +8,13 @@ create_fsce(expt_list)
 }
 \arguments{
 \item{expt_list}{a list mapping experiment names to \code{SingleCellExperiments}
-created by an \code{sce_} function.}
+created by an \code{create_} function.}
 }
 \value{
 \code{MultiAssayExperiment} containing one or more \code{SingleCellExperiment}.
 }
 \description{
-A functional single-cell experiment (\code{fsce}) is implemented as a
+A  \code{\link{FunctionalSingleCellExperiment}} is implemented as a
 \code{MultiAssayExperiment} with one or more \code{SingleCellExperiment}s (\code{sce}). One
 of these is a single-cell mRNA sequencing experiment that defines mRNA counts
 for single cells. Other \code{sce}s include functional data from haircut.

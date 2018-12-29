@@ -10,8 +10,10 @@
 #'   clustering, defaults to all dimensions
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
+#' @return fsce with `k_cluster` in `expt` colData.
+#'
 #' @examples
-#' # calculate PCA for kmeans default method
+#' # calculate PCA for k-means default method
 #' fsce <- calc_pca(fsce_small)
 #'
 #' fsce <- calc_kmeans(fsce, k=6)
