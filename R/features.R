@@ -2,7 +2,7 @@
 #'
 #' Identify features with the most variance in the data set.
 #'
-#' @param fsce fsce object
+#' @param fsce [`FunctionalSingleCellExperiment`]
 #' @param expt Data to use for calculating variable features
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @param n number of variable features to return
