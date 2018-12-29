@@ -2,7 +2,7 @@
 
 #' Create a single-cell mRNA-seq experiment
 #'
-#' @param csv path to CSV counts matrix
+#' @param path path to output matrices.
 #' @param norm_method Normalization method for `counts`. Normalized data
 #'   is stored in `logcounts`. Set to `NULL` to skip normalization.
 #'
@@ -10,15 +10,14 @@
 #'
 #' @examples
 #' \dontrun {
-#' sce_rnaseq(scrunchy_data("mrna.csv.gz"))
+#' create_sce_rnaseq(scrunchy_data("mrna/"))
 #' }
 #'
 #' @export
-sce_rnaseq <- function(csv, norm_method = "log_normalize") {
-  message(glue("Loading sc-rnaseq matrix: {csv}", csv = path_file(csv)))
+create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
+  message(glue("Loading sc-rnaseq matrix: {path}"))
 
-  x <- load_matrix_csv(csv)
-  x <- as(as.matrix(x), "sparseMatrix")
+  x <- read_matrix(path)
 
   sce <- SCERnaSeq(assays = list(counts = x))
 
@@ -38,7 +37,7 @@ sce_rnaseq <- function(csv, norm_method = "log_normalize") {
 
 #' Create a single-cell Haircut experiment
 #'
-#' @param csv path to CSV counts matrix
+#' @param path path to output matrices.
 #' @param norm_method Normalization method for `counts`. Normalized data
 #'   is stored in `logcounts`. Set to `NULL` to skip normalization.
 #' @param adducts `data_frame` with positions of hairpin adducts. Expects
@@ -48,15 +47,14 @@ sce_rnaseq <- function(csv, norm_method = "log_normalize") {
 #'
 #' @examples
 #' \dontrun {
-#' sce_haircut(scrunchy_data("haircut.csv.gz"))
+#' create_sce_haircut(scrunchy_data("haircut/"))
 #' }
 #'
 #' @export
-sce_haircut <- function(csv, norm_method = "clr_normalize", adducts = NULL) {
-  message(glue("Loading haircut matrix: {csv}", csv = path_file(csv)))
+create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
+  message(glue("Loading haircut matrix: {path}", path = path))
 
-  x <- load_matrix_csv(csv)
-  x <- as.matrix(x)
+  x <- read_matrix(path)
 
   hairpin_info <- strsplit(rownames(x), "_")
 
