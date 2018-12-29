@@ -13,25 +13,27 @@ development:
 
 reference:
 
-  - title: Object creation
+  - title: Create Objects
     contents:
     - starts_with('create')
 
-  - title: Data Import and Processing
+  - title: Manipulate Data
     contents:
     - starts_with("calc")
     - ends_with("normalize")
+    - starts_with("subset")
+    - filter_cells
 
-  - title: Plotting
+  - title: Plot Data
     contents:
     - starts_with("plot")
     - ends_with("OkabeIto")
 
-  - title: Data sets
+  - title: Data Sets
     contents:
     - fsce_small
 
-  - title: Objects
+  - title: Object Definitions
     contents:
     - FunctionalSingleCellExperiment
     - starts_with("SCE")
