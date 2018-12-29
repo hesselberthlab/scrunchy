@@ -1,8 +1,8 @@
+^docs$
 ^data-raw$
 ^codecov\.yml$
 ^README\.Rmd$
 ^\.travis\.yml$
-^docs$
 ^pkgdown$
 ^LICENSE\.md$
 ^scrunchy\.Rproj$
