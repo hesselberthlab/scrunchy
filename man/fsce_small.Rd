@@ -60,5 +60,11 @@ reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
 # k-means cluster IDs
 colData(fsce_small[["rnaseq"]])
 
+# subset with `[` using `[features, cell_ids, experiments]`
+features <- c("Uracil_45", "TP53")
+cell_ids <- c("GAAACTCTCCGAAGAG.1", "CGCTATCGTTCACCTC.1")
+
+fsce_small[features, cell_ids, ]
+
 }
 \keyword{datasets}
