@@ -19,12 +19,11 @@ reference:
 
   - title: Manipulate Data
     contents:
+    - starts_with("tidy")
     - starts_with("calc")
     - ends_with("normalize")
-    - starts_with("subset")
-    - filter_cells
 
-  - title: Plot Data
+  - title: Visualize Data
     contents:
     - starts_with("plot")
     - ends_with("OkabeIto")
