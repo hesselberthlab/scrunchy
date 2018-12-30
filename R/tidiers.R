@@ -93,6 +93,8 @@ dim_tbl <- function(rd, dimname, dims) {
   as_tibble(rd)
 }
 
+#' @noRd
+#' @importFrom tidyr unnest
 unframe <- function(x, name = "name") {
   unnest(enframe(x, name = name))
 }
