@@ -52,7 +52,7 @@ tidy_dims <- function(fsce, dimnames = NULL, dims = c(1,2)) {
   es <- as.list(experiments(fsce))
 
   res <- purrr::map(es, dims_tbl, dimnames, dims)
-  purrr::map_dfr(res, unframe, .id = "experiment")
+  unframe(res, name = "experiment")
 }
 
 
@@ -66,13 +66,17 @@ counts_tbl <- function(mx) {
 
 dims_tbl <- function(expt, dimnames = NULL, dims = c(1, 2)) {
   rds <- as.list(reducedDims(expt))
+  if (length(rds) == 0) {
+    return(tibble())
+  }
 
   if (!is.null(dimnames)) {
     pred <- purrr::map_lgl(dims, ~ .x %in% reducedDimNames(expt))
     rds <- rds[pred]
   }
 
-  purrr::imap(rds, dim_tbl, dims)
+  res <- purrr::imap(rds, dim_tbl, dims)
+  purrr::reduce(res, left_join, by = "cell_id")
 }
 
 dim_tbl <- function(rd, dimname, dims) {
@@ -89,6 +93,6 @@ dim_tbl <- function(rd, dimname, dims) {
   as_tibble(rd)
 }
 
-unframe <- function(x) {
-  unnest(enframe(x))
+unframe <- function(x, name = "name") {
+  unnest(enframe(x, name = name))
 }

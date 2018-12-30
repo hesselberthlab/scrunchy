@@ -31,8 +31,8 @@ test_that("tidy_dims results have expected shapes", {
   res_hc <- tidy_dims(fsce_hc)
   res_rs <- tidy_dims(fsce_rs)
 
-  expect_equal(dim(res_hc), c(0, 2))
-  expect_equal(dim(res_rs), c(750, 9))
+  expect_equal(dim(res_hc), c(0, 1))
+  expect_equal(dim(res_rs), c(250, 8))
 })
 
 # test_that("tidy_dims can filter", {
