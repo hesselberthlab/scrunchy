@@ -38,4 +38,27 @@ Dimensionality reduction calculations are in the \code{rnaseq} experiment, inclu
 \code{PCA}, \code{UMAP}, and \code{TSNE} slots. In addition, k-means clusters are available as
 \code{rowData}.
 }
+\examples{
+fsce_small
+
+# Individual experiments
+fsce_small[["rnaseq"]]
+
+fsce_small[["haircut"]]
+
+# Gene and activity names (first 5 items)
+rownames(fsce_small[["rnaseq"]])[1:5]
+
+rownames(fsce_small[["haircut"]])[1:5]
+
+# dimensionality reduction results
+reducedDimNames(fsce_small[["rnaseq"]])
+
+# UMAP results (first 5 rows)
+reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
+
+# k-means cluster IDs
+colData(fsce_small[["rnaseq"]])
+
+}
 \keyword{datasets}
