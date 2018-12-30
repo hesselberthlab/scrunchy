@@ -55,6 +55,23 @@ tidy_dims <- function(fsce, dimnames = NULL, dims = c(1,2)) {
   unframe(res, name = "experiment")
 }
 
+#' Tidy colData
+#'
+#' @inheritSection tidy_logcounts Tidying
+#' @inheritParams tidy_logcounts
+#
+#' @examples
+#' tidy_coldata(fsce_small)
+#'
+#' @export
+tidy_coldata <- function(fsce) {
+  es <- as.list(experiments(fsce))
+  cds <- purrr::map(es, colData)
+  cds <- purrr::map(cds, as.data.frame)
+
+  res <- purrr::reduce(cds, left_join, by = "cell_id")
+  as_tibble(res)
+}
 
 # Utilities -----------------------------------------------------------
 

@@ -25,6 +25,16 @@ test_that("tidy_counts results have expected shapes", {
   expect_equal(dim(res_rs), c(250, 3))
 })
 
+# tidy_coldata ----------------------------------------------------
+
+test_that("tidy_coldata results have expected shapes", {
+  res_hc <- tidy_coldata(fsce_hc)
+  res_rs <- tidy_coldata(fsce_rs)
+
+  expect_equal(dim(res_hc), c(250, 1))
+  expect_equal(dim(res_rs), c(250, 2))
+})
+
 # tidy_dims ----------------------------------------------------
 
 test_that("tidy_dims results have expected shapes", {
