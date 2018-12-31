@@ -31,38 +31,25 @@ remotes::install_github("hesselberthlab/scrunchy")
 
 # Example
 
-An example data set in scrunchy includes:
+An example data set (`fsce_small`) in scrunchy includes:
 
   - A single-cell mRNA sequencing experiment (10x Genomics 3prime V2)
 
   - Counts of DNA repair on synthetic DNA substrates containing a uracil
     (A:U) and a ribonucleotide (rG:C).
 
-<!-- end list -->
+`fsce_small` object now contains mRNA expression (`SCERnaSeq`) and DNA
+repair activity (`SCEHaircut`) for 250 cells.
 
 ``` r
 library(scrunchy)
-library(SingleCellExperiment)
 
-# load mRNA UMI data
-exp <- load_csv(scrunchy_data("mrna.csv.gz"))
-
-# load haircut UMI data
-fxn <- load_csv(scrunchy_data("haircut.csv.gz"))
-
-fce <- create_fce(exp, fxn)
-```
-
-The `fce` object now contains counts for mRNA expression and DNA repair
-activity for each cell.
-
-``` r
-fce
-#> A MultiAssayExperiment object of 2 listed
+fsce_small
+#> A FunctionalSingleCellExperiment object of 2 listed
 #>  experiments with user-defined names and respective classes. 
 #>  Containing an ExperimentList class object of length 2: 
-#>  [1] sce: SingleCellExperiment with 33694 rows and 2255 columns 
-#>  [2] fsce: SingleCellExperiment with 122 rows and 2255 columns 
+#>  [1] rnaseq: SCERnaSeq with 9436 rows and 250 columns 
+#>  [2] haircut: SCEHaircut with 425 rows and 250 columns 
 #> Features: 
 #>  experiments() - obtain the ExperimentList instance 
 #>  colData() - the primary/phenotype DataFrame 
@@ -72,26 +59,26 @@ fce
 #>  assays() - convert ExperimentList to a SimpleList of matrices
 ```
 
-We can normalize this data, calculate a two-dimensional projection of
-the mRNA data using `umap::umap()`, and superimpose DNA repair activity.
+These plots illustrate:
+
+1.  Two-dimensional embedding of cells defined by UMAP (`umap::umap()`)
+    and colored by k-means clustering (n = 6)
+
+2.  Activities on a U:A and riboG DNA hairpins.
+
+<!-- end list -->
 
 ``` r
-fce <- normalize_counts(fce)
-
-var_genes <- get_var_genes(fce, n_genes = 5000) 
-fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
-#> scaling data
-#> calculating pcs
-fce <- calc_umap(fce, n_dims = 6)
-
-features <- c(
-  "Uracil_45",
-  "riboG_44",
-  "ENSG00000076248",
-  "ENSG00000172922"
+cowplot::plot_grid(
+  plotlist = list(
+    plot_dims(
+      fsce_tidy, UMAP1, UMAP2, k_cluster,
+      title = "Clusters defined for\nmRNA expression"
+    ),
+    plot_activity(fsce_tidy, Uracil_45, k_cluster),
+    plot_activity(fsce_tidy, riboG_44, k_cluster)
+  )
 )
-
-plot_cells(fce, features)
 ```
 
-<img src="man/figures/README-example_norm-1.png" width="100%" />
+<img src="man/figures/README-example_plots-1.png" width="100%" />
