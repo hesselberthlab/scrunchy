@@ -19,21 +19,19 @@
 #' @param title plot title
 #'
 #' @examples
-#' # XXX Fix passing of color var by NSE
-#' # plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
+#' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
 #'
-#'
 #' @export
-plot_dims <- function(df, x, y, color = NULL,
+plot_dims <- function(df, x, y, color = "cell_id",
                       size = 0.1, alpha = 1,
                       palette = "cloupe", title = NULL) {
   x <- enquo(x)
   y <- enquo(y)
-  color <- enquo(color) %||% "black"
+  color <- enquo(color)
 
   p <- ggplot(df, aes(x = !!x, y = !!y)) +
     geom_point(
@@ -44,11 +42,9 @@ plot_dims <- function(df, x, y, color = NULL,
   ## theme default
   p <- p + cowplot::theme_cowplot()
 
-  discrete <- is_discrete(pull_var(df, color))
+  llim <- legend_limits(df, color)
 
-  llim <- legend_limits(df, color, discrete)
-
-  if (discrete) {
+  if (is_discrete(pull(df, !!color))) {
 
     ## legend aesthetics
     p <- p + guides(
@@ -90,25 +86,6 @@ plot_dims <- function(df, x, y, color = NULL,
   }
 
   p
-}
-
-legend_limits <- function(x, var, discrete) {
-  if (discrete) {
-    c(NA, NA)
-  }
-  c(0, max_val(x, var))
-}
-
-is_discrete <- function(x) {
-  is_character(x) | is_logical(x) | is.factor(x)
-}
-
-pull_var <- function(x, var) {
-  pull(select(x, !!var))
-}
-
-max_val <- function(x, var) {
-  max(pull_var(x, var))
 }
 
 #' Plot activities per cluster
@@ -168,3 +145,16 @@ discrete_palette_default <- c(
   scales::brewer_pal(palette = "Set2")(8),
   scales::brewer_pal(palette = "Dark2")(8)
 )
+
+# Utilities ---------------------------------------------------------
+
+legend_limits <- function(x, var) {
+  if (is_discrete(pull(x, !!var))) {
+    c(NA, NA)
+  }
+  c(0, max(pull(x, !!var)))
+}
+
+is_discrete <- function(x) {
+  is_character(x) | is_logical(x) | is.factor(x)
+}
