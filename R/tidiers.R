@@ -8,7 +8,7 @@
 #' observations are rows. Output will contain `experiment` and `cell_id` columns
 #' that describe the source of the data.
 #'
-#' @param fsce A [`FunctionalSingleCellExperiment`].
+#' @param fsce An object of class [`FunctionalSingleCellExperiment`].
 #'
 #' @examples
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
@@ -46,6 +46,11 @@ tidy_counts <- function(fsce) {
 #' @param dimnames vector of dimnames to retrieve. If `NULL`, retrieve all
 #'   dimnames.
 #' @param dims vector of dimensions to retrieve
+#'
+#' @examples
+#' tidy_dims(fsce_small)
+#'
+#' tidy_dims(fsce_small, dimnames = c("UMAP"))
 #'
 #' @export
 tidy_dims <- function(fsce, dimnames = NULL, dims = c(1,2)) {
@@ -88,8 +93,7 @@ dims_tbl <- function(expt, dimnames = NULL, dims = c(1, 2)) {
   }
 
   if (!is.null(dimnames)) {
-    pred <- purrr::map_lgl(dims, ~ .x %in% reducedDimNames(expt))
-    rds <- rds[pred]
+    rds <- rds[dimnames]
   }
 
   res <- purrr::imap(rds, dim_tbl, dims)

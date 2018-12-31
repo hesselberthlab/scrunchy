@@ -7,7 +7,7 @@
 tidy_dims(fsce, dimnames = NULL, dims = c(1, 2))
 }
 \arguments{
-\item{fsce}{A \code{\link{FunctionalSingleCellExperiment}}.}
+\item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}.}
 
 \item{dimnames}{vector of dimnames to retrieve. If \code{NULL}, retrieve all
 dimnames.}
@@ -25,3 +25,9 @@ observations are rows. Output will contain \code{experiment} and \code{cell_id} 
 that describe the source of the data.
 }
 
+\examples{
+tidy_dims(fsce_small)
+
+tidy_dims(fsce_small, dimnames = c("UMAP"))
+
+}

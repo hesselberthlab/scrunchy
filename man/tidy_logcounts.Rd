@@ -7,7 +7,7 @@
 tidy_logcounts(fsce)
 }
 \arguments{
-\item{fsce}{A \code{\link{FunctionalSingleCellExperiment}}.}
+\item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}.}
 }
 \description{
 Tidy logcounts data
