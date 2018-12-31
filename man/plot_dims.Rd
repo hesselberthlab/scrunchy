@@ -4,7 +4,7 @@
 \alias{plot_dims}
 \title{Scatter plot of cells in a two-dimensional embedding.}
 \usage{
-plot_dims(df, x, y, color = NULL, size = 0.1, alpha = 1,
+plot_dims(df, x, y, color = "cell_id", size = 0.1, alpha = 1,
   palette = "cloupe", title = NULL)
 }
 \arguments{
@@ -39,6 +39,5 @@ plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
 plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
 
 plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
-
 
 }
