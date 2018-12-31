@@ -7,6 +7,10 @@
 \alias{scale_OkabeIto}
 \title{Okabe-Ito color scale}
 \usage{
+scale_color_OkabeIto(aesthetics = "colour", ...)
+
+scale_fill_OkabeIto(aesthetics = "fill", ...)
+
 scale_OkabeIto(aesthetics, use_black = FALSE, order = 1:8,
   alpha = NA, ...)
 }

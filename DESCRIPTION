@@ -52,3 +52,18 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Collate: 
+    'barcodes-utils.R'
+    'clustering.R'
+    'data.R'
+    'dims.R'
+    'expt-haircut.R'
+    'expt.R'
+    'features.R'
+    'fsce.R'
+    'normalize.R'
+    'reexport-colorblindr.R'
+    'plots.R'
+    'scrunchy-package.R'
+    'tidiers.R'
+    'utils.R'

@@ -1,5 +1,3 @@
-# colorblindr functions -------------------------------------------------
-
 #' Color palette proposed by Okabe and Ito
 #'
 #' These functions are copied from [colorblindr](https://github.com/clauswilke/colorblindr).
@@ -22,12 +20,10 @@ scale_colour_OkabeIto <- function(aesthetics = "colour", ...) {
 
 #' @rdname scale_OkabeIto
 #' @export
-#' @usage NULL
 scale_color_OkabeIto <- scale_colour_OkabeIto
 
 #' @rdname scale_OkabeIto
 #' @export
-#' @usage NULL
 scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
   scale_OkabeIto(aesthetics, ...)
 }
