@@ -13,38 +13,41 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Create a Functional Cell Experiment (fce) object
+# Create a Functional Single Cell Experiment (fsce)
 
-```{r create_fce, message=FALSE}
+```{r create_fsce, message=FALSE}
 library(scrunchy)
-library(SingleCellExperiment)
 
-# load mRNA UMI data
-mrna <- load_csv(scrunchy_data("mrna.csv.gz"))
+# this same object is available as `fsce_small` in the package.
+fsce <- create_fsce(
+  list(
+    rnaseq = create_sce_rnaseq(scrunchy_data("mrna")),
+    haircut = create_sce_haircut(scrunchy_data("haircut"))
+  )
+)
 
-# load haircut UMI data
-hcut <- load_csv(scrunchy_data("haircut.csv.gz"))
-
-fce <- create_fce(mrna, hcut)
+fsce
 ```
 
-`fce` is an object of class `MultiAssayExperiment`, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. 
+`fsce` is an object of class `FunctionalSingleCellExperiment`, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. 
 
-```{r}
-# sce stores RNA info
-fce[["sce"]]
-counts(fce[["sce"]])[1:5, 1:5]
+```{r slots}
+library(SingleCellExperiment)
 
-# fsce stores functional data
-fce[["fsce"]]
-counts(fce[["fsce"]])[1:5, 1:5]
+# `rnaseq` stores RNA info
+fsce[["rnaseq"]]
+counts(fsce[["rnaseq"]])[1:5, 1:5]
+
+# `haircut` stores functional data
+fsce[["haircut"]]
+counts(fsce[["haircut"]])[1:5, 1:5]
 
 # row annotations contain info about each row in the matrix
-rowData(fce[["fsce"]])
+rowData(fsce[["haircut"]])
 
 # column annotations contain info about each row in the matrix, 
 # or about each unique cell present in any of the experiments
-colData(fce)
+colData(fsce)
 ```
 
 # Plots
@@ -52,92 +55,76 @@ colData(fce)
 `plot_hairpin` produces a coverage plot across each hairpin in the data.
 
 ```{r hairpin_plot}
-plot_hairpin(fce)
-```
-
-Specific adduct positions can be highlighted by including this information in the `fce` object.
-
-```{r hairpin_w_adduct_pos}
-# add in adduct information when building fce object
-adducts <- data.frame(
-  hairpin = c("Uracil", "riboG"),
-  adduct_position1 = c(1, 10),
-  adduct_position2 = c(10, 50),
-  stringsAsFactors = FALSE
-)
-
-fce <- create_fce(mrna, hcut, adduct_positions = adducts)
-
-rowData(fce[["fsce"]])
-
-plot_hairpin(fce)
-```
-
-```{r}
-## subset which cells are used for plots
-plot_hairpin(
-  fce,
-  cells_to_plot = sample(colnames(fce[["fsce"]]), 1)
-)
+plot_hairpin_coverage(fsce)
 ```
 
 # Normalization
+
+Normalized data is calculated by the `create_` functions.
 
 RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.
 
 Normalized data is stored in the `logcounts` slot of each `SingleCellExperiment` object.
 
-```{r}
-# normalize rna and functional data
-fce <- normalize_counts(fce)
-
-logcounts(fce[["fsce"]])[1:5, 1:3]
+```{r logcounts}
+logcounts(fsce[["haircut"]])[1:5, 1:3]
 ```
 
 # Feature selection and PCA
 
-```{r}
+```{r pca}
 # get variable genes
-var_genes <- get_var_genes(fce, n_genes = 5000) 
+var_genes <- calc_var_features(fsce, n = 1000) 
 
 # calc PCA and embed in 2D
-fce <- calc_pca(fce, n_pcs = 20, genes = var_genes)
+fsce <- calc_pca(fsce, n_pcs = 20, genes = var_genes)
 ```
 
 # Embed cells in 2D using UMAP or tSNE
 
-```{r}
-fce <- calc_umap(fce, n_dims = 6)
+```{r 2d}
+fsce <- calc_umap(fsce, n_dims = 6)
 
-fce <- calc_tsne(fce, n_dims = 6)
+fsce <- calc_tsne(fsce, n_dims = 6)
 ```
 
 Cell embeddings are stored in the `reducedDims` slot of the `SingleCellExperiment` and can be accessed as a named list.
 
-```{r}
-reducedDims(fce[["sce"]])
+```{r rds}
+reducedDims(fsce[["rnaseq"]])
 
-reducedDims(fce[["sce"]])$UMAP[1:4, ]
+reducedDims(fsce[["rnaseq"]])$UMAP[1:4, ]
+```
+
+# Tidying data for analysis and plotting
+
+Several `tidy_` functions are provided to convert `fsce` into a tidy formate.
+
+```{r tidy}
+library(dplyr)
+library(purrr)
+
+fsce_tidy <- purrr::reduce(
+  list(
+    tidy_dims(fsce_small) %>%
+      select(cell_id, starts_with("UMAP"), -experiment),
+    tidy_coldata(fsce_small),
+    tidy_logcounts(fsce_small[c("Uracil_45", "riboG_44"), , ]) %>%
+      select(-experiment)
+  ),
+  left_join,
+  by = "cell_id"
+)
+
+fsce_tidy
 ```
 
 # Visualization
 
-Cell features can be visulized with the `plot_cells` function which will plot gene/function assay values or cell metadata. 
+Features can be visulized on a two-dimensional embedding with the `plot_dims` function which will plot gene/function assay values.
 
-```{r}
-features <- c("Uracil_45", "riboG_44","ENSG00000076248", "ENSG00000172922")
- 
-plot_cells(fce, features)
+```{r plots}
+plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45)
 
-plot_cells(fce, features, method = "TSNE")
-```
-
-# Clustering
-  
-Kmeans clustering is implemented at this time, but additional functionality will be added. 
-  
-```{r kmeans}
-fce <- run_kmeans(fce, 2)
-
-plot_feature(fce, "k_cluster")
+plot_dims(fsce_tidy, UMAP1, UMAP2, riboG_44)
 ```
