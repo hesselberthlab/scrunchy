@@ -19,11 +19,13 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 
   sce <- SCERnaSeq(assays = list(counts = x))
 
-  int_metadata(sce)$cells <- colnames(x)
+  cell_ids <- extract_cell_ids(colnames(x))
+
+  int_metadata(sce)$cells <- cell_ids
 
   colData(sce) <- DataFrame(
-    row.names = colnames(x),
-    cell_id = extract_cell_ids(colnames(x))
+    row.names = cell_ids,
+    cell_id = cell_ids
   )
 
   if (!is.null(norm_method)) {
@@ -69,11 +71,13 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
     )
   )
 
-  int_metadata(sce)$cells <- colnames(x)
+  cell_ids <- extract_cell_ids(colnames(x))
+
+  int_metadata(sce)$cells <- cell_ids
 
   colData(sce) <- DataFrame(
-    row.names = colnames(x),
-    cell_id = extract_cell_ids(colnames(x))
+    row.names = cell_ids,
+    cell_id = cell_ids
   )
 
   if (!is.null(normalize)) {

@@ -33,13 +33,12 @@ create_fsce <- function(expt_list) {
   }
 
   sample_map <- build_sample_map(expt_list)
-  cell_ids <- extract_cell_ids(shared_cells)
 
   FunctionalSingleCellExperiment(
     experiments = expt_list,
     colData = DataFrame(
         row.names = shared_cells,
-        cell_id = cell_ids
+        cell_id = shared_cells
       ),
     sampleMap = sample_map
   )
