@@ -6,12 +6,12 @@
 #' @param cell_ids cell ids to include in coverage calculation
 #'
 #' @examples
-#' hairpin_coverage(fsce_small)
+#' calc_hairpin_coverage(fsce_small)
 #'
 #' @export
-hairpin_coverage <- function(fsce,
-                             expt = "haircut",
-                             cell_ids = NULL) {
+calc_hairpin_coverage <- function(fsce,
+                                  expt = "haircut",
+                                  cell_ids = NULL) {
 
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
@@ -44,8 +44,8 @@ hairpin_coverage <- function(fsce,
 
 #' Plot coverage across hairpins
 #'
-#' @inheritParams hairpin_coverage
-#' @param color variable to use for coloring lines (defaults to "cell_id")
+#' @inheritParams calc_hairpin_coverage
+#' @param color variable to use for coloring lines (defaults to "hairpin")
 #'
 #' @examples
 #' plot_hairpin_coverage(fsce_small) + facet_wrap(~hairpin)
@@ -56,7 +56,7 @@ plot_hairpin_coverage <- function(fsce,
                                   cells = NULL,
                                   color = "hairpin") {
 
-  res <- hairpin_coverage(fsce, expt, cells)
+  res <- calc_hairpin_coverage(fsce, expt, cells)
 
   color <- enquo(color)
 
