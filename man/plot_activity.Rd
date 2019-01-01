@@ -4,7 +4,7 @@
 \alias{plot_activity}
 \title{Plot activities per cluster}
 \usage{
-plot_activity(data, activity, group = NULL, legend = TRUE)
+plot_activity(data, activity, group = NULL, legend = FALSE)
 }
 \arguments{
 \item{data}{data to plot}
