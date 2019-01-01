@@ -19,6 +19,6 @@ plot_hairpin_coverage(fsce, expt = "haircut", cells = NULL,
 Plot coverage across hairpins
 }
 \examples{
-plot_hairpin_coverage(fsce_small) + facet_wrap(~hairpin)
+plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
 
 }

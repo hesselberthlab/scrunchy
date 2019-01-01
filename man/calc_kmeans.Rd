@@ -35,4 +35,9 @@ fsce <- calc_pca(fsce_small)
 
 fsce <- calc_kmeans(fsce, k=6)
 
+\dontrun{
+library(SingleCellExperiment)
+colData(fsce[["rnaseq"]], "k_cluster")
+}
+
 }

@@ -18,6 +18,11 @@
 #'
 #' fsce <- calc_kmeans(fsce, k=6)
 #'
+#' \dontrun{
+#' library(SingleCellExperiment)
+#' colData(fsce[["rnaseq"]], "k_cluster")
+#' }
+#'
 #' @export
 calc_kmeans <- function(fsce,
                        expt = "rnaseq",

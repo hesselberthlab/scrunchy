@@ -51,6 +51,14 @@ rownames(fsce_small[["rnaseq"]])[1:5]
 
 rownames(fsce_small[["haircut"]])[1:5]
 
+# subset with `[` using `[features, cell_ids, experiments]`
+features <- c("Uracil_45", "TP53")
+cell_ids <- c("GAAACTCTCCGAAGAG", "CGCTATCGTTCACCTC")
+
+fsce_small[features, cell_ids, ]
+
+\dontrun{
+library(SingleCellExperiment)
 # dimensionality reduction results
 reducedDimNames(fsce_small[["rnaseq"]])
 
@@ -59,12 +67,7 @@ reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
 
 # k-means cluster IDs
 colData(fsce_small[["rnaseq"]])
-
-# subset with `[` using `[features, cell_ids, experiments]`
-features <- c("Uracil_45", "TP53")
-cell_ids <- c("GAAACTCTCCGAAGAG.1", "CGCTATCGTTCACCTC.1")
-
-fsce_small[features, cell_ids, ]
+}
 
 }
 \keyword{datasets}

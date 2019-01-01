@@ -48,7 +48,7 @@ calc_hairpin_coverage <- function(fsce,
 #' @param color variable to use for coloring lines (defaults to "hairpin")
 #'
 #' @examples
-#' plot_hairpin_coverage(fsce_small) + facet_wrap(~hairpin)
+#' plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
 #'
 #' @export
 plot_hairpin_coverage <- function(fsce,
