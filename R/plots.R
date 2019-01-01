@@ -143,8 +143,8 @@ plot_activity <- function(data, activity, group = NULL, legend = TRUE) {
 #' @param ... params for [`ComplexHeatmap::Heatmap`]
 #'
 #' @examples
-#' rows <- paste("Uracil", 10:50, sep = "_")
 #' mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
+#' rows <- paste("Uracil", 1:61, sep = "_")
 #'
 #' plot_heatmap(mtx, rows, name = "Uracil")
 #'
