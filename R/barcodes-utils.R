@@ -2,8 +2,8 @@
 #' Read molecule file into memory
 #'
 #' @param molecule_file molecule.tsv.gz flatfile produced by scrunchy pipeline
-#' @param return_ids convert barcodes and features to names rather than indexes in
-#' barcodes.tsv.gz and features.tsv.gz (default = TRUE)
+#' @param return_ids convert barcodes and features to names rather than indexes
+#'   in barcodes.tsv.gz and features.tsv.gz (default = TRUE)
 #'
 #' @importFrom fs path_join path_dir file_exists
 #' @importFrom readr read_tsv
@@ -89,7 +89,8 @@ molecule_df <- function(x) {
 #'
 #' Useful for only keeping cell associated molecules for example.
 #'
-#' @param molecule_file path molecule.tsv.gz flatfile produced by scrunchy pipeline
+#' @param molecule_file path molecule.tsv.gz flatfile produced by scrunchy
+#'   pipeline
 #' @param output_file output file name, will be compressed by default.
 #' @param bcs_to_use character vector of barcode sequences to use keep in output
 #'
@@ -171,13 +172,14 @@ filter_molecules <- function(molecule_file,
 #' Reads per cell are downsampled and the sequencing saturation is computed.
 #' Sequencing saturation is defined as 1 - UMIs / total reads.
 #'
-#' @param molecules path molecule.tsv.gz flatfile produced by scrunchy pipeline or
-#' molecule_df data.frame
+#' @param molecules path molecule.tsv.gz flatfile produced by scrunchy pipeline
+#'   or molecule_df data.frame
 #' @param bcs_to_use character vector of barcode sequences to use for computing
-#' sequencing saturation. Defaults to use all barcodes.
+#'   sequencing saturation. Defaults to use all barcodes.
 #' @param proportions vector of proportions between 0 and 1 to downsample reads
-#' (defaults to `seq(0, 1, by = 0.1)`)
-#' @param return_data if TRUE return plotting data instead of plotting distribution
+#'   (defaults to `seq(0, 1, by = 0.1)`)
+#' @param return_data if TRUE return plotting data instead of plotting
+#'   distribution
 #'
 #' @importFrom tidyr gather
 #' @importFrom scales comma
@@ -255,10 +257,11 @@ plot_saturation <- function(molecules,
 
 #' Plot UMI count distribution for barcodes
 #'
-#' @param molecules path molecule.tsv.gz flatfile produced by scrunchy pipeline or
-#' molecule_df data.frame
+#' @param molecules path molecule.tsv.gz flatfile produced by scrunchy pipeline
+#'   or molecule_df data.frame
 #' @param log_y plot with y axis as log
-#' @param return_data if TRUE return plotting data instead of plotting distribution
+#' @param return_data if TRUE return plotting data instead of plotting
+#'   distribution
 #' @importFrom cowplot theme_cowplot
 #' @importFrom scales comma
 #' @export

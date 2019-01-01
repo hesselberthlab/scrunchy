@@ -9,8 +9,8 @@ read_molecules(molecule_file, return_ids = TRUE)
 \arguments{
 \item{molecule_file}{molecule.tsv.gz flatfile produced by scrunchy pipeline}
 
-\item{return_ids}{convert barcodes and features to names rather than indexes in
-barcodes.tsv.gz and features.tsv.gz (default = TRUE)}
+\item{return_ids}{convert barcodes and features to names rather than indexes
+in barcodes.tsv.gz and features.tsv.gz (default = TRUE)}
 }
 \description{
 Read molecule file into memory

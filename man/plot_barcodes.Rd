@@ -7,12 +7,13 @@
 plot_barcodes(molecules, log_y = TRUE, return_data = FALSE)
 }
 \arguments{
-\item{molecules}{path molecule.tsv.gz flatfile produced by scrunchy pipeline or
-molecule_df data.frame}
+\item{molecules}{path molecule.tsv.gz flatfile produced by scrunchy pipeline
+or molecule_df data.frame}
 
 \item{log_y}{plot with y axis as log}
 
-\item{return_data}{if TRUE return plotting data instead of plotting distribution}
+\item{return_data}{if TRUE return plotting data instead of plotting
+distribution}
 }
 \description{
 Plot UMI count distribution for barcodes

@@ -7,7 +7,8 @@
 filter_molecules(molecule_file, output_file, bcs_to_keep)
 }
 \arguments{
-\item{molecule_file}{path molecule.tsv.gz flatfile produced by scrunchy pipeline}
+\item{molecule_file}{path molecule.tsv.gz flatfile produced by scrunchy
+pipeline}
 
 \item{output_file}{output file name, will be compressed by default.}
 

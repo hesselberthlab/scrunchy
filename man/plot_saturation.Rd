@@ -8,8 +8,8 @@ plot_saturation(molecules, bcs_to_use = NULL, proportions = seq(0, 1,
   by = 0.1), return_data = FALSE)
 }
 \arguments{
-\item{molecules}{path molecule.tsv.gz flatfile produced by scrunchy pipeline or
-molecule_df data.frame}
+\item{molecules}{path molecule.tsv.gz flatfile produced by scrunchy pipeline
+or molecule_df data.frame}
 
 \item{bcs_to_use}{character vector of barcode sequences to use for computing
 sequencing saturation. Defaults to use all barcodes.}
@@ -17,7 +17,8 @@ sequencing saturation. Defaults to use all barcodes.}
 \item{proportions}{vector of proportions between 0 and 1 to downsample reads
 (defaults to \code{seq(0, 1, by = 0.1)})}
 
-\item{return_data}{if TRUE return plotting data instead of plotting distribution}
+\item{return_data}{if TRUE return plotting data instead of plotting
+distribution}
 }
 \description{
 Reads per cell are downsampled and the sequencing saturation is computed.
