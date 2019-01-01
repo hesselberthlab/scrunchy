@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Single Cell Reconstruction of Functional Heterogeneity">
-<meta property="og:description" content="Processing and analysis of data from single-cell
+<meta property="og:description" content="Process and analyze data from single-cell
     functional heterogeneity experiments.">
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png">
 <meta name="twitter:card" content="summary">
@@ -89,64 +89,55 @@
 </h1></div>
 
 <p>scrunchy provides analysis tools for the <strong>S</strong>ingle-<strong>c</strong>ell <strong>r</strong>econstruction of f<strong>unc</strong>tional <strong>h</strong>eterogeneit<strong>y</strong> (<strong>scrunchy</strong>).</p>
-<p>Most single-cell analysis experiments provide information about the abundance of molecules in a cell (e.g., mRNAs). We expanded the capability single-cell mRNA sequencing experiments to recover <strong>functional</strong> information—i.e. the activites of cellular enzymes.</p>
+<p>Most single-cell analysis experiments provide information about the abundance of molecules in a cell (e.g., mRNAs). We have expanded the capability of single-cell mRNA sequencing experiments to also recover <strong>functional</strong> information—i.e. the activites of enzymes in single cells.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the R package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"hesselberthlab/scrunchy"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"hesselberthlab/scrunchy"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h1>
-<p>An example data set in scrunchy includes:</p>
+<p>An example data set (<code>fsce_small</code>) in scrunchy includes:</p>
 <ul>
 <li><p>A single-cell mRNA sequencing experiment (10x Genomics 3prime V2)</p></li>
 <li><p>Counts of DNA repair on synthetic DNA substrates containing a uracil (A:U) and a ribonucleotide (rG:C).</p></li>
 </ul>
+<p><code>fsce_small</code> object now contains mRNA expression (<code>SCERnaSeq</code>) and DNA repair activity (<code>SCEHaircut</code>) for 250 cells.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># load mRNA UMI data</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">exp &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_csv.html">load_csv</a></span>(<span class="kw"><a href="reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna.csv.gz"</span>))</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># load haircut UMI data</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">fxn &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_csv.html">load_csv</a></span>(<span class="kw"><a href="reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut.csv.gz"</span>))</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">fce &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_fce.html">create_fce</a></span>(exp, fxn)</a></code></pre></div>
-<p>The <code>fce</code> object now contains counts for mRNA expression and DNA repair activity for each cell.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">fce</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; A MultiAssayExperiment object of 2 listed</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  experiments with user-defined names and respective classes. </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  Containing an ExperimentList class object of length 2: </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  [1] sce: SingleCellExperiment with 33694 rows and 2255 columns </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  [2] fsce: SingleCellExperiment with 122 rows and 2255 columns </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; Features: </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  experiments() - obtain the ExperimentList instance </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  colData() - the primary/phenotype DataFrame </span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  sampleMap() - the sample availability DataFrame </span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment </span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  *Format() - convert into a long or wide DataFrame </span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</span></a></code></pre></div>
-<p>We can normalize this data, calculate a two-dimensional projection of the mRNA data using <code><a href="https://www.rdocumentation.org/packages/umap/topics/umap">umap::umap()</a></code>, and superimpose DNA repair activity.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fce &lt;-<span class="st"> </span><span class="kw"><a href="reference/normalize_counts.html">normalize_counts</a></span>(fce)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">var_genes &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_var_genes.html">get_var_genes</a></span>(fce, <span class="dt">n_genes =</span> <span class="dv">5000</span>) </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">fce &lt;-<span class="st"> </span><span class="kw"><a href="reference/calc_pca.html">calc_pca</a></span>(fce, <span class="dt">n_pcs =</span> <span class="dv">20</span>, <span class="dt">genes =</span> var_genes)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; scaling data</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; calculating pcs</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">fce &lt;-<span class="st"> </span><span class="kw"><a href="reference/calc_umap.html">calc_umap</a></span>(fce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">features &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="st">"Uracil_45"</span>,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="st">"riboG_44"</span>,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="st">"ENSG00000076248"</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">  <span class="st">"ENSG00000172922"</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">)</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw"><a href="reference/plot_cells.html">plot_cells</a></span>(fce, features)</a></code></pre></div>
-<p><img src="reference/figures/README-example_norm-1.png" width="100%"></p>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">fsce_small</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; A FunctionalSingleCellExperiment object of 2 listed</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  experiments with user-defined names and respective classes. </span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  Containing an ExperimentList class object of length 2: </span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  [1] rnaseq: SCERnaSeq with 9436 rows and 250 columns </span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  [2] haircut: SCEHaircut with 425 rows and 250 columns </span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; Features: </span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  experiments() - obtain the ExperimentList instance </span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  colData() - the primary/phenotype DataFrame </span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  sampleMap() - the sample availability DataFrame </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  *Format() - convert into a long or wide DataFrame </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</span></a></code></pre></div>
+<p>These plots illustrate:</p>
+<ol style="list-style-type: decimal">
+<li><p>Two-dimensional embedding of cells defined by UMAP (<code><a href="https://www.rdocumentation.org/packages/umap/topics/umap">umap::umap()</a></code>) and colored by k-means clustering (n = 6)</p></li>
+<li><p>Activities on a U:A and riboG DNA hairpins.</p></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">plotlist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="kw"><a href="reference/plot_dims.html">plot_dims</a></span>(</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">      fsce_tidy, UMAP1, UMAP2, k_cluster,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">      <span class="dt">title =</span> <span class="st">"Clusters defined for</span><span class="ch">\n</span><span class="st">mRNA expression"</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    ),</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw"><a href="reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw"><a href="reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">)</a></code></pre></div>
+<p><img src="reference/figures/README-example_plots-1.png" width="100%"></p>
 </div>
   </div>
 
@@ -182,6 +173,7 @@
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/hesselberthlab/scrunchy"><img src="https://travis-ci.org/hesselberthlab/scrunchy.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/gh/hesselberthlab/scrunchy?branch=master"><img src="https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle badge"></a></li>
 </ul>
 </div>
 </div>

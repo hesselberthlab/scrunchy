@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Calculate coverage across hairpins — calc_hairpin_coverage • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Calculate coverage across hairpins — calc_hairpin_coverage" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="Calculate coverage across hairpins" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,47 +114,62 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Calculate coverage across hairpins</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/expt-haircut.R'><code>R/expt-haircut.R</code></a></small>
+    <div class="hidden name"><code>calc_hairpin_coverage.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>Calculate coverage across hairpins</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>calc_hairpin_coverage</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"haircut"</span>, <span class='kw'>cell_ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>fsce</th>
+      <td><p><code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code></p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>expt</th>
+      <td><p>Data to use for calculating variable features
+(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>cell_ids</th>
+      <td><p>cell ids to include in coverage calculation</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>matrix of normalized values.</p>
-    
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>calc_hairpin_coverage</span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; # A tibble: 106,250 x 4
+#&gt;    cell_id          hairpin position count
+#&gt;    &lt;chr&gt;            &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 AAACCTGGTACCATCA Abasic         1     7
+#&gt;  2 AAACCTGGTACCATCA Abasic        10     0
+#&gt;  3 AAACCTGGTACCATCA Abasic        11     0
+#&gt;  4 AAACCTGGTACCATCA Abasic        12     0
+#&gt;  5 AAACCTGGTACCATCA Abasic        13     0
+#&gt;  6 AAACCTGGTACCATCA Abasic        14     0
+#&gt;  7 AAACCTGGTACCATCA Abasic        15     0
+#&gt;  8 AAACCTGGTACCATCA Abasic        16     0
+#&gt;  9 AAACCTGGTACCATCA Abasic        17     0
+#&gt; 10 AAACCTGGTACCATCA Abasic        18     0
+#&gt; # ... with 106,240 more rows</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

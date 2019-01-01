@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>K-means clustering — calc_kmeans • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="K-means clustering — calc_kmeans" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="K-means clustering" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,39 +114,65 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>K-means clustering</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/clustering.R'><code>R/clustering.R</code></a></small>
+    <div class="hidden name"><code>calc_kmeans.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>K-means clustering</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>calc_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='no'>k</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>fsce</th>
+      <td><p><code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code></p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>expt</th>
+      <td><p>Data to use for calculating variable features
+(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>number of classes</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>dimensionality reduction method for clustering (defaults to
+PCA)</p></td>
+    </tr>
+    <tr>
+      <th>n_dims</th>
+      <td><p>specify the number of dimensions from "dr" to use for
+clustering, defaults to all dimensions</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/stats/topics/kmeans'>stats::kmeans()</a></code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>matrix of normalized values.</p>
+    <p>fsce with <code>k_cluster</code> in <code>expt</code> colData.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># calculate PCA for k-means default method</span>
+<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_pca.html'>calc_pca</a></span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; <span class='message'>scaling data</span></div><div class='output co'>#&gt; <span class='message'>calculating pcs</span></div><div class='input'>
+<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>6</span>)</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>SingleCellExperiment</span>)
+<span class='fu'>colData</span>(<span class='no'>fsce</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"k_cluster"</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -155,7 +180,9 @@ numbers</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

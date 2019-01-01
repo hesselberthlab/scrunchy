@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Tidy reducedDims data — tidy_dims • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Tidy reducedDims data — tidy_dims" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="Tidy reducedDims data" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,47 +114,86 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Tidy reducedDims data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/tidiers.R'><code>R/tidiers.R</code></a></small>
+    <div class="hidden name"><code>tidy_dims.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>Tidy reducedDims data</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_dims</span>(<span class='no'>fsce</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>fsce</th>
+      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>.</p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>dimnames</th>
+      <td><p>vector of dimnames to retrieve. If <code>NULL</code>, retrieve all
+dimnames.</p></td>
+    </tr>
+    <tr>
+      <th>dims</th>
+      <td><p>vector of dimensions to retrieve</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
 
-    <p>matrix of normalized values.</p>
+    
+    <p>This method is a data tidier for a <code>FunctionalSingleCellExperient</code>. Returns
+data from an <code>fsce</code> in a tidy format, where variables are columns and
+observations are rows. Output will contain <code>experiment</code> and <code>cell_id</code> columns
+that describe the source of the data.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>tidy_dims</span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; # A tibble: 250 x 8
+#&gt;    experiment cell_id            PCA1    PCA2  UMAP1    UMAP2   TSNE1  TSNE2
+#&gt;    &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+#&gt;  1 rnaseq     TGCGGGTTCAACCATG   2.47  -4.81  -2.16   -2.82    -3.36   2.50 
+#&gt;  2 rnaseq     TGGTTCCTCACTTACT  22.8   21.8    0.426  -0.0609 -13.3    4.35 
+#&gt;  3 rnaseq     CATATTCGTATGCTTG  -1.45  -3.26  -2.56   -2.57    -1.95   2.87 
+#&gt;  4 rnaseq     TCACAAGTCTCCAACC  -1.41  -1.57  -3.57   -2.12    -0.305  4.30 
+#&gt;  5 rnaseq     GGAATAATCTCGTTTA   2.53  -7.96   2.53   -4.76    -9.01  -6.23 
+#&gt;  6 rnaseq     CTTTGCGAGCGCTCCA   2.90  -9.03   2.04   -4.74    -9.03  -7.27 
+#&gt;  7 rnaseq     GTGCAGCAGCGTGAAC  -2.98  -3.37  -2.99   -2.72    -1.64   3.86 
+#&gt;  8 rnaseq     AGCGGTCCATCTACGA   3.04  -6.38   0.851  -2.57   -10.2   -0.632
+#&gt;  9 rnaseq     GGATGTTTCCAGTATG  -3.42   0.602 -3.87   -0.947   -0.553  8.51 
+#&gt; 10 rnaseq     GTACTCCGTTACGCGC -17.0    7.18   1.87   10.0     28.9   -3.15 
+#&gt; # ... with 240 more rows</div><div class='input'>
+<span class='fu'>tidy_dims</span>(<span class='no'>fsce_small</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"UMAP"</span>))</div><div class='output co'>#&gt; # A tibble: 250 x 4
+#&gt;    experiment cell_id           UMAP1    UMAP2
+#&gt;    &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 rnaseq     TGCGGGTTCAACCATG -2.16   -2.82  
+#&gt;  2 rnaseq     TGGTTCCTCACTTACT  0.426  -0.0609
+#&gt;  3 rnaseq     CATATTCGTATGCTTG -2.56   -2.57  
+#&gt;  4 rnaseq     TCACAAGTCTCCAACC -3.57   -2.12  
+#&gt;  5 rnaseq     GGAATAATCTCGTTTA  2.53   -4.76  
+#&gt;  6 rnaseq     CTTTGCGAGCGCTCCA  2.04   -4.74  
+#&gt;  7 rnaseq     GTGCAGCAGCGTGAAC -2.99   -2.72  
+#&gt;  8 rnaseq     AGCGGTCCATCTACGA  0.851  -2.57  
+#&gt;  9 rnaseq     GGATGTTTCCAGTATG -3.87   -0.947 
+#&gt; 10 rnaseq     GTACTCCGTTACGCGC  1.87   10.0   
+#&gt; # ... with 240 more rows</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#tidying">Tidying</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

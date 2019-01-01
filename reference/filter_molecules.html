@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Filter barcodes in molecule file and write to disk — filter_molecules • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Filter barcodes in molecule file and write to disk — filter_molecules" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="Useful for only keeping cell associated molecules for example." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,37 +114,36 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Filter barcodes in molecule file and write to disk</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/barcodes-utils.R'><code>R/barcodes-utils.R</code></a></small>
+    <div class="hidden name"><code>filter_molecules.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>Useful for only keeping cell associated molecules for example.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_molecules</span>(<span class='no'>molecule_file</span>, <span class='no'>output_file</span>, <span class='no'>bcs_to_keep</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>molecule_file</th>
+      <td><p>path molecule.tsv.gz flatfile produced by scrunchy
+pipeline</p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>output_file</th>
+      <td><p>output file name, will be compressed by default.</p></td>
+    </tr>
+    <tr>
+      <th>bcs_to_use</th>
+      <td><p>character vector of barcode sequences to use keep in output</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>matrix of normalized values.</p>
     
 
   </div>
@@ -153,9 +151,7 @@ numbers</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

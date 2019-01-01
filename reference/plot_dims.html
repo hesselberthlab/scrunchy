@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Scatter plot of cells in a two-dimensional embedding. — plot_dims • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,10 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Scatter plot of cells in a two-dimensional embedding. — plot_dims" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="This is the base plot for superimposing annotations like cell types,
+cluster assignments, and measured activities." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,47 +115,80 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Scatter plot of cells in a two-dimensional embedding.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/plots.R'><code>R/plots.R</code></a></small>
+    <div class="hidden name"><code>plot_dims.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>This is the base plot for superimposing annotations like cell types,
+cluster assignments, and measured activities.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_dims</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"cell_id"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"cloupe"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>df</th>
+      <td><p>plot data</p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>x</th>
+      <td><p>variable for x-axis</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>variable for y-axis</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>variable for point colors (default is black)</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>size for <code>geom_point</code></p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>alpha for <code>geom_point</code></p></td>
+    </tr>
+    <tr>
+      <th>palette</th>
+      <td><p>palette for continuous colors. One of cloupe (the default),
+brewer, viridis.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>plot title</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>matrix of normalized values.</p>
+    <p>Embeddings can be calculated by <code><a href='calc_umap.html'>calc_umap()</a></code> and <code><a href='calc_tsne.html'>calc_tsne()</a></code>, and
+retrieved with <code><a href='tidy_dims.html'>tidy_dims()</a></code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot_dims-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>Uracil_45</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot_dims-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>k_cluster</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot_dims-3.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

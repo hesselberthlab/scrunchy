@@ -39,8 +39,7 @@
 
 <meta property="og:title" content="Generate 2D cell embeddings using UMAP — calc_umap" />
 
-<meta property="og:description" content="See https://umap-learn.readthedocs.io for a detailed description of
-parameters." />
+<meta property="og:description" content="Generate 2D cell embeddings using UMAP" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -122,12 +121,11 @@ parameters." />
 
     <div class="ref-description">
     
-    <p>See <a href='https://umap-learn.readthedocs.io'>https://umap-learn.readthedocs.io</a> for a detailed description of
-parameters.</p>
+    <p>Generate 2D cell embeddings using UMAP</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>calc_umap</span>(<span class='no'>fce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"sce"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>calc_umap</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>n_neighbors</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>min_dist</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>metric</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
     
@@ -135,18 +133,17 @@ parameters.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fce</th>
-      <td><p>fce object</p></td>
+      <th>fsce</th>
+      <td><p><code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code> object</p></td>
     </tr>
     <tr>
       <th>expt</th>
-      <td><p>Data to use for UMAP, one of either sce (rna data, the default)
-or fsce (functional data)</p></td>
+      <td><p>Data to use for calculating variable features
+(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>dimenality reduction method to use for UMAP, defaults to
-PCA</p></td>
+      <td><p>dimenality reduction method to use for UMAP (default is "PCA")</p></td>
     </tr>
     <tr>
       <th>n_dims</th>
@@ -183,7 +180,12 @@ seed.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>fce object with UMAP values added to reducedDims</p>
+    <p><code>fsce</code> with UMAP values added to reducedDims</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>See <a href='https://umap-learn.readthedocs.io'>https://umap-learn.readthedocs.io</a> for a detailed description of
+parameters.</p></div>
     
 
   </div>
@@ -193,6 +195,8 @@ seed.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

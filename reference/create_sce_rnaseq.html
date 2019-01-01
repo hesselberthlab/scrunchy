@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Create a single-cell mRNA-seq experiment — create_sce_rnaseq • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Create a single-cell mRNA-seq experiment — create_sce_rnaseq" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="Create a single-cell mRNA-seq experiment" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,39 +114,51 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Create a single-cell mRNA-seq experiment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/expt.R'><code>R/expt.R</code></a></small>
+    <div class="hidden name"><code>create_sce_rnaseq.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>Create a single-cell mRNA-seq experiment</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>create_sce_rnaseq</span>(<span class='no'>path</span>, <span class='kw'>norm_method</span> <span class='kw'>=</span> <span class='st'>"log_normalize"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
+      <th>path</th>
+      <td><p>path to output matrices.</p></td>
     </tr>
     <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>norm_method</th>
+      <td><p>Normalization method for <code>counts</code>. Normalized data
+is stored in <code>logcounts</code>. Set to <code>NULL</code> to skip normalization.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>matrix of normalized values.</p>
+    <p><code>SCERnaSeq</code> containing a <code>sparseMatrix</code> of counts</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>create_sce_rnaseq</span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"mrna/"</span>))</div><div class='output co'>#&gt; <span class='message'>Loading sc-rnaseq matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/mrna</span></div><div class='output co'>#&gt; class: SCERnaSeq 
+#&gt; dim: 9436 250 
+#&gt; metadata(0):
+#&gt; assays(2): counts logcounts
+#&gt; rownames(9436): FO538757.2 RP4-669L17.10 ... AC004556.1 AC240274.1
+#&gt; rowData names(0):
+#&gt; colnames(250): TGCGGGTTCAACCATG TGGTTCCTCACTTACT ... CTCGAAACACTTAAGC
+#&gt;   TGACAACGTCGCATAT
+#&gt; colData names(1): cell_id
+#&gt; reducedDimNames(0):
+#&gt; spikeNames(0):</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -155,7 +166,9 @@ numbers</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

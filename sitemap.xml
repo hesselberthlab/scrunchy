@@ -4,6 +4,21 @@
     <loc>https://scrunchy.hesselberthlab.org/index.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/FunctionalSingleCellExperiment.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/SCEHaircut.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/SCERnaSeq.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/calc_hairpin_coverage.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/calc_kmeans.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/calc_pca.html</loc>
   </url>
   <url>
@@ -13,46 +28,85 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/calc_umap.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/calc_var_features.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/clr_normalize.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/create_fce.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/create_fsce.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/get_var_genes.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/create_sce_haircut.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/load_csv.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/create_sce_rnaseq.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/filter_molecules.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/fsce_small.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/fsce_tidy.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/is.molecule_df.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/log_normalize.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/normalize_counts.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/molecule_df.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/plot_cells.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/palette_OkabeIto.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/plot_feature.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/plot_activity.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/plot_hairpin.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/plot_barcodes.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/plot_dims.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/plot_hairpin_coverage.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/read_10x_matrix.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/plot_saturation.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/run_kmeans.html</loc>
+    <loc>https://scrunchy.hesselberthlab.org/reference/read_matrix.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/read_molecules.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/scale_OkabeIto.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/scrunchy.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/scrunchy_data.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/tidy_coldata.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/tidy_counts.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/tidy_dims.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/tidy_logcounts.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/umitools_to_mtx.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/articles/scrunchy.html</loc>

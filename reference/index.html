@@ -126,25 +126,73 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-functional-single-cell-experiment" class="hasAnchor"><a href="#section-functional-single-cell-experiment" class="anchor"></a>Functional Single Cell Experiment</h2>
+          <h2 id="section-create-objects" class="hasAnchor"><a href="#section-create-objects" class="anchor"></a>Create Objects</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="create_fce.html">create_fce()</a></code> </p>
+          <p><code><a href="create_fsce.html">create_fsce()</a></code> </p>
         </td>
-        <td><p>Create a functional cell experiment (fce) object as a MultiAssayExperiment</p></td>
+        <td><p>Create a functional single-cell experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_haircut.html">create_sce_haircut()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell Haircut experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_rnaseq.html">create_sce_rnaseq()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell mRNA-seq experiment</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-data-import-and-processing" class="hasAnchor"><a href="#section-data-import-and-processing" class="anchor"></a>Data Import and Processing</h2>
+          <h2 id="section-manipulate-data" class="hasAnchor"><a href="#section-manipulate-data" class="anchor"></a>Manipulate Data</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
+        
+        <td>
+          <p><code><a href="tidy_coldata.html">tidy_coldata()</a></code> </p>
+        </td>
+        <td><p>Tidy colData</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_counts.html">tidy_counts()</a></code> </p>
+        </td>
+        <td><p>Tidy counts data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_dims.html">tidy_dims()</a></code> </p>
+        </td>
+        <td><p>Tidy reducedDims data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_logcounts.html">tidy_logcounts()</a></code> </p>
+        </td>
+        <td><p>Tidy logcounts data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_hairpin_coverage.html">calc_hairpin_coverage()</a></code> </p>
+        </td>
+        <td><p>Calculate coverage across hairpins</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_kmeans.html">calc_kmeans()</a></code> </p>
+        </td>
+        <td><p>K-means clustering</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="calc_pca.html">calc_pca()</a></code> </p>
@@ -165,85 +213,173 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="clr_normalize.html">clr_normalize()</a></code> </p>
+          <p><code><a href="calc_var_features.html">calc_var_features()</a></code> </p>
         </td>
-        <td><p>Centered log-ratio normalization</p></td>
+        <td><p>Get variable features</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="get_var_genes.html">get_var_genes()</a></code> </p>
+          <p><code><a href="clr_normalize.html">clr_normalize()</a></code> </p>
         </td>
-        <td><p>Get variable genes</p></td>
+        <td><p>Centered log-ratio normalize a matrix</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="log_normalize.html">log_normalize()</a></code> </p>
         </td>
-        <td><p>Log normalization</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_10x_matrix.html">read_10x_matrix()</a></code> </p>
-        </td>
-        <td><p>Load 10x mtx matrix as sparseMatrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="normalize_counts.html">normalize_counts()</a></code> </p>
-        </td>
-        <td><p>Normalize single cell rna and functional data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_kmeans.html">run_kmeans()</a></code> </p>
-        </td>
-        <td><p>K-means clustering</p></td>
+        <td><p>Log-normalize a matrix</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-plotting" class="hasAnchor"><a href="#section-plotting" class="anchor"></a>Plotting</h2>
+          <h2 id="section-visualize-data" class="hasAnchor"><a href="#section-visualize-data" class="anchor"></a>Visualize Data</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="plot_cells.html">plot_cells()</a></code> </p>
+          <p><code><a href="plot_activity.html">plot_activity()</a></code> </p>
         </td>
-        <td><p>Plot cells in reduced dimensionality 2D space</p></td>
+        <td><p>Plot activities per cluster</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_feature.html">plot_feature()</a></code> </p>
+          <p><code><a href="plot_barcodes.html">plot_barcodes()</a></code> </p>
         </td>
-        <td><p>Plot cells in reduced dimensionality 2D space</p></td>
+        <td><p>Plot UMI count distribution for barcodes</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="plot_hairpin.html">plot_hairpin()</a></code> </p>
+          <p><code><a href="plot_dims.html">plot_dims()</a></code> </p>
         </td>
-        <td><p>Calculate and plot coverage across hairpins</p></td>
+        <td><p>Scatter plot of cells in a two-dimensional embedding.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="plot_hairpin_coverage.html">plot_hairpin_coverage()</a></code> </p>
         </td>
         <td><p>Plot coverage across hairpins</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_saturation.html">plot_saturation()</a></code> </p>
+        </td>
+        <td><p>Plot sequencing saturation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="palette_OkabeIto.html">palette_OkabeIto</a></code> <code><a href="palette_OkabeIto.html">palette_OkabeIto_black</a></code> </p>
+        </td>
+        <td><p>Color palette proposed by Okabe and Ito</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="scale_OkabeIto.html">scale_color_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_fill_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_OkabeIto()</a></code> </p>
+        </td>
+        <td><p>Okabe-Ito color scale</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-miscellaneous" class="hasAnchor"><a href="#section-miscellaneous" class="anchor"></a>Miscellaneous</h2>
+          <h2 id="section-data-sets" class="hasAnchor"><a href="#section-data-sets" class="anchor"></a>Data Sets</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
+          <p><code><a href="fsce_small.html">fsce_small</a></code> </p>
+        </td>
+        <td><p>An example FunctionalSingleCellExperiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fsce_tidy.html">fsce_tidy</a></code> </p>
+        </td>
+        <td><p>Tidied tibble of data from fsce_small</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-object-definitions" class="hasAnchor"><a href="#section-object-definitions" class="anchor"></a>Object Definitions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="FunctionalSingleCellExperiment.html">FunctionalSingleCellExperiment()</a></code> </p>
+        </td>
+        <td><p>Constructor for a <code>FunctionalSingleCellExperiment</code> object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="SCEHaircut.html">SCEHaircut()</a></code> </p>
+        </td>
+        <td><p>Constructor for a <code>SCEHaircut</code> object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="SCERnaSeq.html">SCERnaSeq()</a></code> </p>
+        </td>
+        <td><p>Constructor for a <code>SCERnaSeq</code> object</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-utilities" class="hasAnchor"><a href="#section-utilities" class="anchor"></a>Utilities</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="molecule_df.html">molecule_df()</a></code> </p>
+        </td>
+        <td><p>data.frame that contains molecule info</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is.molecule_df.html">is.molecule_df()</a></code> </p>
+        </td>
+        <td><p>Test if the object is a molecule_df.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_molecules.html">filter_molecules()</a></code> </p>
+        </td>
+        <td><p>Filter barcodes in molecule file and write to disk</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="umitools_to_mtx.html">umitools_to_mtx()</a></code> </p>
+        </td>
+        <td><p>Convert umitools flat format tsv to sparseMatrix .mtx format</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read_matrix.html">read_matrix()</a></code> </p>
+        </td>
+        <td><p>Load mtx formatted 10x or haircut matrices</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read_molecules.html">read_molecules()</a></code> </p>
+        </td>
+        <td><p>Read molecule file into memory</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="scrunchy.html">scrunchy</a></code> </p>
         </td>
-        <td><p>scrunchy: single-cell analysis of functional heterogeneity</p></td>
+        <td><p>scrunchy: single-cell reconstruction of functional heterogeneity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="scrunchy_data.html">scrunchy_data()</a></code> </p>
+        </td>
+        <td><p>Provide path to scrunchy internal data</p></td>
       </tr>
     </tbody>
     </table>
@@ -252,10 +388,12 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-functional-single-cell-experiment">Functional Single Cell Experiment</a></li>
-      <li><a href="#section-data-import-and-processing">Data Import and Processing</a></li>
-      <li><a href="#section-plotting">Plotting</a></li>
-      <li><a href="#section-miscellaneous">Miscellaneous</a></li>
+      <li><a href="#section-create-objects">Create Objects</a></li>
+      <li><a href="#section-manipulate-data">Manipulate Data</a></li>
+      <li><a href="#section-visualize-data">Visualize Data</a></li>
+      <li><a href="#section-data-sets">Data Sets</a></li>
+      <li><a href="#section-object-definitions">Object Definitions</a></li>
+      <li><a href="#section-utilities">Utilities</a></li>
     </ul>
   </div>
 </div>

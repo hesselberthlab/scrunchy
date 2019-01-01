@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log-normalize a matrix — log_normalize • scrunchy</title>
+<title>Create a functional single-cell experiment — create_fsce • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,12 @@
 
 
 
-<meta property="og:title" content="Log-normalize a matrix — log_normalize" />
+<meta property="og:title" content="Create a functional single-cell experiment — create_fsce" />
 
-<meta property="og:description" content="Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1." />
+<meta property="og:description" content="A  FunctionalSingleCellExperiment is implemented as a
+MultiAssayExperiment with one or more SingleCellExperiments (sce). One
+of these is a single-cell mRNA sequencing experiment that defines mRNA counts
+for single cells. Other sces include functional data from haircut." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,39 +117,57 @@ and scaled by a constant. Log values are returned with a pseudocount of 1." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log-normalize a matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/normalize.R'><code>R/normalize.R</code></a></small>
-    <div class="hidden name"><code>log_normalize.Rd</code></div>
+    <h1>Create a functional single-cell experiment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/fsce.R'><code>R/fsce.R</code></a></small>
+    <div class="hidden name"><code>create_fsce.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Normalization performed by dividing by column sums (total counts per cell)
-and scaled by a constant. Log values are returned with a pseudocount of 1.</p>
+    <p>A  <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code> is implemented as a
+<code>MultiAssayExperiment</code> with one or more <code>SingleCellExperiment</code>s (<code>sce</code>). One
+of these is a single-cell mRNA sequencing experiment that defines mRNA counts
+for single cells. Other <code>sce</code>s include functional data from haircut.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>log_normalize</span>(<span class='no'>mat</span>, <span class='kw'>constant</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
+    <pre class="usage"><span class='fu'>create_fsce</span>(<span class='no'>expt_list</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mat</th>
-      <td><p>input matrix</p></td>
-    </tr>
-    <tr>
-      <th>constant</th>
-      <td><p>multiply normalized counts by this scalar to prevent small
-numbers</p></td>
+      <th>expt_list</th>
+      <td><p>a list mapping experiment names to <code>SingleCellExperiments</code>
+created by an <code>create_</code> function.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>matrix of normalized values.</p>
+    <p><code>MultiAssayExperiment</code> containing one or more <code>SingleCellExperiment</code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># this is identical to the `fsce_small` data set:</span>
+<span class='fu'>create_fsce</span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+    <span class='kw'>rnaseq</span>  <span class='kw'>=</span> <span class='fu'><a href='create_sce_rnaseq.html'>create_sce_rnaseq</a></span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"mrna/"</span>)),
+    <span class='kw'>haircut</span> <span class='kw'>=</span> <span class='fu'><a href='create_sce_haircut.html'>create_sce_haircut</a></span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"haircut/"</span>))
+  )
+)</div><div class='output co'>#&gt; <span class='message'>Loading sc-rnaseq matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/mrna</span></div><div class='output co'>#&gt; <span class='message'>Loading haircut matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/haircut</span></div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
+#&gt;  experiments with user-defined names and respective classes. 
+#&gt;  Containing an ExperimentList class object of length 2: 
+#&gt;  [1] rnaseq: SCERnaSeq with 9436 rows and 250 columns 
+#&gt;  [2] haircut: SCEHaircut with 425 rows and 250 columns 
+#&gt; Features: 
+#&gt;  experiments() - obtain the ExperimentList instance 
+#&gt;  colData() - the primary/phenotype DataFrame 
+#&gt;  sampleMap() - the sample availability DataFrame 
+#&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
+#&gt;  *Format() - convert into a long or wide DataFrame 
+#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -155,7 +175,9 @@ numbers</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
