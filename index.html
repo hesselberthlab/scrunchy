@@ -127,16 +127,6 @@
 <li><p>Two-dimensional embedding of cells defined by UMAP (<code><a href="https://www.rdocumentation.org/packages/umap/topics/umap">umap::umap()</a></code>) and colored by k-means clustering (n = 6)</p></li>
 <li><p>Activities on a U:A and riboG DNA hairpins.</p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">plotlist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="kw"><a href="reference/plot_dims.html">plot_dims</a></span>(</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">      fsce_tidy, UMAP1, UMAP2, k_cluster,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">      <span class="dt">title =</span> <span class="st">"Clusters defined for</span><span class="ch">\n</span><span class="st">mRNA expression"</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    ),</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw"><a href="reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw"><a href="reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">  )</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">)</a></code></pre></div>
 <p><img src="reference/figures/README-example_plots-1.png" width="100%"></p>
 </div>
   </div>
