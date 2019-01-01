@@ -66,19 +66,4 @@ These plots illustrate:
 
 2.  Activities on a U:A and riboG DNA hairpins.
 
-<!-- end list -->
-
-``` r
-cowplot::plot_grid(
-  plotlist = list(
-    plot_dims(
-      fsce_tidy, UMAP1, UMAP2, k_cluster,
-      title = "Clusters defined for\nmRNA expression"
-    ),
-    plot_activity(fsce_tidy, Uracil_45, k_cluster),
-    plot_activity(fsce_tidy, riboG_44, k_cluster)
-  )
-)
-```
-
 <img src="man/figures/README-example_plots-1.png" width="100%" />

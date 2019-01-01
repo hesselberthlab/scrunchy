@@ -121,10 +121,45 @@ fsce_tidy
 
 # Visualization
 
-Features can be visulized on a two-dimensional embedding with the `plot_dims` function which will plot gene/function assay values.
+## Two-dimensional embeddings
 
-```{r plots}
-plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45)
+Features can be visulized on a two-dimensional embedding with the `plot_dims()` function which will plot gene/function assay values.
 
-plot_dims(fsce_tidy, UMAP1, UMAP2, riboG_44)
+```{r plot_dims}
+plot_grid(
+  plotlist = list(
+    plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
+    plot_dims(fsce_tidy, UMAP1, UMAP2, riboG_44, size = 1)
+  )
+)
 ```
+
+## Functional activities
+
+Activities can be visualized per-group with `plot_actvitiy()`. These two plots have uracil and ribonucleotide excision activities plotted per cluster (k-means, n = 6).
+
+```{r plot_activity}
+plot_grid(
+  plotlist = list(
+    plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
+    plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
+  )
+)
+```
+
+## Heatmap
+
+These heatmaps show uracil and ribonucleotide excision activities for the U:A and riboG hairpins
+
+```{r heatmap_uracil}
+mtx <- logcounts(fsce_small[["haircut"]])
+
+rows <- paste("Uracil", 1:61, sep = "_")
+plot_heatmap(mtx, rows, name = "Uracil")
+```
+
+```{r heatpmap_riboG}
+rows <- paste("riboG", 1:61, sep = "_")
+plot_heatmap(mtx, rows, name = "riboG")
+```
+

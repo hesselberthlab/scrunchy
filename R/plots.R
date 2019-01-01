@@ -107,7 +107,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #' )
 #'
 #' @export
-plot_activity <- function(data, activity, group = NULL, legend = TRUE) {
+plot_activity <- function(data, activity, group = NULL, legend = FALSE) {
 
   activity <- enquo(activity)
   group <- enquo(group)
@@ -116,14 +116,7 @@ plot_activity <- function(data, activity, group = NULL, legend = TRUE) {
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
     scale_color_OkabeIto() +
     cowplot::theme_cowplot() +
-    labs(
-      x = "Activity",
-      y = "Group",
-      title = glue(
-        "Activity: {activity}",
-        activity = rlang::quo_text(activity)
-      )
-    )
+    labs(x = "Activity", y = "Group")
 
   if (!legend) {
     p <- p + theme(legend.position = "none")
