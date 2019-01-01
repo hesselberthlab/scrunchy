@@ -18,7 +18,7 @@ Plots \code{logcounts} or \code{counts} from an experiment for specified rows.
 }
 \examples{
 rows <- paste("Uracil", 10:50, sep = "_")
-mtx <- logcounts(fsce_small[["haircut"]])
+mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
 
 plot_heatmap(mtx, rows, name = "Uracil")
 
