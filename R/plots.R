@@ -132,6 +132,35 @@ plot_activity <- function(data, activity, group = NULL, legend = TRUE) {
   p
 }
 
+#' Heatmap of signals
+#'
+#' Plots `logcounts` or `counts` from an experiment for specified rows.
+#'
+#' @import ComplexHeatmap
+#'
+#' @param mtx Matrix of `logcounts` or `counts`
+#' @param rows names of rows to select for heatmap
+#' @param ... params for [`ComplexHeatmap::Heatmap`]
+#'
+#' @examples
+#' mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
+#' rows <- paste("Uracil", 1:61, sep = "_")
+#'
+#' plot_heatmap(mtx, rows, name = "Uracil")
+#'
+#' @export
+plot_heatmap <- function(mtx, rows = NULL, ...) {
+  if (!is.null(rows)) {
+    mtx <- mtx[rows, ]
+  }
+
+  # traspose and strip rownames (cell ids)
+  mtx <- t(mtx)
+  rownames(mtx) <- NULL
+
+  ComplexHeatmap::Heatmap(mtx, cluster_columns = FALSE, ...)
+}
+
 # Palettes ----------------------------------------------------------
 
 loupe_palette <- rev(scales::brewer_pal(palette = "RdGy")(11)[c(1:5, 7)])

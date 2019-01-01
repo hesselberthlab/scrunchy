@@ -39,6 +39,7 @@ Imports:
     matrixStats,
     Rtsne,
     SingleCellExperiment,
+    ComplexHeatmap,
     S4Vectors,
     MultiAssayExperiment,
     R.utils,
