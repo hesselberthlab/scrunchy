@@ -9,7 +9,8 @@ vignette: >
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE
+  echo = TRUE,
+  out.width = "100%"
 )
 ```
 
@@ -126,11 +127,9 @@ fsce_tidy
 Features can be visulized on a two-dimensional embedding with the `plot_dims()` function which will plot gene/function assay values.
 
 ```{r plot_dims}
-plot_grid(
-  plotlist = list(
-    plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
-    plot_dims(fsce_tidy, UMAP1, UMAP2, riboG_44, size = 1)
-  )
+cowplot::plot_grid(
+  plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1),
+  plot_dims(fsce_tidy, UMAP1, UMAP2, riboG_44, size = 1)
 )
 ```
 
@@ -139,11 +138,9 @@ plot_grid(
 Activities can be visualized per-group with `plot_actvitiy()`. These two plots have uracil and ribonucleotide excision activities plotted per cluster (k-means, n = 6).
 
 ```{r plot_activity}
-plot_grid(
-  plotlist = list(
-    plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
-    plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
-  )
+cowplot::plot_grid(
+  plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
+  plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
 )
 ```
 
