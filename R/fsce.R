@@ -16,14 +16,12 @@
 #' # this is identical to the `fsce_small` data set:
 #' create_fsce(
 #'   list(
-#'     rnaseq  = create_sce_rnaseq(scrunchy_data("mrna/")),
+#'     rnaseq = create_sce_rnaseq(scrunchy_data("mrna/")),
 #'     haircut = create_sce_haircut(scrunchy_data("haircut/"))
 #'   )
 #' )
-#'
 #' @export
 create_fsce <- function(expt_list) {
-
   expt_list <- ExperimentList(expt_list)
 
   shared_cells <- find_shared_cells(expt_list)
@@ -37,9 +35,9 @@ create_fsce <- function(expt_list) {
   FunctionalSingleCellExperiment(
     experiments = expt_list,
     colData = DataFrame(
-        row.names = shared_cells,
-        cell_id = shared_cells
-      ),
+      row.names = shared_cells,
+      cell_id = shared_cells
+    ),
     sampleMap = sample_map
   )
 }
@@ -64,7 +62,6 @@ FunctionalSingleCellExperiment <- function(...) {
 # Utilities ---------------------------------------------------------
 
 build_sample_map <- function(expt_list) {
-
   cells <- purrr::map(as.list(expt_list), expt_cells)
   expts <- purrr::map(cells, build_cell_map)
 

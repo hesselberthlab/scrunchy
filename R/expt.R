@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' create_sce_rnaseq(scrunchy_data("mrna/"))
-#'
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
   message(glue("Loading sc-rnaseq matrix files: {path}"))
@@ -47,7 +46,6 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #'
 #' @examples
 #' create_sce_haircut(scrunchy_data("haircut/"))
-#'
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
   message(glue("Loading haircut matrix files: {path}", path = path))
@@ -118,14 +116,16 @@ SCEHaircut <- function(...) {
 #' @export
 setGeneric("normalize", function(x, method, ...) standardGeneric("normalize"))
 
-setMethod("normalize",
+setMethod(
+  "normalize",
   signature("SCERnaSeq"),
   function(x, method = "log_normalize", ...) {
     do.call(method, list(counts(x), ...))
   }
 )
 
-setMethod("normalize",
+setMethod(
+  "normalize",
   signature("SCEHaircut"),
   function(x, method = "clr_normalize", ...) {
     do.call(method, list(counts(x), ...))

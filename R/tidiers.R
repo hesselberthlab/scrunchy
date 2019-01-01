@@ -14,6 +14,8 @@
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
 #' tidy_logcounts(x)
 #'
+#' @family tidiers
+#'
 #' @export
 tidy_logcounts <- function(fsce) {
   es <- as.list(experiments(fsce))
@@ -30,6 +32,8 @@ tidy_logcounts <- function(fsce) {
 #' @examples
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
 #' tidy_counts(x)
+#'
+#' @family tidiers
 #'
 #' @export
 tidy_counts <- function(fsce) {
@@ -52,8 +56,10 @@ tidy_counts <- function(fsce) {
 #'
 #' tidy_dims(fsce_small, dimnames = c("UMAP"))
 #'
+#' @family tidiers
+#'
 #' @export
-tidy_dims <- function(fsce, dimnames = NULL, dims = c(1,2)) {
+tidy_dims <- function(fsce, dimnames = NULL, dims = c(1, 2)) {
   es <- as.list(experiments(fsce))
 
   res <- purrr::map(es, dims_tbl, dimnames, dims)
@@ -67,6 +73,8 @@ tidy_dims <- function(fsce, dimnames = NULL, dims = c(1,2)) {
 #
 #' @examples
 #' tidy_coldata(fsce_small)
+#'
+#' @family tidiers
 #'
 #' @export
 tidy_coldata <- function(fsce) {
@@ -104,7 +112,7 @@ dim_tbl <- function(rd, dimname, dims) {
   if (!is.null(dims)) {
     rd <- rd[, dims]
   } else {
-   # default is all dims
+    # default is all dims
     dims <- 1:ncol(rd)
   }
 

@@ -15,14 +15,18 @@ scale_OkabeIto(aesthetics, use_black = FALSE, order = 1:8,
   alpha = NA, ...)
 }
 \arguments{
-\item{...}{common discrete scale parameters: \code{name}, \code{breaks}, \code{labels}, \code{na.value}, \code{limits}, \code{guide}, and \code{aesthetics}.
-See \link{discrete_scale} for more details.}
+\item{aesthetics}{aesthetic mappings}
+
+\item{...}{additional arguments for \code{scale_OkabeIto}}
 
 \item{use_black}{If \code{TRUE}, scale includes black, otherwise includes gray.}
 
 \item{order}{Numeric vector listing the order in which the colors should be used. Default is 1:8.}
 
 \item{alpha}{Alpha transparency level of the color. Default is no transparency.}
+
+\item{...}{common discrete scale parameters: \code{name}, \code{breaks}, \code{labels}, \code{na.value}, \code{limits}, \code{guide}, and \code{aesthetics}.
+See \link{discrete_scale} for more details.}
 }
 \description{
 This is a color-blind friendly, qualitative scale with eight different
@@ -38,5 +42,4 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() + scale_color_OkabeIto()
 ggplot(iris, aes(Sepal.Length, fill = Species)) +
   geom_density(alpha = 0.7) + scale_fill_OkabeIto(order = c(1, 3, 5))
-
 }

@@ -11,9 +11,8 @@
 #'
 #' @examples
 #' calc_var_features(fsce_small)[1:5]
-#'
+#' 
 #' calc_var_features(fsce_small, expt = "haircut")[1:5]
-#'
 #' @export
 calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 

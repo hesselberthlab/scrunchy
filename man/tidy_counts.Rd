@@ -25,3 +25,8 @@ x <- fsce_small[ c("Uracil_45"), , "haircut"]
 tidy_counts(x)
 
 }
+\seealso{
+Other tidiers: \code{\link{tidy_coldata}},
+  \code{\link{tidy_dims}}, \code{\link{tidy_logcounts}}
+}
+\concept{tidiers}

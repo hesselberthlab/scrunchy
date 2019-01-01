@@ -24,3 +24,8 @@ that describe the source of the data.
 tidy_coldata(fsce_small)
 
 }
+\seealso{
+Other tidiers: \code{\link{tidy_counts}},
+  \code{\link{tidy_dims}}, \code{\link{tidy_logcounts}}
+}
+\concept{tidiers}

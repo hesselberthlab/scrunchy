@@ -23,9 +23,8 @@ for single cells. Other \code{sce}s include functional data from haircut.
 # this is identical to the `fsce_small` data set:
 create_fsce(
   list(
-    rnaseq  = create_sce_rnaseq(scrunchy_data("mrna/")),
+    rnaseq = create_sce_rnaseq(scrunchy_data("mrna/")),
     haircut = create_sce_haircut(scrunchy_data("haircut/"))
   )
 )
-
 }

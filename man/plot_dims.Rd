@@ -41,3 +41,8 @@ plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
 plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
 
 }
+\seealso{
+Other plotting: \code{\link{plot_activity}},
+  \code{\link{plot_heatmap}}
+}
+\concept{plotting}

@@ -25,6 +25,8 @@
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
 #'
+#' @family plotting
+#'
 #' @export
 plot_dims <- function(df, x, y, color = "cell_id",
                       size = 0.1, alpha = 1,
@@ -57,9 +59,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
     p <- p + scale_color_manual(
       values = discrete_palette_default
     )
-
   } else {
-
     if (palette == "cloupe") {
       p <- p + scale_color_gradientn(
         colors = loupe_palette,
@@ -78,7 +78,6 @@ plot_dims <- function(df, x, y, color = "cell_id",
         direction = 1
       )
     }
-
   } # discrete?
 
   if (!is.null(title)) {
@@ -106,13 +105,14 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #'   )
 #' )
 #'
+#' @family plotting
+#'
 #' @export
 plot_activity <- function(data, activity, group = NULL, legend = FALSE) {
-
   activity <- enquo(activity)
   group <- enquo(group)
 
-  p <- ggplot(data, aes(x = !! activity, y = !! group, color = !! group)) +
+  p <- ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
     scale_color_OkabeIto() +
     cowplot::theme_cowplot() +
@@ -140,6 +140,8 @@ plot_activity <- function(data, activity, group = NULL, legend = FALSE) {
 #' rows <- paste("Uracil", 1:61, sep = "_")
 #'
 #' plot_heatmap(mtx, rows, name = "Uracil")
+#'
+#' @family plotting
 #'
 #' @export
 plot_heatmap <- function(mtx, rows = NULL, ...) {

@@ -46,13 +46,12 @@ test_that("tidy_dims results have expected shapes", {
 })
 
 test_that("tidy_dims can filter", {
-
   expect_equal(
     dim(tidy_dims(fsce_small, dimnames = c("UMAP"))),
     c(250, 4)
   )
 
-  res <- tidy_dims(fsce_small, dimnames = c("PCA"), dims = c(1,3))
+  res <- tidy_dims(fsce_small, dimnames = c("PCA"), dims = c(1, 3))
   expect_equal(dim(res), c(250, 4))
   expect_true(all(c("PCA1", "PCA3") %in% names(res)))
 })

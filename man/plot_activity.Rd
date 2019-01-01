@@ -28,3 +28,8 @@ cowplot::plot_grid(
 )
 
 }
+\seealso{
+Other plotting: \code{\link{plot_dims}},
+  \code{\link{plot_heatmap}}
+}
+\concept{plotting}

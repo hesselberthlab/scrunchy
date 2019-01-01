@@ -56,7 +56,6 @@ features <- c("Uracil_45", "TP53")
 cell_ids <- c("GAAACTCTCCGAAGAG", "CGCTATCGTTCACCTC")
 
 fsce_small[features, cell_ids, ]
-
 \dontrun{
 library(SingleCellExperiment)
 # dimensionality reduction results

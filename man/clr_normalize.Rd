@@ -21,5 +21,8 @@ This normalization strategy is used for CITE-seq and other feature data in
 \href{https://satijalab.org/seurat/}{Seurat}.
 }
 \seealso{
-https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in
+\url{https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in}
+
+Other normalization: \code{\link{log_normalize}}
 }
+\concept{normalization}

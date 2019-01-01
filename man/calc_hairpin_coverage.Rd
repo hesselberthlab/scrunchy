@@ -19,5 +19,4 @@ Calculate coverage across hairpins
 }
 \examples{
 calc_hairpin_coverage(fsce_small)
-
 }

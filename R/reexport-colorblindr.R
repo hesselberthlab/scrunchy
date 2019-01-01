@@ -12,6 +12,8 @@ palette_OkabeIto <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D
 palette_OkabeIto_black <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
 
 #' @rdname scale_OkabeIto
+#' @param aesthetics aesthetic mappings
+#' @param ... additional arguments for `scale_OkabeIto`
 #' @export
 #' @usage NULL
 scale_colour_OkabeIto <- function(aesthetics = "colour", ...) {
@@ -23,6 +25,7 @@ scale_colour_OkabeIto <- function(aesthetics = "colour", ...) {
 scale_color_OkabeIto <- scale_colour_OkabeIto
 
 #' @rdname scale_OkabeIto
+#' @inheritParams scale_colour_OkabeIto
 #' @export
 scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
   scale_OkabeIto(aesthetics, ...)
@@ -48,7 +51,6 @@ scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
 #'   geom_point() + scale_color_OkabeIto()
 #' ggplot(iris, aes(Sepal.Length, fill = Species)) +
 #'   geom_density(alpha = 0.7) + scale_fill_OkabeIto(order = c(1, 3, 5))
-#'
 #' @export
 scale_OkabeIto <- function(aesthetics, use_black = FALSE, order = 1:8, alpha = NA, ...) {
   if (use_black) {
@@ -68,7 +70,9 @@ scale_OkabeIto <- function(aesthetics, use_black = FALSE, order = 1:8, alpha = N
   pal <- function(n) {
     if (n > length(values)) {
       warning("Insufficient values in manual scale. ", n, " needed but only ",
-              length(values), " provided.", call. = FALSE)
+        length(values), " provided.",
+        call. = FALSE
+      )
     }
     values
   }

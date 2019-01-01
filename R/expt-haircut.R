@@ -7,12 +7,10 @@
 #'
 #' @examples
 #' calc_hairpin_coverage(fsce_small)
-#'
 #' @export
 calc_hairpin_coverage <- function(fsce,
                                   expt = "haircut",
                                   cell_ids = NULL) {
-
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
@@ -49,19 +47,17 @@ calc_hairpin_coverage <- function(fsce,
 #'
 #' @examples
 #' plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
-#'
 #' @export
 plot_hairpin_coverage <- function(fsce,
                                   expt = "haircut",
                                   cells = NULL,
                                   color = "hairpin") {
-
   res <- calc_hairpin_coverage(fsce, expt, cells)
 
   color <- enquo(color)
 
   ggplot(res, aes(x = position, y = count)) +
-    geom_line(aes(color = !! color), alpha = 0.7, size = 0.8) +
+    geom_line(aes(color = !!color), alpha = 0.7, size = 0.8) +
     cowplot::theme_cowplot() +
     scale_color_brewer(palette = "Set1") +
     labs(

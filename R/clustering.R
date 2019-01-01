@@ -16,20 +16,21 @@
 #' # calculate PCA for k-means default method
 #' fsce <- calc_pca(fsce_small)
 #'
-#' fsce <- calc_kmeans(fsce, k=6)
-#'
+#' fsce <- calc_kmeans(fsce, k = 6)
 #' \dontrun{
 #' library(SingleCellExperiment)
 #' colData(fsce[["rnaseq"]], "k_cluster")
 #' }
 #'
+#' @family clustering
+#'
 #' @export
 calc_kmeans <- function(fsce,
-                       expt = "rnaseq",
-                       k,
-                       method = "PCA",
-                       n_dims = NULL,
-                       ...) {
+                        expt = "rnaseq",
+                        k,
+                        method = "PCA",
+                        n_dims = NULL,
+                        ...) {
   ## check inputs
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce "), call. = FALSE)

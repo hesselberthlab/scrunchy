@@ -56,7 +56,6 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Collate: 
-    'barcodes-utils.R'
     'clustering.R'
     'data.R'
     'dims.R'
@@ -69,4 +68,5 @@ Collate:
     'plots.R'
     'scrunchy-package.R'
     'tidiers.R'
+    'utils-barcodes.R'
     'utils.R'

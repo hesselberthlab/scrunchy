@@ -10,29 +10,31 @@
 #' @export
 read_molecules <- function(molecule_file,
                            return_ids = TRUE) {
-
-  if(!fs::file_exists(molecule_file)){
+  if (!fs::file_exists(molecule_file)) {
     stop(bcs_fn, " does not exist", call. = FALSE)
   }
 
   dat <- readr::read_tsv(molecule_file,
-                         col_types = c('iici'),
-                         col_names = c("barcode",
-                                       "feature",
-                                       "umi",
-                                       "count"))
+    col_types = c("iici"),
+    col_names = c(
+      "barcode",
+      "feature",
+      "umi",
+      "count"
+    )
+  )
 
 
-  if(return_ids){
+  if (return_ids) {
     base_path <- fs::path_dir(molecule_file)
     bcs_fn <- fs::path_join(c(base_path, "barcodes.tsv"))
     features_fn <- fs::path_join(c(base_path, "features.tsv"))
 
-    if(!fs::file_exists(bcs_fn)){
+    if (!fs::file_exists(bcs_fn)) {
       stop(bcs_fn, " does not exist", call. = FALSE)
     }
 
-    if(!fs::file_exists(features_fn)){
+    if (!fs::file_exists(features_fn)) {
       stop(features_fn, " does not exist", call. = FALSE)
     }
 
@@ -46,9 +48,10 @@ read_molecules <- function(molecule_file,
     dat <- left_join(dat, features, by = c("feature" = "idx"))
 
     dat <- select(dat,
-                  barcode = barcode_seq,
-                  feature = feature_name,
-                  umi, count)
+      barcode = barcode_seq,
+      feature = feature_name,
+      umi, count
+    )
   }
 
   dat <- molecule_df(dat)
@@ -100,7 +103,6 @@ molecule_df <- function(x) {
 filter_molecules <- function(molecule_file,
                              output_file,
                              bcs_to_keep) {
-
   dat <- read_molecules(molecule_file)
 
   dat <- filter(dat, barcode %in% bcs_to_keep)
@@ -120,13 +122,15 @@ filter_molecules <- function(molecule_file,
 
   # order based on cell barcode  and feature order in dat
   bcs_subset <- left_join(tibble(barcode_seq = unique(dat$barcode)),
-                          bcs_subset,
-                          by = "barcode_seq")
+    bcs_subset,
+    by = "barcode_seq"
+  )
 
   # order based on cell barcode order in dat
   feature_subset <- left_join(tibble(feature_name = unique(dat$feature)),
-                              feature_subset,
-                          by = "feature_name")
+    feature_subset,
+    by = "feature_name"
+  )
 
   # make an index to store in molecules output
   bcs_subset[["bc_idx"]] <- seq_len(nrow(bcs_subset))
@@ -135,19 +139,22 @@ filter_molecules <- function(molecule_file,
   dat <- left_join(dat, bcs_subset, by = c("barcode" = "barcode_seq"))
   dat <- left_join(dat, feature_subset, by = c("feature" = "feature_name"))
 
-  subset_dat <- select(dat,
-                       bc_idx,
-                       f_idx,
-                       umi,
-                       count)
+  subset_dat <- select(
+    dat,
+    bc_idx,
+    f_idx,
+    umi,
+    count
+  )
 
-  if(!fs::dir_exists(out_path)){
+  if (!fs::dir_exists(out_path)) {
     fs::dir_create(out_path)
   }
 
   output_fn <- ifelse(endsWith(output_file, ".gz"),
-                      output_file,
-                      paste0(output_file, ".gz"))
+    output_file,
+    paste0(output_file, ".gz")
+  )
 
   readr::write_tsv(subset_dat, output_fn, col_names = FALSE)
 
@@ -160,11 +167,15 @@ filter_molecules <- function(molecule_file,
   f_dat <- arrange(f_dat, f_idx)
 
   # write out barcodes and features to same directory as molecules
-  readr::write_lines(bc_dat[["barcode"]],
-                     fs::path_join(c(out_path, "barcodes.tsv.gz")))
+  readr::write_lines(
+    bc_dat[["barcode"]],
+    fs::path_join(c(out_path, "barcodes.tsv.gz"))
+  )
 
-  readr::write_lines(f_dat[["feature"]],
-                     fs::path_join(c(out_path, "features.tsv.gz")))
+  readr::write_lines(
+    f_dat[["feature"]],
+    fs::path_join(c(out_path, "features.tsv.gz"))
+  )
 }
 
 #' Plot sequencing saturation
@@ -185,21 +196,21 @@ filter_molecules <- function(molecule_file,
 #' @importFrom scales comma
 #' @export
 plot_saturation <- function(molecules,
-                             bcs_to_use = NULL,
-                             proportions = seq(0, 1, by = 0.1),
-                             return_data = FALSE) {
+                            bcs_to_use = NULL,
+                            proportions = seq(0, 1, by = 0.1),
+                            return_data = FALSE) {
 
   # read from file unless is a molecule data.frame
-  if(is.character(molecules)){
+  if (is.character(molecules)) {
     message("reading in molecule file")
     molecules <- read_molecules(molecules)
-  } else if (!is.molecule_df(molecules)){
+  } else if (!is.molecule_df(molecules)) {
     stop("molecules must be a molecule_df or a path to a molecules file", call. = FALSE)
   }
 
   dat <- select(molecules, -feature)
 
-  if(!is.null(bcs_to_use)){
+  if (!is.null(bcs_to_use)) {
     dat <- filter(dat, barcode %in% bcs_to_use)
   }
 
@@ -214,15 +225,18 @@ plot_saturation <- function(molecules,
   # downsample reads per cell
   dat <- group_by(dat, barcode)
   umis_ds <- mutate_at(dat,
-                       .vars = "count",
-                       .funs = lambdas)
+    .vars = "count",
+    .funs = lambdas
+  )
 
   message("calculating sequence saturation")
   # tidy data
   umis_ds <- ungroup(umis_ds)
   umis_ds <- select(umis_ds, -count)
-  umis_ds <- tidyr::gather(umis_ds, proportion,
-                           count, -barcode, -umi)
+  umis_ds <- tidyr::gather(
+    umis_ds, proportion,
+    count, -barcode, -umi
+  )
 
   # compute summaries
   umis_ds <- mutate(umis_ds, proportion = factor(proportion))
@@ -232,27 +246,31 @@ plot_saturation <- function(molecules,
   umis_ds <- group_by(umis_ds, proportion)
 
   umis_ds_summary <- summarize(umis_ds,
-                               mean_reads_per_cell = mean(n_per_cell_reads),
-                               n_umi = n(),
-                               n_reads = sum(count),
-                               seq_saturation = 1 - (n_umi / n_reads))
+    mean_reads_per_cell = mean(n_per_cell_reads),
+    n_umi = n(),
+    n_reads = sum(count),
+    seq_saturation = 1 - (n_umi / n_reads)
+  )
 
   # handle NaNs produced by downsampling reads to 0
   umis_ds_summary[is.na(umis_ds_summary)] <- 0
 
-  if(return_data) {
+  if (return_data) {
     return(umis_ds_summary)
   }
 
-  p <- ggplot(umis_ds_summary, aes(mean_reads_per_cell,
-                              seq_saturation)) +
+  p <- ggplot(umis_ds_summary, aes(
+    mean_reads_per_cell,
+    seq_saturation
+  )) +
     geom_line() +
     scale_x_continuous(labels = scales::comma) +
     cowplot::theme_cowplot() +
-    labs(x = "Mean reads per cell",
-         y = "Sequencing saturation")
+    labs(
+      x = "Mean reads per cell",
+      y = "Sequencing saturation"
+    )
   p
-
 }
 
 #' Plot UMI count distribution for barcodes
@@ -270,10 +288,10 @@ plot_barcodes <- function(molecules,
                           return_data = FALSE) {
 
   # read from file unless is a molecule data.frame
-  if(is.character(molecules)){
+  if (is.character(molecules)) {
     message("reading in molecule file")
     molecules <- read_molecules(molecules)
-  } else if (!is.molecule_df(molecules)){
+  } else if (!is.molecule_df(molecules)) {
     stop("molecules must be a molecule_df or a path to a molecules file", call. = FALSE)
   }
 
@@ -291,10 +309,12 @@ plot_barcodes <- function(molecules,
     geom_line() +
     scale_x_log10(labels = scales::comma) +
     cowplot::theme_cowplot() +
-    labs(x = "Barcodes",
-         y = "UMI counts")
+    labs(
+      x = "Barcodes",
+      y = "UMI counts"
+    )
 
-  if(log_y){
+  if (log_y) {
     p <- p + scale_y_log10(labels = scales::comma)
   }
 
