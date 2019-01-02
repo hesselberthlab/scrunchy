@@ -53,6 +53,8 @@ setClass("FunctionalSingleCellExperiment", contains = "MultiAssayExperiment")
 #'
 #' A thin wrapper around `MultiAssayExperiment::MultiAssayExperiment`.
 #'
+#' @param ... params for [`MultiAssayExperiment::MultiAssayExperiment`]
+#'
 #' @export
 FunctionalSingleCellExperiment <- function(...) {
   sce <- MultiAssayExperiment(...)

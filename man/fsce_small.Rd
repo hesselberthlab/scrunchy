@@ -17,10 +17,10 @@ Contains sample data for a functional single-cell experiment.
 \details{
 There are two \code{SingleCellExperiments}:
 \enumerate{
-\item \code{rnaseq}: a \code{SCERnaSeq} object containing a single-cell mRNA sequencing
+\item \code{rnaseq}: a \code{SingleCellExperiment} object containing a single-cell mRNA sequencing
 (10x Genomics V2 3 prime) cell/gene counts matrix in the \code{counts} slot.
 Log-normalized counts are in the \code{logcounts} slot.
-\item \code{haircut}: a \code{SCEHaircut} object containing a Haircut experiment using DNA
+\item \code{haircut}: a \code{SingleCellExperiment} object containing a Haircut experiment using DNA
 repair oligos. Counts are in the \code{counts} slot, and centered log-ratio
 normalized counts are in the \code{logcounts} slot.
 }
@@ -56,7 +56,7 @@ features <- c("Uracil_45", "TP53")
 cell_ids <- c("GAAACTCTCCGAAGAG", "CGCTATCGTTCACCTC")
 
 fsce_small[features, cell_ids, ]
-\dontrun{
+
 library(SingleCellExperiment)
 # dimensionality reduction results
 reducedDimNames(fsce_small[["rnaseq"]])
@@ -66,7 +66,6 @@ reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
 
 # k-means cluster IDs
 colData(fsce_small[["rnaseq"]])
-}
 
 }
 \keyword{datasets}

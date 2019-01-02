@@ -3,12 +3,11 @@
 #' Tidy logcounts data
 #'
 #' @section Tidying:
-#' This method is a data tidier for a [`FunctionalSingleCellExperient`]. Returns
-#' data from an `fsce` in a tidy format, where variables are columns and
-#' observations are rows. Output will contain `experiment` and `cell_id` columns
-#' that describe the source of the data.
+#' This is a data tidier for a `SingleCellExperient`. Returns
+#' data from an `sce` in a tidy format, where variables are columns and
+#' observations are rows.
 #'
-#' @param fsce An object of class [`FunctionalSingleCellExperiment`].
+#' @param sce An object of class [`SingleCellExperiment::SingleCellExperiment`].
 #'
 #' @examples
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
@@ -17,8 +16,8 @@
 #' @family tidiers
 #'
 #' @export
-tidy_logcounts <- function(fsce) {
-  es <- as.list(experiments(fsce))
+tidy_logcounts <- function(sce) {
+  es <- as.list(experiments(sce))
   cs <- purrr::map(es, logcounts)
 
   purrr::map_dfr(cs, counts_tbl, .id = "experiment")
@@ -36,8 +35,8 @@ tidy_logcounts <- function(fsce) {
 #' @family tidiers
 #'
 #' @export
-tidy_counts <- function(fsce) {
-  es <- as.list(experiments(fsce))
+tidy_counts <- function(sce) {
+  es <- as.list(experiments(sce))
   cs <- purrr::map(es, counts)
 
   purrr::map_dfr(cs, counts_tbl, .id = "experiment")
@@ -59,8 +58,8 @@ tidy_counts <- function(fsce) {
 #' @family tidiers
 #'
 #' @export
-tidy_dims <- function(fsce, dimnames = NULL, dims = c(1, 2)) {
-  es <- as.list(experiments(fsce))
+tidy_dims <- function(sce, dimnames = NULL, dims = c(1, 2)) {
+  es <- as.list(experiments(sce))
 
   res <- purrr::map(es, dims_tbl, dimnames, dims)
   unframe(res, name = "experiment")
@@ -77,8 +76,8 @@ tidy_dims <- function(fsce, dimnames = NULL, dims = c(1, 2)) {
 #' @family tidiers
 #'
 #' @export
-tidy_coldata <- function(fsce) {
-  es <- as.list(experiments(fsce))
+tidy_coldata <- function(sce) {
+  es <- as.list(experiments(sce))
   cds <- purrr::map(es, colData)
   cds <- purrr::map(cds, as.data.frame)
 

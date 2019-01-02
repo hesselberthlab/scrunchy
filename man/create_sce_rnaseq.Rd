@@ -13,11 +13,12 @@ create_sce_rnaseq(path, norm_method = "log_normalize")
 is stored in \code{logcounts}. Set to \code{NULL} to skip normalization.}
 }
 \value{
-\code{SCERnaSeq} containing a \code{sparseMatrix} of counts
+\code{SingleCellExperiment} containing a \code{sparseMatrix} of counts
 }
 \description{
 Create a single-cell mRNA-seq experiment
 }
 \examples{
 create_sce_rnaseq(scrunchy_data("mrna/"))
+
 }

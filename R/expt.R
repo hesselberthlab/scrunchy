@@ -6,17 +6,18 @@
 #' @param norm_method Normalization method for `counts`. Normalized data
 #'   is stored in `logcounts`. Set to `NULL` to skip normalization.
 #'
-#' @return `SCERnaSeq` containing a `sparseMatrix` of counts
+#' @return `SingleCellExperiment` containing a `sparseMatrix` of counts
 #'
 #' @examples
 #' create_sce_rnaseq(scrunchy_data("mrna/"))
+#'
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
   message(glue("Loading sc-rnaseq matrix files: {path}"))
 
   x <- read_matrix(path)
 
-  sce <- SCERnaSeq(assays = list(counts = x))
+  sce <- SingleCellExperiment::SingleCellExperiment(assays = list(counts = x))
 
   cell_ids <- extract_cell_ids(colnames(x))
 
@@ -42,10 +43,11 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #' @param adducts `data_frame` with positions of hairpin adducts. Expects
 #'   two columns named `adduct` and `pos`.
 #'
-#' @return `SCEHaircut` containing a `matrix` of counts
-#'
+#' @return `SingleCellExperiment` containing a `sparseMatrix` of counts
+
 #' @examples
 #' create_sce_haircut(scrunchy_data("haircut/"))
+#'
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
   message(glue("Loading haircut matrix files: {path}", path = path))
@@ -61,7 +63,7 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
   hairpin_id <- unlist(purrr::map(hairpin_info, 1))
   hairpin_pos <- unlist(purrr::map(hairpin_info, 2))
 
-  sce <- SCEHaircut(
+  sce <- SingleCellExperiment::SingleCellExperiment(
     assays = list(counts = x),
     rowData = DataFrame(
       hairpin = hairpin_id,
@@ -78,37 +80,11 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
     cell_id = cell_ids
   )
 
-  if (!is.null(normalize)) {
+  if (!is.null(norm_method)) {
     logcounts(sce) <- normalize(sce, method = norm_method)
   }
 
   sce
-}
-
-# Classes ---------------------------------------------------
-
-#' @export
-setClass("SCERnaSeq", contains = "SingleCellExperiment")
-
-#' @export
-setClass("SCEHaircut", contains = "SingleCellExperiment")
-
-# Constructors ----------------------------------------------
-
-#' Constructor for a `SCERnaSeq` object
-#'
-#' @export
-SCERnaSeq <- function(...) {
-  sce <- SingleCellExperiment(...)
-  as(sce, "SCERnaSeq")
-}
-
-#' Constructor for a `SCEHaircut` object
-#'
-#' @export
-SCEHaircut <- function(...) {
-  sce <- SingleCellExperiment(...)
-  as(sce, "SCEHaircut")
 }
 
 # Generics --------------------------------------------------
@@ -116,18 +92,11 @@ SCEHaircut <- function(...) {
 #' @export
 setGeneric("normalize", function(x, method, ...) standardGeneric("normalize"))
 
+#' @export
 setMethod(
   "normalize",
-  signature("SCERnaSeq"),
+  signature("SingleCellExperiment"),
   function(x, method = "log_normalize", ...) {
-    do.call(method, list(counts(x), ...))
-  }
-)
-
-setMethod(
-  "normalize",
-  signature("SCEHaircut"),
-  function(x, method = "clr_normalize", ...) {
     do.call(method, list(counts(x), ...))
   }
 )

@@ -6,6 +6,9 @@
 \usage{
 FunctionalSingleCellExperiment(...)
 }
+\arguments{
+\item{...}{params for \code{\link[MultiAssayExperiment:MultiAssayExperiment]{MultiAssayExperiment::MultiAssayExperiment}}}
+}
 \description{
 A thin wrapper around \code{MultiAssayExperiment::MultiAssayExperiment}.
 }

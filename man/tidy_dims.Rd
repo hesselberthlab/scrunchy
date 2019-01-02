@@ -4,10 +4,10 @@
 \alias{tidy_dims}
 \title{Tidy reducedDims data}
 \usage{
-tidy_dims(fsce, dimnames = NULL, dims = c(1, 2))
+tidy_dims(sce, dimnames = NULL, dims = c(1, 2))
 }
 \arguments{
-\item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}.}
+\item{sce}{An object of class \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}}.}
 
 \item{dimnames}{vector of dimnames to retrieve. If \code{NULL}, retrieve all
 dimnames.}
@@ -19,10 +19,9 @@ Tidy reducedDims data
 }
 \section{Tidying}{
 
-This method is a data tidier for a \code{\link{FunctionalSingleCellExperient}}. Returns
-data from an \code{fsce} in a tidy format, where variables are columns and
-observations are rows. Output will contain \code{experiment} and \code{cell_id} columns
-that describe the source of the data.
+This is a data tidier for a \code{SingleCellExperient}. Returns
+data from an \code{sce} in a tidy format, where variables are columns and
+observations are rows.
 }
 
 \examples{

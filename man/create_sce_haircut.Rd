@@ -16,11 +16,12 @@ is stored in \code{logcounts}. Set to \code{NULL} to skip normalization.}
 two columns named \code{adduct} and \code{pos}.}
 }
 \value{
-\code{SCEHaircut} containing a \code{matrix} of counts
+\code{SingleCellExperiment} containing a \code{sparseMatrix} of counts
 }
 \description{
 Create a single-cell Haircut experiment
 }
 \examples{
 create_sce_haircut(scrunchy_data("haircut/"))
+
 }
