@@ -42,7 +42,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
     )
 
   ## theme default
-  p <- p + cowplot::theme_cowplot()
+  p <- p + cowplot::theme_minimal_grid(line_size = 0.2)
 
   llim <- legend_limits(df, color)
 
