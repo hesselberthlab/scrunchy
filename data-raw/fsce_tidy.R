@@ -1,7 +1,23 @@
 library(scrunchy)
 library(usethis)
 
-features <- calc_var_features(fsce_small, expt = "haircut", n = 10)
+hc_features <- calc_var_features(fsce_small, expt = "haircut", n = 10)
+mrna_features <- c(
+ "IL7R",
+ "CD14",
+ "LYZ",
+ "MS4A1",
+ "CD8A",
+ "FCGR3A",
+ "MS4A7",
+ "GNLY",
+ "NKG7",
+ "FCER1A",
+ "CST3",
+ "PPBP"
+)
+
+features <- c(hc_features, mrna_features)
 
 fsce_tidy <- purrr::reduce(
   list(
