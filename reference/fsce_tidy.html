@@ -129,7 +129,7 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 6 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 14 columns.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
@@ -138,7 +138,7 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Variables include:</p><ul>
-<li><p><code>cell_id</code>,</p></li>
+<li><p><code>cell_id</code></p></li>
 <li><p>UMAP dimensions (<code>UMAP1</code> and <code>UMAP2</code>)</p></li>
 <li><p>k-means clusters (<code>k_cluster</code>)</p></li>
 <li><p>Top ten most variable activities (<code>Uracil_45</code>, <code>riboG_44</code>, etc.)</p></li>
@@ -146,20 +146,22 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 6
-#&gt;    cell_id           UMAP1    UMAP2 k_cluster Uracil_45 riboG_44
-#&gt;    &lt;chr&gt;             &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 TGCGGGTTCAACCATG -2.16   -2.82   4             2.26     1.35 
-#&gt;  2 TGGTTCCTCACTTACT  0.426  -0.0609 5             0.880    1.21 
-#&gt;  3 CATATTCGTATGCTTG -2.56   -2.57   4             0.705    0.930
-#&gt;  4 TCACAAGTCTCCAACC -3.57   -2.12   1             0.417    0.417
-#&gt;  5 GGAATAATCTCGTTTA  2.53   -4.76   4             1.38     1.38 
-#&gt;  6 CTTTGCGAGCGCTCCA  2.04   -4.74   4             1.06     1.46 
-#&gt;  7 GTGCAGCAGCGTGAAC -2.99   -2.72   1             1.41     1.01 
-#&gt;  8 AGCGGTCCATCTACGA  0.851  -2.57   4             2.11     0.643
-#&gt;  9 GGATGTTTCCAGTATG -3.87   -0.947  1             1.67     0.891
-#&gt; 10 GTACTCCGTTACGCGC  1.87   10.0    6             0.477    0    
-#&gt; # ... with 240 more rows</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 14
+#&gt;    cell_id   UMAP1  UMAP2 k_cluster Uracil_45 Abasic_46 Abasic_45 Abasic_4
+#&gt;    &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 TGCGGG…  0.347  -3.03  4             2.26       1.90      3.17    1.07 
+#&gt;  2 TGGTTC…  0.641   0.926 6             0.880      2.91      1.89    1.56 
+#&gt;  3 CATATT… -0.0199 -3.19  4             0.705      1.81      3.22    0.930
+#&gt;  4 TCACAA… -1.25   -3.02  3             0.417      2.11      2.05    1.90 
+#&gt;  5 GGAATA…  4.73   -1.39  4             1.38       1.61      3.06    0.404
+#&gt;  6 CTTTGC…  4.81   -1.45  4             1.06       1.82      3.36    1.56 
+#&gt;  7 GTGCAG… -0.443  -2.88  3             1.41       1.76      2.80    0.841
+#&gt;  8 AGCGGT…  1.99   -1.44  4             2.11       1.79      3.37    1.42 
+#&gt;  9 GGATGT… -2.09   -3.77  3             1.67       2.27      2.98    1.84 
+#&gt; 10 GTACTC… -5.71    8.71  5             0.477      0         2.53    0    
+#&gt; # ... with 240 more rows, and 6 more variables: riboG_44 &lt;dbl&gt;, GU_45 &lt;dbl&gt;,
+#&gt; #   Abasic_3 &lt;dbl&gt;, GU_4 &lt;dbl&gt;, Abasic_5 &lt;dbl&gt;, Abasic_1 &lt;dbl&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

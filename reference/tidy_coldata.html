@@ -125,24 +125,23 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tidy_coldata</span>(<span class='no'>fsce</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_coldata</span>(<span class='no'>sce</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fsce</th>
-      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>.</p></td>
+      <th>sce</th>
+      <td><p>An object of class <code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SingleCellExperiment'>SingleCellExperiment::SingleCellExperiment</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
 
     
-    <p>This method is a data tidier for a <code>FunctionalSingleCellExperient</code>. Returns
-data from an <code>fsce</code> in a tidy format, where variables are columns and
-observations are rows. Output will contain <code>experiment</code> and <code>cell_id</code> columns
-that describe the source of the data.</p>
+    <p>This is a data tidier for a <code>SingleCellExperient</code>. Returns
+data from an <code>sce</code> in a tidy format, where variables are columns and
+observations are rows.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -155,15 +154,15 @@ that describe the source of the data.</p>
 #&gt;    cell_id          k_cluster
 #&gt;    &lt;chr&gt;            &lt;chr&gt;    
 #&gt;  1 TGCGGGTTCAACCATG 4        
-#&gt;  2 TGGTTCCTCACTTACT 5        
+#&gt;  2 TGGTTCCTCACTTACT 6        
 #&gt;  3 CATATTCGTATGCTTG 4        
-#&gt;  4 TCACAAGTCTCCAACC 1        
+#&gt;  4 TCACAAGTCTCCAACC 3        
 #&gt;  5 GGAATAATCTCGTTTA 4        
 #&gt;  6 CTTTGCGAGCGCTCCA 4        
-#&gt;  7 GTGCAGCAGCGTGAAC 1        
+#&gt;  7 GTGCAGCAGCGTGAAC 3        
 #&gt;  8 AGCGGTCCATCTACGA 4        
-#&gt;  9 GGATGTTTCCAGTATG 1        
-#&gt; 10 GTACTCCGTTACGCGC 6        
+#&gt;  9 GGATGTTTCCAGTATG 3        
+#&gt; 10 GTACTCCGTTACGCGC 5        
 #&gt; # ... with 240 more rows</div><div class='input'>
 </div></pre>
   </div>

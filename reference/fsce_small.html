@@ -138,10 +138,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>There are two <code>SingleCellExperiments</code>:</p><ol>
-<li><p><code>rnaseq</code>: a <code>SCERnaSeq</code> object containing a single-cell mRNA sequencing
+<li><p><code>rnaseq</code>: a <code>SingleCellExperiment</code> object containing a single-cell mRNA sequencing
 (10x Genomics V2 3 prime) cell/gene counts matrix in the <code>counts</code> slot.
 Log-normalized counts are in the <code>logcounts</code> slot.</p></li>
-<li><p><code>haircut</code>: a <code>SCEHaircut</code> object containing a Haircut experiment using DNA
+<li><p><code>haircut</code>: a <code>SingleCellExperiment</code> object containing a Haircut experiment using DNA
 repair oligos. Counts are in the <code>counts</code> slot, and centered log-ratio
 normalized counts are in the <code>logcounts</code> slot.</p></li>
 </ol>
@@ -161,8 +161,8 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
     <pre class="examples"><div class='input'><span class='no'>fsce_small</span></div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
 #&gt;  experiments with user-defined names and respective classes. 
 #&gt;  Containing an ExperimentList class object of length 2: 
-#&gt;  [1] rnaseq: SCERnaSeq with 9436 rows and 250 columns 
-#&gt;  [2] haircut: SCEHaircut with 425 rows and 250 columns 
+#&gt;  [1] rnaseq: SingleCellExperiment with 9436 rows and 250 columns 
+#&gt;  [2] haircut: SingleCellExperiment with 425 rows and 250 columns 
 #&gt; Features: 
 #&gt;  experiments() - obtain the ExperimentList instance 
 #&gt;  colData() - the primary/phenotype DataFrame 
@@ -171,7 +171,7 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt;  *Format() - convert into a long or wide DataFrame 
 #&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
 <span class='co'># Individual experiments</span>
-<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]]</div><div class='output co'>#&gt; class: SCERnaSeq 
+<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]]</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 9436 250 
 #&gt; metadata(0):
 #&gt; assays(2): counts logcounts
@@ -182,7 +182,7 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt; colData names(2): cell_id k_cluster
 #&gt; reducedDimNames(3): PCA UMAP TSNE
 #&gt; spikeNames(0):</div><div class='input'>
-<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]]</div><div class='output co'>#&gt; class: SCEHaircut 
+<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]]</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 425 250 
 #&gt; metadata(0):
 #&gt; assays(2): counts logcounts
@@ -204,25 +204,71 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 <span class='no'>fsce_small</span>[<span class='no'>features</span>, <span class='no'>cell_ids</span>, ]</div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
 #&gt;  experiments with user-defined names and respective classes. 
 #&gt;  Containing an ExperimentList class object of length 2: 
-#&gt;  [1] rnaseq: SCERnaSeq with 1 rows and 2 columns 
-#&gt;  [2] haircut: SCEHaircut with 1 rows and 2 columns 
+#&gt;  [1] rnaseq: SingleCellExperiment with 1 rows and 2 columns 
+#&gt;  [2] haircut: SingleCellExperiment with 1 rows and 2 columns 
 #&gt; Features: 
 #&gt;  experiments() - obtain the ExperimentList instance 
 #&gt;  colData() - the primary/phenotype DataFrame 
 #&gt;  sampleMap() - the sample availability DataFrame 
 #&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
 #&gt;  *Format() - convert into a long or wide DataFrame 
-#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>SingleCellExperiment</span>)
-<span class='co'># dimensionality reduction results</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])
-
+#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>SingleCellExperiment</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: SummarizedExperiment</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
+#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
+#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:scrunchy’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    normalize</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colMeans,</span>
+#&gt; <span class='message'>    colnames, colSums, dirname, do.call, duplicated, eval, evalq,</span>
+#&gt; <span class='message'>    Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply,</span>
+#&gt; <span class='message'>    lengths, Map, mapply, match, mget, order, paste, pmax, pmax.int,</span>
+#&gt; <span class='message'>    pmin, pmin.int, Position, rank, rbind, Reduce, rowMeans, rownames,</span>
+#&gt; <span class='message'>    rowSums, sapply, setdiff, sort, table, tapply, union, unique,</span>
+#&gt; <span class='message'>    unsplit, which, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Biobase</span></div><div class='output co'>#&gt; <span class='message'>Welcome to Bioconductor</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    Vignettes contain introductory material; view with</span>
+#&gt; <span class='message'>    'browseVignettes()'. To cite Bioconductor, see</span>
+#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: DelayedArray</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: matrixStats</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘matrixStats’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:Biobase’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    anyMissing, rowMedians</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocParallel</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘DelayedArray’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:matrixStats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    aperm, apply</span></div><div class='input'><span class='co'># dimensionality reduction results</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; [1] "PCA"  "UMAP" "TSNE"</div><div class='input'>
 <span class='co'># UMAP results (first 5 rows)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]
-
+<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                         [,1]       [,2]
+#&gt; TGCGGGTTCAACCATG  0.34697425 -3.0311386
+#&gt; TGGTTCCTCACTTACT  0.64053185  0.9259472
+#&gt; CATATTCGTATGCTTG -0.01991813 -3.1941673
+#&gt; TCACAAGTCTCCAACC -1.25385101 -3.0247732
+#&gt; GGAATAATCTCGTTTA  4.73020022 -1.3901392</div><div class='input'>
 <span class='co'># k-means cluster IDs</span>
-<span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])
-<span class='co'># }</span><div class='input'>
+<span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 2 columns
+#&gt;                           cell_id   k_cluster
+#&gt;                       &lt;character&gt; &lt;character&gt;
+#&gt; TGCGGGTTCAACCATG TGCGGGTTCAACCATG           4
+#&gt; TGGTTCCTCACTTACT TGGTTCCTCACTTACT           6
+#&gt; CATATTCGTATGCTTG CATATTCGTATGCTTG           4
+#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           3
+#&gt; GGAATAATCTCGTTTA GGAATAATCTCGTTTA           4
+#&gt; ...                           ...         ...
+#&gt; CTACGTCGTAACGCGA CTACGTCGTAACGCGA           4
+#&gt; AGGCCGTTCCCAAGAT AGGCCGTTCCCAAGAT           3
+#&gt; AGCTCCTAGCCCAACC AGCTCCTAGCCCAACC           4
+#&gt; CTCGAAACACTTAAGC CTCGAAACACTTAAGC           5
+#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           4</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
