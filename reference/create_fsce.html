@@ -152,7 +152,7 @@ created by an <code>create_</code> function.</p></td>
     <pre class="examples"><div class='input'><span class='co'># this is identical to the `fsce_small` data set:</span>
 <span class='fu'>create_fsce</span>(
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-    <span class='kw'>rnaseq</span>  <span class='kw'>=</span> <span class='fu'><a href='create_sce_rnaseq.html'>create_sce_rnaseq</a></span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"mrna/"</span>)),
+    <span class='kw'>rnaseq</span> <span class='kw'>=</span> <span class='fu'><a href='create_sce_rnaseq.html'>create_sce_rnaseq</a></span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"mrna/"</span>)),
     <span class='kw'>haircut</span> <span class='kw'>=</span> <span class='fu'><a href='create_sce_haircut.html'>create_sce_haircut</a></span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"haircut/"</span>))
   )
 )</div><div class='output co'>#&gt; <span class='message'>Loading sc-rnaseq matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/mrna</span></div><div class='output co'>#&gt; <span class='message'>Loading haircut matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/haircut</span></div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
@@ -166,8 +166,7 @@ created by an <code>create_</code> function.</p></td>
 #&gt;  sampleMap() - the sample availability DataFrame 
 #&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
 #&gt;  *Format() - convert into a long or wide DataFrame 
-#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
-</div></pre>
+#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

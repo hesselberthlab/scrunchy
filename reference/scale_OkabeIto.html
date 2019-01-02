@@ -138,9 +138,12 @@ colors. See <a href='palette_OkabeIto.html'>palette_OkabeIto</a> for details.</p
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>aesthetics</th>
+      <td><p>aesthetic mappings</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>common discrete scale parameters: <code>name</code>, <code>breaks</code>, <code>labels</code>, <code>na.value</code>, <code>limits</code>, <code>guide</code>, and <code>aesthetics</code>.
-See discrete_scale for more details.</p></td>
+      <td><p>additional arguments for <code>scale_OkabeIto</code></p></td>
     </tr>
     <tr>
       <th>use_black</th>
@@ -154,6 +157,11 @@ See discrete_scale for more details.</p></td>
       <th>alpha</th>
       <td><p>Alpha transparency level of the color. Default is no transparency.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>common discrete scale parameters: <code>name</code>, <code>breaks</code>, <code>labels</code>, <code>na.value</code>, <code>limits</code>, <code>guide</code>, and <code>aesthetics</code>.
+See discrete_scale for more details.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -166,8 +174,7 @@ param, which is only available in unreleased colorspace 0.4.1.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'>scale_color_OkabeIto</span>()</div><div class='img'><img src='scale_OkabeIto-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>) + <span class='fu'>scale_fill_OkabeIto</span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>))</div><div class='img'><img src='scale_OkabeIto-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>) + <span class='fu'>scale_fill_OkabeIto</span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>))</div><div class='img'><img src='scale_OkabeIto-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
