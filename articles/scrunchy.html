@@ -105,8 +105,8 @@
 <pre><code>## A FunctionalSingleCellExperiment object of 2 listed
 ##  experiments with user-defined names and respective classes. 
 ##  Containing an ExperimentList class object of length 2: 
-##  [1] rnaseq: SingleCellExperiment with 9436 rows and 250 columns 
-##  [2] haircut: SingleCellExperiment with 425 rows and 250 columns 
+##  [1] rnaseq: SingleCellExperiment with 9479 rows and 250 columns 
+##  [2] haircut: SingleCellExperiment with 426 rows and 250 columns 
 ## Features: 
 ##  experiments() - obtain the ExperimentList instance 
 ##  colData() - the primary/phenotype DataFrame 
@@ -177,60 +177,60 @@
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># `rnaseq` stores RNA info</span></a>
 <a class="sourceLine" id="cb29-2" data-line-number="2">fsce[[<span class="st">"rnaseq"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
-## dim: 9436 250 
+## dim: 9479 250 
 ## metadata(0):
 ## assays(2): counts logcounts
-## rownames(9436): FO538757.2 RP4-669L17.10 ... AC004556.1 AC240274.1
+## rownames(9479): FO538757.2 AP006222.2 ... AC004556.1 AC240274.1
 ## rowData names(0):
-## colnames(250): TGCGGGTTCAACCATG TGGTTCCTCACTTACT ...
-##   CTCGAAACACTTAAGC TGACAACGTCGCATAT
+## colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ...
+##   CTCGAAACACACTGCG TGACGGCAGAGTCGGT
 ## colData names(1): cell_id
 ## reducedDimNames(0):
 ## spikeNames(0):</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce[[<span class="st">"rnaseq"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
-##               TGCGGGTTCAACCATG TGGTTCCTCACTTACT CATATTCGTATGCTTG
-## FO538757.2                   .                .                .
-## RP4-669L17.10                .                .                .
-## NOC2L                        .                .                .
-## ISG15                        .                1                .
-## TNFRSF18                     .                .                .
-##               TCACAAGTCTCCAACC GGAATAATCTCGTTTA
-## FO538757.2                   1                .
-## RP4-669L17.10                .                .
-## NOC2L                        .                .
-## ISG15                        .                .
-## TNFRSF18                     .                .</code></pre>
+##            TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
+## FO538757.2                .                .                .
+## AP006222.2                .                .                .
+## NOC2L                     .                .                .
+## ISG15                     .                .                .
+## TNFRSF18                  .                .                .
+##            TCACAAGTCTCCAACC GGACAAGAGCCCTAAT
+## FO538757.2                1                .
+## AP006222.2                .                .
+## NOC2L                     .                .
+## ISG15                     .                .
+## TNFRSF18                  .                .</code></pre>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># `haircut` stores functional data</span></a>
 <a class="sourceLine" id="cb33-2" data-line-number="2">fsce[[<span class="st">"haircut"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
-## dim: 425 250 
+## dim: 426 250 
 ## metadata(0):
 ## assays(2): counts logcounts
-## rownames(425): Abasic_1 Abasic_10 ... riboG_8 riboG_9
+## rownames(426): Abasic_1 Abasic_10 ... riboG_8 riboG_9
 ## rowData names(2): hairpin position
-## colnames(250): TGCGGGTTCAACCATG TGGTTCCTCACTTACT ...
-##   CTCGAAACACTTAAGC TGACAACGTCGCATAT
+## colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ...
+##   CTCGAAACACACTGCG TGACGGCAGAGTCGGT
 ## colData names(1): cell_id
 ## reducedDimNames(0):
 ## spikeNames(0):</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
-##           TGCGGGTTCAACCATG TGGTTCCTCACTTACT CATATTCGTATGCTTG
-## Abasic_1                11               11               13
-## Abasic_10                1                1                .
-## Abasic_11                1                1                .
-## Abasic_12                .                .                2
-## Abasic_13                .                .                .
-##           TCACAAGTCTCCAACC GGAATAATCTCGTTTA
-## Abasic_1                 7               16
+##           TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
+## Abasic_1                 8               17               11
+## Abasic_10                .                .                .
+## Abasic_11                .                .                .
+## Abasic_12                .                .                .
+## Abasic_13                .                1                .
+##           TCACAAGTCTCCAACC GGACAAGAGCCCTAAT
+## Abasic_1                 7               18
 ## Abasic_10                .                .
 ## Abasic_11                .                .
-## Abasic_12                .                1
+## Abasic_12                .                .
 ## Abasic_13                .                .</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># row annotations contain info about each row in the matrix</span></a>
 <a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">rowData</span>(fsce[[<span class="st">"haircut"</span>]])</a></code></pre></div>
-<pre><code>## DataFrame with 425 rows and 2 columns
+<pre><code>## DataFrame with 426 rows and 2 columns
 ##               hairpin    position
 ##           &lt;character&gt; &lt;character&gt;
 ## Abasic_1       Abasic           1
@@ -250,17 +250,17 @@
 <pre><code>## DataFrame with 250 rows and 1 column
 ##                           cell_id
 ##                       &lt;character&gt;
-## TGCGGGTTCAACCATG TGCGGGTTCAACCATG
-## TGGTTCCTCACTTACT TGGTTCCTCACTTACT
-## CATATTCGTATGCTTG CATATTCGTATGCTTG
+## TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT
+## TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT
+## CATATTCCATGCCCGA CATATTCCATGCCCGA
 ## TCACAAGTCTCCAACC TCACAAGTCTCCAACC
-## GGAATAATCTCGTTTA GGAATAATCTCGTTTA
+## GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT
 ## ...                           ...
-## CTACGTCGTAACGCGA CTACGTCGTAACGCGA
-## AGGCCGTTCCCAAGAT AGGCCGTTCCCAAGAT
-## AGCTCCTAGCCCAACC AGCTCCTAGCCCAACC
-## CTCGAAACACTTAAGC CTCGAAACACTTAAGC
-## TGACAACGTCGCATAT TGACAACGTCGCATAT</code></pre>
+## CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT
+## TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT
+## AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC
+## CTCGAAACACACTGCG CTCGAAACACACTGCG
+## TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT</code></pre>
 </div>
 <div id="plots" class="section level1">
 <h1 class="hasAnchor">
@@ -276,12 +276,12 @@
 <p>RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.</p>
 <p>Normalized data is stored in the <code>logcounts</code> slot of each <code>SingleCellExperiment</code> object.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
-<pre><code>##           TGCGGGTTCAACCATG TGGTTCCTCACTTACT CATATTCGTATGCTTG
-## Abasic_1         1.8293520        1.8197329        2.0350111
-## Abasic_10        0.3889568        0.3852754        0.0000000
-## Abasic_11        0.3889568        0.3852754        0.0000000
-## Abasic_12        0.0000000        0.0000000        0.7047973
-## Abasic_13        0.0000000        0.0000000        0.0000000</code></pre>
+<pre><code>##           TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
+## Abasic_1          1.614359        2.1843851         1.931199
+## Abasic_10         0.000000        0.0000000         0.000000
+## Abasic_11         0.000000        0.0000000         0.000000
+## Abasic_12         0.000000        0.0000000         0.000000
+## Abasic_13         0.000000        0.3810593         0.000000</code></pre>
 </div>
 <div id="feature-selection-and-pca" class="section level1">
 <h1 class="hasAnchor">
@@ -305,11 +305,11 @@
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                       [,1]       [,2]
-## TGCGGGTTCAACCATG -4.957417  0.4037645
-## TGGTTCCTCACTTACT 14.836500  3.1455781
-## CATATTCGTATGCTTG -3.261115  0.8471050
-## TCACAAGTCTCCAACC -4.404641 -0.3886615</code></pre>
+<pre><code>##                        [,1]        [,2]
+## TGCGGGTTCAACTCTT -1.2183239 -4.05504841
+## TGGTTCCTCCCAAGAT -2.0738914 -4.60362983
+## CATATTCCATGCCCGA  0.6439288 -4.74436156
+## TCACAAGTCTCCAACC  0.7212403 -0.03187784</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
@@ -371,18 +371,18 @@
 <a class="sourceLine" id="cb68-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb68-13" data-line-number="13">fsce_tidy</a></code></pre></div>
 <pre><code>## # A tibble: 250 x 6
-##    cell_id            UMAP1  UMAP2 k_cluster Uracil_45 riboG_44
-##    &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-##  1 TGCGGGTTCAACCATG  0.347  -3.03  4             2.26     1.35 
-##  2 TGGTTCCTCACTTACT  0.641   0.926 6             0.880    1.21 
-##  3 CATATTCGTATGCTTG -0.0199 -3.19  4             0.705    0.930
-##  4 TCACAAGTCTCCAACC -1.25   -3.02  3             0.417    0.417
-##  5 GGAATAATCTCGTTTA  4.73   -1.39  4             1.38     1.38 
-##  6 CTTTGCGAGCGCTCCA  4.81   -1.45  4             1.06     1.46 
-##  7 GTGCAGCAGCGTGAAC -0.443  -2.88  3             1.41     1.01 
-##  8 AGCGGTCCATCTACGA  1.99   -1.44  4             2.11     0.643
-##  9 GGATGTTTCCAGTATG -2.09   -3.77  3             1.67     0.891
-## 10 GTACTCCGTTACGCGC -5.71    8.71  5             0.477    0    
+##    cell_id           UMAP1  UMAP2 k_cluster Uracil_45 riboG_44
+##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+##  1 TGCGGGTTCAACTCTT  1.53   2.75  6             1.39     1.61 
+##  2 TGGTTCCTCCCAAGAT  1.04   1.82  6             1.55     1.33 
+##  3 CATATTCCATGCCCGA  1.68   4.18  6             1.76     0.429
+##  4 TCACAAGTCTCCAACC -2.72   2.56  6             0.418    0.418
+##  5 GGACAAGAGCCCTAAT  0.945  3.07  6             2.09     1.46 
+##  6 CTTTGCGAGCAGGTCA  1.07   3.94  6             1.08     1.08 
+##  7 GTGCAGCAGTAGCCGA  2.25   1.55  6             2.32     1.59 
+##  8 AGCGGTCCAATAGAGT -2.55  -0.766 4             1.21     1.46 
+##  9 GGATGTTTCTCAAACG  1.30   2.09  6             1.49     0.400
+## 10 GTACTCCTCGTTTAGG -4.90   2.47  5             1.50     0.405
 ## # ... with 240 more rows</code></pre>
 </div>
 <div id="visualization" class="section level1">
