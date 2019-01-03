@@ -4,7 +4,7 @@
 \alias{plot_activity}
 \title{Plot activities per cluster}
 \usage{
-plot_activity(data, activity, group = NULL, legend = FALSE)
+plot_activity(data, activity, group = NULL)
 }
 \arguments{
 \item{data}{data to plot}
@@ -12,8 +12,6 @@ plot_activity(data, activity, group = NULL, legend = FALSE)
 \item{activity}{activity variable}
 
 \item{group}{grouping variable}
-
-\item{legend}{display legend}
 }
 \description{
 Generates a beeswarm plot of activity across specified groups
@@ -22,8 +20,8 @@ Generates a beeswarm plot of activity across specified groups
 cowplot::plot_grid(
   plotlist = list(
     plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, title = "mRNA expression"),
-    plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
-    plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
+    plot_activity(fsce_tidy, Uracil_45, k_cluster),
+    plot_activity(fsce_tidy, riboG_44, k_cluster)
   )
 )
 

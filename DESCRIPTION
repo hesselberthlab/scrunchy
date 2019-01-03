@@ -44,7 +44,8 @@ Imports:
     MultiAssayExperiment,
     R.utils,
     tidyr,
-    scales
+    scales,
+    forcats
 Suggests: 
     knitr,
     rmarkdown,

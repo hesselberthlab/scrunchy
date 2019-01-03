@@ -139,8 +139,8 @@ Activities can be visualized per-group with `plot_actvitiy()`. These two plots h
 
 ```{r plot_activity}
 cowplot::plot_grid(
-  plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
-  plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
+  plot_activity(fsce_tidy, Uracil_45, k_cluster),
+  plot_activity(fsce_tidy, riboG_44, k_cluster)
 )
 ```
 

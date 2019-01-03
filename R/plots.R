@@ -16,7 +16,7 @@
 #' @param alpha alpha for [`geom_point`]
 #' @param palette palette for continuous colors. One of cloupe (the default),
 #'   brewer, viridis.
-#' @param title plot title
+#' @param labels labels for legend.
 #'
 #' @examples
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
@@ -27,12 +27,16 @@
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
 #'
+#' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, labels = LETTERS[1:6])
+#'
 #' @family plotting
+#'
+#' @importFrom forcats fct_count
 #'
 #' @export
 plot_dims <- function(df, x, y, color = "cell_id",
                       size = 0.1, alpha = 1,
-                      palette = "cloupe", title = NULL) {
+                      palette = "cloupe", labels = NULL) {
   x <- enquo(x)
   y <- enquo(y)
   color <- enquo(color)
@@ -46,9 +50,17 @@ plot_dims <- function(df, x, y, color = "cell_id",
   ## theme default
   p <- p + cowplot::theme_minimal_grid(line_size = 0.2)
 
-  llim <- legend_limits(df, color)
-
   if (is_discrete(pull(df, !!color))) {
+
+    ## get labels
+    n_colors <- fct_count(pull(df, !!color))
+
+    if (!is.null(labels) && (length(labels) != nrow(n_colors))) {
+      stop(glue("`labels` ({nl}) must match factors in `{color}` ({nc})",
+                color = rlang::quo_text(color),
+                nl = length(labels),
+                nc = nrow(n_colors)), call. = FALSE)
+    }
 
     ## legend aesthetics
     p <- p + guides(
@@ -59,9 +71,13 @@ plot_dims <- function(df, x, y, color = "cell_id",
 
     ## color aesthetics
     p <- p + scale_color_manual(
-      values = discrete_palette_default
+      values = discrete_palette_default,
+      labels = labels %||% n_colors$f
     )
   } else {
+
+    llim <- legend_limits(df, color)
+
     if (palette == "cloupe") {
       p <- p + scale_color_gradientn(
         colors = loupe_palette,
@@ -82,10 +98,6 @@ plot_dims <- function(df, x, y, color = "cell_id",
     }
   } # discrete?
 
-  if (!is.null(title)) {
-    p <- p + labs(title = title)
-  }
-
   p
 }
 
@@ -96,35 +108,29 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #' @param data data to plot
 #' @param activity activity variable
 #' @param group grouping variable
-#' @param legend display legend
 #'
 #' @examples
 #' cowplot::plot_grid(
 #'   plotlist = list(
 #'     plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, title = "mRNA expression"),
-#'     plot_activity(fsce_tidy, Uracil_45, k_cluster, legend = FALSE),
-#'     plot_activity(fsce_tidy, riboG_44, k_cluster, legend = FALSE)
+#'     plot_activity(fsce_tidy, Uracil_45, k_cluster),
+#'     plot_activity(fsce_tidy, riboG_44, k_cluster)
 #'   )
 #' )
 #'
 #' @family plotting
 #'
 #' @export
-plot_activity <- function(data, activity, group = NULL, legend = FALSE) {
+plot_activity <- function(data, activity, group = NULL) {
   activity <- enquo(activity)
   group <- enquo(group)
 
-  p <- ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
+  ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
     scale_color_OkabeIto() +
     cowplot::theme_cowplot() +
-    labs(x = "Activity", y = "Group")
-
-  if (!legend) {
-    p <- p + theme(legend.position = "none")
-  }
-
-  p
+    labs(x = "Activity", y = "Group") +
+    theme(legend.position = "none")
 }
 
 #' Heatmap of signals
