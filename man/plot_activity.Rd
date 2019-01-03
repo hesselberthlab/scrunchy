@@ -19,7 +19,7 @@ Generates a beeswarm plot of activity across specified groups
 \examples{
 cowplot::plot_grid(
   plotlist = list(
-    plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, title = "mRNA expression"),
+    plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster),
     plot_activity(fsce_tidy, Uracil_45, k_cluster),
     plot_activity(fsce_tidy, riboG_44, k_cluster)
   )
