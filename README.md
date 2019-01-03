@@ -48,8 +48,8 @@ fsce_small
 #> A FunctionalSingleCellExperiment object of 2 listed
 #>  experiments with user-defined names and respective classes. 
 #>  Containing an ExperimentList class object of length 2: 
-#>  [1] rnaseq: SCERnaSeq with 9436 rows and 250 columns 
-#>  [2] haircut: SCEHaircut with 425 rows and 250 columns 
+#>  [1] rnaseq: SingleCellExperiment with 9479 rows and 250 columns 
+#>  [2] haircut: SingleCellExperiment with 426 rows and 250 columns 
 #> Features: 
 #>  experiments() - obtain the ExperimentList instance 
 #>  colData() - the primary/phenotype DataFrame 

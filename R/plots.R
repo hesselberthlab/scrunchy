@@ -21,6 +21,8 @@
 #' @examples
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
 #'
+#' plot_dims(fsce_tidy, UMAP1, UMAP2, IL7R, size = 1)
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
