@@ -4,7 +4,7 @@
 \alias{plot_activity}
 \title{Plot activities per cluster}
 \usage{
-plot_activity(data, activity, group = NULL, legend = FALSE)
+plot_activity(data, activity, group = NULL)
 }
 \arguments{
 \item{data}{data to plot}
@@ -12,8 +12,6 @@ plot_activity(data, activity, group = NULL, legend = FALSE)
 \item{activity}{activity variable}
 
 \item{group}{grouping variable}
-
-\item{legend}{display legend}
 }
 \description{
 Generates a beeswarm plot of activity across specified groups
