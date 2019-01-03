@@ -306,10 +306,10 @@
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
 <pre><code>##                       [,1]      [,2]
-## TGCGGGTTCAACTCTT 0.4633485 -5.719547
-## TGGTTCCTCCCAAGAT 0.4246569 -4.739188
-## CATATTCCATGCCCGA 2.3555109 -3.407616
-## TCACAAGTCTCCAACC 0.4743183  1.065443</code></pre>
+## TGCGGGTTCAACTCTT 1.3377931 -4.853816
+## TGGTTCCTCCCAAGAT 1.7223889 -5.376854
+## CATATTCCATGCCCGA 2.7476364 -2.601294
+## TCACAAGTCTCCAACC 0.1650008  1.468701</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
@@ -403,8 +403,8 @@
 <a href="#functional-activities" class="anchor"></a>Functional activities</h2>
 <p>Activities can be visualized per-group with <code>plot_actvitiy()</code>. These two plots have uracil and ribonucleotide excision activities plotted per cluster (k-means, n = 6).</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster, <span class="dt">legend =</span> <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster, <span class="dt">legend =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
 <a class="sourceLine" id="cb71-4" data-line-number="4">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/plot_activity-1.png" width="100%"></p>
 </div>

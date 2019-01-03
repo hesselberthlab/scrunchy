@@ -37,6 +37,9 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/create_sce_rnaseq.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/filter_matrix.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/filter_molecules.html</loc>
   </url>
   <url>
@@ -104,6 +107,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/umitools_to_mtx.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/write_matrix.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/articles/scrunchy.html</loc>
