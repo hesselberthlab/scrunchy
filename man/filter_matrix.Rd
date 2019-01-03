@@ -15,5 +15,5 @@ filter_matrix(matrix_path, barcodes_path, output_path, quiet = FALSE)
 will be generated at the supplied path}
 }
 \description{
-Filter and write a sparseMatrix keeping only specified barcodes
+sparseMatrix will be read from disk, filtered, and then written to disk.
 }
