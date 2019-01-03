@@ -4,7 +4,8 @@
 \alias{filter_matrix}
 \title{Filter and write a sparseMatrix keeping only specified barcodes}
 \usage{
-filter_matrix(matrix_path, barcodes_path, output_path, quiet = FALSE)
+filter_matrix(matrix_path, barcodes_path, output_path,
+  strip_10x_suffix = TRUE)
 }
 \arguments{
 \item{matrix_path}{path to directory with mtx matrix}
@@ -13,6 +14,9 @@ filter_matrix(matrix_path, barcodes_path, output_path, quiet = FALSE)
 
 \item{output_path}{path for output files. matrix.mtx.gz, barcodes.tsv.gz and features.tsv.gz
 will be generated at the supplied path}
+
+\item{strip_10x_suffix}{if TRUE, remove 10x suffix (i.e. "-\link{0-9}+$") from barcodes
+read from \code{barcodes_path} (default = TRUE)}
 }
 \description{
 sparseMatrix will be read from disk, filtered, and then written to disk.
