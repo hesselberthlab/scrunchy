@@ -29,6 +29,8 @@
 #' @import ggplot2
 #' @import umap
 #'
+#' @importFrom tidyr gather nest
+#'
 #' @importFrom ggbeeswarm geom_quasirandom
 #' @importFrom glue glue
 #' @importFrom cowplot theme_cowplot plot_grid
