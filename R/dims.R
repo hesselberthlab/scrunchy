@@ -6,6 +6,7 @@
 #' @param genes vector of genes to include in PCA (default is all genes)
 #' @param n_pcs number of principle components to return
 #' @param scale If `TRUE`, perform PCA on input on scaled data
+#' @param seed seed for reproducible result
 #'
 #' @return `fsce` with PCA values added to reducedDims
 #'
@@ -14,7 +15,8 @@ calc_pca <- function(fsce,
                      expt = "rnaseq",
                      genes = NULL,
                      n_pcs = 20,
-                     scale = TRUE) {
+                     scale = TRUE,
+                     seed = NULL) {
 
   ## check inputs
   if (!expt %in% names(fsce)) {
@@ -49,6 +51,8 @@ calc_pca <- function(fsce,
 
   message("calculating pcs")
   n_pcs <- min(c(n_pcs, dim(dr_mat) - 1))
+
+  set.seed(seed)
   pcs <- irlba::prcomp_irlba(dr_mat,
     n = n_pcs,
     center = FALSE,
@@ -93,7 +97,7 @@ calc_umap <- function(fsce,
                       n_neighbors = 30,
                       min_dist = 0.3,
                       metric = "euclidean",
-                      seed = NA,
+                      seed = NA, # must be NA for umap defaults
                       ...) {
 
   ## check inputs
@@ -155,7 +159,7 @@ calc_tsne <- function(fsce,
                       n_dims = NULL,
                       perplexity = 30,
                       theta = 0.5,
-                      seed = NA,
+                      seed = NULL,
                       ...) {
 
   ## check inputs
@@ -176,6 +180,7 @@ calc_tsne <- function(fsce,
     dr_mat <- dr_mat[, 1:n_dims]
   }
 
+  set.seed(seed)
   tsne_res <- Rtsne::Rtsne(
     dr_mat,
     perplexity = perplexity,

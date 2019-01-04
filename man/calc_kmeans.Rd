@@ -5,7 +5,7 @@
 \title{K-means clustering}
 \usage{
 calc_kmeans(fsce, expt = "rnaseq", k, method = "PCA", n_dims = NULL,
-  ...)
+  seed = NULL, ...)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}
@@ -20,6 +20,8 @@ PCA)}
 
 \item{n_dims}{specify the number of dimensions from "dr" to use for
 clustering, defaults to all dimensions}
+
+\item{seed}{seed for reproducible result}
 
 \item{...}{additional arguments to pass to \code{\link[stats:kmeans]{stats::kmeans()}}}
 }

@@ -5,7 +5,7 @@
 \title{Calculate principal components using irlba}
 \usage{
 calc_pca(fsce, expt = "rnaseq", genes = NULL, n_pcs = 20,
-  scale = TRUE)
+  scale = TRUE, seed = NULL)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}
@@ -18,6 +18,8 @@ calc_pca(fsce, expt = "rnaseq", genes = NULL, n_pcs = 20,
 \item{n_pcs}{number of principle components to return}
 
 \item{scale}{If \code{TRUE}, perform PCA on input on scaled data}
+
+\item{seed}{seed for reproducible result}
 }
 \value{
 \code{fsce} with PCA values added to reducedDims
