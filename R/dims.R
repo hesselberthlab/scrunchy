@@ -97,7 +97,7 @@ calc_umap <- function(fsce,
                       n_neighbors = 30,
                       min_dist = 0.3,
                       metric = "euclidean",
-                      seed = NULL,
+                      seed = NA, # must be NA for umap defaults
                       ...) {
 
   ## check inputs
