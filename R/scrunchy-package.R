@@ -29,7 +29,7 @@
 #' @import ggplot2
 #' @import umap
 #'
-#' @importFrom tidyr gather nest
+#' @importFrom tidyr gather nest crossing
 #'
 #' @importFrom ggbeeswarm geom_quasirandom
 #' @importFrom glue glue
