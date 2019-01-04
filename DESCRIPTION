@@ -45,7 +45,8 @@ Imports:
     R.utils,
     tidyr,
     scales,
-    forcats
+    forcats,
+    broom
 Suggests: 
     knitr,
     rmarkdown,
@@ -70,6 +71,7 @@ Collate:
     'reexport-colorblindr.R'
     'plots.R'
     'scrunchy-package.R'
+    'stats.R'
     'tidiers.R'
     'utils-barcodes.R'
     'utils.R'

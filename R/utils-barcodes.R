@@ -192,7 +192,6 @@ filter_molecules <- function(molecule_file,
 #' @param return_data if TRUE return plotting data instead of plotting
 #'   distribution
 #'
-#' @importFrom tidyr gather
 #' @importFrom scales comma
 #' @export
 plot_saturation <- function(molecules,
