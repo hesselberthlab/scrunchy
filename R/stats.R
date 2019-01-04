@@ -11,7 +11,7 @@
 #' @param group variable for generating combinations
 #'
 #' @examples
-#' x <- select(fsce_tidy, k_cluster, Uracil_45, riboG_44)
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 #' x
 #'
 #' calc_group_stats(x, group = k_cluster)
