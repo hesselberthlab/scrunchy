@@ -126,7 +126,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>calc_pca</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n_pcs</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,6 +151,10 @@
     <tr>
       <th>scale</th>
       <td><p>If <code>TRUE</code>, perform PCA on input on scaled data</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>seed for reproducible result</p></td>
     </tr>
     </table>
     

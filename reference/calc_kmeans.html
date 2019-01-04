@@ -126,7 +126,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>calc_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='no'>k</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>)</pre>
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +153,10 @@ PCA)</p></td>
       <th>n_dims</th>
       <td><p>specify the number of dimensions from "dr" to use for
 clustering, defaults to all dimensions</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>seed for reproducible result</p></td>
     </tr>
     <tr>
       <th>...</th>
