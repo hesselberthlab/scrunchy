@@ -5,7 +5,7 @@
 \title{Generate 2D cell embeddings using tSNE}
 \usage{
 calc_tsne(fsce, expt = "rnaseq", method = "PCA", n_dims = NULL,
-  perplexity = 30, theta = 0.5, seed = NA, ...)
+  perplexity = 30, theta = 0.5, seed = NULL, ...)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}

@@ -8,6 +8,7 @@
 #'   PCA)
 #' @param n_dims specify the number of dimensions from "dr" to use for
 #'   clustering, defaults to all dimensions
+#' @param seed seed for reproducible result
 #' @param ... additional arguments to pass to [`stats::kmeans()`]
 #'
 #' @return fsce with `k_cluster` in `expt` colData.
@@ -30,6 +31,7 @@ calc_kmeans <- function(fsce,
                         k,
                         method = "PCA",
                         n_dims = NULL,
+                        seed = NULL,
                         ...) {
   ## check inputs
   if (!expt %in% names(fsce)) {
@@ -53,6 +55,7 @@ calc_kmeans <- function(fsce,
     stop("k is larger than observations in input matrix", call. = FALSE)
   }
 
+  set.seed(seed)
   km_res <- stats::kmeans(dr_mat, centers = k, ...)
 
   colData(fsce[[expt]])$k_cluster <- as.character(km_res$cluster)

@@ -6,7 +6,7 @@
 \usage{
 calc_umap(fsce, expt = "rnaseq", method = "PCA", n_dims = NULL,
   n_neighbors = 30, min_dist = 0.3, metric = "euclidean",
-  seed = NA, ...)
+  seed = NULL, ...)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}} object}
