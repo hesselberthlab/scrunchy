@@ -128,7 +128,8 @@ cluster assignments, and measured activities.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_dims</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"cell_id"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"cloupe"</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"cloupe"</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>label_groups</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,7 +165,15 @@ brewer, viridis.</p></td>
     </tr>
     <tr>
       <th>labels</th>
-      <td><p>labels for legend.</p></td>
+      <td><p>labels for groups</p></td>
+    </tr>
+    <tr>
+      <th>label_legend</th>
+      <td><p>add labels to legend</p></td>
+    </tr>
+    <tr>
+      <th>label_groups</th>
+      <td><p>add labels to points</p></td>
     </tr>
     </table>
     
@@ -175,8 +184,7 @@ retrieved with <code><a href='tidy_dims.html'>tidy_dims()</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other plotting: <code><a href='plot_activity.html'>plot_activity</a></code>,
-  <code><a href='plot_heatmap.html'>plot_heatmap</a></code></p></div>
+    <div class='dont-index'><p>Other plot functions: <code><a href='plot_activity.html'>plot_activity</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -185,6 +193,8 @@ retrieved with <code><a href='tidy_dims.html'>tidy_dims()</a></code>.</p>
 <span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>Uracil_45</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot_dims-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>k_cluster</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='plot_dims-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>k_cluster</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>6</span>])</div><div class='img'><img src='plot_dims-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plot_dims</span>(<span class='no'>fsce_tidy</span>, <span class='no'>UMAP1</span>, <span class='no'>UMAP2</span>, <span class='no'>k_cluster</span>,
+          <span class='kw'>labels</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>6</span>], <span class='kw'>label_groups</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plot_dims-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

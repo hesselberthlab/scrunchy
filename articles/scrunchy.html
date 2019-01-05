@@ -305,11 +305,11 @@
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                      [,1]       [,2]
-## TGCGGGTTCAACTCTT 2.878584 -5.0904234
-## TGGTTCCTCCCAAGAT 3.956443 -4.9584484
-## CATATTCCATGCCCGA 3.524757 -2.7890872
-## TCACAAGTCTCCAACC 1.061655  0.5823903</code></pre>
+<pre><code>##                        [,1]       [,2]
+## TGCGGGTTCAACTCTT -0.7056742 -3.1788763
+## TGGTTCCTCCCAAGAT  0.0289938 -3.8062140
+## CATATTCCATGCCCGA  0.1522357 -0.9630351
+## TCACAAGTCTCCAACC  4.5660902 -0.5486145</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
@@ -360,10 +360,10 @@
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">fsce_tidy &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(</a>
 <a class="sourceLine" id="cb68-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
 <a class="sourceLine" id="cb68-3" data-line-number="3">    <span class="kw"><a href="../reference/tidy_dims.html">tidy_dims</a></span>(fsce_small) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">      </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(cell_id, <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"UMAP"</span>), <span class="op">-</span>experiment),</a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(cell_id, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"UMAP"</span>), <span class="op">-</span>experiment),</a>
 <a class="sourceLine" id="cb68-5" data-line-number="5">    <span class="kw"><a href="../reference/tidy_coldata.html">tidy_coldata</a></span>(fsce_small),</a>
 <a class="sourceLine" id="cb68-6" data-line-number="6">    <span class="kw"><a href="../reference/tidy_logcounts.html">tidy_logcounts</a></span>(fsce_small[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>), , ]) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="st">      </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>experiment)</a>
+<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>experiment)</a>
 <a class="sourceLine" id="cb68-8" data-line-number="8">  ),</a>
 <a class="sourceLine" id="cb68-9" data-line-number="9">  left_join,</a>
 <a class="sourceLine" id="cb68-10" data-line-number="10">  <span class="dt">by =</span> <span class="st">"cell_id"</span></a>
