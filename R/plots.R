@@ -123,7 +123,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #' @param labels legend labels
 #'
 #' @examples
-#' plot_activity(fsce_tidy, Uracil_45, k_cluster),
+#' plot_activity(fsce_tidy, Uracil_45, k_cluster)
 #'
 #' plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
 #'
