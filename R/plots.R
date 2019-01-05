@@ -16,7 +16,9 @@
 #' @param alpha alpha for [`geom_point`]
 #' @param palette palette for continuous colors. One of cloupe (the default),
 #'   brewer, viridis.
-#' @param labels labels for legend.
+#' @param labels labels for groups
+#' @param label_legend add labels to legend
+#' @param label_groups add labels to points
 #'
 #' @examples
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
@@ -29,14 +31,20 @@
 #'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, labels = LETTERS[1:6])
 #'
-#' @family plotting
+#' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster,
+#'           labels = LETTERS[1:6], label_groups = TRUE)
+#'
+#' @family plot functions
 #'
 #' @importFrom forcats fct_count
 #'
 #' @export
 plot_dims <- function(df, x, y, color = "cell_id",
                       size = 0.1, alpha = 1,
-                      palette = "cloupe", labels = NULL) {
+                      palette = "cloupe",
+                      labels = NULL,
+                      label_legend = TRUE,
+                      label_groups = FALSE) {
   x <- enquo(x)
   y <- enquo(y)
   color <- enquo(color)
@@ -53,14 +61,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
   if (is_discrete(pull(df, !!color))) {
 
     ## get labels
-    n_colors <- fct_count(pull(df, !!color))
-
-    if (!is.null(labels) && (length(labels) != nrow(n_colors))) {
-      stop(glue("`labels` ({nl}) must match factors in `{color}` ({nc})",
-                color = rlang::quo_text(color),
-                nl = length(labels),
-                nc = nrow(n_colors)), call. = FALSE)
-    }
+    n_col <- n_colors(df, color, labels)
 
     ## legend aesthetics
     p <- p + guides(
@@ -70,10 +71,17 @@ plot_dims <- function(df, x, y, color = "cell_id",
     ) + theme(legend.title = element_blank())
 
     ## color aesthetics
+    if (label_legend && !is.null(labels)) {
+      lbls <- labels
+    } else {
+      lbls <- n_col$f
+    }
+
     p <- p + scale_color_manual(
       values = discrete_palette_default,
-      labels = labels %||% n_colors$f
+      labels = lbls
     )
+
   } else {
 
     llim <- legend_limits(df, color)
@@ -98,6 +106,10 @@ plot_dims <- function(df, x, y, color = "cell_id",
     }
   } # discrete?
 
+  if (label_groups) {
+    p <- add_group_labels(p, x, y, color, labels)
+  }
+
   p
 }
 
@@ -108,29 +120,27 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #' @param data data to plot
 #' @param activity activity variable
 #' @param group grouping variable
+#' @param labels legend labels
 #'
 #' @examples
-#' cowplot::plot_grid(
-#'   plotlist = list(
-#'     plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster),
-#'     plot_activity(fsce_tidy, Uracil_45, k_cluster),
-#'     plot_activity(fsce_tidy, riboG_44, k_cluster)
-#'   )
-#' )
+#' plot_activity(fsce_tidy, Uracil_45, k_cluster),
 #'
-#' @family plotting
+#' plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
+#'
+#' @family plot functions
 #'
 #' @export
-plot_activity <- function(data, activity, group = NULL) {
+plot_activity <- function(data, activity, group = NULL, labels = NULL) {
   activity <- enquo(activity)
   group <- enquo(group)
 
+  n_col <- n_colors(data, group, labels)
+
   ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
-    scale_color_OkabeIto() +
+    scale_color_OkabeIto(labels = labels %||% ncol$f) +
     cowplot::theme_cowplot() +
-    labs(x = "Activity", y = "Group") +
-    theme(legend.position = "none")
+    labs(x = "Activity", y = "Group")
 }
 
 #' Heatmap of signals
@@ -149,7 +159,7 @@ plot_activity <- function(data, activity, group = NULL) {
 #'
 #' plot_heatmap(mtx, rows, name = "Uracil")
 #'
-#' @family plotting
+#' @family plot fuctions
 #'
 #' @export
 plot_heatmap <- function(mtx, rows = NULL, ...) {
@@ -189,4 +199,30 @@ legend_limits <- function(x, var) {
 
 is_discrete <- function(x) {
   is_character(x) | is_logical(x) | is.factor(x)
+}
+
+centroids <- function(df, x, y, group = NULL) {
+  if (!is.null(group)) {
+    df <- group_by(df, !!group)
+  }
+  summarize(df, x = median(!!x), y = median(!!y))
+}
+
+#' @importFrom ggrepel geom_label_repel
+add_group_labels <- function(p, x, y, group, labels) {
+  cents <- centroids(p$data, x, y, group)
+  p + geom_label_repel(data = cents, aes(x = x, y = y, label = labels))
+}
+
+n_colors <- function(x, color, labels) {
+  n_col <- fct_count(pull(x, !!color))
+
+  if (!is.null(labels) && (length(labels) != nrow(n_col))) {
+    stop(glue("`labels` ({nl}) must match factors in `{color}` ({nc})",
+              color = rlang::quo_text(color),
+              nl = length(labels),
+              nc = nrow(n_col)), call. = FALSE)
+  }
+
+  n_col
 }

@@ -23,8 +23,4 @@ rows <- paste("Uracil", 1:61, sep = "_")
 plot_heatmap(mtx, rows, name = "Uracil")
 
 }
-\seealso{
-Other plotting: \code{\link{plot_activity}},
-  \code{\link{plot_dims}}
-}
-\concept{plotting}
+\concept{plot fuctions}

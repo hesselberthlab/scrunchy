@@ -4,7 +4,7 @@
 \alias{plot_activity}
 \title{Plot activities per cluster}
 \usage{
-plot_activity(data, activity, group = NULL)
+plot_activity(data, activity, group = NULL, labels = NULL)
 }
 \arguments{
 \item{data}{data to plot}
@@ -12,22 +12,19 @@ plot_activity(data, activity, group = NULL)
 \item{activity}{activity variable}
 
 \item{group}{grouping variable}
+
+\item{labels}{legend labels}
 }
 \description{
 Generates a beeswarm plot of activity across specified groups
 }
 \examples{
-cowplot::plot_grid(
-  plotlist = list(
-    plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster),
-    plot_activity(fsce_tidy, Uracil_45, k_cluster),
-    plot_activity(fsce_tidy, riboG_44, k_cluster)
-  )
-)
+plot_activity(fsce_tidy, Uracil_45, k_cluster),
+
+plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
 
 }
 \seealso{
-Other plotting: \code{\link{plot_dims}},
-  \code{\link{plot_heatmap}}
+Other plot functions: \code{\link{plot_dims}}
 }
-\concept{plotting}
+\concept{plot functions}
