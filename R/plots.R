@@ -138,7 +138,7 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 
   ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
     ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
-    scale_color_OkabeIto(labels = labels %||% ncol$f) +
+    scale_color_OkabeIto(labels = labels %||% n_col$f) +
     cowplot::theme_cowplot() +
     labs(x = "Activity", y = "Group")
 }
