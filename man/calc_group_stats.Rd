@@ -4,12 +4,14 @@
 \alias{calc_group_stats}
 \title{Calculate statistics between pairs of groups}
 \usage{
-calc_group_stats(df, group)
+calc_group_stats(df, group, complete = FALSE)
 }
 \arguments{
 \item{df}{tidied version of data from a \code{SingleCellExperiment}}
 
 \item{group}{variable for generating combinations}
+
+\item{complete}{complete missing group combinations}
 }
 \description{
 Applies \code{\link[stats:wilcox.test]{stats::wilcox.test()}} to all combinations of variables across

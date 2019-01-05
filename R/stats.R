@@ -9,6 +9,7 @@
 #'
 #' @param df tidied version of data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
+#' @param complete complete missing group combinations
 #'
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
@@ -19,7 +20,7 @@
 #' @importFrom broom tidy
 #'
 #' @export
-calc_group_stats <- function(df, group) {
+calc_group_stats <- function(df, group, complete = FALSE) {
 
   group <- enquo(group)
 
@@ -32,19 +33,24 @@ calc_group_stats <- function(df, group) {
   groups <- x$activity
   splits <- split(x, groups)
 
-  ## generate unique combinations of groups
-  crossed <- purrr::map(splits, cross_groups)
+  ## generate ucombinations of groups
+  crossed <- purrr::map(splits, cross_groups, complete)
 
   res <- purrr::map_dfr(crossed, group_stat, group, .id = "activity")
 
   arrange(res, p.value)
 }
 
-cross_groups <- function(x, group) {
+cross_groups <- function(x, complete) {
   ## set standardized names for crossed data
   names(x) <- c("group", "activity", "data")
 
   xx <- crossing(x, x)
+
+  if (complete) {
+    return(xx)
+  }
+
   xx <- xx[unique_inds(xx, group, group1), ]
 
   filter(xx, group != group1)
