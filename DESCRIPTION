@@ -46,7 +46,8 @@ Imports:
     tidyr,
     scales,
     forcats,
-    broom
+    broom,
+    ggrepel
 Suggests: 
     knitr,
     rmarkdown,
