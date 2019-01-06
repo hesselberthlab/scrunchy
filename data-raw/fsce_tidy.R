@@ -1,7 +1,8 @@
 library(scrunchy)
+library(tidyverse)
 library(usethis)
 
-features_hairpin <- c("Uracil_45", "riboG_44")
+features_hairpin <- c("Uracil_45", "riboG_44", "Abasic_46")
 features_mrna <- c("IL7R", "CD14", "LYZ", "MS4A1",
               "CD8A", "FCGR3A", "MS4A7",
               "GNLY", "NKG7", "FCER1A",
