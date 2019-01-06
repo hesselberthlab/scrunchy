@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Single Cell Reconstruction of Functional Heterogeneity">
@@ -88,46 +88,33 @@
 <a href="#scrunchy" class="anchor"></a>scrunchy <img src="reference/figures/logo.png" align="right" alt="" width="120">
 </h1></div>
 
-<p>scrunchy provides analysis tools for the <strong>S</strong>ingle-<strong>c</strong>ell <strong>r</strong>econstruction of f<strong>unc</strong>tional <strong>h</strong>eterogeneit<strong>y</strong> (<strong>scrunchy</strong>).</p>
-<p>Most single-cell analysis experiments provide information about the abundance of molecules in a cell (e.g., mRNAs). We have expanded the capability of single-cell mRNA sequencing experiments to also recover <strong>functional</strong> information—i.e. the activites of enzymes in single cells.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install the R package:</p>
+<p>scrunchy provides analysis tools for the <strong>s</strong>ingle-<strong>c</strong>ell <strong>r</strong>econstruction of f<strong>unc</strong>tional <strong>h</strong>eterogeneit<strong>y</strong>.</p>
+<p>New methods to study heterogeneity at cellular resolution in complex tissues are rapidly transforming human biology. These methods measure differences in gene expression, chromatin accessibility, and protein levels across thousands of cells to understand developmental trajectories of tissues, tumors, and whole organisms. However, their reliance on measurements of steady-state abundance of DNA, RNA, and protein limits our ability to extract dynamic information from single cells.</p>
+<p>To propel the study of heterogeneity among single cells, we are developing functional assays as a new modality for single-cell experiments. Instead of measuring the molecular abundance of DNA, RNA, or protein in single cells and predicting functional states, our key innovation is to directly measure enzymatic activities in single cells by analyzing the conversion of substrates to products by single-cell extracts in a high-throughput DNA sequencing experiment.</p>
+<div id="functional-heterogeneity-of-dna-repair-in-immune-cells" class="section level3">
+<h3 class="hasAnchor">
+<a href="#functional-heterogeneity-of-dna-repair-in-immune-cells" class="anchor"></a>Functional heterogeneity of DNA repair in immune cells</h3>
+<p>An example data set in scrunchy contains a subset of data from an experiment in which we simultaneously measure mRNA expression and DNA repair actvities present in thousands of single cells.</p>
+<p>This plots show cells classified by mRNA expression for each cell type.</p>
+<div class="figure">
+<img src="reference/figures/README-mrna_plot-1.png" alt="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." width="100%"><p class="caption">
+UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels.
+</p>
+</div>
+<p>These plots show measured DNA repair activities measured for a unmodified DNA substrate (<strong>A</strong>), uracil base excision (in <strong>B</strong>, an A:U base-pair), ribonucleotide excision (in <strong>C</strong>, a rG:C base-pair), and abasic site repair (n <strong>D</strong>, abasic:C).</p>
+<div class="figure">
+<img src="reference/figures/README-activity_plot-1.png" alt="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." width="100%"><p class="caption">
+DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair.
+</p>
+</div>
+</div>
+<div id="installation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h3>
+<p>scrunchy is under active development. You can install the R package from github:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"hesselberthlab/scrunchy"</span>)</a></code></pre></div>
 </div>
-</div>
-<div id="example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h1>
-<p>An example data set (<code>fsce_small</code>) in scrunchy includes:</p>
-<ul>
-<li><p>A single-cell mRNA sequencing experiment (10x Genomics 3prime V2)</p></li>
-<li><p>Counts of DNA repair on synthetic DNA substrates containing a uracil (A:U) and a ribonucleotide (rG:C).</p></li>
-</ul>
-<p><code>fsce_small</code> object now contains mRNA expression (<code>SCERnaSeq</code>) and DNA repair activity (<code>SCEHaircut</code>) for 250 cells.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">fsce_small</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; A FunctionalSingleCellExperiment object of 2 listed</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  experiments with user-defined names and respective classes. </span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  Containing an ExperimentList class object of length 2: </span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  [1] rnaseq: SingleCellExperiment with 9479 rows and 250 columns </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  [2] haircut: SingleCellExperiment with 426 rows and 250 columns </span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; Features: </span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  experiments() - obtain the ExperimentList instance </span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  colData() - the primary/phenotype DataFrame </span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  sampleMap() - the sample availability DataFrame </span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment </span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  *Format() - convert into a long or wide DataFrame </span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  assays() - convert ExperimentList to a SimpleList of matrices</span></a></code></pre></div>
-<p>These plots illustrate:</p>
-<ol style="list-style-type: decimal">
-<li><p>Two-dimensional embedding of cells defined by UMAP (<code><a href="https://www.rdocumentation.org/packages/umap/topics/umap">umap::umap()</a></code>) and colored by k-means clustering (n = 6)</p></li>
-<li><p>Activities on a U:A and riboG DNA hairpins.</p></li>
-</ol>
-<p><img src="reference/figures/README-example_plots-1.png" width="100%"></p>
 </div>
   </div>
 

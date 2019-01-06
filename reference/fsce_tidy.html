@@ -18,7 +18,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -129,7 +129,7 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 18 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 20 columns.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
@@ -146,21 +146,22 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 18
-#&gt;    cell_id   UMAP1  UMAP2 k_cluster Uracil_45 riboG_44  IL7R  CD14   LYZ MS4A1
-#&gt;    &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 TGCGGG…  0.347  -3.03  4             2.26     1.35   3.29     0  0     0   
-#&gt;  2 TGGTTC…  0.641   0.926 6             0.880    1.21   0        0  3.75  0   
-#&gt;  3 CATATT… -0.0199 -3.19  4             0.705    0.930  0        0  0     2.85
-#&gt;  4 TCACAA… -1.25   -3.02  3             0.417    0.417  0        0  0     0   
-#&gt;  5 GGAATA…  4.73   -1.39  4             1.38     1.38   2.36     0  0     0   
-#&gt;  6 CTTTGC…  4.81   -1.45  4             1.06     1.46   3.49     0  0     0   
-#&gt;  7 GTGCAG… -0.443  -2.88  3             1.41     1.01   0        0  0     0   
-#&gt;  8 AGCGGT…  1.99   -1.44  4             2.11     0.643  0        0  0     0   
-#&gt;  9 GGATGT… -2.09   -3.77  3             1.67     0.891  0        0  0     0   
-#&gt; 10 GTACTC… -5.71    8.71  5             0.477    0      0        0  0     0   
-#&gt; # … with 240 more rows, and 8 more variables: CD8A &lt;dbl&gt;, FCGR3A &lt;dbl&gt;,
-#&gt; #   MS4A7 &lt;dbl&gt;, GNLY &lt;dbl&gt;, NKG7 &lt;dbl&gt;, FCER1A &lt;dbl&gt;, CST3 &lt;dbl&gt;, PPBP &lt;dbl&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 20
+#&gt;    cell_id  UMAP1  UMAP2 k_cluster Normal_45 Uracil_45 riboG_44 Abasic_46  IL7R
+#&gt;    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 TGCGGG…  1.53   2.75  6             0         1.39     1.61       1.71  2.42
+#&gt;  2 TGGTTC…  1.04   1.82  6             0         1.55     1.33       2.07  0   
+#&gt;  3 CATATT…  1.68   4.18  6             0         1.76     0.429      1.56  3.13
+#&gt;  4 TCACAA… -2.72   2.56  6             0.418     0.418    0.418      2.11  0   
+#&gt;  5 GGACAA…  0.945  3.07  6             0         2.09     1.46       2.84  0   
+#&gt;  6 CTTTGC…  1.07   3.94  6             0         1.08     1.08       2.11  0   
+#&gt;  7 GTGCAG…  2.25   1.55  6             0.362     2.32     1.59       2.08  0   
+#&gt;  8 AGCGGT… -2.55  -0.766 4             0         1.21     1.46       3.10  0   
+#&gt;  9 GGATGT…  1.30   2.09  6             0         1.49     0.400      1.60  0   
+#&gt; 10 GTACTC… -4.90   2.47  5             0         1.50     0.405      2.53  0   
+#&gt; # … with 240 more rows, and 11 more variables: CD14 &lt;dbl&gt;, LYZ &lt;dbl&gt;,
+#&gt; #   MS4A1 &lt;dbl&gt;, CD8A &lt;dbl&gt;, FCGR3A &lt;dbl&gt;, MS4A7 &lt;dbl&gt;, GNLY &lt;dbl&gt;, NKG7 &lt;dbl&gt;,
+#&gt; #   FCER1A &lt;dbl&gt;, CST3 &lt;dbl&gt;, PPBP &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
