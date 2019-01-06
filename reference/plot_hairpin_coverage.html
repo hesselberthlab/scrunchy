@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_hairpin_coverage</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"haircut"</span>, <span class='kw'>cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>plot_hairpin_coverage</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"haircut"</span>, <span class='kw'>cell_ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"hairpin"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -139,6 +139,10 @@
       <th>expt</th>
       <td><p>Data to use for calculating variable features
 (default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>cell_ids</th>
+      <td><p>cell ids to include in coverage calculation</p></td>
     </tr>
     <tr>
       <th>color</th>

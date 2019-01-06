@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Okabe-Ito color scale — scale_colour_OkabeIto • scrunchy</title>
+<title>Normalize data in a SingleCellExperiment — normalize • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,9 @@
 
 
 
-<meta property="og:title" content="Okabe-Ito color scale — scale_colour_OkabeIto" />
+<meta property="og:title" content="Normalize data in a SingleCellExperiment — normalize" />
 
-<meta property="og:description" content="This is a color-blind friendly, qualitative scale with eight different
-colors. See palette_OkabeIto for details." />
+<meta property="og:description" content="Normalize data in a SingleCellExperiment" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,73 +114,47 @@ colors. See palette_OkabeIto for details." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Okabe-Ito color scale</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/reexport-colorblindr.R'><code>R/reexport-colorblindr.R</code></a></small>
-    <div class="hidden name"><code>scale_OkabeIto.Rd</code></div>
+    <h1>Normalize data in a SingleCellExperiment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/expt.R'><code>R/expt.R</code></a></small>
+    <div class="hidden name"><code>normalize.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This is a color-blind friendly, qualitative scale with eight different
-colors. See <a href='palette_OkabeIto.html'>palette_OkabeIto</a> for details.</p>
+    <p>Normalize data in a SingleCellExperiment</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>scale_color_OkabeIto</span>(<span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"colour"</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>normalize</span>(<span class='no'>x</span>, <span class='no'>method</span>, <span class='no'>...</span>)
 
-<span class='fu'>scale_fill_OkabeIto</span>(<span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill"</span>, <span class='no'>...</span>)
-
-<span class='fu'>scale_OkabeIto</span>(<span class='no'>aesthetics</span>, <span class='kw'>use_black</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
+<span class='co'># S4 method for SingleCellExperiment</span>
+<span class='fu'>normalize</span>(<span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"log_normalize"</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>aesthetics</th>
-      <td><p>aesthetic mappings</p></td>
+      <th>x</th>
+      <td><p>matrix to normalize</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>normalization method</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>common discrete scale parameters: <code>name</code>, <code>breaks</code>, <code>labels</code>, <code>na.value</code>, <code>limits</code>, <code>guide</code>, and <code>aesthetics</code>.
-See discrete_scale for more details.</p></td>
-    </tr>
-    <tr>
-      <th>use_black</th>
-      <td><p>If <code>TRUE</code>, scale includes black, otherwise includes gray.</p></td>
-    </tr>
-    <tr>
-      <th>order</th>
-      <td><p>Numeric vector listing the order in which the colors should be used. Default is 1:8.</p></td>
-    </tr>
-    <tr>
-      <th>alpha</th>
-      <td><p>Alpha transparency level of the color. Default is no transparency.</p></td>
+      <td><p>addition arguments for normalization method</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This code is copied and modified from colorblindr to remove the <code>darken</code>
-param, which is only available in unreleased colorspace 0.4.1.</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'>scale_color_OkabeIto</span>()</div><div class='img'><img src='scale_OkabeIto-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>Species</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></span>(<span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>) + <span class='fu'>scale_fill_OkabeIto</span>(<span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span>))</div><div class='img'><img src='scale_OkabeIto-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

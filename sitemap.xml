@@ -4,6 +4,9 @@
     <loc>https://scrunchy.hesselberthlab.org/index.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/FunctionalSingleCellExperiment-class.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/FunctionalSingleCellExperiment.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/molecule_df.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/normalize.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/palette_OkabeIto.html</loc>
