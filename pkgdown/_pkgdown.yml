@@ -2,7 +2,7 @@ url: https://scrunchy.hesselberthlab.org
 
 template:
   params:
-    bootswatch: yeti
+    bootswatch: sandstone
 
 authors:
   Jay Hesselberth:
@@ -36,7 +36,6 @@ reference:
   - title: Object Definitions
     contents:
     - FunctionalSingleCellExperiment
-    - starts_with("SCE")
 
   - title: Utilities
     contents:
@@ -45,4 +44,5 @@ reference:
     - filter_molecules
     - umitools_to_mtx
     - starts_with("read")
+    - ends_with("matrix")
     - starts_with("scrunchy")
