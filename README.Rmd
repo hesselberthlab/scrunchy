@@ -19,53 +19,44 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg)](https://codecov.io/gh/hesselberthlab/scrunchy?branch=master)
 [![Lifecycle badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-scrunchy provides analysis tools for the **S**ingle-**c**ell **r**econstruction of f**unc**tional **h**eterogeneit**y** (**scrunchy**).
+scrunchy provides analysis tools for the **s**ingle-**c**ell **r**econstruction of f**unc**tional **h**eterogeneit**y**.
 
-Most single-cell analysis experiments provide information about the abundance of molecules in a cell (e.g., mRNAs). We have expanded the capability of single-cell mRNA sequencing experiments to also recover **functional** information---i.e. the activites of enzymes in single cells.
+New methods to study heterogeneity at cellular resolution in complex tissues are rapidly transforming human biology. These methods measure differences in gene expression, chromatin accessibility, and protein levels across thousands of cells to understand developmental trajectories of tissues, tumors, and whole organisms. However, their reliance on measurements of steady-state abundance of DNA, RNA, and protein limits our ability to extract dynamic information from single cells.
 
-## Installation
+To propel the study of heterogeneity among single cells, we are developing functional assays as a new modality for single-cell experiments. Instead of measuring the molecular abundance of DNA, RNA, or protein in single cells and predicting functional states, our key innovation is to directly measure enzymatic activities in single cells by analyzing the conversion of substrates to products by single-cell extracts in a high-throughput DNA sequencing experiment.
 
-Install the R package:
+### Functional heterogeneity of DNA repair in immune cells
+
+An example data set in scrunchy contains a subset of data from an experiment in which we simultaneously measure mRNA expression and DNA repair actvities present in thousands of single cells.
+
+This plots show cells classified by mRNA expression for each cell type.
+
+```{r mrna_plot, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels."}
+library(scrunchy)
+library(ggplot2)
+library(cowplot)
+
+plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 2)
+```
+
+These plots show measured DNA repair activities measured for a unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and abasic site repair (n **D**, abasic:C).
+
+```{r activity_plot, echo=FALSE, warning=FALSE, fig.cap="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair."}
+plot_grid(
+  plot_activity(fsce_tidy, Normal_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
+  plot_activity(fsce_tidy, Uracil_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
+  plot_activity(fsce_tidy, riboG_44, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
+  plot_activity(fsce_tidy, Abasic_46, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
+  labels = c("A", "B", "C", "D"),
+  nrow = 2, ncol = 2, axis = "b", align = "v"
+)
+```
+
+### Installation
+
+scrunchy is under active development. You can install the R package from github:
 
 ``` r 
 # install.packages("remotes")
 remotes::install_github("hesselberthlab/scrunchy")
-```
-
-# Example
-
-An example data set (`fsce_small`) in scrunchy includes:
-
-+ A single-cell mRNA sequencing experiment (10x Genomics 3prime V2)
-
-+ Counts of DNA repair on synthetic DNA substrates containing a uracil (A:U) and a ribonucleotide (rG:C).
-
-`fsce_small` object now contains mRNA expression (`SCERnaSeq`) and DNA repair activity (`SCEHaircut`) for 250 cells.
-
-```{r example_fsce}
-library(scrunchy)
-
-fsce_small
-```
-
-These plots illustrate:
-
-1. Two-dimensional embedding of cells defined by UMAP (`umap::umap()`) and colored by k-means clustering (n = 6)
-
-1. Activities on a U:A and riboG DNA hairpins.
-
-```{r example_plots, echo=FALSE, warning=FALSE}
-library(ggplot2)
-
-cowplot::plot_grid(
-    plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1) +
-      ggtitle("mRNA expression"),
-    plot_activity(fsce_tidy, Uracil_45, k_cluster) + 
-      ggtitle("Uracil excision repair"),
-    plot_activity(fsce_tidy, riboG_44, k_cluster) + 
-      ggtitle("Ribonucleotide excision repair"),
-  nrow = 2,
-  axis = "lb",
-  align = "hv"
-)
 ```

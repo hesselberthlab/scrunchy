@@ -10,60 +10,51 @@ coverage](https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badg
 [![Lifecycle
 badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-scrunchy provides analysis tools for the **S**ingle-**c**ell
-**r**econstruction of f**unc**tional **h**eterogeneit**y**
-(**scrunchy**).
+scrunchy provides analysis tools for the **s**ingle-**c**ell
+**r**econstruction of f**unc**tional **h**eterogeneit**y**.
 
-Most single-cell analysis experiments provide information about the
-abundance of molecules in a cell (e.g., mRNAs). We have expanded the
-capability of single-cell mRNA sequencing experiments to also recover
-**functional** information—i.e. the activites of enzymes in single
+New methods to study heterogeneity at cellular resolution in complex
+tissues are rapidly transforming human biology. These methods measure
+differences in gene expression, chromatin accessibility, and protein
+levels across thousands of cells to understand developmental
+trajectories of tissues, tumors, and whole organisms. However, their
+reliance on measurements of steady-state abundance of DNA, RNA, and
+protein limits our ability to extract dynamic information from single
 cells.
 
-## Installation
+To propel the study of heterogeneity among single cells, we are
+developing functional assays as a new modality for single-cell
+experiments. Instead of measuring the molecular abundance of DNA, RNA,
+or protein in single cells and predicting functional states, our key
+innovation is to directly measure enzymatic activities in single cells
+by analyzing the conversion of substrates to products by single-cell
+extracts in a high-throughput DNA sequencing experiment.
 
-Install the R package:
+### Functional heterogeneity of DNA repair in immune cells
+
+An example data set in scrunchy contains a subset of data from an
+experiment in which we simultaneously measure mRNA expression and DNA
+repair actvities present in thousands of single cells.
+
+This plots show cells classified by mRNA expression for each cell
+type.
+
+<img src="man/figures/README-mrna_plot-1.png" title="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." alt="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." width="100%" />
+
+These plots show measured DNA repair activities measured for a
+unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U
+base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and
+abasic site repair (n **D**,
+abasic:C).
+
+<img src="man/figures/README-activity_plot-1.png" title="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." alt="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." width="100%" />
+
+### Installation
+
+scrunchy is under active development. You can install the R package from
+github:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("hesselberthlab/scrunchy")
 ```
-
-# Example
-
-An example data set (`fsce_small`) in scrunchy includes:
-
-  - A single-cell mRNA sequencing experiment (10x Genomics 3prime V2)
-
-  - Counts of DNA repair on synthetic DNA substrates containing a uracil
-    (A:U) and a ribonucleotide (rG:C).
-
-`fsce_small` object now contains mRNA expression (`SCERnaSeq`) and DNA
-repair activity (`SCEHaircut`) for 250 cells.
-
-``` r
-library(scrunchy)
-
-fsce_small
-#> A FunctionalSingleCellExperiment object of 2 listed
-#>  experiments with user-defined names and respective classes. 
-#>  Containing an ExperimentList class object of length 2: 
-#>  [1] rnaseq: SingleCellExperiment with 9479 rows and 250 columns 
-#>  [2] haircut: SingleCellExperiment with 426 rows and 250 columns 
-#> Features: 
-#>  experiments() - obtain the ExperimentList instance 
-#>  colData() - the primary/phenotype DataFrame 
-#>  sampleMap() - the sample availability DataFrame 
-#>  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
-#>  *Format() - convert into a long or wide DataFrame 
-#>  assays() - convert ExperimentList to a SimpleList of matrices
-```
-
-These plots illustrate:
-
-1.  Two-dimensional embedding of cells defined by UMAP (`umap::umap()`)
-    and colored by k-means clustering (n = 6)
-
-2.  Activities on a U:A and riboG DNA hairpins.
-
-<img src="man/figures/README-example_plots-1.png" width="100%" />
