@@ -95,7 +95,8 @@ molecule_df <- function(x) {
 #' @param molecule_file path molecule.tsv.gz flatfile produced by scrunchy
 #'   pipeline
 #' @param output_file output file name, will be compressed by default.
-#' @param bcs_to_use character vector of barcode sequences to use keep in output
+#' @param bcs_to_keep character vector of barcode sequences to keep in
+#'   output
 #'
 #' @importFrom readr write_tsv write_lines
 #' @importFrom fs path

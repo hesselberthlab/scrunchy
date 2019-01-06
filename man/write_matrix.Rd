@@ -9,9 +9,8 @@ write_matrix(mat, output_path)
 \arguments{
 \item{mat}{sparseMatrix}
 
-\item{output_path}{path for output files. matrix.mtx.gz,
-barcodes.tsv.gz and features.tsv.gz will be generated
-at the supplied path}
+\item{output_path}{path for output files. matrix.mtx.gz, barcodes.tsv.gz and
+features.tsv.gz will be generated at the supplied path}
 }
 \description{
 Write a sparseMatrix to disk
