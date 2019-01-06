@@ -50,9 +50,9 @@ calc_hairpin_coverage <- function(fsce,
 #' @export
 plot_hairpin_coverage <- function(fsce,
                                   expt = "haircut",
-                                  cells = NULL,
+                                  cell_ids = NULL,
                                   color = "hairpin") {
-  res <- calc_hairpin_coverage(fsce, expt, cells)
+  res <- calc_hairpin_coverage(fsce, expt, cell_ids)
 
   color <- enquo(color)
 
