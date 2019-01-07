@@ -1,26 +1,32 @@
-#' Calculate statistics between pairs of groups
+#' Compare activity differences between groups.
 #'
-#' Applies [`stats::wilcox.test()`] to all combinations of variables across
-#' groups in a tidied data frame.
-#'
-#' Data is assumed to contain a single grouping variable, and all other
-#' variables are treated as activitys to compare. Descriptive columns like
+#' Data is assumed to be tidy with a single grouping variable; all other
+#' variables are treated as activities to compare. Descriptive columns like
 #' `cell_id` should not be included.
 #'
-#' @param df tidied version of data from a `SingleCellExperiment`
+#' Applies [`stats::wilcox.test()`] to unique pairs of groups for each measured
+#' variable.
+#'
+#' @param df tidied vdata from a `SingleCellExperiment`
 #' @param group variable for generating combinations
-#' @param complete complete missing group combinations
+#' @param complete If `TRUE`, generate complete group combinations (useful for
+#'   e.g. matrix visulatization if p-values). Default is `FALSE`, generating
+#'   unique groups combinations.
 #'
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
-#' x
-#'
-#' calc_group_stats(x, group = k_cluster)
+#' stat_activity_grouped(x, group = k_cluster)
 #'
 #' @importFrom broom tidy
 #'
+#' @return tibble sorted by `p.value` of the test.
+#'
+#' @family statistical tests
+#'
+#' @references \doi{10.1038/nmeth.4612}
+#'
 #' @export
-calc_group_stats <- function(df, group, complete = FALSE) {
+stat_activity_grouped <- function(df, group, complete = FALSE) {
 
   group <- enquo(group)
 
@@ -40,6 +46,8 @@ calc_group_stats <- function(df, group, complete = FALSE) {
 
   arrange(res, p.value)
 }
+
+# Utilities ---------------------------------------------------------
 
 cross_groups <- function(x, complete) {
   ## set standardized names for crossed data
@@ -66,7 +74,7 @@ group_stat <- function(x, group) {
 }
 
 tidy_wilcoxon <- function(x, y) {
-  broom::tidy(suppressWarnings(wilcox.test(x, y)))
+  broom::tidy(suppressWarnings(stats::wilcox.test(x, y)))
 }
 
 unique_inds <- function(x, ...) {

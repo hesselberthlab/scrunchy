@@ -17,10 +17,11 @@ reference:
     contents:
     - starts_with('create')
 
-  - title: Manipulate Data
+  - title: Manipulate and Analyze Data
     contents:
-    - starts_with("tidy")
     - starts_with("calc")
+    - starts_with("stat")
+    - starts_with("tidy")
     - ends_with("normalize")
 
   - title: Visualize Data
