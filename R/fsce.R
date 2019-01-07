@@ -44,8 +44,11 @@ create_fsce <- function(expt_list) {
 
 # Classes -----------------------------------------------------------
 
-#' @export
-setClass("FunctionalSingleCellExperiment", contains = "MultiAssayExperiment")
+#' An S4 class to represent a functional single cell experiment
+setClass(
+  "FunctionalSingleCellExperiment",
+  contains = "MultiAssayExperiment"
+)
 
 # Constructors ----------------------------------------------
 

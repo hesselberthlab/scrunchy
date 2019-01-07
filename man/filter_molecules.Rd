@@ -12,7 +12,8 @@ pipeline}
 
 \item{output_file}{output file name, will be compressed by default.}
 
-\item{bcs_to_use}{character vector of barcode sequences to use keep in output}
+\item{bcs_to_keep}{character vector of barcode sequences to keep in
+output}
 }
 \description{
 Useful for only keeping cell associated molecules for example.

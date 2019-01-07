@@ -89,9 +89,17 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
 
 # Generics --------------------------------------------------
 
+#' Normalize data in a SingleCellExperiment
+#'
 #' @export
 setGeneric("normalize", function(x, method, ...) standardGeneric("normalize"))
 
+#' @rdname normalize
+#'
+#' @param x matrix to normalize
+#' @param method normalization method
+#' @param ... addition arguments for normalization method
+#'
 #' @export
 setMethod(
   "normalize",

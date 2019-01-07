@@ -9,9 +9,9 @@ umitools_to_mtx(count_file, output_path = NULL, ...)
 \arguments{
 \item{count_file}{path to umitools output file}
 
-\item{output_path}{path for output files. matrix.mtx.gz, barcodes.tsv.gz and features.tsv.gz
-will be generated at the supplied path, or by default created in same directory as
-the \code{count_file}.}
+\item{output_path}{path for output files. matrix.mtx.gz, barcodes.tsv.gz and
+features.tsv.gz will be generated at the supplied path, or by default
+created in same directory as the \code{count_file}.}
 
 \item{...}{additional arguments to pass to \code{\link[readr:read_tsv]{readr::read_tsv()}}}
 }
