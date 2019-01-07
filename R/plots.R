@@ -22,15 +22,15 @@
 #'
 #' @examples
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, IL7R, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, labels = LETTERS[1:6])
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster,
 #'   labels = LETTERS[1:6], label_groups = TRUE
 #' )
@@ -111,6 +111,31 @@ plot_dims <- function(df, x, y, color = "cell_id",
   p
 }
 
+#' Plot multiple 2D plots in a grid
+#'
+#' @param df plot data
+#' @param features list of features
+#' @param ... params to pass to [`plot_dims`]
+#'
+#' @examples
+#' plot_dims_multi(
+#'   fsce_tidy,
+#'   features = c("k_cluster", "Uracil_45", "IL7R", "GNLY"),
+#'   x = UMAP1, y = UMAP2, size = 0.5
+#' )
+#'
+#' @export
+plot_dims_multi <- function(df, features, ...) {
+  plts <- list()
+
+  for (i in seq_along(features)) {
+    feat <- features[i]
+    plts[[i]] <- plot_dims(df, color = !!sym(feat), ...)
+  }
+
+  cowplot::plot_grid(plotlist = plts)
+}
+
 #' Plot activities per cluster
 #'
 #' Generates a beeswarm plot of activity across specified groups
@@ -122,7 +147,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #'
 #' @examples
 #' plot_activity(fsce_tidy, Uracil_45, k_cluster)
-#' 
+#'
 #' plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
 #' @family plot functions
 #'
@@ -153,7 +178,7 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 #' @examples
 #' mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
 #' rows <- paste("Uracil", 1:61, sep = "_")
-#' 
+#'
 #' plot_heatmap(mtx, rows, name = "Uracil")
 #' @family plot fuctions
 #'
