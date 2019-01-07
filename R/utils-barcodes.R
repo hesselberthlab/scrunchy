@@ -27,8 +27,8 @@ read_molecules <- function(molecule_file,
 
   if (return_ids) {
     base_path <- fs::path_dir(molecule_file)
-    bcs_fn <- fs::path_join(c(base_path, "barcodes.tsv"))
-    features_fn <- fs::path_join(c(base_path, "features.tsv"))
+    bcs_fn <- fs::path_join(c(base_path, "barcodes.tsv.gz"))
+    features_fn <- fs::path_join(c(base_path, "features.tsv.gz"))
 
     if (!fs::file_exists(bcs_fn)) {
       stop(bcs_fn, " does not exist", call. = FALSE)
