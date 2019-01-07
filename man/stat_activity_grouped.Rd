@@ -4,16 +4,16 @@
 \alias{stat_activity_grouped}
 \title{Compare activity differences between groups.}
 \usage{
-stat_activity_grouped(df, group, complete = FALSE)
+stat_activity_grouped(rbl, group, complete = FALSE)
 }
 \arguments{
-\item{df}{tidied vdata from a \code{SingleCellExperiment}}
-
 \item{group}{variable for generating combinations}
 
 \item{complete}{If \code{TRUE}, generate complete group combinations (useful for
-e.g. matrix visulatization if p-values). Default is \code{FALSE}, generating
+e.g., matrix visulatization of p-values). Default is \code{FALSE}, generating
 unique groups combinations.}
+
+\item{tbl}{data from a \code{SingleCellExperiment}}
 }
 \value{
 tibble sorted by \code{p.value} of the test.

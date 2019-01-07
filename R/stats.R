@@ -7,10 +7,10 @@
 #' Applies [`stats::wilcox.test()`] to unique pairs of groups for each measured
 #' variable.
 #'
-#' @param df tidied vdata from a `SingleCellExperiment`
+#' @param tbl data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
 #' @param complete If `TRUE`, generate complete group combinations (useful for
-#'   e.g. matrix visulatization if p-values). Default is `FALSE`, generating
+#'   e.g., matrix visulatization of p-values). Default is `FALSE`, generating
 #'   unique groups combinations.
 #'
 #' @examples
@@ -27,8 +27,7 @@
 #' @references \doi{10.1038/nmeth.4612}
 #'
 #' @export
-stat_activity_grouped <- function(df, group, complete = FALSE) {
-
+stat_activity_grouped <- function(rbl, group, complete = FALSE) {
   group <- enquo(group)
 
   ## gather, group, and flatten to vectors
@@ -40,7 +39,7 @@ stat_activity_grouped <- function(df, group, complete = FALSE) {
   groups <- x$activity
   splits <- split(x, groups)
 
-  ## generate ucombinations of groups
+  ## generate combinations of groups
   crossed <- purrr::map(splits, cross_groups, complete)
 
   res <- purrr::map_dfr(crossed, group_stat, group, .id = "activity")
@@ -48,7 +47,80 @@ stat_activity_grouped <- function(df, group, complete = FALSE) {
   arrange(res, p.value)
 }
 
+#' Analysis of variance of activities across groups
+#'
+#' @param df tidied data from a `SingleCellExperiment`
+#' @param group variable for generating combinations
+#' @param tidy tidy the results
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' # default is list of aov models
+#' stat_anova_grouped(x, k_cluster)
+#'
+#' ## tidy results
+#' stat_anova_grouped(x, k_cluster, tidy = TRUE)
+#'
+#' @export
+stat_anova_grouped <- function(tbl, group, tidy = FALSE) {
+  group <- enquo(group)
+
+  tbl <- gather(tbl, activity, value, -!!group)
+  groups <- tbl$activity
+  tbl_split <- split(tbl, groups)
+
+  res <- purrr::map(
+    tbl_split,
+    anova_fun,
+    as.formula(paste("value ~", quo_name(group)))
+  )
+
+  if (tidy) {
+    return(purrr::map_dfr(res, broom::tidy, .id = "activity"))
+  }
+
+  res
+}
+
+#' Post-hoc analysis of ANOVA results
+#'
+#' @inheritParams stat_anova_grouped
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' res <- stat_anova_grouped(x, k_cluster)
+#' stat_anova_tukey(res, tidy = TRUE)
+#'
+#' @export
+stat_anova_tukey <- function(tbl, group, tidy = FALSE) {
+  res <- purrr::map(tbl, tukey_fun, group)
+
+  if (tidy) {
+    return(purrr::map_dfr(res, broom::tidy, .id = "activity"))
+  }
+
+  res
+}
+
 # Utilities ---------------------------------------------------------
+
+#' @noRd
+#' @importFrom stats aov
+anova_fun <- function(x, fmla) {
+  stats::aov(fmla, data = x)
+}
+
+#' @noRd
+#' @importFrom multcomp glht mcp
+tukey_fun <- function(x, group) {
+  multcomp::glht(
+    x, linfct = multcomp::mcp(k_cluster = "Tukey")
+  )
+}
 
 cross_groups <- function(x, complete) {
   ## set standardized names for crossed data
