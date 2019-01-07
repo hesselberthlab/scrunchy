@@ -4,7 +4,7 @@
 \alias{plot_hairpin_coverage}
 \title{Plot coverage across hairpins}
 \usage{
-plot_hairpin_coverage(fsce, expt = "haircut", cells = NULL,
+plot_hairpin_coverage(fsce, expt = "haircut", cell_ids = NULL,
   color = "hairpin")
 }
 \arguments{
@@ -12,6 +12,8 @@ plot_hairpin_coverage(fsce, expt = "haircut", cells = NULL,
 
 \item{expt}{Data to use for calculating variable features
 (default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
+
+\item{cell_ids}{cell ids to include in coverage calculation}
 
 \item{color}{variable to use for coloring lines (defaults to "hairpin")}
 }

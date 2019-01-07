@@ -29,7 +29,7 @@ variable.
 }
 \examples{
 x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
-stat_activity(x, group = k_cluster)
+stat_activity_grouped(x, group = k_cluster)
 
 }
 \references{
