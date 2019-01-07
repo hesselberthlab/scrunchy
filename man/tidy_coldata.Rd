@@ -21,7 +21,6 @@ observations are rows.
 
 \examples{
 tidy_coldata(fsce_small)
-
 }
 \seealso{
 Other tidiers: \code{\link{tidy_counts}},

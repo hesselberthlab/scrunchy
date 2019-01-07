@@ -50,7 +50,6 @@ scale_fill_OkabeIto <- function(aesthetics = "fill", ...) {
 #'   geom_point() + scale_color_OkabeIto()
 #' ggplot(iris, aes(Sepal.Length, fill = Species)) +
 #'   geom_density(alpha = 0.7) + scale_fill_OkabeIto(order = c(1, 3, 5))
-#'
 #' @export
 scale_OkabeIto <- function(aesthetics, use_black = FALSE, order = 1:8, alpha = NA, ...) {
   if (use_black) {

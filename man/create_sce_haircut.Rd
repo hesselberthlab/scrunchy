@@ -23,5 +23,4 @@ Create a single-cell Haircut experiment
 }
 \examples{
 create_sce_haircut(scrunchy_data("haircut/"))
-
 }

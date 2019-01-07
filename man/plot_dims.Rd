@@ -50,8 +50,8 @@ plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
 plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, labels = LETTERS[1:6])
 
 plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster,
-          labels = LETTERS[1:6], label_groups = TRUE)
-
+  labels = LETTERS[1:6], label_groups = TRUE
+)
 }
 \seealso{
 Other plot functions: \code{\link{plot_activity}}

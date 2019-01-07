@@ -40,5 +40,4 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
   geom_point() + scale_color_OkabeIto()
 ggplot(iris, aes(Sepal.Length, fill = Species)) +
   geom_density(alpha = 0.7) + scale_fill_OkabeIto(order = c(1, 3, 5))
-
 }

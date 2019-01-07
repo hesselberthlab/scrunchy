@@ -16,7 +16,6 @@
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 #' stat_activity_grouped(x, group = k_cluster)
-#'
 #' @importFrom broom tidy
 #' @importFrom stats wilcox.test
 #'
@@ -28,7 +27,6 @@
 #'
 #' @export
 stat_activity_grouped <- function(df, group, complete = FALSE) {
-
   group <- enquo(group)
 
   ## gather, group, and flatten to vectors

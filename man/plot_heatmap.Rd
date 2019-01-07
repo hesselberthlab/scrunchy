@@ -21,6 +21,5 @@ mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
 rows <- paste("Uracil", 1:61, sep = "_")
 
 plot_heatmap(mtx, rows, name = "Uracil")
-
 }
 \concept{plot fuctions}

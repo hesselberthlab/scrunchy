@@ -22,7 +22,6 @@ observations are rows.
 \examples{
 x <- fsce_small[ c("Uracil_45"), , "haircut"]
 tidy_counts(x)
-
 }
 \seealso{
 Other tidiers: \code{\link{tidy_coldata}},
