@@ -247,12 +247,12 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt; <span class='message'>    aperm, apply</span></div><div class='input'><span class='co'># dimensionality reduction results</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; [1] "PCA"  "UMAP" "TSNE"</div><div class='input'>
 <span class='co'># UMAP results (first 5 rows)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                        [,1]     [,2]
-#&gt; TGCGGGTTCAACTCTT  1.5276495 2.749576
-#&gt; TGGTTCCTCCCAAGAT  1.0391283 1.819941
-#&gt; CATATTCCATGCCCGA  1.6815232 4.176140
-#&gt; TCACAAGTCTCCAACC -2.7170508 2.560963
-#&gt; GGACAAGAGCCCTAAT  0.9448579 3.066624</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                       [,1]      [,2]
+#&gt; TGCGGGTTCAACTCTT  2.146147 3.9898103
+#&gt; TGGTTCCTCCCAAGAT  1.376538 3.6447333
+#&gt; CATATTCCATGCCCGA  3.815146 2.7023185
+#&gt; TCACAAGTCTCCAACC -0.216390 0.2069193
+#&gt; GGACAAGAGCCCTAAT  2.566830 3.0588671</div><div class='input'>
 <span class='co'># k-means cluster IDs</span>
 <span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 2 columns
 #&gt;                           cell_id   k_cluster
@@ -264,7 +264,7 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6
 #&gt; ...                           ...         ...
 #&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4
-#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           5
+#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           2
 #&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4
 #&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6
 #&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6</div><div class='input'>

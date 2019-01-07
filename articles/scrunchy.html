@@ -305,11 +305,11 @@
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                        [,1]      [,2]
-## TGCGGGTTCAACTCTT -0.2268575 -4.880660
-## TGGTTCCTCCCAAGAT  0.5660299 -5.872769
-## CATATTCCATGCCCGA  1.9416952 -3.958290
-## TCACAAGTCTCCAACC  2.9988876  1.114453</code></pre>
+<pre><code>##                       [,1]      [,2]
+## TGCGGGTTCAACTCTT 0.8936951 -4.792579
+## TGGTTCCTCCCAAGAT 1.5523589 -5.543320
+## CATATTCCATGCCCGA 1.5958818 -2.756872
+## TCACAAGTCTCCAACC 5.6203725 -1.140827</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
@@ -373,16 +373,16 @@
 <pre><code>## # A tibble: 250 x 6
 ##    cell_id           UMAP1  UMAP2 k_cluster Uracil_45 riboG_44
 ##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-##  1 TGCGGGTTCAACTCTT  1.53   2.75  6             1.39     1.61 
-##  2 TGGTTCCTCCCAAGAT  1.04   1.82  6             1.55     1.33 
-##  3 CATATTCCATGCCCGA  1.68   4.18  6             1.76     0.429
-##  4 TCACAAGTCTCCAACC -2.72   2.56  6             0.418    0.418
-##  5 GGACAAGAGCCCTAAT  0.945  3.07  6             2.09     1.46 
-##  6 CTTTGCGAGCAGGTCA  1.07   3.94  6             1.08     1.08 
-##  7 GTGCAGCAGTAGCCGA  2.25   1.55  6             2.32     1.59 
-##  8 AGCGGTCCAATAGAGT -2.55  -0.766 4             1.21     1.46 
-##  9 GGATGTTTCTCAAACG  1.30   2.09  6             1.49     0.400
-## 10 GTACTCCTCGTTTAGG -4.90   2.47  5             1.50     0.405
+##  1 TGCGGGTTCAACTCTT  2.15   3.99  6             1.39     1.61 
+##  2 TGGTTCCTCCCAAGAT  1.38   3.64  6             1.55     1.33 
+##  3 CATATTCCATGCCCGA  3.82   2.70  6             1.76     0.429
+##  4 TCACAAGTCTCCAACC -0.216  0.207 6             0.418    0.418
+##  5 GGACAAGAGCCCTAAT  2.57   3.06  6             2.09     1.46 
+##  6 CTTTGCGAGCAGGTCA  3.53   2.52  6             1.08     1.08 
+##  7 GTGCAGCAGTAGCCGA  1.91   5.17  6             2.32     1.59 
+##  8 AGCGGTCCAATAGAGT  2.45  -1.47  4             1.21     1.46 
+##  9 GGATGTTTCTCAAACG  1.62   3.88  6             1.49     0.400
+## 10 GTACTCCTCGTTTAGG -1.79  -1.51  2             1.50     0.405
 ## # … with 240 more rows</code></pre>
 </div>
 <div id="visualization" class="section level1">
