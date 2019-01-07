@@ -18,6 +18,7 @@
 #' stat_activity_grouped(x, group = k_cluster)
 #'
 #' @importFrom broom tidy
+#' @importFrom stats wilcox.test
 #'
 #' @return tibble sorted by `p.value` of the test.
 #'
