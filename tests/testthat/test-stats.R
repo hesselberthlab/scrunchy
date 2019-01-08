@@ -1,21 +1,35 @@
 context("test-stats")
 
-test_that("aov results can be tidied", {
-  x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+test_that("anova results are ok", {
+  x <- fsce_tidy[c("k_cluster", "Uracil_45")]
   x$k_cluster <- as.factor(x$k_cluster)
 
-  res <- stat_anova_grouped(x, k_cluster, tidy = TRUE)
-  expect_equal(dim(res), c(4, 7))
+  ## test aov results
+  res <- stat_anova_grouped(x, k_cluster)
+  expect_length(res, 1)
+  expect_true(all(class(res[[1]]) == c("aov", "lm")))
+
+  ## test tidied results
+  res_tidy <- tidy_stats_grouped(res)
+  expect_equal(dim(res_tidy), c(2,7))
+  expect_is(res_tidy, "tbl_df")
 })
 
-test_that("aov post-hoc results can be tidied", {
-  x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+test_that("anova post-hoc results are ok", {
+  x <- fsce_tidy[c("k_cluster", "Uracil_45")]
   x$k_cluster <- as.factor(x$k_cluster)
 
-  ares <- stat_anova_grouped(x, group = k_cluster)
-  res <- stat_anova_tukey(ares, group = k_cluster, tidy = TRUE)
+  res_anova <- stat_anova_grouped(x, group = k_cluster)
 
-  expect_equal(dim(res), c(30, 4))
+  ## test tukey result
+  res <- stat_anova_tukey(res_anova, group = k_cluster)
+  expect_length(res, 1)
+  expect_is(res[[1]], "glht")
+
+  ## test tidied results
+  res_tidy <- tidy_stats_grouped(res)
+  expect_equal(dim(res_tidy), c(15, 4))
+  expect_is(res_tidy, "tbl_df")
 })
 
 test_that("factors can be completed", {

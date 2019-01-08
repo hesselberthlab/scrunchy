@@ -4,14 +4,12 @@
 \alias{stat_anova_grouped}
 \title{Analysis of variance of activities across groups}
 \usage{
-stat_anova_grouped(tbl, group = NULL, tidy = FALSE)
+stat_anova_grouped(tbl, group = NULL)
 }
 \arguments{
 \item{tbl}{tidied data from a \code{SingleCellExperiment}}
 
 \item{group}{variable for generating combinations}
-
-\item{tidy}{tidy the results}
 }
 \description{
 Analysis of variance of activities across groups
@@ -22,8 +20,5 @@ x$k_cluster <- as.factor(x$k_cluster)
 
 ## default is list of aov models
 stat_anova_grouped(x, k_cluster)
-
-## tidy results
-stat_anova_grouped(x, k_cluster, tidy = TRUE)
 
 }

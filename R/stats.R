@@ -51,7 +51,6 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE) {
 #'
 #' @param tbl tidied data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
-#' @param tidy tidy the results
 #'
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
@@ -60,11 +59,8 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE) {
 #' ## default is list of aov models
 #' stat_anova_grouped(x, k_cluster)
 #'
-#' ## tidy results
-#' stat_anova_grouped(x, k_cluster, tidy = TRUE)
-#'
 #' @export
-stat_anova_grouped <- function(tbl, group = NULL, tidy = FALSE) {
+stat_anova_grouped <- function(tbl, group = NULL) {
   group <- enquo(group)
 
   if (is.null(group)) {
@@ -75,17 +71,11 @@ stat_anova_grouped <- function(tbl, group = NULL, tidy = FALSE) {
   groups <- tbl$activity
   tbl_split <- split(tbl, groups)
 
-  res <- purrr::map(
+  purrr::map(
     tbl_split,
     anova_fun,
     as.formula(paste("value ~", quo_name(group)))
   )
-
-  if (tidy) {
-    return(purrr::map_dfr(res, broom::tidy, .id = "activity"))
-  }
-
-  res
 }
 
 #' Post-hoc analysis of ANOVA results
@@ -97,23 +87,36 @@ stat_anova_grouped <- function(tbl, group = NULL, tidy = FALSE) {
 #' x$k_cluster <- as.factor(x$k_cluster)
 #'
 #' res <- stat_anova_grouped(x, k_cluster)
-#' stat_anova_tukey(res, k_cluster, tidy = TRUE)
+#'
+#' ## first result
+#' stat_anova_tukey(res, k_cluster)[[1]]
 #'
 #' @export
-stat_anova_tukey <- function(tbl, group = NULL, tidy = FALSE) {
+stat_anova_tukey <- function(tbl, group = NULL) {
   group <- enquo(group)
 
   if (is.null(group)) {
     stop("must specify a `group` for tukey contrasts", call. = FALSE)
   }
 
-  res <- purrr::map(tbl, tukey_fun, group)
+  purrr::map(tbl, tukey_fun, group)
+}
 
-  if (tidy) {
-    return(purrr::map_dfr(res, broom::tidy, .id = "activity"))
-  }
-
-  res
+#' Tidy grouped statistics
+#'
+#' @param x list of named statistical results, e.g. from [`stat_anova_grouped`].
+#' @param id name of id variable in the output (default: "activity")
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' res <- stat_anova_grouped(x, k_cluster)
+#' tidy_stats_grouped(res)
+#'
+#' @export
+tidy_stats_grouped <- function(x, id = "activity") {
+  purrr::map_dfr(x, broom::tidy, .id = id)
 }
 
 # Utilities ---------------------------------------------------------
