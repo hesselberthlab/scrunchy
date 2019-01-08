@@ -20,7 +20,7 @@ Analysis of variance of activities across groups
 x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 x$k_cluster <- as.factor(x$k_cluster)
 
-# default is list of aov models
+## default is list of aov models
 stat_anova_grouped(x, k_cluster)
 
 ## tidy results
