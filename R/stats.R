@@ -27,11 +27,11 @@
 #' @references \doi{10.1038/nmeth.4612}
 #'
 #' @export
-stat_activity_grouped <- function(rbl, group, complete = FALSE) {
+stat_activity_grouped <- function(tbl, group, complete = FALSE) {
   group <- enquo(group)
 
   ## gather, group, and flatten to vectors
-  x <- gather(df, activity, value, -!!group)
+  x <- gather(tbl, activity, value, -!!group)
   x <- nest(group_by(x, !!group, activity))
   x <- mutate(x, data = flatten(data))
 
