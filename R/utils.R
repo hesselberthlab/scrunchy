@@ -185,27 +185,21 @@ umitools_to_mtx <- function(count_file,
 #'   features.tsv.gz will be generated at the supplied path
 #'
 #' @export
-write_matrix <- function(mat, output_path) {
-  if (dir.exists(output_path)) {
-    warning(paste(
-      output_path,
-      "already exists, matrices will be overwritten"
-    ),
-    call. = FALSE
-    )
+write_matrix <- function(mat, output_path){
+
+  if(dir.exists(output_path)) {
+    warning(paste(output_path,
+                  "already exists, matrices will be overwritten"),
+            call. = FALSE)
   } else {
     dir.create(output_path, showWarnings = FALSE)
   }
 
-  readr::write_lines(
-    colnames(mat),
-    path_join(c(output_path, "barcodes.tsv.gz"))
-  )
+  readr::write_lines(colnames(mat),
+                     path_join(c(output_path, "barcodes.tsv.gz")))
 
-  readr::write_lines(
-    rownames(mat),
-    path_join(c(output_path, "features.tsv.gz"))
-  )
+  readr::write_lines(rownames(mat),
+                     path_join(c(output_path, "features.tsv.gz")))
 
   Matrix::writeMM(mat, path_join(c(output_path, "matrix.mtx")))
 
@@ -228,20 +222,19 @@ filter_matrix <- function(matrix_path,
                           barcodes_path,
                           output_path,
                           strip_10x_suffix = TRUE) {
+
   mat <- read_matrix(matrix_path,
-    strip_10x_suffix = strip_10x_suffix,
-    use_gene_symbols = TRUE
-  )
+                     strip_10x_suffix = strip_10x_suffix,
+                     use_gene_symbols = TRUE)
   bcs <- readr::read_lines(barcodes_path)
 
-  if (strip_10x_suffix) {
+  if(strip_10x_suffix){
     bcs <- gsub("-[0-9]+$", "", bcs)
   }
 
   shared_bcs <- intersect(colnames(mat), bcs)
   message(glue("there are {n_cells} barcodes remaining in the filtered data",
-    n_cells = length(shared_bcs)
-  ))
+               n_cells = length(shared_bcs)))
 
   mat <- mat[, shared_bcs]
 

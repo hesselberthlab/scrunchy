@@ -20,4 +20,5 @@ Create a single-cell mRNA-seq experiment
 }
 \examples{
 create_sce_rnaseq(scrunchy_data("mrna/"))
+
 }

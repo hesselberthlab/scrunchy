@@ -36,7 +36,7 @@ reference:
 
   - title: Object Definitions
     contents:
-    - starts_with("FunctionalSingleCellExperiment")
+    - FunctionalSingleCellExperiment
 
   - title: Utilities
     contents:

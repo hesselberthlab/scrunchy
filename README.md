@@ -36,18 +36,18 @@ An example data set in scrunchy contains a subset of data from an
 experiment in which we simultaneously measure mRNA expression and DNA
 repair actvities present in thousands of single cells.
 
-This plot shows cells classified by mRNA expression for each cell type.
+This plots show cells classified by mRNA expression for each cell
+type.
 
-<img src="man/figures/README-mrna_plot-1.png" width="100%" />
+<img src="man/figures/README-mrna_plot-1.png" title="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." alt="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." width="100%" />
 
 These plots show measured DNA repair activities measured for a
-unmodified DNA substrate (**A**), uracil base excision (in **B**, an
-A:uracil base-pair), ribonucleotide excision (in **C**, a riboG:C
-base-pair), and abasic site repair (in **D**, abasic:C). Activity is
-measured by the number of incisions on a DNA repair substrate included
-in the droplets (log-normalized).
+unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U
+base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and
+abasic site repair (n **D**,
+abasic:C).
 
-<img src="man/figures/README-activity_plot-1.png" width="100%" />
+<img src="man/figures/README-activity_plot-1.png" title="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." alt="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." width="100%" />
 
 ### Installation
 

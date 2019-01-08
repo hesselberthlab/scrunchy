@@ -29,9 +29,9 @@ To propel the study of heterogeneity among single cells, we are developing funct
 
 An example data set in scrunchy contains a subset of data from an experiment in which we simultaneously measure mRNA expression and DNA repair actvities present in thousands of single cells.
 
-This plot shows cells classified by mRNA expression for each cell type.
+This plots show cells classified by mRNA expression for each cell type.
 
-```{r mrna_plot, echo=FALSE, warning=FALSE, message=FALSE}
+```{r mrna_plot, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels."}
 library(scrunchy)
 library(ggplot2)
 library(cowplot)
@@ -39,9 +39,9 @@ library(cowplot)
 plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 2)
 ```
 
-These plots show measured DNA repair activities measured for a unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:uracil base-pair), ribonucleotide excision (in **C**, a riboG:C base-pair), and abasic site repair (in **D**, abasic:C). Activity is measured by the number of incisions on a DNA repair substrate included in the droplets (log-normalized).
+These plots show measured DNA repair activities measured for a unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and abasic site repair (n **D**, abasic:C).
 
-```{r activity_plot, echo=FALSE, warning=FALSE}
+```{r activity_plot, echo=FALSE, warning=FALSE, fig.cap="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair."}
 plot_grid(
   plot_activity(fsce_tidy, Normal_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
   plot_activity(fsce_tidy, Uracil_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
