@@ -15,7 +15,8 @@
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Single Cell Reconstruction of Functional Heterogeneity">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Single Cell Reconstruction of Functional Heterogeneity">
 <meta property="og:description" content="Process and analyze data from single-cell
     functional heterogeneity experiments.">
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png">
@@ -96,17 +97,9 @@
 <a href="#functional-heterogeneity-of-dna-repair-in-immune-cells" class="anchor"></a>Functional heterogeneity of DNA repair in immune cells</h3>
 <p>An example data set in scrunchy contains a subset of data from an experiment in which we simultaneously measure mRNA expression and DNA repair actvities present in thousands of single cells.</p>
 <p>This plots show cells classified by mRNA expression for each cell type.</p>
-<div class="figure">
-<img src="reference/figures/README-mrna_plot-1.png" alt="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels." width="100%"><p class="caption">
-UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels.
-</p>
-</div>
+<p><img src="reference/figures/README-mrna_plot-1.png" width="100%"></p>
 <p>These plots show measured DNA repair activities measured for a unmodified DNA substrate (<strong>A</strong>), uracil base excision (in <strong>B</strong>, an A:U base-pair), ribonucleotide excision (in <strong>C</strong>, a rG:C base-pair), and abasic site repair (n <strong>D</strong>, abasic:C).</p>
-<div class="figure">
-<img src="reference/figures/README-activity_plot-1.png" alt="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair." width="100%"><p class="caption">
-DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair.
-</p>
-</div>
+<p><img src="reference/figures/README-activity_plot-1.png" width="100%"></p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
@@ -151,6 +144,7 @@ DNA repair activity in cell types above for (A) uracil base exicision, (B) ribon
 <li><a href="https://travis-ci.org/hesselberthlab/scrunchy"><img src="https://travis-ci.org/hesselberthlab/scrunchy.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/gh/hesselberthlab/scrunchy?branch=master"><img src="https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle badge"></a></li>
+<li><a href="https://cran.r-project.org/package=scrunchy"><img src="https://www.r-pkg.org/badges/version/scrunchy" alt="CRAN status"></a></li>
 </ul>
 </div>
 </div>

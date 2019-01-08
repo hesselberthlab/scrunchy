@@ -1,0 +1,8 @@
+/* override bootswatch/sandstone defaults */
+.navbar .nav>li>a {
+  font-size: 15px;
+}
+
+a {
+  color: #930727;
+}

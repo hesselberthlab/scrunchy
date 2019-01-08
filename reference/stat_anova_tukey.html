@@ -37,6 +37,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Post-hoc analysis of ANOVA results — stat_anova_tukey" />
 
 <meta property="og:description" content="Post-hoc analysis of ANOVA results" />
@@ -125,7 +127,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>stat_anova_tukey</span>(<span class='no'>tbl</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>stat_anova_tukey</span>(<span class='no'>tbl</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,10 +140,6 @@
       <th>group</th>
       <td><p>variable for generating combinations</p></td>
     </tr>
-    <tr>
-      <th>tidy</th>
-      <td><p>tidy the results</p></td>
-    </tr>
     </table>
     
 
@@ -150,20 +148,32 @@
 <span class='no'>x</span>$<span class='no'>k_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>as.factor</a></span>(<span class='no'>x</span>$<span class='no'>k_cluster</span>)
 
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stat_anova_grouped.html'>stat_anova_grouped</a></span>(<span class='no'>x</span>, <span class='no'>k_cluster</span>)
-<span class='fu'>stat_anova_tukey</span>(<span class='no'>res</span>, <span class='no'>k_cluster</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
-#&gt;    activity lhs     rhs estimate
-#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 riboG_44 2 - 1     0    0.136
-#&gt;  2 riboG_44 3 - 1     0   -0.276
-#&gt;  3 riboG_44 4 - 1     0    0.339
-#&gt;  4 riboG_44 5 - 1     0   -0.517
-#&gt;  5 riboG_44 6 - 1     0    0.487
-#&gt;  6 riboG_44 3 - 2     0   -0.413
-#&gt;  7 riboG_44 4 - 2     0    0.203
-#&gt;  8 riboG_44 5 - 2     0   -0.653
-#&gt;  9 riboG_44 6 - 2     0    0.350
-#&gt; 10 riboG_44 4 - 3     0    0.616
-#&gt; # … with 20 more rows</div><div class='input'>
+
+<span class='co'>## first result</span>
+<span class='fu'>stat_anova_tukey</span>(<span class='no'>res</span>, <span class='no'>k_cluster</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt; 
+#&gt; 	 General Linear Hypotheses
+#&gt; 
+#&gt; Multiple Comparisons of Means: Tukey Contrasts
+#&gt; 
+#&gt; 
+#&gt; Linear Hypotheses:
+#&gt;            Estimate
+#&gt; 2 - 1 == 0   0.1365
+#&gt; 3 - 1 == 0  -0.2765
+#&gt; 4 - 1 == 0   0.3391
+#&gt; 5 - 1 == 0  -0.5167
+#&gt; 6 - 1 == 0   0.4867
+#&gt; 3 - 2 == 0  -0.4130
+#&gt; 4 - 2 == 0   0.2026
+#&gt; 5 - 2 == 0  -0.6531
+#&gt; 6 - 2 == 0   0.3502
+#&gt; 4 - 3 == 0   0.6156
+#&gt; 5 - 3 == 0  -0.2402
+#&gt; 6 - 3 == 0   0.7632
+#&gt; 5 - 4 == 0  -0.8558
+#&gt; 6 - 4 == 0   0.1476
+#&gt; 6 - 5 == 0   1.0033
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
