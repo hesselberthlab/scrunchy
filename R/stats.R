@@ -93,10 +93,16 @@ stat_anova_grouped <- function(tbl, group, tidy = FALSE) {
 #' x$k_cluster <- as.factor(x$k_cluster)
 #'
 #' res <- stat_anova_grouped(x, k_cluster)
-#' stat_anova_tukey(res, tidy = TRUE)
+#' stat_anova_tukey(res, k_cluster, tidy = TRUE)
 #'
 #' @export
-stat_anova_tukey <- function(tbl, group, tidy = FALSE) {
+stat_anova_tukey <- function(tbl, group = NULL, tidy = FALSE) {
+  group <- enquo(group)
+
+  if (is.null(group)) {
+    stop("must specify a `group` for tukey contrasts", call. = FALSE)
+  }
+
   res <- purrr::map(tbl, tukey_fun, group)
 
   if (tidy) {
@@ -118,7 +124,9 @@ anova_fun <- function(x, fmla) {
 #' @importFrom multcomp glht mcp
 tukey_fun <- function(x, group) {
   multcomp::glht(
-    x, linfct = multcomp::mcp(k_cluster = "Tukey")
+    x, linfct = do.call(
+      multcomp::mcp, rlang::list2(!!group := "Tukey")
+    )
   )
 }
 

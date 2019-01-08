@@ -4,7 +4,7 @@
 \alias{stat_anova_tukey}
 \title{Post-hoc analysis of ANOVA results}
 \usage{
-stat_anova_tukey(tbl, group, tidy = FALSE)
+stat_anova_tukey(tbl, group = NULL, tidy = FALSE)
 }
 \arguments{
 \item{group}{variable for generating combinations}
@@ -19,6 +19,6 @@ x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 x$k_cluster <- as.factor(x$k_cluster)
 
 res <- stat_anova_grouped(x, k_cluster)
-stat_anova_tukey(res, tidy = TRUE)
+stat_anova_tukey(res, k_cluster, tidy = TRUE)
 
 }

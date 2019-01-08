@@ -12,8 +12,8 @@ test_that("aov post-hoc results can be tidied", {
   x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
   x$k_cluster <- as.factor(x$k_cluster)
 
-  ares <- stat_anova_grouped(x, k_cluster)
-  res <- stat_anova_tukey(ares, tidy = TRUE)
+  ares <- stat_anova_grouped(x, group = k_cluster)
+  res <- stat_anova_tukey(ares, group = k_cluster, tidy = TRUE)
 
   expect_equal(dim(res), c(30, 4))
 })
