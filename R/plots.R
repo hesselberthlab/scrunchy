@@ -113,6 +113,31 @@ plot_dims <- function(df, x, y, color = "cell_id",
   p
 }
 
+#' Plot multiple 2D plots in a grid
+#'
+#' @param df plot data
+#' @param features list of features
+#' @param ... params to pass to [`plot_dims`]
+#'
+#' @examples
+#' plot_dims_multi(
+#'   fsce_tidy,
+#'   features = c("k_cluster", "Uracil_45", "IL7R", "GNLY"),
+#'   x = UMAP1, y = UMAP2, size = 0.5
+#' )
+#'
+#' @export
+plot_dims_multi <- function(df, features, ...) {
+  plts <- list()
+
+  for (i in seq_along(features)) {
+    feat <- features[i]
+    plts[[i]] <- plot_dims(df, color = !!sym(feat), ...)
+  }
+
+  cowplot::plot_grid(plotlist = plts)
+}
+
 #' Plot activities per cluster
 #'
 #' Generates a beeswarm plot of activity across specified groups
