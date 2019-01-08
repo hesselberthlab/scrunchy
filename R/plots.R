@@ -117,7 +117,7 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #'
 #' @param df plot data
 #' @param features list of features
-#' @param ... params to pass to [`plot_dims`]
+#' @param ... params to pass to [`plot_dims()`]
 #'
 #' @examples
 #' plot_dims_multi(
@@ -190,6 +190,10 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 plot_heatmap <- function(mtx, rows = NULL, ...) {
   if (!is.null(rows)) {
     mtx <- mtx[rows, ]
+  }
+
+  if (class(mtx) %in% c("dgCMatrix")) {
+    mtx <- as.matrix(mtx)
   }
 
   # traspose and strip rownames (cell ids)
