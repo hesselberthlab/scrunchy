@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tidy counts data — tidy_counts • scrunchy</title>
+<title>Post-hoc analysis of ANOVA results — stat_anova_tukey • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="Tidy counts data — tidy_counts" />
+<meta property="og:title" content="Post-hoc analysis of ANOVA results — stat_anova_tukey" />
 
-<meta property="og:description" content="Tidy counts data" />
+<meta property="og:description" content="Post-hoc analysis of ANOVA results" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -114,68 +114,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tidy counts data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/tidiers.R'><code>R/tidiers.R</code></a></small>
-    <div class="hidden name"><code>tidy_counts.Rd</code></div>
+    <h1>Post-hoc analysis of ANOVA results</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/stats.R'><code>R/stats.R</code></a></small>
+    <div class="hidden name"><code>stat_anova_tukey.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Tidy counts data</p>
+    <p>Post-hoc analysis of ANOVA results</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tidy_counts</span>(<span class='no'>sce</span>)</pre>
+    <pre class="usage"><span class='fu'>stat_anova_tukey</span>(<span class='no'>tbl</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>sce</th>
-      <td><p>An object of class <code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SingleCellExperiment'>SingleCellExperiment::SingleCellExperiment</a></code>.</p></td>
+      <th>tbl</th>
+      <td><p>tidied data from a <code>SingleCellExperiment</code></p></td>
+    </tr>
+    <tr>
+      <th>group</th>
+      <td><p>variable for generating combinations</p></td>
+    </tr>
+    <tr>
+      <th>tidy</th>
+      <td><p>tidy the results</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
-
-    
-    <p>This is a data tidier for a <code>SingleCellExperient</code>. Returns
-data from an <code>sce</code> in a tidy format, where variables are columns and
-observations are rows.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other tidiers: <code><a href='tidy_coldata.html'>tidy_coldata</a></code>,
-  <code><a href='tidy_dims.html'>tidy_dims</a></code>, <code><a href='tidy_logcounts.html'>tidy_logcounts</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>fsce_small</span>[ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Uracil_45"</span>), , <span class='st'>"haircut"</span>]
-<span class='fu'>tidy_counts</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; # A tibble: 250 x 3
-#&gt;    experiment cell_id          Uracil_45
-#&gt;    &lt;chr&gt;      &lt;chr&gt;                &lt;dbl&gt;
-#&gt;  1 haircut    TGCGGGTTCAACTCTT         6
-#&gt;  2 haircut    TGGTTCCTCCCAAGAT         8
-#&gt;  3 haircut    CATATTCCATGCCCGA         9
-#&gt;  4 haircut    TCACAAGTCTCCAACC         1
-#&gt;  5 haircut    GGACAAGAGCCCTAAT        17
-#&gt;  6 haircut    CTTTGCGAGCAGGTCA         4
-#&gt;  7 haircut    GTGCAGCAGTAGCCGA        21
-#&gt;  8 haircut    AGCGGTCCAATAGAGT         5
-#&gt;  9 haircut    GGATGTTTCTCAAACG         7
-#&gt; 10 haircut    GTACTCCTCGTTTAGG         7
-#&gt; # … with 240 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>fsce_tidy</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"k_cluster"</span>, <span class='st'>"Uracil_45"</span>, <span class='st'>"riboG_44"</span>)]
+<span class='no'>x</span>$<span class='no'>k_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>as.factor</a></span>(<span class='no'>x</span>$<span class='no'>k_cluster</span>)
+
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='stat_anova_grouped.html'>stat_anova_grouped</a></span>(<span class='no'>x</span>, <span class='no'>k_cluster</span>)
+<span class='fu'>stat_anova_tukey</span>(<span class='no'>res</span>, <span class='no'>k_cluster</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
+#&gt;    activity lhs     rhs estimate
+#&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 riboG_44 2 - 1     0    0.136
+#&gt;  2 riboG_44 3 - 1     0   -0.276
+#&gt;  3 riboG_44 4 - 1     0    0.339
+#&gt;  4 riboG_44 5 - 1     0   -0.517
+#&gt;  5 riboG_44 6 - 1     0    0.487
+#&gt;  6 riboG_44 3 - 2     0   -0.413
+#&gt;  7 riboG_44 4 - 2     0    0.203
+#&gt;  8 riboG_44 5 - 2     0   -0.653
+#&gt;  9 riboG_44 6 - 2     0    0.350
+#&gt; 10 riboG_44 4 - 3     0    0.616
+#&gt; # … with 20 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#tidying">Tidying</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

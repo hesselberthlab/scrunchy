@@ -76,9 +76,6 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/plot_dims.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/plot_dims_multi.html</loc>
-  </url>
-  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/plot_hairpin_coverage.html</loc>
   </url>
   <url>
@@ -104,6 +101,12 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/stat_activity_grouped.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/stat_anova_grouped.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/stat_anova_tukey.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/tidy_coldata.html</loc>
