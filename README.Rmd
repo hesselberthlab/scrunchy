@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.org/hesselberthlab/scrunchy.svg?branch=master)](https://travis-ci.org/hesselberthlab/scrunchy)
 [![Codecov test coverage](https://codecov.io/gh/hesselberthlab/scrunchy/branch/master/graph/badge.svg)](https://codecov.io/gh/hesselberthlab/scrunchy?branch=master)
 [![Lifecycle badge](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/scrunchy)](https://cran.r-project.org/package=scrunchy)
+
 
 scrunchy provides analysis tools for the **s**ingle-**c**ell **r**econstruction of f**unc**tional **h**eterogeneit**y**.
 
@@ -31,7 +33,7 @@ An example data set in scrunchy contains a subset of data from an experiment in 
 
 This plots show cells classified by mRNA expression for each cell type.
 
-```{r mrna_plot, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="UMAP projection of mRNA expression for 240 human PBMCs. k-means clustering assigned 6 group labels."}
+```{r mrna_plot, echo=FALSE, warning=FALSE, message=FALSE}
 library(scrunchy)
 library(ggplot2)
 library(cowplot)
@@ -41,7 +43,7 @@ plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 2)
 
 These plots show measured DNA repair activities measured for a unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and abasic site repair (n **D**, abasic:C).
 
-```{r activity_plot, echo=FALSE, warning=FALSE, fig.cap="DNA repair activity in cell types above for (A) uracil base exicision, (B) ribonucleotide base exicision, and (C) abasic site repair."}
+```{r activity_plot, echo=FALSE, warning=FALSE}
 plot_grid(
   plot_activity(fsce_tidy, Normal_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
   plot_activity(fsce_tidy, Uracil_45, k_cluster) + theme(legend.position = "none") + xlim(0, 3),
