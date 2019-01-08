@@ -4,14 +4,14 @@
 \alias{stat_anova_grouped}
 \title{Analysis of variance of activities across groups}
 \usage{
-stat_anova_grouped(tbl, group, tidy = FALSE)
+stat_anova_grouped(tbl, group = NULL, tidy = FALSE)
 }
 \arguments{
+\item{tbl}{tidied data from a \code{SingleCellExperiment}}
+
 \item{group}{variable for generating combinations}
 
 \item{tidy}{tidy the results}
-
-\item{df}{tidied data from a \code{SingleCellExperiment}}
 }
 \description{
 Analysis of variance of activities across groups

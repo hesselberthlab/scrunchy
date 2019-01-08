@@ -7,6 +7,8 @@
 stat_anova_tukey(tbl, group = NULL, tidy = FALSE)
 }
 \arguments{
+\item{tbl}{tidied data from a \code{SingleCellExperiment}}
+
 \item{group}{variable for generating combinations}
 
 \item{tidy}{tidy the results}

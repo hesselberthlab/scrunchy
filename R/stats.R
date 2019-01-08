@@ -49,7 +49,7 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE) {
 
 #' Analysis of variance of activities across groups
 #'
-#' @param df tidied data from a `SingleCellExperiment`
+#' @param tbl tidied data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
 #' @param tidy tidy the results
 #'
@@ -64,8 +64,12 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE) {
 #' stat_anova_grouped(x, k_cluster, tidy = TRUE)
 #'
 #' @export
-stat_anova_grouped <- function(tbl, group, tidy = FALSE) {
+stat_anova_grouped <- function(tbl, group = NULL, tidy = FALSE) {
   group <- enquo(group)
+
+  if (is.null(group)) {
+    stop("must specify a `group` for the ANOVA", call. = FALSE)
+  }
 
   tbl <- gather(tbl, activity, value, -!!group)
   groups <- tbl$activity
