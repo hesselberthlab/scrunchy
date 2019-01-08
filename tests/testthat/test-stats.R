@@ -13,7 +13,7 @@ test_that("aov post-hoc results can be tidied", {
   x$k_cluster <- as.factor(x$k_cluster)
 
   ares <- stat_anova_grouped(x, k_cluster)
-  res <- stat_anova_tukey(res, tidy = TRUE)
+  res <- stat_anova_tukey(ares, tidy = TRUE)
 
   expect_equal(dim(res), c(30, 4))
 })
