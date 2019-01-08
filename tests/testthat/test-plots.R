@@ -5,7 +5,7 @@ test_that("plot_heatmap can accept sparseMatrix input", {
   m <- sparseMatrix(i, j, x = x)
 
   p <- plot_heatmap(m)
-  expect_is(p, "ComplexHeatmap")
+  expect_is(p, "Heatmap")
 })
 test_that("incorrect labels throw an error", {
   expect_error(

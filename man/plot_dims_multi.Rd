@@ -11,7 +11,7 @@ plot_dims_multi(df, features, ...)
 
 \item{features}{list of features}
 
-\item{...}{params to pass to \code{\link{plot_dims}}}
+\item{...}{params to pass to \code{\link[=plot_dims]{plot_dims()}}}
 }
 \description{
 Plot multiple 2D plots in a grid
