@@ -186,10 +186,19 @@ umitools_to_mtx <- function(count_file,
 #'
 #' @export
 write_matrix <- function(mat, output_path) {
-  if (dir.exists(output_path)) {
+
+  output_files <- c(
+    matrix = "matrix.mtx.gz",
+    barcodes = "barcodes.tsv.gz",
+    features = "features.tsv.gz"
+  )
+  output_files <- map(output_files,
+                      ~path_join(c(output_path, .x)))
+
+  if (any(file_exists(unlist(output_files)))) {
     warning(paste(
-      output_path,
-      "already exists, matrices will be overwritten"
+      unlist(output_files),
+      "already exist(s), matrices will be overwritten"
     ),
     call. = FALSE
     )
@@ -199,17 +208,20 @@ write_matrix <- function(mat, output_path) {
 
   readr::write_lines(
     colnames(mat),
-    path_join(c(output_path, "barcodes.tsv.gz"))
+    output_files$barcodes
   )
 
   readr::write_lines(
     rownames(mat),
-    path_join(c(output_path, "features.tsv.gz"))
+    output_files$features
   )
 
-  Matrix::writeMM(mat, path_join(c(output_path, "matrix.mtx")))
+  uncomp_matrix_fn <- gsub(".gz", "", output_files$matrix)
 
-  R.utils::gzip(path_join(c(output_path, "matrix.mtx")))
+  Matrix::writeMM(mat, uncomp_matrix_fn)
+
+  R.utils::gzip(uncomp_matrix_fn,
+                overwrite = TRUE, remove = TRUE)
 }
 
 #' Filter and write a sparseMatrix keeping only specified barcodes
