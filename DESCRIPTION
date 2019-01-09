@@ -48,7 +48,8 @@ Imports:
     forcats,
     broom,
     ggrepel,
-    multcomp
+    multcomp,
+    qvalue
 Suggests: 
     knitr,
     rmarkdown,

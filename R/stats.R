@@ -12,6 +12,7 @@
 #' @param complete If `TRUE`, generate complete group combinations (useful for
 #'   e.g., matrix visulatization of p-values). Default is `FALSE`, generating
 #'   unique groups combinations.
+#' @param ... additional parameters to pass to [`calc_qvalues()`].
 #'
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
@@ -20,14 +21,14 @@
 #' @importFrom broom tidy
 #' @importFrom stats wilcox.test
 #'
-#' @return tibble sorted by `p.value` of the test.
+#' @return tibble sorted by `q.value` of the test.
 #'
 #' @family statistical tests
 #'
 #' @references \doi{10.1038/nmeth.4612}
 #'
 #' @export
-stat_activity_grouped <- function(tbl, group, complete = FALSE) {
+stat_activity_grouped <- function(tbl, group, complete = FALSE, ...) {
   group <- enquo(group)
 
   ## gather, group, and flatten to vectors
@@ -44,7 +45,9 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE) {
 
   res <- purrr::map_dfr(crossed, group_stat, group, .id = "activity")
 
-  arrange(res, p.value)
+  res <- calc_qvalues(res, id = "p.value", ...)
+
+  arrange(res, q.value)
 }
 
 #' Analysis of variance of activities across groups
@@ -120,6 +123,28 @@ tidy_stats_grouped <- function(x, id = "activity") {
 }
 
 # Utilities ---------------------------------------------------------
+
+#' Calculate q-values
+#'
+#' @param x data frame
+#' @param id name of variable with p-values
+#' @param bh If `TRUE`, use the Benjamini-Hochberg adjustment
+#'
+#' @importFrom qvalue qvalue
+#'
+#' @export
+calc_qvalues <- function(x, id = "p.value", bh = TRUE) {
+  pvs <- x[[id]]
+
+  if (bh) {
+    ## pi0 = 1 uses the BH procecure
+    qvs <- qvalue::qvalue(pvs, pi0 = 1)
+  } else {
+    qvs <- qvalue::qvalue(pvs)
+  }
+
+  mutate(x, q.value = qvs$qvalues)
+}
 
 #' @noRd
 #' @importFrom stats aov

@@ -4,7 +4,7 @@
 \alias{stat_activity_grouped}
 \title{Compare activity differences between groups.}
 \usage{
-stat_activity_grouped(tbl, group, complete = FALSE)
+stat_activity_grouped(tbl, group, complete = FALSE, ...)
 }
 \arguments{
 \item{tbl}{data from a \code{SingleCellExperiment}}
@@ -14,9 +14,11 @@ stat_activity_grouped(tbl, group, complete = FALSE)
 \item{complete}{If \code{TRUE}, generate complete group combinations (useful for
 e.g., matrix visulatization of p-values). Default is \code{FALSE}, generating
 unique groups combinations.}
+
+\item{...}{additional parameters to pass to \code{\link[=calc_qvalues]{calc_qvalues()}}.}
 }
 \value{
-tibble sorted by \code{p.value} of the test.
+tibble sorted by \code{q.value} of the test.
 }
 \description{
 Data is assumed to be tidy with a single grouping variable; all other
