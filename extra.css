@@ -4,5 +4,9 @@
 }
 
 a {
+  color: #be6a7d;
+}
+
+a:hover {
   color: #930727;
 }
