@@ -4,19 +4,21 @@
 \alias{stat_activity_grouped}
 \title{Compare activity differences between groups.}
 \usage{
-stat_activity_grouped(df, group, complete = FALSE)
+stat_activity_grouped(tbl, group, complete = FALSE, ...)
 }
 \arguments{
-\item{df}{tidied vdata from a \code{SingleCellExperiment}}
+\item{tbl}{data from a \code{SingleCellExperiment}}
 
 \item{group}{variable for generating combinations}
 
 \item{complete}{If \code{TRUE}, generate complete group combinations (useful for
-e.g. matrix visulatization if p-values). Default is \code{FALSE}, generating
+e.g., matrix visulatization of p-values). Default is \code{FALSE}, generating
 unique groups combinations.}
+
+\item{...}{additional parameters to pass to \code{\link[=calc_qvalues]{calc_qvalues()}}.}
 }
 \value{
-tibble sorted by \code{p.value} of the test.
+tibble sorted by \code{q.value} of the test.
 }
 \description{
 Data is assumed to be tidy with a single grouping variable; all other
@@ -30,6 +32,7 @@ variable.
 \examples{
 x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 stat_activity_grouped(x, group = k_cluster)
+
 }
 \references{
 \doi{10.1038/nmeth.4612}

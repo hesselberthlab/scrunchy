@@ -12,6 +12,7 @@
 #' @examples
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
 #' tidy_logcounts(x)
+#'
 #' @family tidiers
 #'
 #' @export
@@ -30,6 +31,7 @@ tidy_logcounts <- function(sce) {
 #' @examples
 #' x <- fsce_small[ c("Uracil_45"), , "haircut"]
 #' tidy_counts(x)
+#'
 #' @family tidiers
 #'
 #' @export
@@ -50,8 +52,9 @@ tidy_counts <- function(sce) {
 #'
 #' @examples
 #' tidy_dims(fsce_small)
-#' 
+#'
 #' tidy_dims(fsce_small, dimnames = c("UMAP"))
+#'
 #' @family tidiers
 #'
 #' @export
@@ -69,6 +72,7 @@ tidy_dims <- function(sce, dimnames = NULL, dims = c(1, 2)) {
 #
 #' @examples
 #' tidy_coldata(fsce_small)
+#'
 #' @family tidiers
 #'
 #' @export

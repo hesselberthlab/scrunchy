@@ -22,6 +22,7 @@ Generates a beeswarm plot of activity across specified groups
 plot_activity(fsce_tidy, Uracil_45, k_cluster)
 
 plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
+
 }
 \seealso{
 Other plot functions: \code{\link{plot_dims}}

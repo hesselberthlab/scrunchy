@@ -8,6 +8,7 @@ warnings_are_errors: false
 bioc_packages:
 - SingleCellExperiment
 - Rtsne
+- qvalue
 
 matrix:
   include:

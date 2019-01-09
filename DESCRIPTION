@@ -47,7 +47,9 @@ Imports:
     scales,
     forcats,
     broom,
-    ggrepel
+    ggrepel,
+    multcomp,
+    qvalue
 Suggests: 
     knitr,
     rmarkdown,

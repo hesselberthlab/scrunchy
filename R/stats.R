@@ -7,30 +7,32 @@
 #' Applies [`stats::wilcox.test()`] to unique pairs of groups for each measured
 #' variable.
 #'
-#' @param df tidied vdata from a `SingleCellExperiment`
+#' @param tbl data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
 #' @param complete If `TRUE`, generate complete group combinations (useful for
-#'   e.g. matrix visulatization if p-values). Default is `FALSE`, generating
+#'   e.g., matrix visulatization of p-values). Default is `FALSE`, generating
 #'   unique groups combinations.
+#' @param ... additional parameters to pass to [`calc_qvalues()`].
 #'
 #' @examples
 #' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
 #' stat_activity_grouped(x, group = k_cluster)
+#'
 #' @importFrom broom tidy
 #' @importFrom stats wilcox.test
 #'
-#' @return tibble sorted by `p.value` of the test.
+#' @return tibble sorted by `q.value` of the test.
 #'
 #' @family statistical tests
 #'
 #' @references \doi{10.1038/nmeth.4612}
 #'
 #' @export
-stat_activity_grouped <- function(df, group, complete = FALSE) {
+stat_activity_grouped <- function(tbl, group, complete = FALSE, ...) {
   group <- enquo(group)
 
   ## gather, group, and flatten to vectors
-  x <- gather(df, activity, value, -!!group)
+  x <- gather(tbl, activity, value, -!!group)
   x <- nest(group_by(x, !!group, activity))
   x <- mutate(x, data = flatten(data))
 
@@ -38,15 +40,127 @@ stat_activity_grouped <- function(df, group, complete = FALSE) {
   groups <- x$activity
   splits <- split(x, groups)
 
-  ## generate ucombinations of groups
+  ## generate combinations of groups
   crossed <- purrr::map(splits, cross_groups, complete)
 
   res <- purrr::map_dfr(crossed, group_stat, group, .id = "activity")
 
-  arrange(res, p.value)
+  res <- calc_qvalues(res, id = "p.value", ...)
+
+  arrange(res, q.value)
+}
+
+#' Analysis of variance of activities across groups
+#'
+#' @param tbl tidied data from a `SingleCellExperiment`
+#' @param group variable for generating combinations
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' ## default is list of aov models
+#' stat_anova_grouped(x, k_cluster)
+#'
+#' @export
+stat_anova_grouped <- function(tbl, group = NULL) {
+  group <- enquo(group)
+
+  if (is.null(group)) {
+    stop("must specify a `group` for the ANOVA", call. = FALSE)
+  }
+
+  tbl <- gather(tbl, activity, value, -!!group)
+  groups <- tbl$activity
+  tbl_split <- split(tbl, groups)
+
+  purrr::map(
+    tbl_split,
+    anova_fun,
+    as.formula(paste("value ~", quo_name(group)))
+  )
+}
+
+#' Post-hoc analysis of ANOVA results
+#'
+#' @inheritParams stat_anova_grouped
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' res <- stat_anova_grouped(x, k_cluster)
+#'
+#' ## first result
+#' stat_anova_tukey(res, k_cluster)[[1]]
+#'
+#' @export
+stat_anova_tukey <- function(tbl, group = NULL) {
+  group <- enquo(group)
+
+  if (is.null(group)) {
+    stop("must specify a `group` for tukey contrasts", call. = FALSE)
+  }
+
+  purrr::map(tbl, tukey_fun, group)
+}
+
+#' Tidy grouped statistics
+#'
+#' @param x list of named statistical results, e.g. from [`stat_anova_grouped`].
+#' @param id name of id variable in the output (default: "activity")
+#'
+#' @examples
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45")]
+#' x$k_cluster <- as.factor(x$k_cluster)
+#'
+#' res <- stat_anova_grouped(x, k_cluster)
+#' tidy_stats_grouped(res)
+#'
+#' @export
+tidy_stats_grouped <- function(x, id = "activity") {
+  purrr::map_dfr(x, broom::tidy, .id = id)
 }
 
 # Utilities ---------------------------------------------------------
+
+#' Calculate q-values
+#'
+#' @param x data frame
+#' @param id name of variable with p-values
+#' @param bh If `TRUE`, use the Benjamini-Hochberg adjustment
+#'
+#' @importFrom qvalue qvalue
+#'
+#' @export
+calc_qvalues <- function(x, id = "p.value", bh = TRUE) {
+  pvs <- x[[id]]
+
+  if (bh) {
+    ## pi0 = 1 uses the BH procecure
+    qvs <- qvalue::qvalue(pvs, pi0 = 1)
+  } else {
+    qvs <- qvalue::qvalue(pvs)
+  }
+
+  mutate(x, q.value = qvs$qvalues)
+}
+
+#' @noRd
+#' @importFrom stats aov
+anova_fun <- function(x, fmla) {
+  stats::aov(fmla, data = x)
+}
+
+#' @noRd
+#' @importFrom multcomp glht mcp
+tukey_fun <- function(x, group) {
+  multcomp::glht(
+    x, linfct = do.call(
+      multcomp::mcp, rlang::list2(!!group := "Tukey")
+    )
+  )
+}
 
 cross_groups <- function(x, complete) {
   ## set standardized names for crossed data

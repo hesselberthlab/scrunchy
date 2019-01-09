@@ -28,6 +28,7 @@ observations are rows.
 tidy_dims(fsce_small)
 
 tidy_dims(fsce_small, dimnames = c("UMAP"))
+
 }
 \seealso{
 Other tidiers: \code{\link{tidy_coldata}},

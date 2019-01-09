@@ -66,5 +66,6 @@ reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
 
 # k-means cluster IDs
 colData(fsce_small[["rnaseq"]])
+
 }
 \keyword{datasets}

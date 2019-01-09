@@ -206,6 +206,7 @@ write_matrix <- function(mat, output_path) {
     dir.create(output_path, showWarnings = FALSE)
   }
 
+
   readr::write_lines(
     colnames(mat),
     output_files$barcodes
@@ -240,20 +241,19 @@ filter_matrix <- function(matrix_path,
                           barcodes_path,
                           output_path,
                           strip_10x_suffix = TRUE) {
+
   mat <- read_matrix(matrix_path,
-    strip_10x_suffix = strip_10x_suffix,
-    use_gene_symbols = TRUE
-  )
+                     strip_10x_suffix = strip_10x_suffix,
+                     use_gene_symbols = TRUE)
   bcs <- readr::read_lines(barcodes_path)
 
-  if (strip_10x_suffix) {
+  if(strip_10x_suffix){
     bcs <- gsub("-[0-9]+$", "", bcs)
   }
 
   shared_bcs <- intersect(colnames(mat), bcs)
   message(glue("there are {n_cells} barcodes remaining in the filtered data",
-    n_cells = length(shared_bcs)
-  ))
+               n_cells = length(shared_bcs)))
 
   mat <- mat[, shared_bcs]
 

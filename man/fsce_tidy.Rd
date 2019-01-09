@@ -25,5 +25,6 @@ Variables include:
 }
 \examples{
 fsce_tidy
+
 }
 \keyword{datasets}

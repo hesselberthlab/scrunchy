@@ -22,18 +22,18 @@
 #'
 #' @examples
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, IL7R, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, Uracil_45, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, size = 1)
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster, labels = LETTERS[1:6])
-#' 
+#'
 #' plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster,
-#'   labels = LETTERS[1:6], label_groups = TRUE
-#' )
+#'           labels = LETTERS[1:6], label_groups = TRUE)
+#'
 #' @family plot functions
 #'
 #' @importFrom forcats fct_count
@@ -81,7 +81,9 @@ plot_dims <- function(df, x, y, color = "cell_id",
       values = discrete_palette_default,
       labels = lbls
     )
+
   } else {
+
     llim <- legend_limits(df, color)
 
     if (palette == "cloupe") {
@@ -111,6 +113,31 @@ plot_dims <- function(df, x, y, color = "cell_id",
   p
 }
 
+#' Plot multiple 2D plots in a grid
+#'
+#' @param df plot data
+#' @param features list of features
+#' @param ... params to pass to [`plot_dims()`]
+#'
+#' @examples
+#' plot_dims_multi(
+#'   fsce_tidy,
+#'   features = c("k_cluster", "Uracil_45", "IL7R", "GNLY"),
+#'   x = UMAP1, y = UMAP2, size = 0.5
+#' )
+#'
+#' @export
+plot_dims_multi <- function(df, features, ...) {
+  plts <- list()
+
+  for (i in seq_along(features)) {
+    feat <- features[i]
+    plts[[i]] <- plot_dims(df, color = !!sym(feat), ...)
+  }
+
+  cowplot::plot_grid(plotlist = plts)
+}
+
 #' Plot activities per cluster
 #'
 #' Generates a beeswarm plot of activity across specified groups
@@ -122,8 +149,9 @@ plot_dims <- function(df, x, y, color = "cell_id",
 #'
 #' @examples
 #' plot_activity(fsce_tidy, Uracil_45, k_cluster)
-#' 
+#'
 #' plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
+#'
 #' @family plot functions
 #'
 #' @export
@@ -153,14 +181,19 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 #' @examples
 #' mtx <- SingleCellExperiment::logcounts(fsce_small[["haircut"]])
 #' rows <- paste("Uracil", 1:61, sep = "_")
-#' 
+#'
 #' plot_heatmap(mtx, rows, name = "Uracil")
+#'
 #' @family plot fuctions
 #'
 #' @export
 plot_heatmap <- function(mtx, rows = NULL, ...) {
   if (!is.null(rows)) {
     mtx <- mtx[rows, ]
+  }
+
+  if (class(mtx) %in% c("dgCMatrix")) {
+    mtx <- as.matrix(mtx)
   }
 
   # traspose and strip rownames (cell ids)
@@ -215,10 +248,9 @@ n_colors <- function(x, color, labels) {
 
   if (!is.null(labels) && (length(labels) != nrow(n_col))) {
     stop(glue("`labels` ({nl}) must match factors in `{color}` ({nc})",
-      color = rlang::quo_text(color),
-      nl = length(labels),
-      nc = nrow(n_col)
-    ), call. = FALSE)
+              color = rlang::quo_text(color),
+              nl = length(labels),
+              nc = nrow(n_col)), call. = FALSE)
   }
 
   n_col
