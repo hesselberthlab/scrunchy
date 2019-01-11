@@ -158,12 +158,22 @@ unique groups combinations.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>tibble sorted by <code>q.value</code> of the test.</p>
+    <p>tibble, sorted by <code>q.value</code></p><ul>
+<li><p><code>activity</code></p></li>
+<li><p><code>group</code></p></li>
+<li><p><code>group1</code></p></li>
+<li><p><code>ratio</code> (ratio of the median signals in <code>group</code> over <code>group1</code>)</p></li>
+<li><p><code>p.value</code></p></li>
+<li><p><code>q.value</code></p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Applies <code><a href='https://www.rdocumentation.org/packages/stats/topics/wilcox.test'>stats::wilcox.test()</a></code> to unique pairs of groups for each measured
-variable.</p>
+variable. Adjusted p-values are calculated using <code><a href='https://www.rdocumentation.org/packages/qvalue/topics/qvalue'>qvalue::qvalue()</a></code>. A
+ratio of activity in each group is reported; <code>Inf</code> values indicate that
+no activities were measured for the second group.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -172,19 +182,19 @@ variable.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>fsce_tidy</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"k_cluster"</span>, <span class='st'>"Uracil_45"</span>, <span class='st'>"riboG_44"</span>)]
-<span class='fu'>stat_activity_grouped</span>(<span class='no'>x</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>k_cluster</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 5
-#&gt;    activity  group group1  p.value  q.value
-#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 riboG_44  6     3      1.04e-12 3.12e-11
-#&gt;  2 Uracil_45 6     4      6.76e-11 1.01e- 9
-#&gt;  3 Uracil_45 6     2      1.97e- 8 1.97e- 7
-#&gt;  4 Uracil_45 6     3      4.95e- 6 3.71e- 5
-#&gt;  5 riboG_44  6     2      1.64e- 5 9.87e- 5
-#&gt;  6 riboG_44  4     3      3.28e- 4 1.53e- 3
-#&gt;  7 riboG_44  2     3      3.56e- 4 1.53e- 3
-#&gt;  8 Uracil_45 4     2      6.07e- 4 2.28e- 3
-#&gt;  9 Uracil_45 6     1      6.75e- 3 2.06e- 2
-#&gt; 10 Uracil_45 4     3      6.85e- 3 2.06e- 2
+<span class='fu'>stat_activity_grouped</span>(<span class='no'>x</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>k_cluster</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 6
+#&gt;    activity  group group1 ratio  p.value  q.value
+#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 riboG_44  6     3      2.69  1.04e-12 3.12e-11
+#&gt;  2 Uracil_45 6     4      2.76  6.76e-11 1.01e- 9
+#&gt;  3 Uracil_45 6     2      1.44  1.97e- 8 1.97e- 7
+#&gt;  4 Uracil_45 6     3      1.40  4.95e- 6 3.71e- 5
+#&gt;  5 riboG_44  6     2      1.41  1.64e- 5 9.87e- 5
+#&gt;  6 riboG_44  4     3      2.37  3.28e- 4 1.53e- 3
+#&gt;  7 riboG_44  2     3      1.91  3.56e- 4 1.53e- 3
+#&gt;  8 Uracil_45 4     2      0.523 6.07e- 4 2.28e- 3
+#&gt;  9 Uracil_45 6     1      1.49  6.75e- 3 2.06e- 2
+#&gt; 10 Uracil_45 4     3      0.508 6.85e- 3 2.06e- 2
 #&gt; # … with 20 more rows</div><div class='input'>
 </div></pre>
   </div>
