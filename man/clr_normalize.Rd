@@ -23,6 +23,6 @@ This normalization strategy is used for CITE-seq and other feature data in
 \seealso{
 \url{https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in}
 
-Other normalization: \code{\link{log_normalize}}
+Other normalization methods: \code{\link{log_normalize}}
 }
-\concept{normalization}
+\concept{normalization methods}

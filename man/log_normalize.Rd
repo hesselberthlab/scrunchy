@@ -20,6 +20,6 @@ Normalization performed by dividing by column sums (total counts per cell)
 and scaled by a constant. Log values are returned with a pseudocount of 1.
 }
 \seealso{
-Other normalization: \code{\link{clr_normalize}}
+Other normalization methods: \code{\link{clr_normalize}}
 }
-\concept{normalization}
+\concept{normalization methods}

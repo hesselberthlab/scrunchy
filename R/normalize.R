@@ -7,7 +7,7 @@
 #' @param constant multiply normalized counts by this scalar to prevent small
 #'   numbers
 #'
-#' @family normalization
+#' @family normalization methods
 #'
 #' @return matrix of normalized values.
 #'
@@ -27,7 +27,7 @@ log_normalize <- function(mat, constant = 1e4) {
 #'
 #' @param mat input matrix
 #'
-#' @family normalization
+#' @family normalization methods
 #'
 #' @seealso <https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in>
 #'
