@@ -18,7 +18,15 @@ unique groups combinations.}
 \item{...}{additional parameters to pass to \code{\link[=calc_qvalues]{calc_qvalues()}}.}
 }
 \value{
-tibble sorted by \code{q.value} of the test.
+tibble, sorted by \code{q.value}
+\itemize{
+\item \code{activity}
+\item \code{group}
+\item \code{group1}
+\item \code{ratio} (ratio of the median signals in \code{group} over \code{group1})
+\item \code{p.value}
+\item \code{q.value}
+}
 }
 \description{
 Data is assumed to be tidy with a single grouping variable; all other
@@ -27,7 +35,9 @@ variables are treated as activities to compare. Descriptive columns like
 }
 \details{
 Applies \code{\link[stats:wilcox.test]{stats::wilcox.test()}} to unique pairs of groups for each measured
-variable.
+variable. Adjusted p-values are calculated using \code{\link[qvalue:qvalue]{qvalue::qvalue()}}. A
+ratio of activity in each group is reported; \code{Inf} values indicate that
+no activities were measured for the second group.
 }
 \examples{
 x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]

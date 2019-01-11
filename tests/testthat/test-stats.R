@@ -36,6 +36,13 @@ test_that("anova post-hoc results are ok", {
 
 # Activities -------------------------------------------------------------
 
+test_that("fold-changes are calculated", {
+  x <- fsce_tidy[c("k_cluster", "Uracil_45")]
+  res <- stat_activity_grouped(x, group = k_cluster)
+
+  expect_true("ratio" %in% names(res))
+})
+
 test_that("qvalues are calculated", {
   x <- fsce_tidy[c("k_cluster", "Uracil_45", "riboG_44")]
   res <- stat_activity_grouped(x, group = k_cluster)
@@ -56,5 +63,5 @@ test_that("factors can be completed", {
 test_that("cross_groups returns unique combinations", {
   x <- select(fsce_tidy, k_cluster, Uracil_45, riboG_44)
   res <- stat_activity_grouped(x, group = k_cluster)
-  expect_equal(dim(res), c(30, 5))
+  expect_equal(dim(res), c(30, 6))
 })

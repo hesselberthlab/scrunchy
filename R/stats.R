@@ -5,7 +5,9 @@
 #' `cell_id` should not be included.
 #'
 #' Applies [`stats::wilcox.test()`] to unique pairs of groups for each measured
-#' variable.
+#' variable. Adjusted p-values are calculated using [`qvalue::qvalue()`]. A
+#' ratio of activity in each group is reported; `Inf` values indicate that
+#' no activities were measured for the second group.
 #'
 #' @param tbl data from a `SingleCellExperiment`
 #' @param group variable for generating combinations
@@ -21,7 +23,13 @@
 #' @importFrom broom tidy
 #' @importFrom stats wilcox.test
 #'
-#' @return tibble sorted by `q.value` of the test.
+#' @return tibble, sorted by `q.value`
+#' - `activity`
+#' - `group`
+#' - `group1`
+#' - `ratio` (ratio of the median signals in `group` over `group1`)
+#' - `p.value`
+#' - `q.value`
 #'
 #' @family statistical tests
 #'
@@ -180,10 +188,15 @@ cross_groups <- function(x, complete) {
 group_stat <- function(x, group) {
   res <- mutate(x,
     stat = purrr::map2(data, data1, tidy_wilcoxon),
-    p.value = purrr::map_dbl(stat, "p.value")
+    p.value = purrr::map_dbl(stat, "p.value"),
+    ratio = purrr::map2_dbl(data, data1, fold_change)
   )
 
-  select(res, group, group1, p.value)
+  select(res, group, group1, ratio, p.value)
+}
+
+fold_change <- function(x, y) {
+  median(x) / median(y)
 }
 
 tidy_wilcoxon <- function(x, y) {
