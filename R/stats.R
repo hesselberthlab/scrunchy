@@ -39,10 +39,16 @@
 stat_activity_grouped <- function(tbl, group, complete = FALSE, ...) {
   group <- enquo(group)
 
+  activity <- sym("activity")
+  value <- sym("value")
+  data <- sym("data")
+  q.value <- sym("q.value")
+
   ## gather, group, and flatten to vectors
-  x <- gather(tbl, activity, value, -!!group)
-  x <- nest(group_by(x, !!group, activity))
-  x <- mutate(x, data = flatten(data))
+  x <- gather(tbl, !!activity, !!value, -!!group)
+  x <- nest(group_by(x, !!group, !!activity))
+
+  x <- mutate(x, !!data := flatten(!!data))
 
   ## split groups by activity
   groups <- x$activity
@@ -55,7 +61,7 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE, ...) {
 
   res <- calc_qvalues(res, id = "p.value", ...)
 
-  arrange(res, q.value)
+  arrange(res, !!q.value)
 }
 
 #' Analysis of variance of activities across groups
@@ -74,18 +80,21 @@ stat_activity_grouped <- function(tbl, group, complete = FALSE, ...) {
 stat_anova_grouped <- function(tbl, group = NULL) {
   group <- enquo(group)
 
+  activity <- sym("activity")
+  value <- sym("value")
+
   if (is.null(group)) {
     stop("must specify a `group` for the ANOVA", call. = FALSE)
   }
 
-  tbl <- gather(tbl, activity, value, -!!group)
+  tbl <- gather(tbl, !!activity, !!value, -!!group)
   groups <- tbl$activity
   tbl_split <- split(tbl, groups)
 
   purrr::map(
     tbl_split,
     anova_fun,
-    as.formula(paste("value ~", quo_name(group)))
+    stats::as.formula(paste("value ~", quo_name(group)))
   )
 }
 
@@ -171,6 +180,9 @@ tukey_fun <- function(x, group) {
 }
 
 cross_groups <- function(x, complete) {
+  group <- sym("group")
+  group1 <- sym("group1")
+
   ## set standardized names for crossed data
   names(x) <- c("group", "activity", "data")
 
@@ -182,17 +194,21 @@ cross_groups <- function(x, complete) {
 
   xx <- xx[unique_inds(xx, group, group1), ]
 
-  filter(xx, group != group1)
+  filter(xx, !!group != !!group1)
 }
 
 group_stat <- function(x, group) {
+  data <- sym("data")
+  data1 <- sym("data1")
+
   res <- mutate(x,
-    stat = purrr::map2(data, data1, tidy_wilcoxon),
+    stat = purrr::map2(!!data, !!data1, tidy_wilcoxon),
     p.value = purrr::map_dbl(stat, "p.value"),
-    ratio = purrr::map2_dbl(data, data1, fold_change)
+    ratio = purrr::map2_dbl(!!data, !!data1, fold_change)
   )
 
-  select(res, group, group1, ratio, p.value)
+  cols <- syms(c("group", "group1", "ratio", "p.value"))
+  select(res, !!!cols)
 }
 
 fold_change <- function(x, y) {
@@ -204,7 +220,8 @@ tidy_wilcoxon <- function(x, y) {
 }
 
 unique_inds <- function(x, ...) {
-  inds <- select(x, ...)
+  cols <- list2(...)
+  inds <- select(x, !!!cols)
 
   # https://stat.ethz.ch/pipermail/r-help/2011-July/282836.html
   !duplicated(t(apply(inds, 1, sort)))

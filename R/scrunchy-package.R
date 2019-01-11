@@ -16,7 +16,7 @@
 #' @seealso Report bugs at <https://github.com/hesselberthlab/scrunchy/issues>
 #'
 #' @importFrom methods as
-#' @importFrom stats median var kmeans
+#' @importFrom stats median var kmeans as.formula
 #' @importFrom utils read.csv
 #'
 #' @import Matrix
@@ -35,7 +35,7 @@
 #' @importFrom glue glue
 #' @importFrom cowplot theme_cowplot plot_grid
 #' @importFrom rlang parse_quosure is_character is_logical quo_text
-#' @importFrom rlang list2
+#' @importFrom rlang list2 .data :=
 #' @importFrom magrittr %>%
 #' @importFrom irlba prcomp_irlba
 #' @importFrom Rtsne Rtsne
