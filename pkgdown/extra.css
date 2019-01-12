@@ -10,3 +10,41 @@ a {
 a:hover {
   color: #930727;
 }
+
+.page-header {
+  margin-bottom: 6px;
+}
+
+h4.date,
+h4.author {
+  display: none;
+}
+
+h2.hasAnchor {
+  font-weight: 350;
+}
+
+.contents h1, .contents h2, .contents h3, .contents h4 {
+  padding-top: 80px;
+  margin-top: -40px;
+}
+
+.contents h2 {
+  font-size: 28px;
+  padding-top: 70px;
+}
+
+.ref-index tbody {
+  margin-bottom: 60px;
+}
+
+#sidebar .nav>li>a {
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+
+.link-table td {
+  padding-top: 20px !important;
+  padding-bottom: 210x !important;
+}
+
