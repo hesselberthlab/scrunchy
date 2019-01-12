@@ -48,7 +48,12 @@ Imports:
     broom,
     ggrepel,
     multcomp,
-    qvalue
+    qvalue,
+    igraph,
+    reticulate,
+    Rcpp,
+    RcppEigen,
+    RANN
 Suggests: 
     knitr,
     rmarkdown,
@@ -62,6 +67,7 @@ Remotes:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Collate: 
+    'RcppExports.R'
     'clustering.R'
     'data.R'
     'dims.R'
@@ -77,3 +83,6 @@ Collate:
     'tidiers.R'
     'utils-barcodes.R'
     'utils.R'
+    'zzz.R'
+LinkingTo: 
+    Rcpp, RcppEigen
