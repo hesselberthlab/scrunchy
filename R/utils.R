@@ -80,11 +80,11 @@ read_matrix <- function(path,
   mat <- Matrix::readMM(filenames$matrix)
 
   if (strip_10x_suffix) {
-    bcs <- stringr::str_remove(bcs, "-[0-9]+$")
+    bcs <- gsub("-[0-9]+$", "", bcs)
   }
 
   if (!is.null(cell_prefix)) {
-    bcs <- stringr::str_c(cell_prefix, "_", bcs)
+    bcs <- paste(cell_prefix, bcs, sep = "_")
   }
 
   if (use_gene_symbols & ("gene_symbol" %in% colnames(features))) {

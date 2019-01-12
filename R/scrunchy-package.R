@@ -20,7 +20,6 @@
 #' @importFrom utils read.csv
 #'
 #' @import Matrix
-#' @import stringr
 #' @import readr
 #' @import dplyr
 #' @import tibble
