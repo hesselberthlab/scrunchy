@@ -3,6 +3,7 @@ url: https://scrunchy.hesselberthlab.org
 template:
   params:
     bootswatch: sandstone
+    ganalytics: UA-54095998-8
 
 authors:
   Jay Hesselberth:
