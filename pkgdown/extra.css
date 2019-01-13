@@ -24,7 +24,7 @@ h2.hasAnchor {
   font-weight: 350;
 }
 
-.contents h1, .contents h2, .contents h3, .contents h4 {
+.contents h1 {
   padding-top: 80px;
   margin-top: -40px;
 }
