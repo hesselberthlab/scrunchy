@@ -34,27 +34,38 @@ extracts in a high-throughput DNA sequencing experiment.
 
 ### Functional heterogeneity of DNA repair in immune cells
 
-Our first functional method simulatneously measures the activity of DNA
-repair enzymes and the abuncance of mRNAs from thousands of single
-cells. We capture DNA repair activities by encapsulating synthetic DNA
-oligonucleotides with defined lesions with single cells. Cellular repair
-factors recognize and catalyze incision of these substrates, which we
-subsequently capture in a modified library construction protocol.
+Our first functional method simultaneously measures the activity of DNA
+repair enzymes and the abundance of mRNAs from thousands of single
+cells. We measure DNA repair activities by encapsulating synthetic DNA
+oligonucleotides with defined lesions with single cells. Cellular DNA
+repair enzymes recognize and catalyze incision of these substrates,
+which we subsequently capture in a [modified library construction
+protocol](https://www.protocols.io/view/single-cell-analysis-of-functional-heterogeneity-i-uhyet7w).
 
 An example data set in scrunchy contains a subset of data from an
-experiment in which we simultaneously measure mRNA expression and DNA
-repair activity in thousands of single cells (human primary mononuclear
-blood cells).
+experiment in which we simultaneously measure mRNA expression and
+specific types of DNA repair activities in thousands of single cells
+(human primary mononuclear blood cells).
 
 This plots show cells classified by mRNA expression for each cell type.
+This data set is too small to robustly classify cell types, but the full
+data set (containing \~4,000 cells) indicates that clusters 1, 2, 3, and
+5 are T-cell subtypes.
 
 <img src="man/figures/README-mrna_plot-1.png" width="100%" />
 
 These plots show measured DNA repair activities measured for each
 cluster above. The repair substrates included an unmodified DNA
-substrate (**A**), uracil base excision (in **B**, an A:U base-pair),
-ribonucleotide excision (in **C**, a rG:C base-pair), and abasic site
-repair (n **D**, abasic:C).
+substrate (**A**), an A:U base-pair (**B**), a ribonucleotide (rG-D,
+**C**), and an abasic site (**D**). Activity is measured as a normalized
+count of incisions observed at expected repair positions.
+
+These data show that whereas little repair activity is associated with
+the unmodified DNA (**A**), uracil base excision (**B**), ribonucleotide
+excision (**C**), and abasic site processing (**D**) activities can be
+measured in single cells. Moreover, differences in activities between
+clusters may reflect inherent differences in the levels of these DNA
+repair pathways.
 
 <img src="man/figures/README-activity_plot-1.png" width="100%" />
 

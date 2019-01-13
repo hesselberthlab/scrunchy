@@ -13,33 +13,27 @@ development:
   mode: unreleased
 
 reference:
-
   - title: Create Objects
     contents:
     - starts_with('create')
-
-  - title: Manipulate and Analyze Data
+  - title: Format and Normalize Data
+    - starts_with("tidy")
+    - ends_with("normalize")
+  - title: Analyze Data
     contents:
     - starts_with("calc")
     - starts_with("cluster")
     - starts_with("stat")
-    - starts_with("tidy")
-    - ends_with("normalize")
-
   - title: Visualize Data
     contents:
     - starts_with("plot")
-    - ends_with("OkabeIto")
-
-  - title: Data Sets
+  - title: Sample Data Sets
     contents:
     - fsce_small
     - fsce_tidy
-
   - title: Object Definitions
     contents:
     - starts_with("FunctionalSingleCellExperiment")
-
   - title: Utilities
     contents:
     - install_py_deps
@@ -50,3 +44,4 @@ reference:
     - starts_with("read")
     - ends_with("matrix")
     - starts_with("scrunchy")
+    - ends_with("OkabeIto")
