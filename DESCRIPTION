@@ -49,7 +49,6 @@ Imports:
     ggrepel,
     multcomp,
     qvalue,
-    igraph,
     reticulate,
     Rcpp,
     RcppEigen,

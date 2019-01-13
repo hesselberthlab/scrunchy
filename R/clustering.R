@@ -86,8 +86,8 @@ cluster_kmeans <- function(fsce,
 #' colData(fsce_small[["rnaseq"]])
 #' }
 #'
+#' @importFrom reticulate r_to_py
 #' @importFrom RANN nn2
-#' @importFrom igraph graph_from_adjacency_matrix write.graph
 #'
 #' @return fsce with `leiden_cluster` in `expt` colData.
 #'
@@ -117,18 +117,14 @@ cluster_leiden <- function(fsce,
 
   adj_mat <- compute_snn_impl(nn_idx, prune)
 
-  snn_graph <- igraph::graph_from_adjacency_matrix(
-    ceiling(as.matrix(adj_mat))
-  )
+  ## convert to integers and then matrix
+  adj_mat <- as.matrix(ceiling(adj_mat))
 
-  ## this pseudo-round-trip via an intermediate file is to convert
-  ## the R object to a python object.
-  ##
-  ## XXX there is likely a way to eliminate the R igraph dependency here.
-  ##
-  tmp_graph <- fs::file_temp()
-  igraph::write.graph(snn_graph, file=tmp_graph, format="graphml")
-  snn_graph <- igraph_py$Graph$Read_GraphML(tmp_graph)
+  ## convert to python numpy.ndarray, then list
+  adj_mat_py <- reticulate::r_to_py(adj_mat)
+  adj_mat_py <- adj_mat_py$tolist()
+
+  snn_graph <- igraph_py$Graph$Adjacency(adj_mat_py)
 
   ## Run leidenalg
   parts <- leidenalg_py$find_partition(
