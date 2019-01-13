@@ -141,7 +141,7 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 20 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 250 rows and 21 columns.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
@@ -153,27 +153,28 @@
 <li><p><code>cell_id</code></p></li>
 <li><p>UMAP dimensions (<code>UMAP1</code> and <code>UMAP2</code>)</p></li>
 <li><p>k-means clusters (<code>k_cluster</code>)</p></li>
+<li><p>Leiden clusters (<code>leiden_cluster</code>)</p></li>
 <li><p>Top ten most variable activities (<code>Uracil_45</code>, <code>riboG_44</code>, etc.)</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 20
-#&gt;    cell_id  UMAP1  UMAP2 k_cluster Normal_45 Uracil_45 riboG_44 Abasic_46  IL7R
-#&gt;    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 TGCGGG…  2.15   3.99  6             0         1.39     1.61       1.71  2.42
-#&gt;  2 TGGTTC…  1.38   3.64  6             0         1.55     1.33       2.07  0   
-#&gt;  3 CATATT…  3.82   2.70  6             0         1.76     0.429      1.56  3.13
-#&gt;  4 TCACAA… -0.216  0.207 6             0.418     0.418    0.418      2.11  0   
-#&gt;  5 GGACAA…  2.57   3.06  6             0         2.09     1.46       2.84  0   
-#&gt;  6 CTTTGC…  3.53   2.52  6             0         1.08     1.08       2.11  0   
-#&gt;  7 GTGCAG…  1.91   5.17  6             0.362     2.32     1.59       2.08  0   
-#&gt;  8 AGCGGT…  2.45  -1.47  4             0         1.21     1.46       3.10  0   
-#&gt;  9 GGATGT…  1.62   3.88  6             0         1.49     0.400      1.60  0   
-#&gt; 10 GTACTC… -1.79  -1.51  2             0         1.50     0.405      2.53  0   
-#&gt; # … with 240 more rows, and 11 more variables: CD14 &lt;dbl&gt;, LYZ &lt;dbl&gt;,
-#&gt; #   MS4A1 &lt;dbl&gt;, CD8A &lt;dbl&gt;, FCGR3A &lt;dbl&gt;, MS4A7 &lt;dbl&gt;, GNLY &lt;dbl&gt;, NKG7 &lt;dbl&gt;,
-#&gt; #   FCER1A &lt;dbl&gt;, CST3 &lt;dbl&gt;, PPBP &lt;dbl&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>fsce_tidy</span></div><div class='output co'>#&gt; # A tibble: 250 x 21
+#&gt;    cell_id  UMAP1  UMAP2 k_cluster leiden_cluster Normal_45 Uracil_45 riboG_44
+#&gt;    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 TGCGGG…  2.15   3.99  6         1                  0         1.39     1.61 
+#&gt;  2 TGGTTC…  1.38   3.64  6         1                  0         1.55     1.33 
+#&gt;  3 CATATT…  3.82   2.70  6         5                  0         1.76     0.429
+#&gt;  4 TCACAA… -0.216  0.207 6         2                  0.418     0.418    0.418
+#&gt;  5 GGACAA…  2.57   3.06  6         1                  0         2.09     1.46 
+#&gt;  6 CTTTGC…  3.53   2.52  6         5                  0         1.08     1.08 
+#&gt;  7 GTGCAG…  1.91   5.17  6         1                  0.362     2.32     1.59 
+#&gt;  8 AGCGGT…  2.45  -1.47  4         6                  0         1.21     1.46 
+#&gt;  9 GGATGT…  1.62   3.88  6         1                  0         1.49     0.400
+#&gt; 10 GTACTC… -1.79  -1.51  2         3                  0         1.50     0.405
+#&gt; # … with 240 more rows, and 13 more variables: Abasic_46 &lt;dbl&gt;, IL7R &lt;dbl&gt;,
+#&gt; #   CD14 &lt;dbl&gt;, LYZ &lt;dbl&gt;, MS4A1 &lt;dbl&gt;, CD8A &lt;dbl&gt;, FCGR3A &lt;dbl&gt;, MS4A7 &lt;dbl&gt;,
+#&gt; #   GNLY &lt;dbl&gt;, NKG7 &lt;dbl&gt;, FCER1A &lt;dbl&gt;, CST3 &lt;dbl&gt;, PPBP &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

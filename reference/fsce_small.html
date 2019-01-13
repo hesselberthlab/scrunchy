@@ -164,9 +164,9 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 <li><p>a uracil:adenosine base-pair, with uracil at position 45 (<code>Uracil_</code>)</p></li>
 <li><p>a uracil:guanosine base-pair, with uracil at position 45 (<code>GU_</code>)</p></li>
 </ul>
-    <p>Dimensionality reduction calculations are in the <code>rnaseq</code> experiment, including
-<code>PCA</code>, <code>UMAP</code>, and <code>TSNE</code> slots. In addition, k-means clusters are available as
-<code>rowData</code>.</p>
+    <p>Dimensionality reduction calculations are in the <code>rnaseq</code> experiment,
+including <code>PCA</code>, <code>UMAP</code>, and <code>TSNE</code> slots. In addition, clusters determined
+by <code><a href='cluster_kmeans.html'>cluster_kmeans()</a></code> and <code><a href='cluster_leiden.html'>cluster_leiden()</a></code> are available as <code>colData</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -191,7 +191,7 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt; rowData names(0):
 #&gt; colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ... CTCGAAACACACTGCG
 #&gt;   TGACGGCAGAGTCGGT
-#&gt; colData names(2): cell_id k_cluster
+#&gt; colData names(3): cell_id k_cluster leiden_cluster
 #&gt; reducedDimNames(3): PCA UMAP TSNE
 #&gt; spikeNames(0):</div><div class='input'>
 <span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]]</div><div class='output co'>#&gt; class: SingleCellExperiment 
@@ -224,62 +224,30 @@ normalized counts are in the <code>logcounts</code> slot.</p></li>
 #&gt;  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
 #&gt;  *Format() - convert into a long or wide DataFrame 
 #&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>SingleCellExperiment</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: SummarizedExperiment</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
-#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
-#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:scrunchy’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    normalize</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colMeans,</span>
-#&gt; <span class='message'>    colnames, colSums, dirname, do.call, duplicated, eval, evalq,</span>
-#&gt; <span class='message'>    Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply,</span>
-#&gt; <span class='message'>    lengths, Map, mapply, match, mget, order, paste, pmax, pmax.int,</span>
-#&gt; <span class='message'>    pmin, pmin.int, Position, rank, rbind, Reduce, rowMeans, rownames,</span>
-#&gt; <span class='message'>    rowSums, sapply, setdiff, sort, table, tapply, union, unique,</span>
-#&gt; <span class='message'>    unsplit, which, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Biobase</span></div><div class='output co'>#&gt; <span class='message'>Welcome to Bioconductor</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    Vignettes contain introductory material; view with</span>
-#&gt; <span class='message'>    'browseVignettes()'. To cite Bioconductor, see</span>
-#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: DelayedArray</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: matrixStats</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘matrixStats’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:Biobase’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyMissing, rowMedians</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocParallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘DelayedArray’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:matrixStats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    aperm, apply</span></div><div class='input'><span class='co'># dimensionality reduction results</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; [1] "PCA"  "UMAP" "TSNE"</div><div class='input'>
+<span class='co'># dimensionality reduction results</span>
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; [1] "PCA"  "UMAP" "TSNE"</div><div class='input'>
 <span class='co'># UMAP results (first 5 rows)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                       [,1]      [,2]
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                       [,1]      [,2]
 #&gt; TGCGGGTTCAACTCTT  2.146147 3.9898103
 #&gt; TGGTTCCTCCCAAGAT  1.376538 3.6447333
 #&gt; CATATTCCATGCCCGA  3.815146 2.7023185
 #&gt; TCACAAGTCTCCAACC -0.216390 0.2069193
 #&gt; GGACAAGAGCCCTAAT  2.566830 3.0588671</div><div class='input'>
 <span class='co'># k-means cluster IDs</span>
-<span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 2 columns
-#&gt;                           cell_id   k_cluster
-#&gt;                       &lt;character&gt; &lt;character&gt;
-#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           6
-#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           6
-#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           6
-#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           6
-#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6
-#&gt; ...                           ...         ...
-#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4
-#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           2
-#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4
-#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6
-#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6</div><div class='input'>
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 3 columns
+#&gt;                           cell_id   k_cluster leiden_cluster
+#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt;
+#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           6              1
+#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           6              1
+#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           6              5
+#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           6              2
+#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6              1
+#&gt; ...                           ...         ...            ...
+#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4              6
+#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           2              3
+#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4              6
+#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6              5
+#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6              5</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

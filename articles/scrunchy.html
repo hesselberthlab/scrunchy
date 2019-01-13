@@ -312,11 +312,11 @@
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                       [,1]       [,2]
-## TGCGGGTTCAACTCTT 2.4073434 -4.9617259
-## TGGTTCCTCCCAAGAT 3.1796818 -5.0732995
-## CATATTCCATGCCCGA 0.3419199 -4.1993339
-## TCACAAGTCTCCAACC 0.5306197  0.9760647</code></pre>
+<pre><code>##                        [,1]      [,2]
+## TGCGGGTTCAACTCTT  0.7975819 -4.933777
+## TGGTTCCTCCCAAGAT  0.9717735 -5.817831
+## CATATTCCATGCCCGA  2.1199388 -3.503364
+## TCACAAGTCTCCAACC -0.1633741  0.827342</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
@@ -377,19 +377,19 @@
 <a class="sourceLine" id="cb68-11" data-line-number="11">)</a>
 <a class="sourceLine" id="cb68-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb68-13" data-line-number="13">fsce_tidy</a></code></pre></div>
-<pre><code>## # A tibble: 250 x 6
-##    cell_id           UMAP1  UMAP2 k_cluster Uracil_45 riboG_44
-##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-##  1 TGCGGGTTCAACTCTT  2.15   3.99  6             1.39     1.61 
-##  2 TGGTTCCTCCCAAGAT  1.38   3.64  6             1.55     1.33 
-##  3 CATATTCCATGCCCGA  3.82   2.70  6             1.76     0.429
-##  4 TCACAAGTCTCCAACC -0.216  0.207 6             0.418    0.418
-##  5 GGACAAGAGCCCTAAT  2.57   3.06  6             2.09     1.46 
-##  6 CTTTGCGAGCAGGTCA  3.53   2.52  6             1.08     1.08 
-##  7 GTGCAGCAGTAGCCGA  1.91   5.17  6             2.32     1.59 
-##  8 AGCGGTCCAATAGAGT  2.45  -1.47  4             1.21     1.46 
-##  9 GGATGTTTCTCAAACG  1.62   3.88  6             1.49     0.400
-## 10 GTACTCCTCGTTTAGG -1.79  -1.51  2             1.50     0.405
+<pre><code>## # A tibble: 250 x 7
+##    cell_id         UMAP1  UMAP2 k_cluster leiden_cluster Uracil_45 riboG_44
+##    &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;
+##  1 TGCGGGTTCAACT…  2.15   3.99  6         1                  1.39     1.61 
+##  2 TGGTTCCTCCCAA…  1.38   3.64  6         1                  1.55     1.33 
+##  3 CATATTCCATGCC…  3.82   2.70  6         5                  1.76     0.429
+##  4 TCACAAGTCTCCA… -0.216  0.207 6         2                  0.418    0.418
+##  5 GGACAAGAGCCCT…  2.57   3.06  6         1                  2.09     1.46 
+##  6 CTTTGCGAGCAGG…  3.53   2.52  6         5                  1.08     1.08 
+##  7 GTGCAGCAGTAGC…  1.91   5.17  6         1                  2.32     1.59 
+##  8 AGCGGTCCAATAG…  2.45  -1.47  4         6                  1.21     1.46 
+##  9 GGATGTTTCTCAA…  1.62   3.88  6         1                  1.49     0.400
+## 10 GTACTCCTCGTTT… -1.79  -1.51  2         3                  1.50     0.405
 ## # … with 240 more rows</code></pre>
 </div>
 <div id="visualization" class="section level1">
