@@ -10,6 +10,9 @@ bioc_packages:
 - Rtsne
 - qvalue
 
+before_install:
+  - pip install --user numpy leidenalg python-igraph
+
 matrix:
   include:
   - r: bioc-release

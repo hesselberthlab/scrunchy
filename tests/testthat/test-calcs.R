@@ -16,17 +16,7 @@ test_that("inputs are checked", {
     "not found for expt"
   )
 
-  ## calc_kmeans
-  expect_error(
-    calc_kmeans(fsce_empty),
-    "not found in fsce"
-  )
-  expect_error(
-    calc_kmeans(fsce_empty, expt = "sce_empty"),
-    "method `PCA` not found in fsce"
-  )
-
-  ## calc_kmeans
+  ## calc_pca
   expect_error(
     calc_pca(fsce_empty),
     "not found in fsce"
@@ -58,7 +48,7 @@ test_that("inputs are checked", {
 
 })
 
-test_that("calc functions are reproducible with a seed", {
+test_that("functions are reproducible with a seed", {
   var_genes <- calc_var_features(fsce_small, "rnaseq", n = 50)
 
   seed <- 47681
@@ -74,9 +64,5 @@ test_that("calc functions are reproducible with a seed", {
   expect_equal(
     reducedDim(calc_tsne(fsce_small, n_dims = 2, seed = seed)[["rnaseq"]], "TSNE"),
     reducedDim(calc_tsne(fsce_small, n_dims = 2, seed = seed)[["rnaseq"]], "TSNE")
-  )
-  expect_equal(
-    colData(calc_kmeans(fsce_small, k = 6, seed = seed)[["rnaseq"]]),
-    colData(calc_kmeans(fsce_small, k = 6, seed = seed)[["rnaseq"]])
   )
 })

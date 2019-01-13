@@ -17,7 +17,6 @@
 #'
 #' @importFrom methods as
 #' @importFrom stats median var kmeans as.formula
-#' @importFrom utils read.csv
 #'
 #' @import Matrix
 #' @import readr
@@ -42,4 +41,7 @@
 #' @import SingleCellExperiment
 #' @import MultiAssayExperiment
 #' @importFrom S4Vectors SimpleList
+#'
+#' @useDynLib scrunchy, .registration = TRUE
+#' @importFrom Rcpp sourceCpp
 "_PACKAGE"

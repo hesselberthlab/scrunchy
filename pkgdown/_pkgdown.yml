@@ -21,6 +21,7 @@ reference:
   - title: Manipulate and Analyze Data
     contents:
     - starts_with("calc")
+    - starts_with("cluster")
     - starts_with("stat")
     - starts_with("tidy")
     - ends_with("normalize")
@@ -41,6 +42,7 @@ reference:
 
   - title: Utilities
     contents:
+    - install_py_deps
     - molecule_df
     - is.molecule_df
     - filter_molecules
