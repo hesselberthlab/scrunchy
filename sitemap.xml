@@ -13,9 +13,6 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/calc_hairpin_coverage.html</loc>
   </url>
   <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/calc_kmeans.html</loc>
-  </url>
-  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/calc_pca.html</loc>
   </url>
   <url>
@@ -32,6 +29,12 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/clr_normalize.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/cluster_kmeans.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/cluster_leiden.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/create_fsce.html</loc>
@@ -53,6 +56,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/fsce_tidy.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/install_py_deps.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/is.molecule_df.html</loc>
