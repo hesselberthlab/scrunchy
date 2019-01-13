@@ -11,7 +11,7 @@ bioc_packages:
 - qvalue
 
 before_install:
-  - pip install numpy leidenalg igraph
+  - pip install --user numpy leidenalg igraph
 
 matrix:
   include:
