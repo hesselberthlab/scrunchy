@@ -34,9 +34,9 @@ Haircut repair substrates include:
 \item a uracil:guanosine base-pair, with uracil at position 45 (\code{GU_})
 }
 
-Dimensionality reduction calculations are in the \code{rnaseq} experiment, including
-\code{PCA}, \code{UMAP}, and \code{TSNE} slots. In addition, k-means clusters are available as
-\code{rowData}.
+Dimensionality reduction calculations are in the \code{rnaseq} experiment,
+including \code{PCA}, \code{UMAP}, and \code{TSNE} slots. In addition, clusters determined
+by \code{\link[=cluster_kmeans]{cluster_kmeans()}} and \code{\link[=cluster_leiden]{cluster_leiden()}} are available as \code{colData}.
 }
 \examples{
 fsce_small
@@ -57,15 +57,14 @@ cell_ids <- c("GAAACTCTCCGAAGAG", "CGCTATCGTTCACCTC")
 
 fsce_small[features, cell_ids, ]
 
-library(SingleCellExperiment)
 # dimensionality reduction results
-reducedDimNames(fsce_small[["rnaseq"]])
+SingleCellExperiment::reducedDimNames(fsce_small[["rnaseq"]])
 
 # UMAP results (first 5 rows)
-reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
+SingleCellExperiment::reducedDim(fsce_small[["rnaseq"]], "UMAP")[1:5, ]
 
 # k-means cluster IDs
-colData(fsce_small[["rnaseq"]])
+SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 
 }
 \keyword{datasets}

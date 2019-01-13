@@ -16,6 +16,9 @@ var_genes <- calc_var_features(fsce_small, "rnaseq", n = 5000)
 fsce_small <- calc_pca(fsce_small, n_pcs = 20, genes = var_genes, seed = seed)
 fsce_small <- calc_umap(fsce_small, n_dims = 6, seed = seed)
 fsce_small <- calc_tsne(fsce_small, n_dims = 6, seed = seed)
-fsce_small <- calc_kmeans(fsce_small, k = 6, seed = seed)
+
+fsce_small <- cluster_kmeans(fsce_small, k = 6, seed = seed)
+# unseeded
+fsce_small <- cluster_leiden(fsce_small)
 
 usethis::use_data(fsce_small, compress = "xz", overwrite = TRUE)
