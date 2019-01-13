@@ -34,18 +34,27 @@ extracts in a high-throughput DNA sequencing experiment.
 
 ### Functional heterogeneity of DNA repair in immune cells
 
+Our first functional method simulatneously measures the activity of DNA
+repair enzymes and the abuncance of mRNAs from thousands of single
+cells. We capture DNA repair activities by encapsulating synthetic DNA
+oligonucleotides with defined lesions with single cells. Cellular repair
+factors recognize and catalyze incision of these substrates, which we
+subsequently capture in a modified library construction protocol.
+
 An example data set in scrunchy contains a subset of data from an
 experiment in which we simultaneously measure mRNA expression and DNA
-repair actvities present in thousands of single cells.
+repair activity in thousands of single cells (human primary mononuclear
+blood cells).
 
 This plots show cells classified by mRNA expression for each cell type.
 
 <img src="man/figures/README-mrna_plot-1.png" width="100%" />
 
-These plots show measured DNA repair activities measured for a
-unmodified DNA substrate (**A**), uracil base excision (in **B**, an A:U
-base-pair), ribonucleotide excision (in **C**, a rG:C base-pair), and
-abasic site repair (n **D**, abasic:C).
+These plots show measured DNA repair activities measured for each
+cluster above. The repair substrates included an unmodified DNA
+substrate (**A**), uracil base excision (in **B**, an A:U base-pair),
+ribonucleotide excision (in **C**, a rG:C base-pair), and abasic site
+repair (n **D**, abasic:C).
 
 <img src="man/figures/README-activity_plot-1.png" width="100%" />
 
