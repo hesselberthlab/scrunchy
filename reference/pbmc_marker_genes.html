@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run k-means clustering algorithm — cluster_kmeans • scrunchy</title>
+<title>Comman human PBMC marker genes — pbmc_marker_genes • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Run k-means clustering algorithm — cluster_kmeans" />
+<meta property="og:title" content="Comman human PBMC marker genes — pbmc_marker_genes" />
 
-<meta property="og:description" content="Run k-means clustering algorithm" />
+<meta property="og:description" content="Comman human PBMC marker genes" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,97 +126,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Run k-means clustering algorithm</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/clustering.R'><code>R/clustering.R</code></a></small>
-    <div class="hidden name"><code>cluster_kmeans.Rd</code></div>
+    <h1>Comman human PBMC marker genes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>pbmc_marker_genes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Run k-means clustering algorithm</p>
+    <p>Comman human PBMC marker genes</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cluster_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='no'>k</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>,
-  <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>fsce</th>
-      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code></p></td>
-    </tr>
-    <tr>
-      <th>expt</th>
-      <td><p>Data to use for calculating variable features
-(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>number of classes</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>dimensionality reduction method for clustering (defaults to
-PCA)</p></td>
-    </tr>
-    <tr>
-      <th>n_dims</th>
-      <td><p>specify the number of dimensions from "dr" to use for
-clustering, defaults to all dimensions</p></td>
-    </tr>
-    <tr>
-      <th>seed</th>
-      <td><p>seed for reproducible result</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/stats/topics/kmeans'>stats::kmeans()</a></code></p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>pbmc_marker_genes</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>fsce with <code>k_cluster</code> in <code>expt</code> colData.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other clustering functions: <code><a href='cluster_leiden.html'>cluster_leiden</a></code></p></div>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 12 rows and 3 columns.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># calculate PCA for k-means default method</span>
-<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_pca.html'>calc_pca</a></span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; <span class='message'>scaling data</span></div><div class='output co'>#&gt; <span class='message'>calculating pcs</span></div><div class='input'>
-<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'>cluster_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-
-<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"k_cluster"</span>)</div><div class='output co'>#&gt; DataFrame with 250 rows and 3 columns
-#&gt;                           cell_id   k_cluster leiden_cluster
-#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt;
-#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           6              1
-#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           6              1
-#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           6              5
-#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           6              2
-#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6              1
-#&gt; ...                           ...         ...            ...
-#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4              6
-#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           4              3
-#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           5              6
-#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6              5
-#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6              5</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#format">Format</a></li>
+          </ul>
 
   </div>
 </div>
