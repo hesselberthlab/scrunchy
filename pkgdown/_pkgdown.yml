@@ -32,6 +32,7 @@ reference:
     contents:
     - fsce_small
     - fsce_tidy
+    - pbmc_marker_genes
   - title: Object Definitions
     contents:
     - starts_with("FunctionalSingleCellExperiment")

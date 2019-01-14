@@ -1,3 +1,25 @@
+# Useful data ---------------------------------------------------------
+
+#' Comman human PBMC marker genes
+#'
+#' @export
+# https://github.com/hesselberthlab/scrunchy/issues/47
+pbmc_marker_genes <- tibble::tribble(
+  ~label, ~descrip,            ~gene_name,
+  "T4",   "CD4 T cells",       "IL7R",
+  "MC14", "CD14+ Monocytes",   "CD14",
+  "MC14", "CD14+ Monocytes",   "LYZ",
+  "B",    "B cells",           "MS4A1",
+  "T8",   "CD8 T cells",       "CD8A",
+  "MC3A", "FCGR3A+ Monocytes", "FCGR3A",
+  "MC3A", "FCGR3A+ Monocytes", "MS4A7",
+  "NK",   "NK cells",          "GNLY",
+  "NK",   "NK cells",          "NKG7",
+  "DC",   "Dendritic Cells",   "FCER1A",
+  "DC",   "Dendritic Cells",   "CST3",
+  "MK",   "Megakaryocytes",    "PPBP"
+)
+
 #' An example FunctionalSingleCellExperiment
 #'
 #' Contains sample data for a functional single-cell experiment.
