@@ -45,7 +45,7 @@ protocol](https://www.protocols.io/view/single-cell-analysis-of-functional-heter
 An example data set in scrunchy contains a subset of data from an
 experiment in which we simultaneously measure mRNA expression and
 specific types of DNA repair activities in thousands of single cells
-(human primary mononuclear blood cells).
+(human peripheral blood mononuclear cells).
 
 The following plot shows cells classified by mRNA expression for each
 cell type embedded in a two-dimensional UMAP projection. This data set
@@ -55,17 +55,19 @@ T-cell subtypes.
 
 <img src="man/figures/README-mrna_plot-1.png" width="100%" />
 
-The following plots show DNA repair activities measured for each cluster
-above. The repair substrates included an unmodified DNA substrate
-(**A**), an A:U base-pair (**B**), a ribonucleotide (rG-D, **C**), and
-an abasic site (**D**). Activity is measured as a normalized count of
-incisions observed at expected repair positions.
+In addition to mRNA expression, we measured the activity of DNA repair
+factors in each of these cells. The following plots show DNA repair
+activities measured for each cluster above. The repair substrates
+included an unmodified DNA substrate (**A**), an A:U base-pair (**B**),
+a ribonucleotide (rG-D, **C**), and an abasic site (**D**). Activity is
+measured as a normalized count of incisions observed at expected repair
+positions.
 
 These data show that whereas little repair activity is associated with
 the unmodified DNA (**A**), uracil base excision (**B**), ribonucleotide
 excision (**C**), and abasic site processing (**D**) activities can be
-measured in single cells. Moreover, differences in activities between
-clusters may reflect inherent differences in the levels of these DNA
+measured in single cells. Moreover, differences in activity between
+clusters may reflect intrinsic differences in the levels of these DNA
 repair pathways.
 
 <img src="man/figures/README-activity_plot-1.png" width="100%" />
