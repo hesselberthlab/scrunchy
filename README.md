@@ -47,18 +47,19 @@ experiment in which we simultaneously measure mRNA expression and
 specific types of DNA repair activities in thousands of single cells
 (human primary mononuclear blood cells).
 
-This plots show cells classified by mRNA expression for each cell type.
-This data set is too small to robustly classify cell types, but the full
-data set (containing \~4,000 cells) indicates that clusters 1, 2, 3, and
-5 are T-cell subtypes.
+The following plot shows cells classified by mRNA expression for each
+cell type embedded in a two-dimensional UMAP projection. This data set
+is too small to robustly classify cell types, but the full data set
+(containing \~4,000 cells) indicates that clusters 1, 2, 3, and 5 are
+T-cell subtypes.
 
 <img src="man/figures/README-mrna_plot-1.png" width="100%" />
 
-These plots show measured DNA repair activities measured for each
-cluster above. The repair substrates included an unmodified DNA
-substrate (**A**), an A:U base-pair (**B**), a ribonucleotide (rG-D,
-**C**), and an abasic site (**D**). Activity is measured as a normalized
-count of incisions observed at expected repair positions.
+The following plots show DNA repair activities measured for each cluster
+above. The repair substrates included an unmodified DNA substrate
+(**A**), an A:U base-pair (**B**), a ribonucleotide (rG-D, **C**), and
+an abasic site (**D**). Activity is measured as a normalized count of
+incisions observed at expected repair positions.
 
 These data show that whereas little repair activity is associated with
 the unmodified DNA (**A**), uracil base excision (**B**), ribonucleotide
