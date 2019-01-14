@@ -17,6 +17,7 @@ reference:
     contents:
     - starts_with('create')
   - title: Format and Normalize Data
+    contents:
     - starts_with("tidy")
     - ends_with("normalize")
   - title: Analyze Data
