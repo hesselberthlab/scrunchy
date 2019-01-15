@@ -4,19 +4,24 @@
 \alias{tidy_coldata}
 \title{Tidy colData}
 \usage{
-tidy_coldata(sce)
+tidy_coldata(fsce)
 }
 \arguments{
-\item{sce}{An object of class \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}}.}
+\item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}.}
 }
 \description{
 Tidy colData
 }
 \section{Tidying}{
 
-This is a data tidier for a \code{SingleCellExperient}. Returns
-data from an \code{sce} in a tidy format, where variables are columns and
-observations are rows.
+This is a data tidier for a \code{\link{FunctionalSingleCellExperiment}}. Returns data
+from \code{\link{SingleCellExperiment}} in a tidy format, where variables are columns
+and observations are rows.
+
+If the \code{\link{FunctionalSingleCellExperiment}} contains more than one
+\code{\link{SingleCellExperiment}}, data from each \code{sce} are joined using the \code{cell_id}
+variable name, and a new \code{experiment} column contains the name of the source
+\code{sce}.
 }
 
 \examples{

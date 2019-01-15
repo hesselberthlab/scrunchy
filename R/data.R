@@ -2,6 +2,9 @@
 
 #' Comman human PBMC marker genes
 #'
+#' @examples
+#' pbmc_marker_genes
+#'
 #' @export
 # https://github.com/hesselberthlab/scrunchy/issues/47
 pbmc_marker_genes <- tibble::tribble(

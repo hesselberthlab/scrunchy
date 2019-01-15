@@ -11,4 +11,8 @@ pbmc_marker_genes
 \description{
 Comman human PBMC marker genes
 }
+\examples{
+pbmc_marker_genes
+
+}
 \keyword{datasets}

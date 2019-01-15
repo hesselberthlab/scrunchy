@@ -3,21 +3,26 @@
 #' Tidy logcounts data
 #'
 #' @section Tidying:
-#' This is a data tidier for a `SingleCellExperient`. Returns
-#' data from an `sce` in a tidy format, where variables are columns and
-#' observations are rows.
+#' This is a data tidier for a [`FunctionalSingleCellExperiment`]. Returns data
+#' from [`SingleCellExperiment`] in a tidy format, where variables are columns
+#' and observations are rows.
 #'
-#' @param sce An object of class [`SingleCellExperiment::SingleCellExperiment`].
+#' If the [`FunctionalSingleCellExperiment`] contains more than one
+#' [`SingleCellExperiment`], data from each `sce` are joined using the `cell_id`
+#' variable name, and a new `experiment` column contains the name of the source
+#' `sce`.
+#'
+#' @param fsce An object of class [`FunctionalSingleCellExperiment`].
 #'
 #' @examples
-#' x <- fsce_small[ c("Uracil_45"), , "haircut"]
+#' x <- fsce_small[c("Uracil_45"), , "haircut"]
 #' tidy_logcounts(x)
 #'
 #' @family tidiers
 #'
 #' @export
-tidy_logcounts <- function(sce) {
-  es <- as.list(experiments(sce))
+tidy_logcounts <- function(fsce) {
+  es <- as.list(experiments(fsce))
   cs <- purrr::map(es, logcounts)
 
   purrr::map_dfr(cs, counts_tbl, .id = "experiment")
@@ -35,8 +40,8 @@ tidy_logcounts <- function(sce) {
 #' @family tidiers
 #'
 #' @export
-tidy_counts <- function(sce) {
-  es <- as.list(experiments(sce))
+tidy_counts <- function(fsce) {
+  es <- as.list(experiments(fsce))
   cs <- purrr::map(es, counts)
 
   purrr::map_dfr(cs, counts_tbl, .id = "experiment")
@@ -58,8 +63,8 @@ tidy_counts <- function(sce) {
 #' @family tidiers
 #'
 #' @export
-tidy_dims <- function(sce, dimnames = NULL, dims = c(1, 2)) {
-  es <- as.list(experiments(sce))
+tidy_dims <- function(fsce, dimnames = NULL, dims = c(1, 2)) {
+  es <- as.list(experiments(fsce))
 
   res <- purrr::map(es, dims_tbl, dimnames, dims)
   unframe(res, name = "experiment")
@@ -76,8 +81,8 @@ tidy_dims <- function(sce, dimnames = NULL, dims = c(1, 2)) {
 #' @family tidiers
 #'
 #' @export
-tidy_coldata <- function(sce) {
-  es <- as.list(experiments(sce))
+tidy_coldata <- function(fsce) {
+  es <- as.list(experiments(fsce))
   cds <- purrr::map(es, colData)
   cds <- purrr::map(cds, as.data.frame)
 
