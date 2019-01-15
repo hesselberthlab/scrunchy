@@ -148,6 +148,6 @@ cluster_leiden <- function(fsce,
 #' @importFrom reticulate py_install
 #' @export
 install_py_deps <- function(method = "auto", conda = "auto") {
-  reticulate::py_install("igraph", method = method, conda = conda)
+  reticulate::py_install("python-igraph", method = method, conda = conda)
   reticulate::py_install("leidenalg", method = method, conda = conda)
 }
