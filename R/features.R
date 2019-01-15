@@ -56,11 +56,13 @@ calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 #' @export
 calc_cell_cycle <- function(fsce, expt = "rnaseq", org = "human", ...) {
 
-  gene_pairs <- base::readRDS(
+  gene_pairs <- readr::read_rds(
     system.file(
       "exdata",
       paste0(org, "_cycle_markers.rds"),
-      package="scran")
+      package="scran",
+      mustWork = TRUE
+    )
   )
 
   res <- scran::cyclone(fsce[[expt]], gene_pairs, ...)
