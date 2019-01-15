@@ -95,20 +95,28 @@
 
     
     
-<div id="create-a-functional-single-cell-experiment-fsce" class="section level1">
-<h1 class="hasAnchor">
-<a href="#create-a-functional-single-cell-experiment-fsce" class="anchor"></a>Create a Functional Single Cell Experiment (fsce)</h1>
+<p>The goal of scrunchy is to facilitate the analysis of experiments that measure the heterogeneity of enzymatic activities among single cells.</p>
+<p>We have developed functional assays as a new modality for single-cell experiments. These assays measure the conversion of substrates to products by single-cell extracts in a high-throghput DNA sequencing experiment. The assays are performed in the context of traditional single-cell mRNA sequencing experiment, enabling type identifcation and functional assessment of single cells. Our initial efforts have focused on measuring DNA repair activities in single cells and we are developing methods for other enzymes including proteases and kinases. Together these assays provide a new type of information from single-cell experiments.</p>
+<p>The method to meausre DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment. Because we are measuring strand incision on DNA hairpins, we call the assay Haircut—and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.</p>
+<p><img src="../man/figures/method-overview.svg" width="100%"></p>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p>scrunchy facilitates the analysis and visualization of functional data from single cells in concert with their transcriptional profiles.</p>
+<ol style="list-style-type: decimal">
+<li>Processing</li>
+<li>Statistical analysis</li>
+<li>Visualization</li>
+</ol>
+</div>
+<div id="the-functional-single-cell-experiment-fsce" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-functional-single-cell-experiment-fsce" class="anchor"></a>The Functional Single Cell Experiment (fsce)</h2>
+<p><code>fsce</code> is an object of class <code>FunctionalSingleCellExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. It is a thin wrapper around [<code><a href="https://www.rdocumentation.org/packages/MultiAssayExperiment/topics/MultiAssayExperiment">MultiAssayExperiment::MultiAssayExperiment</a></code>].</p>
+<p>A <code>FunctionalSingleCellExperiment</code> in turn contains one or more objects of class [<code>SingleCellExperiment</code>], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.</p>
+<p>scrunchy contains a subset of cells from an experiment to measure gene expression and DNA repair activities in human peripheral blood mononuclear cells.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># this same object is available as `fsce_small` in the package.</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fsce.html">create_fsce</a></span>(</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">rnaseq =</span> <span class="kw"><a href="../reference/create_sce_rnaseq.html">create_sce_rnaseq</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna"</span>)),</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">haircut =</span> <span class="kw"><a href="../reference/create_sce_haircut.html">create_sce_haircut</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut"</span>))</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  )</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">fsce</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2">fsce_small</a></code></pre></div>
 <pre><code>## A FunctionalSingleCellExperiment object of 2 listed
 ##  experiments with user-defined names and respective classes. 
 ##  Containing an ExperimentList class object of length 2: 
@@ -121,68 +129,13 @@
 ##  `$`, `[`, `[[` - extract colData columns, subset, or experiment 
 ##  *Format() - convert into a long or wide DataFrame 
 ##  assays() - convert ExperimentList to a SimpleList of matrices</code></pre>
-<p><code>fsce</code> is an object of class <code>FunctionalSingleCellExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a></code></pre></div>
-<pre><code>## Loading required package: SummarizedExperiment</code></pre>
-<pre><code>## Loading required package: GenomicRanges</code></pre>
-<pre><code>## Loading required package: stats4</code></pre>
-<pre><code>## Loading required package: BiocGenerics</code></pre>
-<pre><code>## Loading required package: parallel</code></pre>
-<pre><code>## 
-## Attaching package: 'BiocGenerics'</code></pre>
-<pre><code>## The following objects are masked from 'package:parallel':
-## 
-##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-##     parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>## The following object is masked from 'package:scrunchy':
-## 
-##     normalize</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     anyDuplicated, append, as.data.frame, basename, cbind,
-##     colMeans, colnames, colSums, dirname, do.call, duplicated,
-##     eval, evalq, Filter, Find, get, grep, grepl, intersect,
-##     is.unsorted, lapply, lengths, Map, mapply, match, mget, order,
-##     paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind,
-##     Reduce, rowMeans, rownames, rowSums, sapply, setdiff, sort,
-##     table, tapply, union, unique, unsplit, which, which.max,
-##     which.min</code></pre>
-<pre><code>## Loading required package: S4Vectors</code></pre>
-<pre><code>## 
-## Attaching package: 'S4Vectors'</code></pre>
-<pre><code>## The following object is masked from 'package:base':
-## 
-##     expand.grid</code></pre>
-<pre><code>## Loading required package: IRanges</code></pre>
-<pre><code>## Loading required package: GenomeInfoDb</code></pre>
-<pre><code>## Loading required package: Biobase</code></pre>
-<pre><code>## Welcome to Bioconductor
-## 
-##     Vignettes contain introductory material; view with
-##     'browseVignettes()'. To cite Bioconductor, see
-##     'citation("Biobase")', and for packages 'citation("pkgname")'.</code></pre>
-<pre><code>## Loading required package: DelayedArray</code></pre>
-<pre><code>## Loading required package: matrixStats</code></pre>
-<pre><code>## 
-## Attaching package: 'matrixStats'</code></pre>
-<pre><code>## The following objects are masked from 'package:Biobase':
-## 
-##     anyMissing, rowMedians</code></pre>
-<pre><code>## Loading required package: BiocParallel</code></pre>
-<pre><code>## 
-## Attaching package: 'DelayedArray'</code></pre>
-<pre><code>## The following objects are masked from 'package:matrixStats':
-## 
-##     colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     aperm, apply</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># `rnaseq` stores RNA info</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">fsce[[<span class="st">"rnaseq"</span>]]</a></code></pre></div>
+<div id="individual-experiments" class="section level3">
+<h3 class="hasAnchor">
+<a href="#individual-experiments" class="anchor"></a>Individual experiments</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># `rnaseq` stores RNA info</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">fsce_small[[<span class="st">"rnaseq"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 9479 250 
 ## metadata(0):
@@ -191,10 +144,10 @@
 ## rowData names(0):
 ## colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ...
 ##   CTCGAAACACACTGCG TGACGGCAGAGTCGGT
-## colData names(1): cell_id
-## reducedDimNames(0):
+## colData names(3): cell_id k_cluster leiden_cluster
+## reducedDimNames(3): PCA UMAP TSNE
 ## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce[[<span class="st">"rnaseq"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce_small[[<span class="st">"rnaseq"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
 ##            TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
 ## FO538757.2                .                .                .
@@ -208,8 +161,8 @@
 ## NOC2L                     .                .
 ## ISG15                     .                .
 ## TNFRSF18                  .                .</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># `haircut` stores functional data</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">fsce[[<span class="st">"haircut"</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># `haircut` stores functional data</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">fsce_small[[<span class="st">"haircut"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 426 250 
 ## metadata(0):
@@ -221,7 +174,7 @@
 ## colData names(1): cell_id
 ## reducedDimNames(0):
 ## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
 ##           TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
 ## Abasic_1                 8               17               11
@@ -235,8 +188,8 @@
 ## Abasic_11                .                .
 ## Abasic_12                .                .
 ## Abasic_13                .                .</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># row annotations contain info about each row in the matrix</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">rowData</span>(fsce[[<span class="st">"haircut"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># row annotations contain info about each row in the matrix</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">rowData</span>(fsce_small[[<span class="st">"haircut"</span>]])</a></code></pre></div>
 <pre><code>## DataFrame with 426 rows and 2 columns
 ##               hairpin    position
 ##           &lt;character&gt; &lt;character&gt;
@@ -251,9 +204,9 @@
 ## riboG_7         riboG           7
 ## riboG_8         riboG           8
 ## riboG_9         riboG           9</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># column annotations contain info about each row in the matrix, </span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="co"># or about each unique cell present in any of the experiments</span></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="kw">colData</span>(fsce)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># column annotations contain info about each row in the matrix, </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># or about each unique cell present in any of the experiments</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">colData</span>(fsce_small)</a></code></pre></div>
 <pre><code>## DataFrame with 250 rows and 1 column
 ##                           cell_id
 ##                       &lt;character&gt;
@@ -269,11 +222,12 @@
 ## CTCGAAACACACTGCG CTCGAAACACACTGCG
 ## TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT</code></pre>
 </div>
+</div>
 <div id="plots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#plots" class="anchor"></a>Plots</h1>
 <p><code>plot_hairpin</code> produces a coverage plot across each hairpin in the data.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin_coverage.html">plot_hairpin_coverage</a></span>(fsce)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/plot_hairpin_coverage.html">plot_hairpin_coverage</a></span>(fsce_small)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/hairpin_plot-1.png" width="100%"></p>
 </div>
 <div id="normalization" class="section level1">
@@ -282,7 +236,7 @@
 <p>Normalized data is calculated by the <code>create_</code> functions.</p>
 <p>RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.</p>
 <p>Normalized data is stored in the <code>logcounts</code> slot of each <code>SingleCellExperiment</code> object.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>##           TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT CATATTCCATGCCCGA
 ## Abasic_1          1.614359        2.1843851         1.931199
 ## Abasic_10         0.000000        0.0000000         0.000000
@@ -293,36 +247,36 @@
 <div id="feature-selection-and-pca" class="section level1">
 <h1 class="hasAnchor">
 <a href="#feature-selection-and-pca" class="anchor"></a>Feature selection and PCA</h1>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># get variable genes</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">var_genes &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_var_features.html">calc_var_features</a></span>(fsce, <span class="dt">n =</span> <span class="dv">1000</span>) </a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co"># calc PCA and embed in 2D</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_pca.html">calc_pca</a></span>(fsce, <span class="dt">n_pcs =</span> <span class="dv">20</span>, <span class="dt">genes =</span> var_genes)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># get variable genes</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">var_genes &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_var_features.html">calc_var_features</a></span>(fsce_small, <span class="dt">n =</span> <span class="dv">1000</span>) </a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># calc PCA and embed in 2D</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_pca.html">calc_pca</a></span>(fsce_small, <span class="dt">n_pcs =</span> <span class="dv">20</span>, <span class="dt">genes =</span> var_genes)</a></code></pre></div>
 <pre><code>## scaling data</code></pre>
 <pre><code>## calculating pcs</code></pre>
 </div>
 <div id="embed-cells-in-2d-using-umap-or-tsne" class="section level1">
 <h1 class="hasAnchor">
 <a href="#embed-cells-in-2d-using-umap-or-tsne" class="anchor"></a>Embed cells in 2D using UMAP or tSNE</h1>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_umap.html">calc_umap</a></span>(fsce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_tsne.html">calc_tsne</a></span>(fsce, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_umap.html">calc_umap</a></span>(fsce_small, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_tsne.html">calc_tsne</a></span>(fsce_small, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a></code></pre></div>
 <p>Cell embeddings are stored in the <code>reducedDims</code> slot of the <code>SingleCellExperiment</code> and can be accessed as a named list.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])</a></code></pre></div>
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
-<pre><code>##                       [,1]       [,2]
-## TGCGGGTTCAACTCTT  1.018194 -5.0508666
-## TGGTTCCTCCCAAGAT  1.189865 -5.2247765
-## CATATTCCATGCCCGA  2.652200 -3.1104365
-## TCACAAGTCTCCAACC -1.151416  0.4673168</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
+<pre><code>##                       [,1]      [,2]
+## TGCGGGTTCAACTCTT  2.146147 3.9898103
+## TGGTTCCTCCCAAGAT  1.376538 3.6447333
+## CATATTCCATGCCCGA  3.815146 2.7023185
+## TCACAAGTCTCCAACC -0.216390 0.2069193</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
 <a href="#tidying-data-for-analysis-and-plotting" class="anchor"></a>Tidying data for analysis and plotting</h1>
-<p>Several <code>tidy_</code> functions are provided to convert <code>fsce</code> into a tidy formate.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
+<p>Several <code>tidy_</code> functions are provided to convert <code>fsce</code> into a tidy format.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following object is masked from 'package:matrixStats':
@@ -352,7 +306,7 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'purrr'</code></pre>
 <pre><code>## The following object is masked from 'package:DelayedArray':
@@ -364,19 +318,19 @@
 <pre><code>## The following object is masked from 'package:IRanges':
 ## 
 ##     reduce</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">fsce_tidy &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3">    <span class="kw"><a href="../reference/tidy_dims.html">tidy_dims</a></span>(fsce_small) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(cell_id, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"UMAP"</span>), <span class="op">-</span>experiment),</a>
-<a class="sourceLine" id="cb68-5" data-line-number="5">    <span class="kw"><a href="../reference/tidy_coldata.html">tidy_coldata</a></span>(fsce_small),</a>
-<a class="sourceLine" id="cb68-6" data-line-number="6">    <span class="kw"><a href="../reference/tidy_logcounts.html">tidy_logcounts</a></span>(fsce_small[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>), , ]) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>experiment)</a>
-<a class="sourceLine" id="cb68-8" data-line-number="8">  ),</a>
-<a class="sourceLine" id="cb68-9" data-line-number="9">  left_join,</a>
-<a class="sourceLine" id="cb68-10" data-line-number="10">  <span class="dt">by =</span> <span class="st">"cell_id"</span></a>
-<a class="sourceLine" id="cb68-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb68-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb68-13" data-line-number="13">fsce_tidy</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">fsce_tidy &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">    <span class="kw"><a href="../reference/tidy_dims.html">tidy_dims</a></span>(fsce_small) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(cell_id, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"UMAP"</span>), <span class="op">-</span>experiment),</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">    <span class="kw"><a href="../reference/tidy_coldata.html">tidy_coldata</a></span>(fsce_small),</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw"><a href="../reference/tidy_logcounts.html">tidy_logcounts</a></span>(fsce_small[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>), , ]) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>experiment)</a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">  ),</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9">  left_join,</a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">  <span class="dt">by =</span> <span class="st">"cell_id"</span></a>
+<a class="sourceLine" id="cb42-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb42-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb42-13" data-line-number="13">fsce_tidy</a></code></pre></div>
 <pre><code>## # A tibble: 250 x 7
 ##    cell_id         UMAP1  UMAP2 k_cluster leiden_cluster Uracil_45 riboG_44
 ##    &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;
@@ -399,34 +353,53 @@
 <h2 class="hasAnchor">
 <a href="#two-dimensional-embeddings" class="anchor"></a>Two-dimensional embeddings</h2>
 <p>Features can be visulized on a two-dimensional embedding with the <code><a href="../reference/plot_dims.html">plot_dims()</a></code> function which will plot gene/function assay values.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, Uracil_<span class="dv">45</span>, <span class="dt">size =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb70-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, riboG_<span class="dv">44</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb70-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, Uracil_<span class="dv">45</span>, <span class="dt">size =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, riboG_<span class="dv">44</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/plot_dims-1.png" width="100%"></p>
 </div>
 <div id="functional-activities" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functional-activities" class="anchor"></a>Functional activities</h2>
 <p>Activities can be visualized per-group with <code>plot_actvitiy()</code>. These two plots have uracil and ribonucleotide excision activities plotted per cluster (k-means, n = 6).</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
-<a class="sourceLine" id="cb71-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/plot_activity-1.png" width="100%"></p>
 </div>
 <div id="heatmap" class="section level2">
 <h2 class="hasAnchor">
 <a href="#heatmap" class="anchor"></a>Heatmap</h2>
 <p>These heatmaps show uracil and ribonucleotide excision activities for the U:A and riboG hairpins</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">mtx &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])</a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb72-3" data-line-number="3">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Uracil"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
-<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"Uracil"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">mtx &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Uracil"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"Uracil"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/heatmap_uracil-1.png" width="100%"></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"riboG"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"riboG"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"riboG"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"riboG"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/heatpmap_riboG-1.png" width="100%"></p>
+</div>
+</div>
+<div id="appendix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#appendix" class="anchor"></a>Appendix</h1>
+<div id="loading-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#loading-data" class="anchor"></a>Loading data</h3>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co"># this same object is available as `fsce_small` in the package.</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fsce.html">create_fsce</a></span>(</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">    <span class="dt">rnaseq =</span> <span class="kw"><a href="../reference/create_sce_rnaseq.html">create_sce_rnaseq</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna"</span>)),</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">    <span class="dt">haircut =</span> <span class="kw"><a href="../reference/create_sce_haircut.html">create_sce_haircut</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut"</span>))</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">  )</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb48-11" data-line-number="11">fsce</a></code></pre></div>
 </div>
 </div>
   </div>
@@ -436,7 +409,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#create-a-functional-single-cell-experiment-fsce">Create a Functional Single Cell Experiment (fsce)</a></li>
+<li><a href="#overview">Overview</a></li>
+      <li><a href="#the-functional-single-cell-experiment-fsce">The Functional Single Cell Experiment (fsce)</a></li>
       <li><a href="#plots">Plots</a></li>
       <li><a href="#normalization">Normalization</a></li>
       <li><a href="#feature-selection-and-pca">Feature selection and PCA</a></li>
@@ -449,6 +423,7 @@
       <li><a href="#heatmap">Heatmap</a></li>
       </ul>
 </li>
+      <li><a href="#appendix">Appendix</a></li>
       </ul>
 </div>
       </div>

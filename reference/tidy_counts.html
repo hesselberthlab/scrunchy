@@ -137,23 +137,27 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tidy_counts</span>(<span class='no'>sce</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_counts</span>(<span class='no'>fsce</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>sce</th>
-      <td><p>An object of class <code><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SingleCellExperiment'>SingleCellExperiment::SingleCellExperiment</a></code>.</p></td>
+      <th>fsce</th>
+      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
 
     
-    <p>This is a data tidier for a <code>SingleCellExperient</code>. Returns
-data from an <code>sce</code> in a tidy format, where variables are columns and
-observations are rows.</p>
+    <p>This is a data tidier for a <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>. Returns data
+from <code>SingleCellExperiment</code> in a tidy format, where variables are columns
+and observations are rows.</p>
+<p>If the <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code> contains more than one
+<code>SingleCellExperiment</code>, data from each <code>sce</code> are joined using the <code>cell_id</code>
+variable name, and a new <code>experiment</code> column contains the name of the source
+<code>sce</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
