@@ -21,12 +21,12 @@ We have developed functional assays as a new modality for single-cell experiment
 The method to meausre DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment.  Because we are measuring strand incision on DNA hairpins, we call the assay Haircut---and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.
 
 ```{r overview_fig, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("../man/figures/method-overview.svg")
+knitr::include_graphics("../reference/figures/method-overview.svg")
 ```
 
 ## Overview 
 
-scrunchy facilitates the analysis and visualization of functional data from single cells in concert with their transcriptional profiles.
+scrunchy facilitates the analysis and visualization of combined functional and transcriptome data from single cells.
 
 1. Processing
 1. Statistical analysis
@@ -36,9 +36,10 @@ scrunchy facilitates the analysis and visualization of functional data from sing
 
 `fsce` is an object of class `FunctionalSingleCellExperiment`, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. It is a thin wrapper around [`MultiAssayExperiment::MultiAssayExperiment`].
 
-A `FunctionalSingleCellExperiment` in turn contains one or more objects of class [`SingleCellExperiment`], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.
+A `FunctionalSingleCellExperiment` contains one or more objects of class [`SingleCellExperiment`], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.
 
-scrunchy contains a subset of cells from an experiment to measure gene expression and DNA repair activities in human peripheral blood mononuclear cells. 
+scrunchy contains a subset of cells from an experiment to measure gene expression and DNA repair activities in human peripheral blood mononuclear cells.
+
 ```{r fsce}
 library(scrunchy)
 fsce_small
