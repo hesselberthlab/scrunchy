@@ -5,11 +5,11 @@ dist: xenial
 cache: packages
 warnings_are_errors: false
 
-bioc_packages:
-- SingleCellExperiment
-- Rtsne
-- qvalue
-- scran
+#bioc_packages:
+#- SingleCellExperiment
+#- Rtsne
+#- qvalue
+#- scran
 
 before_install:
   - pip install --user numpy leidenalg python-igraph
