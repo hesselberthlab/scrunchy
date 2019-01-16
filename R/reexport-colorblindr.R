@@ -1,3 +1,4 @@
+# nocov start
 #' Color palette proposed by Okabe and Ito
 #'
 #' These functions are copied from [colorblindr](https://github.com/clauswilke/colorblindr).
@@ -78,3 +79,4 @@ scale_OkabeIto <- function(aesthetics, use_black = FALSE, order = 1:8, alpha = N
   }
   ggplot2::discrete_scale(aesthetics, "manual", pal, ...)
 }
+# nocov end
