@@ -20,7 +20,8 @@ We have developed functional assays as a new modality for single-cell experiment
 
 The method to meausre DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment.  Because we are measuring strand incision on DNA hairpins, we call the assay Haircut---and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.
 
-```{r overview_fig, echo=FALSE, out.width = '100%'}
+```{r overview_fig, echo=FALSE, out.width='100%', eval=FALSE}
+# fails R CMD CHECK
 knitr::include_graphics("../reference/figures/method-overview.svg")
 ```
 

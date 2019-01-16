@@ -1,5 +1,16 @@
 context("test-calcs")
 
+test_that("cell cycle is calculated", {
+  fsce_smaller <- fsce_small[, 1:10]
+  res <- calc_cell_cycle(fsce_smaller)
+
+  col_data <- colData(res[["rnaseq"]])
+  expect_true("cell_cycle" %in% names(col_data))
+  expect_equal(
+    unique(col_data$cell_cycle), c("G1", "S", "G2M")
+  )
+})
+
 test_that("inputs are checked", {
 
   fsce_empty <- FunctionalSingleCellExperiment(
@@ -13,6 +24,16 @@ test_that("inputs are checked", {
   )
   expect_error(
     calc_var_features(fsce_empty, expt = "sce_empty"),
+    "not found for expt"
+  )
+
+  ## calc_cell_cycle
+  expect_error(
+    calc_cell_cycle(fsce_empty),
+    "not found in fsce"
+  )
+  expect_error(
+    calc_cell_cycle(fsce_empty, expt = "sce_empty"),
     "not found for expt"
   )
 

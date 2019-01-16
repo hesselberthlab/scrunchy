@@ -2,7 +2,7 @@
 % Please edit documentation in R/features.R
 \name{calc_var_features}
 \alias{calc_var_features}
-\title{Get variable features}
+\title{Calculate variable features}
 \usage{
 calc_var_features(fsce, expt = "rnaseq", n = 1000)
 }
@@ -18,7 +18,7 @@ calc_var_features(fsce, expt = "rnaseq", n = 1000)
 Names of variable features
 }
 \description{
-Identify features with the most variance in the data set.
+Identify features with the highest variance in the data set.
 }
 \examples{
 calc_var_features(fsce_small)[1:5]
