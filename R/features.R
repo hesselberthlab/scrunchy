@@ -51,6 +51,10 @@ calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 #'
 #' SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 #'
+#' @references Scialdone A, Natarajana KN, Saraiva LR et al. (2015).
+#' Computational assignment of cell-cycle stage from single-cell transcriptome data.
+#' *Methods* 85:54--61
+#'
 #' @importFrom scran cyclone
 #'
 #' @export

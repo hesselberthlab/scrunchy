@@ -26,3 +26,8 @@ fsce_small <- calc_cell_cycle(fsce_small)
 SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 
 }
+\references{
+Scialdone A, Natarajana KN, Saraiva LR et al. (2015).
+Computational assignment of cell-cycle stage from single-cell transcriptome data.
+\emph{Methods} 85:54--61
+}
