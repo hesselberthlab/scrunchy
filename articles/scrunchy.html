@@ -98,11 +98,10 @@
 <p>The goal of scrunchy is to facilitate the analysis of experiments that measure the heterogeneity of enzymatic activities among single cells.</p>
 <p>We have developed functional assays as a new modality for single-cell experiments. These assays measure the conversion of substrates to products by single-cell extracts in a high-throghput DNA sequencing experiment. The assays are performed in the context of traditional single-cell mRNA sequencing experiment, enabling type identifcation and functional assessment of single cells. Our initial efforts have focused on measuring DNA repair activities in single cells and we are developing methods for other enzymes including proteases and kinases. Together these assays provide a new type of information from single-cell experiments.</p>
 <p>The method to meausre DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment. Because we are measuring strand incision on DNA hairpins, we call the assay Haircut—and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.</p>
-<p><img src="../man/figures/method-overview.svg" width="100%"></p>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>scrunchy facilitates the analysis and visualization of functional data from single cells in concert with their transcriptional profiles.</p>
+<p>scrunchy facilitates the analysis and visualization of combined functional and transcriptome data from single cells.</p>
 <ol style="list-style-type: decimal">
 <li>Processing</li>
 <li>Statistical analysis</li>
@@ -113,7 +112,7 @@
 <h2 class="hasAnchor">
 <a href="#the-functional-single-cell-experiment-fsce" class="anchor"></a>The Functional Single Cell Experiment (fsce)</h2>
 <p><code>fsce</code> is an object of class <code>FunctionalSingleCellExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. It is a thin wrapper around [<code><a href="https://www.rdocumentation.org/packages/MultiAssayExperiment/topics/MultiAssayExperiment">MultiAssayExperiment::MultiAssayExperiment</a></code>].</p>
-<p>A <code>FunctionalSingleCellExperiment</code> in turn contains one or more objects of class [<code>SingleCellExperiment</code>], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.</p>
+<p>A <code>FunctionalSingleCellExperiment</code> contains one or more objects of class [<code>SingleCellExperiment</code>], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.</p>
 <p>scrunchy contains a subset of cells from an experiment to measure gene expression and DNA repair activities in human peripheral blood mononuclear cells.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">fsce_small</a></code></pre></div>

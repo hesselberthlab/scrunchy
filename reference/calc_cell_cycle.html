@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate variable features — calc_var_features • scrunchy</title>
+<title>Calculate cell-cycle assignments — calc_cell_cycle • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Calculate variable features — calc_var_features" />
+<meta property="og:title" content="Calculate cell-cycle assignments — calc_cell_cycle" />
 
-<meta property="og:description" content="Identify features with the highest variance in the data set." />
+<meta property="og:description" content="Uses scran::cyclone() to assign cell-cycle phases to each cell.
+Assignments are available in colData in the cell_cycle slot." />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,18 +127,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate variable features</h1>
+    <h1>Calculate cell-cycle assignments</h1>
     <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/features.R'><code>R/features.R</code></a></small>
-    <div class="hidden name"><code>calc_var_features.Rd</code></div>
+    <div class="hidden name"><code>calc_cell_cycle.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Identify features with the highest variance in the data set.</p>
+    <p>Uses <code><a href='https://www.rdocumentation.org/packages/scran/topics/cyclone'>scran::cyclone()</a></code> to assign cell-cycle phases to each cell.
+Assignments are available in <code>colData</code> in the <code>cell_cycle</code> slot.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>calc_var_features</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
+    <pre class="usage"><span class='fu'>calc_cell_cycle</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>org</span> <span class='kw'>=</span> <span class='st'>"human"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,27 +154,40 @@
 (default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>number of variable features to return</p></td>
+      <th>org</th>
+      <td><p>organism for gene pairs, human or mouse</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional params for <code><a href='https://www.rdocumentation.org/packages/scran/topics/cyclone'>scran::cyclone()</a></code></p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Names of variable features</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>calc_var_features</span>(<span class='no'>fsce_small</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; [1] "GNLY"   "RPL18A" "RPL34"  "NKG7"   "RPL32" </div><div class='input'>
-<span class='fu'>calc_var_features</span>(<span class='no'>fsce_small</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"haircut"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; [1] "Abasic_46" "Uracil_45" "Abasic_45" "Abasic_4"  "GU_4"     </div></pre>
+    <pre class="examples"><div class='input'><span class='no'>fsce_small</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_cell_cycle</span>(<span class='no'>fsce_small</span>)
+
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 4 columns
+#&gt;                           cell_id   k_cluster leiden_cluster  cell_cycle
+#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt; &lt;character&gt;
+#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           6              1          G1
+#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           6              1           S
+#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           6              5           S
+#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           6              2         G2M
+#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6              1          G1
+#&gt; ...                           ...         ...            ...         ...
+#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4              6         G2M
+#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           2              3         G2M
+#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4              6          G1
+#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6              5          G1
+#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6              5         G2M</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
