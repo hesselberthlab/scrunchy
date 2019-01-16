@@ -9,6 +9,7 @@ bioc_packages:
 - SingleCellExperiment
 - Rtsne
 - qvalue
+- scran
 
 before_install:
   - pip install --user numpy leidenalg python-igraph
