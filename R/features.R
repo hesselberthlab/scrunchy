@@ -56,6 +56,15 @@ calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 #' @export
 calc_cell_cycle <- function(fsce, expt = "rnaseq", org = "human", ...) {
 
+  ## check inputs
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
+  }
+
+  if (!"counts" %in% names(assays(fsce[[expt]]))) {
+    stop(glue("`counts` not found for expt `{expt}`"), call. = FALSE)
+  }
+
   gene_pairs <- readr::read_rds(
     system.file(
       "exdata",
