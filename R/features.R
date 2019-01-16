@@ -65,7 +65,14 @@ calc_cell_cycle <- function(fsce, expt = "rnaseq", org = "human", ...) {
     )
   )
 
-  res <- scran::cyclone(fsce[[expt]], gene_pairs, ...)
+  ## convert to ensembl ids
+  mtx <- as.matrix(counts(fsce[[expt]]))
+  gene_syms <- tibble(gene_symbol = rownames(mtx))
+
+  ens_ids <- left_join(gene_syms, human_gene_ids, by = "gene_symbol")
+  rownames(mtx) <- ens_ids$ensembl_id
+
+  res <- scran::cyclone(mtx, gene_pairs, ...)
   colData(fsce[[expt]])$cell_cycle <- res$phases
 
   fsce
