@@ -9,7 +9,7 @@ test_that("sparse matrix import works", {
 
   mrna_mat <- read_matrix(mrna_matrix_path)
   expect_true(is(mrna_mat, "sparseMatrix"))
-  expect_equal(dim(mrna_mat), c(9479, 250))
+  expect_equal(dim(mrna_mat), c(9462, 250))
 
   hc_mat <- read_matrix(hc_matrix_path)
   expect_true(is(hc_mat, "sparseMatrix"))
@@ -34,11 +34,11 @@ test_that("string prefixing colnames works",{
 })
 
 
-test_that("string prefixing colnames works",{
+test_that("gene symbols or ids can be imported",{
 
   mrna_mat <- read_matrix(mrna_matrix_path,
-                          cell_prefix = "foo")
-  expect_true(all(grepl("^foo_", colnames(mrna_mat))))
+                          use_gene_symbols = FALSE)
+  expect_true(all(grepl("^ENSG", rownames(mrna_mat))))
 })
 
 
