@@ -138,7 +138,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>cluster_leiden</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>,
-  <span class='kw'>prune</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>15</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>prune</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>15</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,6 +164,10 @@ PCA)</p></td>
     <tr>
       <th>prune</th>
       <td><p>Pruning parameter for shared nearest-neighbor calculation.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>seed for <code>leidenalg$find_partition()</code></p></td>
     </tr>
     <tr>
       <th>...</th>
