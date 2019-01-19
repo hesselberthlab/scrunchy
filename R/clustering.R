@@ -75,6 +75,7 @@ cluster_kmeans <- function(fsce,
 #'   PCA)
 #' @param dims dimensions to use for nearest-neighbor calculation
 #' @param prune Pruning parameter for shared nearest-neighbor calculation.
+#' @param seed seed for `leidenalg$find_partition()`
 #' @param ... Parameters to pass to the Python `leidenalg` function.
 #'
 #' @source <https://github.com/vtraag/leidenalg>
@@ -99,6 +100,7 @@ cluster_leiden <- function(fsce,
                            method = "PCA",
                            dims = 1:5,
                            prune = 1/15,
+                           seed = NULL,
                            ...){
   ## check inputs
   if (!expt %in% names(fsce)) {
@@ -126,10 +128,17 @@ cluster_leiden <- function(fsce,
 
   snn_graph <- igraph_py$Graph$Adjacency(adj_mat_py)
 
+  if (!is.null(seed)) {
+    seed <- r_to_py(as.integer(seed))
+  } else {
+    seed <- r_to_py(NULL)
+  }
+
   ## Run leidenalg
   parts <- leidenalg_py$find_partition(
-    snn_graph,
-    leidenalg_py$ModularityVertexPartition,
+    graph = snn_graph,
+    partition_type = leidenalg_py$ModularityVertexPartition,
+    seed = seed,
     ...
   )
 
