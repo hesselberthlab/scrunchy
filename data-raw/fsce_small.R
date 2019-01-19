@@ -20,4 +20,6 @@ fsce_small <- calc_tsne(fsce_small, n_dims = 6, seed = seed)
 fsce_small <- cluster_kmeans(fsce_small, k = 6, seed = seed)
 fsce_small <- cluster_leiden(fsce_small, seed = seed)
 
+fsce_small <- calc_cell_cycle(fsce_small)
+
 usethis::use_data(fsce_small, compress = "xz", overwrite = TRUE)

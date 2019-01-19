@@ -17,6 +17,6 @@ test_that("fsce class can be created", {
   e1 <- experiments(fsce_small)[[1]]
   e2 <- experiments(fsce_small)[[2]]
 
-  expect_equal(dim(e1), c(9479, 250))
+  expect_equal(dim(e1), c(9462, 250))
   expect_equal(dim(e2), c(426, 250))
 })
