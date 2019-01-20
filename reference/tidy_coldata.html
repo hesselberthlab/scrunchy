@@ -166,19 +166,19 @@ variable name, and a new <code>experiment</code> column contains the name of the
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>tidy_coldata</span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; # A tibble: 250 x 3
-#&gt;    cell_id          k_cluster leiden_cluster
-#&gt;    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;         
-#&gt;  1 TGCGGGTTCAACTCTT 6         1             
-#&gt;  2 TGGTTCCTCCCAAGAT 6         1             
-#&gt;  3 CATATTCCATGCCCGA 6         5             
-#&gt;  4 TCACAAGTCTCCAACC 6         2             
-#&gt;  5 GGACAAGAGCCCTAAT 6         1             
-#&gt;  6 CTTTGCGAGCAGGTCA 6         5             
-#&gt;  7 GTGCAGCAGTAGCCGA 6         1             
-#&gt;  8 AGCGGTCCAATAGAGT 4         6             
-#&gt;  9 GGATGTTTCTCAAACG 6         1             
-#&gt; 10 GTACTCCTCGTTTAGG 2         3             
+    <pre class="examples"><div class='input'><span class='fu'>tidy_coldata</span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; # A tibble: 250 x 4
+#&gt;    cell_id          k_cluster leiden_cluster cell_cycle
+#&gt;    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     
+#&gt;  1 TGCGGGTGTAGAGTGC 5         2              S         
+#&gt;  2 TGGTTCCCATCTATGG 1         4              S         
+#&gt;  3 CATATTCCACGTCAGC 2         2              G2M       
+#&gt;  4 TCACAAGTCCTGCTTG 3         3              G1        
+#&gt;  5 GGAATAATCCAGGGCT 1         4              G1        
+#&gt;  6 CTTGGCTGTTGATTGC 3         3              G2M       
+#&gt;  7 GTGAAGGTCTTTCCTC 1         1              S         
+#&gt;  8 AGCGGTCAGTAGCCGA 1         1              G1        
+#&gt;  9 GGATGTTTCATGTGGT 6         6              S         
+#&gt; 10 GTACTCCGTAATCACC 1         1              G1        
 #&gt; # … with 240 more rows</div><div class='input'>
 </div></pre>
   </div>

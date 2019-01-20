@@ -173,7 +173,7 @@ by <code><a href='cluster_kmeans.html'>cluster_kmeans()</a></code> and <code><a 
     <pre class="examples"><div class='input'><span class='no'>fsce_small</span></div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
 #&gt;  experiments with user-defined names and respective classes. 
 #&gt;  Containing an ExperimentList class object of length 2: 
-#&gt;  [1] rnaseq: SingleCellExperiment with 9479 rows and 250 columns 
+#&gt;  [1] rnaseq: SingleCellExperiment with 9462 rows and 250 columns 
 #&gt;  [2] haircut: SingleCellExperiment with 426 rows and 250 columns 
 #&gt; Features: 
 #&gt;  experiments() - obtain the ExperimentList instance 
@@ -184,14 +184,14 @@ by <code><a href='cluster_kmeans.html'>cluster_kmeans()</a></code> and <code><a 
 #&gt;  assays() - convert ExperimentList to a SimpleList of matrices</div><div class='input'>
 <span class='co'># Individual experiments</span>
 <span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]]</div><div class='output co'>#&gt; class: SingleCellExperiment 
-#&gt; dim: 9479 250 
+#&gt; dim: 9462 250 
 #&gt; metadata(0):
 #&gt; assays(2): counts logcounts
-#&gt; rownames(9479): FO538757.2 AP006222.2 ... AC004556.1 AC240274.1
+#&gt; rownames(9462): NOC2L HES4 ... AC004556.1 AC240274.1
 #&gt; rowData names(0):
-#&gt; colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ... CTCGAAACACACTGCG
-#&gt;   TGACGGCAGAGTCGGT
-#&gt; colData names(3): cell_id k_cluster leiden_cluster
+#&gt; colnames(250): TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG ... CTCGAAAAGTTCGATC
+#&gt;   TGACAACGTCGCATAT
+#&gt; colData names(4): cell_id k_cluster leiden_cluster cell_cycle
 #&gt; reducedDimNames(3): PCA UMAP TSNE
 #&gt; spikeNames(0):</div><div class='input'>
 <span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]]</div><div class='output co'>#&gt; class: SingleCellExperiment 
@@ -200,23 +200,23 @@ by <code><a href='cluster_kmeans.html'>cluster_kmeans()</a></code> and <code><a 
 #&gt; assays(2): counts logcounts
 #&gt; rownames(426): Abasic_1 Abasic_10 ... riboG_8 riboG_9
 #&gt; rowData names(2): hairpin position
-#&gt; colnames(250): TGCGGGTTCAACTCTT TGGTTCCTCCCAAGAT ... CTCGAAACACACTGCG
-#&gt;   TGACGGCAGAGTCGGT
+#&gt; colnames(250): TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG ... CTCGAAAAGTTCGATC
+#&gt;   TGACAACGTCGCATAT
 #&gt; colData names(1): cell_id
 #&gt; reducedDimNames(0):
 #&gt; spikeNames(0):</div><div class='input'>
 <span class='co'># Gene and activity names (first 5 items)</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; [1] "FO538757.2" "AP006222.2" "NOC2L"      "ISG15"      "TNFRSF18"  </div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; [1] "NOC2L"   "HES4"    "ISG15"   "TNFRSF4" "SDF4"   </div><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]])[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; [1] "Abasic_1"  "Abasic_10" "Abasic_11" "Abasic_12" "Abasic_13"</div><div class='input'>
 <span class='co'># subset with `[` using `[features, cell_ids, experiments]`</span>
 <span class='no'>features</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Uracil_45"</span>, <span class='st'>"TP53"</span>)
-<span class='no'>cell_ids</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"GAAACTCTCCGAAGAG"</span>, <span class='st'>"CGCTATCGTTCACCTC"</span>)
+<span class='no'>cell_ids</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"TGCGGGTGTAGAGTGC"</span>, <span class='st'>"CTACGTCCACCACGTG"</span>)
 
-<span class='no'>fsce_small</span>[<span class='no'>features</span>, <span class='no'>cell_ids</span>, ]</div><div class='output co'>#&gt; <span class='warning'>Warning: Not all identifiers found in data</span></div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
+<span class='no'>fsce_small</span>[<span class='no'>features</span>, <span class='no'>cell_ids</span>, ]</div><div class='output co'>#&gt; A FunctionalSingleCellExperiment object of 2 listed
 #&gt;  experiments with user-defined names and respective classes. 
 #&gt;  Containing an ExperimentList class object of length 2: 
-#&gt;  [1] rnaseq: SingleCellExperiment with 1 rows and 1 columns 
-#&gt;  [2] haircut: SingleCellExperiment with 1 rows and 1 columns 
+#&gt;  [1] rnaseq: SingleCellExperiment with 1 rows and 2 columns 
+#&gt;  [2] haircut: SingleCellExperiment with 1 rows and 2 columns 
 #&gt; Features: 
 #&gt;  experiments() - obtain the ExperimentList instance 
 #&gt;  colData() - the primary/phenotype DataFrame 
@@ -227,27 +227,27 @@ by <code><a href='cluster_kmeans.html'>cluster_kmeans()</a></code> and <code><a 
 <span class='co'># dimensionality reduction results</span>
 <span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDimNames</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; [1] "PCA"  "UMAP" "TSNE"</div><div class='input'>
 <span class='co'># UMAP results (first 5 rows)</span>
-<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                       [,1]      [,2]
-#&gt; TGCGGGTTCAACTCTT  2.146147 3.9898103
-#&gt; TGGTTCCTCCCAAGAT  1.376538 3.6447333
-#&gt; CATATTCCATGCCCGA  3.815146 2.7023185
-#&gt; TCACAAGTCTCCAACC -0.216390 0.2069193
-#&gt; GGACAAGAGCCCTAAT  2.566830 3.0588671</div><div class='input'>
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims'>reducedDim</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"UMAP"</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>, ]</div><div class='output co'>#&gt;                       [,1]       [,2]
+#&gt; TGCGGGTGTAGAGTGC  3.501003   3.623493
+#&gt; TGGTTCCCATCTATGG -2.851359   3.577775
+#&gt; CATATTCCACGTCAGC  3.724043   4.991723
+#&gt; TCACAAGTCCTGCTTG -6.166327 -12.030005
+#&gt; GGAATAATCCAGGGCT -4.296164   3.478746</div><div class='input'>
 <span class='co'># k-means cluster IDs</span>
-<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 3 columns
-#&gt;                           cell_id   k_cluster leiden_cluster
-#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt;
-#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           6              1
-#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           6              1
-#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           6              5
-#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           6              2
-#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           6              1
-#&gt; ...                           ...         ...            ...
-#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           4              6
-#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           2              3
-#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4              6
-#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           6              5
-#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           6              5</div><div class='input'>
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 4 columns
+#&gt;                           cell_id   k_cluster leiden_cluster  cell_cycle
+#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt; &lt;character&gt;
+#&gt; TGCGGGTGTAGAGTGC TGCGGGTGTAGAGTGC           5              2           S
+#&gt; TGGTTCCCATCTATGG TGGTTCCCATCTATGG           1              4           S
+#&gt; CATATTCCACGTCAGC CATATTCCACGTCAGC           2              2         G2M
+#&gt; TCACAAGTCCTGCTTG TCACAAGTCCTGCTTG           3              3          G1
+#&gt; GGAATAATCCAGGGCT GGAATAATCCAGGGCT           1              4          G1
+#&gt; ...                           ...         ...            ...         ...
+#&gt; CTACGTCCACCACGTG CTACGTCCACCACGTG           1              4          G1
+#&gt; TGTGGTAAGGTGCTTT TGTGGTAAGGTGCTTT           6              6          G1
+#&gt; AGCGTCGGTCGAGTTT AGCGTCGGTCGAGTTT           6              6          G1
+#&gt; CTCGAAAAGTTCGATC CTCGAAAAGTTCGATC           1              5         G2M
+#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           1              4           S</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

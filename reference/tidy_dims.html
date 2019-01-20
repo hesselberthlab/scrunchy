@@ -176,32 +176,32 @@ variable name, and a new <code>experiment</code> column contains the name of the
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>tidy_dims</span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; # A tibble: 250 x 8
-#&gt;    experiment cell_id             PCA1   PCA2  UMAP1  UMAP2    TSNE1 TSNE2
-#&gt;    &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 rnaseq     TGCGGGTTCAACTCTT   1.50   -9.31  2.15   3.99    6.93   -7.39
-#&gt;  2 rnaseq     TGGTTCCTCCCAAGAT   1.56   -6.91  1.38   3.64    5.02   -7.94
-#&gt;  3 rnaseq     CATATTCCATGCCCGA   2.26   -6.41  3.82   2.70   10.9    -3.63
-#&gt;  4 rnaseq     TCACAAGTCTCCAACC  -1.45   -1.06 -0.216  0.207  -0.0268  2.79
-#&gt;  5 rnaseq     GGACAAGAGCCCTAAT   3.57   -5.79  2.57   3.06    8.21   -1.86
-#&gt;  6 rnaseq     CTTTGCGAGCAGGTCA   1.61   -5.42  3.53   2.52   10.5    -2.55
-#&gt;  7 rnaseq     GTGCAGCAGTAGCCGA   3.25   -8.77  1.91   5.17    5.02   -5.49
-#&gt;  8 rnaseq     AGCGGTCCAATAGAGT  22.3    11.8   2.45  -1.47    8.55    6.08
-#&gt;  9 rnaseq     GGATGTTTCTCAAACG   0.953  -8.13  1.62   3.88    5.59   -8.33
-#&gt; 10 rnaseq     GTACTCCTCGTTTAGG  -3.35    1.37 -1.79  -1.51   -3.29    5.50
+#&gt;    experiment cell_id             PCA1    PCA2  UMAP1  UMAP2  TSNE1  TSNE2
+#&gt;    &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+#&gt;  1 rnaseq     TGCGGGTGTAGAGTGC   4.39    0.465  3.50    3.62  11.8    4.73
+#&gt;  2 rnaseq     TGGTTCCCATCTATGG  -5.96   -5.51  -2.85    3.58  -8.65   7.38
+#&gt;  3 rnaseq     CATATTCCACGTCAGC  -1.28    2.43   3.72    4.99   6.75   2.09
+#&gt;  4 rnaseq     TCACAAGTCCTGCTTG  17.3     0.547 -6.17  -12.0    3.49 -22.3 
+#&gt;  5 rnaseq     GGAATAATCCAGGGCT  -4.74   -0.112 -4.30    3.48  -8.28   2.34
+#&gt;  6 rnaseq     CTTGGCTGTTGATTGC  20.3    -1.26  -5.40  -12.6    5.15 -25.2 
+#&gt;  7 rnaseq     GTGAAGGTCTTTCCTC  -5.32   -5.36  -3.54    2.28  -6.26   4.87
+#&gt;  8 rnaseq     AGCGGTCAGTAGCCGA  -5.30   -4.87  -0.574   2.81  -2.30   6.38
+#&gt;  9 rnaseq     GGATGTTTCATGTGGT   0.848  13.3    8.42   -4.22  -5.06  -4.95
+#&gt; 10 rnaseq     GTACTCCGTAATCACC  -5.77   -4.64  -0.803   1.54  -3.17   9.80
 #&gt; # … with 240 more rows</div><div class='input'>
 <span class='fu'>tidy_dims</span>(<span class='no'>fsce_small</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"UMAP"</span>))</div><div class='output co'>#&gt; # A tibble: 250 x 4
 #&gt;    experiment cell_id           UMAP1  UMAP2
 #&gt;    &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 rnaseq     TGCGGGTTCAACTCTT  2.15   3.99 
-#&gt;  2 rnaseq     TGGTTCCTCCCAAGAT  1.38   3.64 
-#&gt;  3 rnaseq     CATATTCCATGCCCGA  3.82   2.70 
-#&gt;  4 rnaseq     TCACAAGTCTCCAACC -0.216  0.207
-#&gt;  5 rnaseq     GGACAAGAGCCCTAAT  2.57   3.06 
-#&gt;  6 rnaseq     CTTTGCGAGCAGGTCA  3.53   2.52 
-#&gt;  7 rnaseq     GTGCAGCAGTAGCCGA  1.91   5.17 
-#&gt;  8 rnaseq     AGCGGTCCAATAGAGT  2.45  -1.47 
-#&gt;  9 rnaseq     GGATGTTTCTCAAACG  1.62   3.88 
-#&gt; 10 rnaseq     GTACTCCTCGTTTAGG -1.79  -1.51 
+#&gt;  1 rnaseq     TGCGGGTGTAGAGTGC  3.50    3.62
+#&gt;  2 rnaseq     TGGTTCCCATCTATGG -2.85    3.58
+#&gt;  3 rnaseq     CATATTCCACGTCAGC  3.72    4.99
+#&gt;  4 rnaseq     TCACAAGTCCTGCTTG -6.17  -12.0 
+#&gt;  5 rnaseq     GGAATAATCCAGGGCT -4.30    3.48
+#&gt;  6 rnaseq     CTTGGCTGTTGATTGC -5.40  -12.6 
+#&gt;  7 rnaseq     GTGAAGGTCTTTCCTC -3.54    2.28
+#&gt;  8 rnaseq     AGCGGTCAGTAGCCGA -0.574   2.81
+#&gt;  9 rnaseq     GGATGTTTCATGTGGT  8.42   -4.22
+#&gt; 10 rnaseq     GTACTCCGTAATCACC -0.803   1.54
 #&gt; # … with 240 more rows</div><div class='input'>
 </div></pre>
   </div>

@@ -190,20 +190,20 @@ clustering, defaults to all dimensions</p></td>
 <span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_pca.html'>calc_pca</a></span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; <span class='message'>scaling data</span></div><div class='output co'>#&gt; <span class='message'>calculating pcs</span></div><div class='input'>
 <span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'>cluster_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 
-<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"k_cluster"</span>)</div><div class='output co'>#&gt; DataFrame with 250 rows and 3 columns
-#&gt;                           cell_id   k_cluster leiden_cluster
-#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt;
-#&gt; TGCGGGTTCAACTCTT TGCGGGTTCAACTCTT           1              1
-#&gt; TGGTTCCTCCCAAGAT TGGTTCCTCCCAAGAT           1              1
-#&gt; CATATTCCATGCCCGA CATATTCCATGCCCGA           1              5
-#&gt; TCACAAGTCTCCAACC TCACAAGTCTCCAACC           1              2
-#&gt; GGACAAGAGCCCTAAT GGACAAGAGCCCTAAT           1              1
-#&gt; ...                           ...         ...            ...
-#&gt; CTACGTCCAGTGGAGT CTACGTCCAGTGGAGT           3              6
-#&gt; TTAGGCACAGGTGGAT TTAGGCACAGGTGGAT           3              3
-#&gt; AGCGTCGTCGTCGTTC AGCGTCGTCGTCGTTC           4              6
-#&gt; CTCGAAACACACTGCG CTCGAAACACACTGCG           1              5
-#&gt; TGACGGCAGAGTCGGT TGACGGCAGAGTCGGT           1              5</div><div class='input'>
+<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"k_cluster"</span>)</div><div class='output co'>#&gt; DataFrame with 250 rows and 4 columns
+#&gt;                           cell_id   k_cluster leiden_cluster  cell_cycle
+#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt; &lt;character&gt;
+#&gt; TGCGGGTGTAGAGTGC TGCGGGTGTAGAGTGC           4              2           S
+#&gt; TGGTTCCCATCTATGG TGGTTCCCATCTATGG           5              4           S
+#&gt; CATATTCCACGTCAGC CATATTCCACGTCAGC           4              2         G2M
+#&gt; TCACAAGTCCTGCTTG TCACAAGTCCTGCTTG           2              3          G1
+#&gt; GGAATAATCCAGGGCT GGAATAATCCAGGGCT           5              4          G1
+#&gt; ...                           ...         ...            ...         ...
+#&gt; CTACGTCCACCACGTG CTACGTCCACCACGTG           5              4          G1
+#&gt; TGTGGTAAGGTGCTTT TGTGGTAAGGTGCTTT           6              6          G1
+#&gt; AGCGTCGGTCGAGTTT AGCGTCGGTCGAGTTT           4              6          G1
+#&gt; CTCGAAAAGTTCGATC CTCGAAAAGTTCGATC           5              5         G2M
+#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           5              4           S</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
