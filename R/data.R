@@ -64,7 +64,7 @@ pbmc_marker_genes <- tibble::tribble(
 #'
 #' # subset with `[` using `[features, cell_ids, experiments]`
 #' features <- c("Uracil_45", "TP53")
-#' cell_ids <- c("GAAACTCTCCGAAGAG", "CGCTATCGTTCACCTC")
+#' cell_ids <- c("TGCGGGTGTAGAGTGC", "CTACGTCCACCACGTG")
 #'
 #' fsce_small[features, cell_ids, ]
 #'
