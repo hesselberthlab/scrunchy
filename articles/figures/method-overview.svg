@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="292.217px" height="107.695px" viewBox="0 0 292.217 107.695" enable-background="new 0 0 292.217 107.695"
+	 xml:space="preserve">
+<g>
+	<g>
+		<g>
+			
+				<rect x="51.882" y="42.448" transform="matrix(-0.7078 -0.7064 0.7064 -0.7078 70.6423 115.1019)" width="14.486" height="0.986"/>
+			
+				<rect x="51.884" y="51.968" transform="matrix(-0.7078 0.7064 -0.7064 -0.7078 138.0376 47.8223)" width="14.488" height="0.984"/>
+		</g>
+		<g>
+			<rect x="63.231" y="47.21" width="8.312" height="0.984"/>
+			<polygon points="71.099,46.043 73.979,47.702 71.099,49.361 			"/>
+		</g>
+		<path opacity="0.8" fill="#9F6EAF" enable-background="new    " d="M37.872,56.78c-1.449,0.109-2.416,1.225-2.706,2.788
+			c-0.138,0.741,0.104,1.34-0.25,2.054c-0.334,0.677-1.153,1.24-1.666,1.75c-0.966,0.961-1.898,2.285-0.703,3.368
+			c0.659,0.603,1.007,0.351,1.267,1.261c0.194,0.682-0.331,1.699,0.148,2.243c2.017,2.294,5.406-0.373,8.148-0.293
+			c1.013,0.03,2.441,1.253,3.435,0.772c1.771-0.863,1.154-3.84,1.697-5.225c0.755-1.926,4.585-2.449,2.408-5.104
+			c-1.133-1.38-1.994-2.03-2.412-3.832c-0.247-1.073-0.264-1.942-1.46-2.271c-0.621-0.17-2.039-0.104-2.634,0.172
+			c-1.405,0.649-1.521,2.455-2.99,2.884C39.105,57.655,38.46,56.736,37.872,56.78z"/>
+		<path opacity="0.5" fill="#A7A9AC" enable-background="new    " d="M39.36,60.934c-1.785,0.729-1.62,2.409-1.601,4.032
+			c0.013,1.007,1.22,2.664,2.317,2.79c1.404,0.157,2.458-1.916,2.483-3.014c0.035-1.443-0.081-3.085-1.616-3.678
+			c-0.538-0.208-1.001-0.195-1.584-0.195"/>
+		<rect x="147.334" y="48.948" width="6.226" height="0.986"/>
+		<polygon points="153.56,47.782 156.438,49.44 153.56,51.1 		"/>
+		<text transform="matrix(1.002 0 0 1 1.2329 9.2439)" font-family="'ArialMT'" font-size="5.9381">Barcoded oligo-dT (in 10x GEMs)</text>
+		<text transform="matrix(1.002 0 0 1 7.7515 97.6355)" font-family="'ArialMT'" font-size="5.9381">DNA repair substrates</text>
+		<text transform="matrix(1.002 0 0 1 15.3579 104.7615)" font-family="'ArialMT'" font-size="5.9381">(poly-A hairpins)</text>
+		<text transform="matrix(1.002 0 0 1 165.8213 7.3494)" font-family="'ArialMT'" font-size="5.9381">Cell lysis releases </text>
+		<text transform="matrix(1.002 0 0 1 157.7178 14.4744)" font-family="'ArialMT'" font-size="5.9381">repair factors and mRNA</text>
+		<path opacity="0.5" fill="#4AB969" enable-background="new    " d="M12.454,54.554c-1.45,0.111-2.417,1.225-2.706,2.785
+			c-0.139,0.746,0.104,1.346-0.249,2.059c-0.335,0.677-1.154,1.239-1.666,1.75c-0.968,0.959-1.899,2.282-0.704,3.369
+			c0.658,0.599,1.006,0.348,1.266,1.259c0.194,0.68-0.331,1.698,0.148,2.245c2.016,2.292,5.405-0.376,8.147-0.294
+			c1.015,0.028,2.442,1.255,3.435,0.77c1.772-0.858,1.156-3.837,1.699-5.223c0.755-1.926,4.585-2.449,2.408-5.101
+			c-1.132-1.384-1.995-2.032-2.411-3.835c-0.249-1.072-0.266-1.94-1.461-2.271c-0.621-0.168-2.039-0.103-2.634,0.172
+			c-1.404,0.651-1.521,2.457-2.99,2.884C13.687,55.429,13.041,54.509,12.454,54.554z"/>
+		<path opacity="0.5" fill="#A7A9AC" enable-background="new    " d="M13.94,58.709c-1.785,0.729-1.618,2.407-1.6,4.033
+			c0.012,1.008,1.221,2.665,2.317,2.788c1.404,0.161,2.458-1.916,2.482-3.013c0.035-1.443-0.081-3.084-1.615-3.68
+			c-0.539-0.208-1-0.194-1.585-0.194"/>
+		<text transform="matrix(1.002 0 0 1 31.9204 90.5408)" font-family="'ArialMT'" font-size="4.2865">5´</text>
+		<text transform="matrix(1.002 0 0 1 51.0732 82.1853)" font-family="'ArialMT'" font-size="3.6761">Lesion</text>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" d="M28.852,84.545h38.34
+				c0.633-0.769,1.58-1.27,2.654-1.27c1.905,0,3.449,1.541,3.449,3.443c0,1.9-1.544,3.441-3.449,3.441
+				c-0.962,0-1.83-0.395-2.456-1.029l-30.814,0.002"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="66.598" y1="88.094" x2="66.598" y2="85.341"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="46.252" y1="88.094" x2="46.252" y2="85.341"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="49.643" y1="88.094" x2="49.643" y2="85.341"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="53.034" y1="88.094" x2="53.034" y2="85.341"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="59.816" y1="88.094" x2="59.816" y2="85.341"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="63.207" y1="88.094" x2="63.207" y2="85.341"/>
+			<rect x="36.578" y="81.805" fill="#9F6EAF" width="4.736" height="4.726"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="42.861" y1="88.094" x2="42.861" y2="85.341"/>
+			<circle fill="#9F6EAF" cx="56.425" cy="85.638" r="2.368"/>
+		</g>
+		<text transform="matrix(1.002 0 0 1 9.0815 85.4646)" font-family="'Courier'" font-size="4.9571">AAAAAA</text>
+		<text transform="matrix(1.002 0 0 1 3.1851 85.4646)" font-family="'ArialMT'" font-size="4.2865">3´-</text>
+		<path fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" d="M143.592,50.61
+			c0,18.663-15.159,33.791-33.86,33.791S75.871,69.274,75.871,50.61c0-18.665,15.16-33.796,33.861-33.796
+			S143.592,31.945,143.592,50.61z"/>
+		
+			<ellipse fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" cx="109.73" cy="50.61" rx="31.122" ry="31.063"/>
+		<path fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" d="M226.138,50.976
+			c0,18.664-15.16,33.791-33.859,33.791c-18.7,0-33.862-15.127-33.862-33.791c0-18.665,15.162-33.795,33.862-33.795
+			C210.978,17.181,226.138,32.311,226.138,50.976z"/>
+		
+			<ellipse fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" cx="192.276" cy="50.976" rx="31.125" ry="31.062"/>
+		<g>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="0.4455" stroke-miterlimit="10" d="M195.884,53.637
+					c1.023,1.285,1.477,2.643,1.18,3.915c-0.345,1.47-1.629,2.594-3.51,3.288"/>
+				<g>
+					<polygon points="195.56,54.777 195.781,54.805 195.921,53.716 196.998,53.935 197.042,53.716 195.731,53.45 					"/>
+				</g>
+			</g>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="167.032" y1="48.694" x2="175.75" y2="48.694"/>
+			<rect x="169.376" y="47.741" fill="#58595B" width="1.646" height="1.643"/>
+			<rect x="172.015" y="47.741" fill="#DB4140" width="1.646" height="1.643"/>
+			<text transform="matrix(1.002 0 0 1 175.9932 49.0271)" font-family="'Courier'" font-size="1.5894">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="181.112" y1="30.545" x2="189.83" y2="30.545"/>
+			<rect x="183.458" y="29.593" fill="#58595B" width="1.646" height="1.644"/>
+			<rect x="186.095" y="29.593" fill="#DB4140" width="1.646" height="1.644"/>
+			<text transform="matrix(1.002 0 0 1 190.0752 30.8787)" font-family="'Courier'" font-size="1.5894">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="168.901" y1="35.516" x2="177.618" y2="35.516"/>
+			<rect x="171.246" y="34.564" fill="#58595B" width="1.647" height="1.642"/>
+			<rect x="173.882" y="34.564" fill="#DB4140" width="1.646" height="1.642"/>
+			<text transform="matrix(1.002 0 0 1 177.8623 35.8523)" font-family="'Courier'" font-size="1.5894">TTTTTT</text>
+		</g>
+		<rect x="192.437" y="61.213" opacity="0.8" fill="#9F6EAF" enable-background="new    " width="5.645" height="7.871"/>
+		<ellipse opacity="0.8" fill="#ED1C24" enable-background="new    " cx="207.717" cy="67.548" rx="6.513" ry="2.652"/>
+		<polygon opacity="0.5" fill="#4AB969" enable-background="new    " points="202.667,60.335 201.024,55.284 205.329,52.162 
+			209.634,55.284 207.989,60.335 		"/>
+		<text transform="matrix(1.002 0 0 1 193.1396 67.4705)" font-family="'ArialMT'" font-size="5.6349">A</text>
+		<text transform="matrix(1.002 0 0 1 203.6826 59.155)" font-family="'ArialMT'" font-size="5.6349">B</text>
+		<text transform="matrix(1.002 0 0 1 205.6787 69.3855)" font-family="'ArialMT'" font-size="5.6349">C</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M184.116,36.492
+			c0.933,0.551,2.857,0.032,3.845-0.209c1.427-0.35,2.783-0.88,4.211-0.312c1.271,0.505,2.247,1.431,3.724,1.016
+			c0.644-0.181,1.225-0.727,1.842-1.015c0.695-0.327,1.158-0.266,1.925-0.201"/>
+		<g>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" d="M183.181,50.215h15.588
+					c0.256-0.312,0.642-0.516,1.078-0.516c0.774,0,1.402,0.627,1.402,1.4c0,0.772-0.628,1.398-1.402,1.398
+					c-0.391,0-0.744-0.16-0.998-0.418l-12.527,0.001"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="198.526" y1="51.658" x2="198.526" y2="50.539"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="190.255" y1="51.658" x2="190.255" y2="50.539"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="191.633" y1="51.658" x2="191.633" y2="50.539"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="193.013" y1="51.658" x2="193.013" y2="50.539"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="195.771" y1="51.658" x2="195.771" y2="50.539"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="197.147" y1="51.658" x2="197.147" y2="50.539"/>
+				<rect x="186.323" y="49.101" fill="#9F6EAF" width="1.926" height="1.922"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" x1="188.876" y1="51.658" x2="188.876" y2="50.539"/>
+				<circle fill="#9F6EAF" cx="194.392" cy="50.66" r="0.962"/>
+			</g>
+			<text transform="matrix(1.002 0 0 1 176.4072 50.5876)" font-family="'Courier'" font-size="1.5889">AAAAAA</text>
+		</g>
+		<text transform="matrix(-1.002 0 0 -1 183.5918 36.406)" fill="#A7A9AC" font-family="'Courier'" font-size="1.5889">AAAAAA</text>
+		<text transform="matrix(1.002 0 0 1 187.4756 32.5447)" fill="#A7A9AC" font-family="'Courier'" font-size="1.5889">3´-AAAAAA</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M196.394,32.13
+			c1.039,0.31,2.777-0.664,3.676-1.139c1.297-0.686,2.484-1.532,4.007-1.329c1.358,0.18,2.532,0.839,3.86,0.078"/>
+		<text transform="matrix(1.002 0 0 1 153.7607 92.3787)" font-family="'ArialMT'" font-size="5.9381">dT primers capture mRNAs </text>
+		<text transform="matrix(1.002 0 0 1 153.5762 99.5037)" font-family="'ArialMT'" font-size="5.9381">and polyadenylated hairpins</text>
+		<g>
+			
+				<rect x="226.229" y="54.133" transform="matrix(0.7078 0.7064 -0.7064 0.7078 106.7951 -148.9575)" width="14.486" height="0.985"/>
+			
+				<rect x="226.217" y="44.608" transform="matrix(0.7079 -0.7063 0.7063 0.7079 36.3363 178.0655)" width="14.487" height="0.983"/>
+		</g>
+		<polygon points="239.685,58.108 240.545,61.314 237.333,60.456 		"/>
+		<polygon points="237.333,38.898 240.545,38.04 239.685,41.245 		"/>
+		<text transform="matrix(1.002 0 0 1 259.0752 24.99)" fill="#A7A9AC" font-family="'Courier'" font-size="2.428">AAAAAA</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M268.336,24.358
+			c1.591,0.471,4.247-1.016,5.618-1.741c1.98-1.048,3.797-2.341,6.122-2.031c2.075,0.275,3.868,1.283,5.897,0.119"/>
+		<text transform="matrix(1.002 0 0 1 259.0752 22.0203)" font-family="'Courier'" font-size="2.4287">TTTTTT</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M268.336,20.923
+			c1.591,0.471,4.247-1.015,5.618-1.741c1.98-1.048,3.797-2.341,6.122-2.03c2.075,0.275,3.868,1.284,5.897,0.12"/>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.75" y1="21.214" x2="258.069" y2="21.214"/>
+			<rect x="248.333" y="19.759" fill="#58595B" width="2.516" height="2.511"/>
+			<rect x="252.362" y="19.759" fill="#DB4140" width="2.516" height="2.511"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.75" y1="24.044" x2="258.069" y2="24.044"/>
+			<rect x="248.333" y="22.589" fill="#58595B" width="2.516" height="2.511"/>
+			<rect x="252.362" y="22.589" fill="#DB4140" width="2.516" height="2.511"/>
+		</g>
+		<text transform="matrix(1.002 0 0 1 259.0752 33.7908)" fill="#A7A9AC" font-family="'Courier'" font-size="2.428">AAAAAA</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M268.336,33.159
+			c1.591,0.47,4.247-1.015,5.618-1.742c1.98-1.047,3.797-2.34,6.122-2.029c2.075,0.275,3.868,1.283,5.897,0.119"/>
+		<text transform="matrix(1.002 0 0 1 259.0752 30.8201)" font-family="'Courier'" font-size="2.4287">TTTTTT</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M268.336,29.724
+			c1.591,0.47,4.247-1.016,5.618-1.742c1.98-1.047,3.797-2.34,6.122-2.031c2.075,0.276,3.868,1.284,5.897,0.12"/>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.75" y1="30.014" x2="258.069" y2="30.014"/>
+			<rect x="248.333" y="28.559" fill="#58595B" width="2.516" height="2.51"/>
+			<rect x="252.362" y="28.559" fill="#DB4140" width="2.516" height="2.51"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.75" y1="32.844" x2="258.069" y2="32.844"/>
+			<rect x="248.333" y="31.389" fill="#58595B" width="2.516" height="2.51"/>
+			<rect x="252.362" y="31.389" fill="#DB4140" width="2.516" height="2.51"/>
+		</g>
+		<text transform="matrix(1.002 0 0 1 259.1006 69.3044)" fill="#A7A9AC" font-family="'Courier'" font-size="2.7232">AAAAAA</text>
+		<text transform="matrix(1.002 0 0 1 259.1006 65.9724)" font-family="'Courier'" font-size="2.724">TTTTTT</text>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="243.034" y1="65.068" x2="257.974" y2="65.068"/>
+			<rect x="247.052" y="63.436" fill="#58595B" width="2.821" height="2.813"/>
+			<rect x="251.571" y="63.436" fill="#DB4140" width="2.822" height="2.813"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="243.034" y1="68.242" x2="257.974" y2="68.242"/>
+			<rect x="247.052" y="66.609" fill="#58595B" width="2.821" height="2.814"/>
+			<rect x="251.571" y="66.609" fill="#DB4140" width="2.822" height="2.814"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="269.44" y1="65.339" x2="284.382" y2="65.339"/>
+			<rect x="277.979" y="63.708" fill="#9F6EAF" width="2.822" height="2.815"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="269.44" y1="68.468" x2="284.382" y2="68.468"/>
+			<rect x="277.979" y="66.835" fill="#9F6EAF" width="2.822" height="2.815"/>
+		</g>
+		
+			<rect x="284.382" y="64.364" fill="#A7A9AC" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" width="1.503" height="1.502"/>
+		
+			<rect x="284.382" y="67.717" fill="#A7A9AC" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" width="1.503" height="1.501"/>
+		<text transform="matrix(1.002 0 0 1 259.1006 78.5603)" fill="#A7A9AC" font-family="'Courier'" font-size="2.7232">AAAAAA</text>
+		<text transform="matrix(1.002 0 0 1 259.1006 75.2283)" font-family="'Courier'" font-size="2.724">TTTTTT</text>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="243.034" y1="74.324" x2="257.974" y2="74.324"/>
+			<rect x="247.052" y="72.692" fill="#58595B" width="2.821" height="2.813"/>
+			<rect x="251.571" y="72.692" fill="#DB4140" width="2.822" height="2.813"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="243.034" y1="77.498" x2="257.974" y2="77.498"/>
+			<rect x="247.052" y="75.865" fill="#58595B" width="2.821" height="2.816"/>
+			<rect x="251.571" y="75.865" fill="#DB4140" width="2.822" height="2.816"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="269.44" y1="74.596" x2="284.382" y2="74.596"/>
+			<rect x="277.979" y="72.963" fill="#9F6EAF" width="2.822" height="2.815"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="269.44" y1="77.723" x2="284.382" y2="77.723"/>
+			<rect x="277.979" y="76.092" fill="#9F6EAF" width="2.822" height="2.814"/>
+		</g>
+		
+			<rect x="284.382" y="73.844" fill="#A7A9AC" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" width="1.503" height="1.502"/>
+		
+			<rect x="284.382" y="76.973" fill="#A7A9AC" stroke="#000000" stroke-width="0.3101" stroke-miterlimit="10" width="1.503" height="1.501"/>
+		<text transform="matrix(1.002 0 0 1 258.6006 42.196)" fill="#A7A9AC" font-family="'Courier'" font-size="2.428">AAAAAA</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M267.862,41.563
+			c1.59,0.47,4.248-1.016,5.619-1.742c1.98-1.047,3.795-2.341,6.121-2.03c2.076,0.275,3.867,1.283,5.899,0.119"/>
+		<text transform="matrix(1.002 0 0 1 258.6006 39.2244)" font-family="'Courier'" font-size="2.4287">TTTTTT</text>
+		<path fill="none" stroke="#A7A9AC" stroke-width="0.6202" stroke-miterlimit="10" d="M267.862,38.128
+			c1.59,0.471,4.248-1.015,5.619-1.742c1.98-1.048,3.795-2.341,6.121-2.03c2.076,0.275,3.867,1.284,5.899,0.12"/>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.274" y1="38.418" x2="257.595" y2="38.418"/>
+			<rect x="247.86" y="36.963" fill="#58595B" width="2.516" height="2.511"/>
+			<rect x="251.888" y="36.963" fill="#DB4140" width="2.516" height="2.511"/>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="0.6202" stroke-miterlimit="10" x1="244.274" y1="41.249" x2="257.595" y2="41.249"/>
+			<rect x="247.86" y="39.793" fill="#58595B" width="2.516" height="2.509"/>
+			<rect x="251.888" y="39.793" fill="#DB4140" width="2.516" height="2.509"/>
+		</g>
+		<text transform="matrix(1.002 0 0 1 236.1143 7.3494)" font-family="'ArialMT'" font-size="5.9381">Size selected cDNA </text>
+		<text transform="matrix(1.002 0 0 1 241.2471 14.4744)" font-family="'ArialMT'" font-size="5.9381">for mRNA library</text>
+		<text transform="matrix(1.002 0 0 1 233.4658 87.9226)" font-family="'ArialMT'" font-size="5.9381">Size selected hairpins </text>
+		<text transform="matrix(1.002 0 0 1 240.5771 95.0486)" font-family="'ArialMT'" font-size="5.9381">for repair product</text>
+		<text transform="matrix(1.002 0 0 1 245.0439 102.1755)" font-family="'ArialMT'" font-size="5.9381">measurement</text>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="13.828" y1="31.134" x2="30.907" y2="31.134"/>
+			<rect x="18.423" y="29.27" fill="#58595B" width="3.225" height="3.217"/>
+			<rect x="23.588" y="29.27" fill="#DB4140" width="3.224" height="3.217"/>
+			<text transform="matrix(1.002 0 0 1 31.3828 31.7859)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="24.194" y1="17.208" x2="41.273" y2="17.208"/>
+			<rect x="28.791" y="15.343" fill="#58595B" width="3.224" height="3.22"/>
+			<rect x="33.956" y="15.343" fill="#DB4140" width="3.223" height="3.22"/>
+			<text transform="matrix(1.002 0 0 1 41.75 17.8611)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="31.583" y1="24.337" x2="48.66" y2="24.337"/>
+			<rect x="36.178" y="22.471" fill="#58595B" width="3.225" height="3.219"/>
+			<rect x="41.342" y="22.471" fill="#DB4140" width="3.225" height="3.219"/>
+			<text transform="matrix(1.002 0 0 1 49.1387 24.989)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			<text transform="matrix(1.002 0 0 1 12.3301 48.1951)" font-family="'ArialMT'" font-size="5.9381">Single cells</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="83.205" y1="42.881" x2="100.284" y2="42.881"/>
+			<rect x="87.801" y="41.016" fill="#58595B" width="3.225" height="3.217"/>
+			<rect x="92.966" y="41.016" fill="#DB4140" width="3.224" height="3.217"/>
+			<text transform="matrix(1.002 0 0 1 100.7603 43.533)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="93.572" y1="28.956" x2="110.65" y2="28.956"/>
+			<rect x="98.168" y="27.09" fill="#58595B" width="3.224" height="3.22"/>
+			<rect x="103.333" y="27.09" fill="#DB4140" width="3.223" height="3.22"/>
+			<text transform="matrix(1.002 0 0 1 111.1274 29.6082)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			
+				<line fill="none" stroke="#000000" stroke-width="1.073" stroke-miterlimit="10" x1="100.96" y1="36.084" x2="118.037" y2="36.084"/>
+			<rect x="105.555" y="34.218" fill="#58595B" width="3.225" height="3.22"/>
+			<rect x="110.72" y="34.218" fill="#DB4140" width="3.225" height="3.22"/>
+			<text transform="matrix(1.002 0 0 1 118.5156 36.7361)" font-family="'Courier'" font-size="3.1139">TTTTTT</text>
+		</g>
+		<g>
+			<text transform="matrix(1.002 0 0 1 104.6997 69.4304)" font-family="'ArialMT'" font-size="2.6662">5´</text>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" d="M102.79,65.702h23.847
+					c0.394-0.478,0.983-0.789,1.651-0.789c1.185,0,2.146,0.958,2.146,2.143c0,1.182-0.96,2.14-2.146,2.14
+					c-0.598,0-1.137-0.245-1.527-0.639h-19.166"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="126.269" y1="67.91" x2="126.269" y2="66.197"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="113.613" y1="67.91" x2="113.613" y2="66.197"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="115.722" y1="67.91" x2="115.722" y2="66.197"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="117.831" y1="67.91" x2="117.831" y2="66.197"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="122.05" y1="67.91" x2="122.05" y2="66.197"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="124.159" y1="67.91" x2="124.159" y2="66.197"/>
+				<rect x="107.596" y="63.998" fill="#9F6EAF" width="2.945" height="2.939"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="0.3858" stroke-miterlimit="10" x1="111.503" y1="67.91" x2="111.503" y2="66.197"/>
+				<circle fill="#9F6EAF" cx="119.94" cy="66.382" r="1.473"/>
+			</g>
+			<text transform="matrix(1.002 0 0 1 90.4927 66.2742)" font-family="'Courier'" font-size="3.0833">AAAAAA</text>
+			<text transform="matrix(1.002 0 0 1 86.8262 66.2742)" font-family="'ArialMT'" font-size="2.6662">3´-</text>
+		</g>
+		<path opacity="0.8" fill="#9F6EAF" enable-background="new    " d="M118.773,45.75c-1.449,0.109-2.416,1.226-2.706,2.788
+			c-0.138,0.742,0.105,1.34-0.25,2.054c-0.334,0.678-1.153,1.24-1.666,1.75c-0.966,0.961-1.899,2.285-0.703,3.367
+			c0.659,0.603,1.006,0.352,1.267,1.262c0.194,0.681-0.331,1.698,0.148,2.242c2.017,2.294,5.406-0.373,8.148-0.293
+			c1.014,0.03,2.441,1.254,3.435,0.772c1.771-0.863,1.154-3.839,1.697-5.226c0.755-1.926,4.585-2.447,2.408-5.104
+			c-1.133-1.38-1.994-2.03-2.412-3.832c-0.247-1.073-0.264-1.942-1.46-2.271c-0.621-0.17-2.039-0.104-2.634,0.173
+			c-1.405,0.648-1.521,2.455-2.99,2.883C120.007,46.625,119.361,45.706,118.773,45.75z"/>
+		<path opacity="0.5" fill="#A7A9AC" enable-background="new    " d="M120.261,49.903c-1.785,0.729-1.62,2.41-1.601,4.034
+			c0.013,1.005,1.22,2.664,2.317,2.789c1.403,0.156,2.458-1.916,2.483-3.015c0.035-1.442-0.081-3.086-1.615-3.677
+			c-0.539-0.208-1.001-0.195-1.584-0.195"/>
+		<g>
+			<text transform="matrix(1.002 0 0 1 99.0063 14.4753)" font-family="'ArialMT'" font-size="5.9381">Droplet</text>
+		</g>
+	</g>
+</g>
+</svg>
