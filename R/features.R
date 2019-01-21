@@ -47,9 +47,10 @@ calc_var_features <- function(fsce, expt = "rnaseq", n = 1000) {
 #' @param ... additional params for [`scran::cyclone()`]
 #'
 #' @examples
+#' \donttest{
 #' fsce_small <- calc_cell_cycle(fsce_small)
-#'
 #' SingleCellExperiment::colData(fsce_small[["rnaseq"]])
+#' }
 #'
 #' @references Scialdone A, Natarajana KN, Saraiva LR et al. (2015).
 #' Computational assignment of cell-cycle stage from single-cell transcriptome data.
@@ -82,7 +83,12 @@ calc_cell_cycle <- function(fsce, expt = "rnaseq", org = "human", ...) {
   mtx <- as.matrix(counts(fsce[[expt]]))
   gene_syms <- tibble(gene_symbol = rownames(mtx))
 
-  ens_ids <- left_join(gene_syms, human_gene_ids, by = "gene_symbol")
+  ens_ids <- left_join(
+    gene_syms,
+    scrunchy::human_gene_ids,
+    by = "gene_symbol"
+  )
+
   rownames(mtx) <- ens_ids$ensembl_id
 
   res <- scran::cyclone(mtx, gene_pairs, ...)

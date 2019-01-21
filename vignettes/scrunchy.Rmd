@@ -1,6 +1,8 @@
 ---
 title: "Introduction to scrunchy"
 output: rmarkdown::html_vignette
+resource_files:
+  - figures/
 vignette: >
   %\VignetteIndexEntry{Introduction to scrunchy}
   %\VignetteEngine{knitr::rmarkdown}

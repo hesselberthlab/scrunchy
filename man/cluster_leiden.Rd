@@ -42,7 +42,7 @@ and \code{igraph}.
 \examples{
 \donttest{
 fsce_small <- cluster_leiden(fsce_small)
-colData(fsce_small[["rnaseq"]])
+SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 }
 
 }
