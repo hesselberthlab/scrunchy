@@ -17,7 +17,11 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 
   x <- read_matrix(path)
 
-  sce <- SingleCellExperiment::SingleCellExperiment(assays = list(counts = x))
+  sce <- SingleCellExperiment::SingleCellExperiment(
+    assays = list(counts = x),
+    rowData = DataFrame(
+      feature_id = rownames(x)
+    ))
 
   cell_ids <- extract_cell_ids(colnames(x))
 
@@ -67,7 +71,8 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
     assays = list(counts = x),
     rowData = DataFrame(
       hairpin = hairpin_id,
-      position = hairpin_pos
+      position = hairpin_pos,
+      feature_id = rownames(x)
     )
   )
 

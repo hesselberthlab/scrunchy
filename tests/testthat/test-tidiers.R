@@ -35,6 +35,16 @@ test_that("tidy_coldata results have expected shapes", {
   expect_equal(dim(res_rs), c(250, 4))
 })
 
+# tidy_rowdata ----------------------------------------------------
+
+test_that("tidy_rowdata results have expected shapes", {
+  res_hc <- tidy_rowdata(fsce_hc)
+  res_rs <- tidy_rowdata(fsce_rs)
+
+  expect_equal(dim(res_hc), c(1, 3))
+  expect_equal(dim(res_rs), c(1, 1))
+})
+
 # tidy_dims ----------------------------------------------------
 
 test_that("tidy_dims results have expected shapes", {

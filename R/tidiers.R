@@ -90,6 +90,26 @@ tidy_coldata <- function(fsce) {
   as_tibble(res)
 }
 
+#' Tidy rowData
+#'
+#' @inheritSection tidy_logcounts Tidying
+#' @inheritParams tidy_logcounts
+#
+#' @examples
+#' tidy_rowdata(fsce_small)
+#'
+#' @family tidiers
+#'
+#' @export
+tidy_rowdata <- function(fsce) {
+  es <- as.list(experiments(fsce))
+  cds <- purrr::map(es, rowData)
+  cds <- purrr::map(cds, as.data.frame)
+
+  res <- purrr::reduce(cds, left_join, by = "feature_id")
+  as_tibble(res)
+}
+
 # Utilities -----------------------------------------------------------
 
 counts_tbl <- function(mx) {
