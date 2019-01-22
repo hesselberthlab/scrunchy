@@ -3,26 +3,39 @@
 #' @param fsce [`FunctionalSingleCellExperiment`]
 #' @param expt Data to use for calculating variable features
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
-#' @param cell_ids cell ids to include in coverage calculation
+#' @param cell_ids cell ids to include in coverage calculation or category from colData in rnaseq expt
+#' @param meta Data to use to find cell_ids caategories default is `rnaseq`
 #'
 #' @examples
 #' calc_hairpin_coverage(fsce_small)
 #' @export
 calc_hairpin_coverage <- function(fsce,
+                                  cell_ids = NULL,
                                   expt = "haircut",
-                                  cell_ids = NULL) {
+                                  meta = "rnaseq") {
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
 
+
   if (is.null(cell_ids)) {
+    category <- "all_cells"
     cell_ids <- colnames(counts(fsce[[expt]]))
   }
 
-  metadata <- colData(fsce[[expt]])[cell_ids, , drop = FALSE]
+  metadata <- colData(fsce[[meta]])
+
+  if(length(cell_ids) == 1){
+    if (cell_ids %in% colnames(metadata)) {
+    category <- metadata[,cell_ids]
+    cell_ids <- colnames(counts(fsce[[expt]]))
+    }
+  }
+
+  metadata <- metadata[cell_ids, , drop = FALSE]
   counts <- counts(fsce[[expt]])
 
-  cell_ids <- split(rownames(metadata), metadata$cell_id)
+  cell_ids <- split(rownames(metadata), category)
 
   ## compute per sample per adduct position counts
   res <- purrr::map_dfr(
@@ -36,33 +49,65 @@ calc_hairpin_coverage <- function(fsce,
   )
 
   res$position <- as.numeric(res$position)
-
   as_tibble(res)
 }
 
 #' Plot coverage across hairpins
 #'
 #' @inheritParams calc_hairpin_coverage
-#' @param color variable to use for coloring lines (defaults to "hairpin")
+#' @param color variable to use for coloring lines (defaults to "cell_id")
 #'
 #' @examples
 #' plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
+#' plot_hairpin_coverage(fsce_small, cell_ids = "k_cluster") + ggplot2::facet_wrap(~hairpin)
+
 #' @export
 plot_hairpin_coverage <- function(fsce,
-                                  expt = "haircut",
                                   cell_ids = NULL,
-                                  color = "hairpin") {
+                                  expt = "haircut",
+                                  meta = "rnaseq",
+                                  color = "cell_id",
+                                  use_points = FALSE) {
 
-  res <- calc_hairpin_coverage(fsce, expt, cell_ids)
+  res <- calc_hairpin_coverage(fsce, cell_ids, expt,  meta)
 
   color <- enquo(color)
+  colorN <- quo_name(color)
 
-  ggplot(res, aes(x = position, y = count)) +
-    geom_line(aes(color = !!color), alpha = 0.7, size = 0.8) +
+  p <- ggplot(res, aes(x = position, y = count)) +
+    geom_line(aes_string(color = colorN), alpha = 0.7, size = 0.8) +
     cowplot::theme_cowplot() +
     scale_color_brewer(palette = "Set1") +
     labs(
       x = "Position",
       y = "Counts"
     )
+
+  if (use_points){
+    p <- p + geom_point(aes_string(color = colorN))
+  }
+  p
+}
+
+plot_hairpin_coverage <- function(df,
+                                  color = "cell_id",
+                                  UsePoints = FALSE) {
+
+  color <- enquo(color)
+  colorN <- quo_name(color)
+
+  p <- ggplot(df, aes(x = position, y = count)) +
+    geom_line(aes_string(color = colorN), alpha = 0.7, size = 0.8) +
+    cowplot::theme_cowplot() +
+    scale_color_brewer(palette = "Set1") +
+    labs(
+      x = "Position",
+      y = "Counts"
+    )
+
+  if (UsePoints){
+    p <- p + geom_point(aes_string(color = colorN))
+  }
+
+  p
 }

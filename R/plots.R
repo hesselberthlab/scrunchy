@@ -187,9 +187,13 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 #' @family plot fuctions
 #'
 #' @export
-plot_heatmap <- function(mtx, rows = NULL, ...) {
+plot_heatmap <- function(mtx, rows = NULL, columns = NULL, ...) {
   if (!is.null(rows)) {
     mtx <- mtx[rows, ]
+  }
+
+  if (!is.null(columns)) {
+    mtx <- mtx[ ,columns]
   }
 
   if (class(mtx) %in% c("dgCMatrix")) {
