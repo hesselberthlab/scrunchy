@@ -69,7 +69,7 @@ plot_hairpin_coverage <- function(fsce,
                                   color = "cell_id",
                                   use_points = FALSE) {
 
-  res <- calc_hairpin_coverage(fsce, cell_ids, expt,  meta)
+  res <- calc_hairpin_coverage(fsce, cell_ids, expt, meta)
 
   color <- enquo(color)
   colorN <- quo_name(color)
@@ -86,28 +86,5 @@ plot_hairpin_coverage <- function(fsce,
   if (use_points){
     p <- p + geom_point(aes_string(color = colorN))
   }
-  p
-}
-
-plot_hairpin_coverage <- function(df,
-                                  color = "cell_id",
-                                  UsePoints = FALSE) {
-
-  color <- enquo(color)
-  colorN <- quo_name(color)
-
-  p <- ggplot(df, aes(x = position, y = count)) +
-    geom_line(aes_string(color = colorN), alpha = 0.7, size = 0.8) +
-    cowplot::theme_cowplot() +
-    scale_color_brewer(palette = "Set1") +
-    labs(
-      x = "Position",
-      y = "Counts"
-    )
-
-  if (UsePoints){
-    p <- p + geom_point(aes_string(color = colorN))
-  }
-
   p
 }
