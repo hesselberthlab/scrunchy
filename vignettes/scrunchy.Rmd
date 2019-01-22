@@ -1,6 +1,8 @@
 ---
 title: "Introduction to scrunchy"
 output: rmarkdown::html_vignette
+resource_files:
+  - figures/
 vignette: >
   %\VignetteIndexEntry{Introduction to scrunchy}
   %\VignetteEngine{knitr::rmarkdown}
@@ -18,11 +20,10 @@ The goal of scrunchy is to facilitate the analysis of experiments that measure t
 
 We have developed functional assays as a new modality for single-cell experiments. These assays measure the conversion of substrates to products by single-cell extracts in a high-throghput DNA sequencing experiment. The assays are performed in the context of traditional single-cell mRNA sequencing experiment, enabling type identifcation and functional assessment of single cells. Our initial efforts have focused on measuring DNA repair activities in single cells and we are developing methods for other enzymes including proteases and kinases. Together these assays provide a new type of information from single-cell experiments.
 
-The method to meausre DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment.  Because we are measuring strand incision on DNA hairpins, we call the assay Haircut---and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.
+The method to measure DNA repair enzymes takes advantage of the fact that nearly all DNA repair initiates with strand incision. By including synthetic polyadenylated DNA hairpins containing defined lesions, we can measure the number of incisions by cellular DNA repair factors in a high-throughput DNA sequencing experiment.  Because we are measuring strand incision on DNA hairpins, we call the assay Haircut---and scrunchy keeps track of your Haircut experiments. The following figure provides an overview of the method.
 
-```{r overview_fig, echo=FALSE, out.width='100%', eval=FALSE}
-# fails R CMD CHECK
-knitr::include_graphics("../reference/figures/method-overview.svg")
+```{r overview_fig, echo=FALSE, out.width='100%'}
+knitr::include_graphics("figures/method-overview.svg")
 ```
 
 ## Overview 

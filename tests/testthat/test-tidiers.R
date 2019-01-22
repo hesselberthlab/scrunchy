@@ -32,7 +32,7 @@ test_that("tidy_coldata results have expected shapes", {
   res_rs <- tidy_coldata(fsce_rs)
 
   expect_equal(dim(res_hc), c(250, 1))
-  expect_equal(dim(res_rs), c(250, 3))
+  expect_equal(dim(res_rs), c(250, 4))
 })
 
 # tidy_dims ----------------------------------------------------

@@ -10,7 +10,7 @@
 }
 \usage{
 cluster_leiden(fsce, expt = "rnaseq", method = "PCA", dims = 1:5,
-  prune = 1/15, ...)
+  prune = 1/15, seed = NULL, ...)
 }
 \arguments{
 \item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}}
@@ -24,6 +24,8 @@ PCA)}
 \item{dims}{dimensions to use for nearest-neighbor calculation}
 
 \item{prune}{Pruning parameter for shared nearest-neighbor calculation.}
+
+\item{seed}{seed for \code{leidenalg$find_partition()}}
 
 \item{...}{Parameters to pass to the Python \code{leidenalg} function.}
 }
@@ -40,7 +42,7 @@ and \code{igraph}.
 \examples{
 \donttest{
 fsce_small <- cluster_leiden(fsce_small)
-colData(fsce_small[["rnaseq"]])
+SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 }
 
 }

@@ -14,4 +14,8 @@ human_gene_ids
 \description{
 Used for \code{\link[=calc_cell_cycle]{calc_cell_cycle()}}
 }
+\examples{
+human_gene_ids
+
+}
 \keyword{datasets}

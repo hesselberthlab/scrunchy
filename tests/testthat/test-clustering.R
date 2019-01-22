@@ -30,6 +30,10 @@ test_that("functions are reproducible with a seed", {
     colData(cluster_kmeans(fsce_small, k = 6, seed = seed)[["rnaseq"]]),
     colData(cluster_kmeans(fsce_small, k = 6, seed = seed)[["rnaseq"]])
   )
+  expect_equal(
+    colData(cluster_leiden(fsce_small, seed = seed)[["rnaseq"]]),
+    colData(cluster_leiden(fsce_small, seed = seed)[["rnaseq"]])
+  )
 })
 
 test_that("inputs are checked", {

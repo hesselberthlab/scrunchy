@@ -21,9 +21,10 @@ Uses \code{\link[scran:cyclone]{scran::cyclone()}} to assign cell-cycle phases t
 Assignments are available in \code{colData} in the \code{cell_cycle} slot.
 }
 \examples{
+\donttest{
 fsce_small <- calc_cell_cycle(fsce_small)
-
 SingleCellExperiment::colData(fsce_small[["rnaseq"]])
+}
 
 }
 \references{

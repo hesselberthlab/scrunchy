@@ -7,7 +7,7 @@ test_that("cell cycle is calculated", {
   col_data <- colData(res[["rnaseq"]])
   expect_true("cell_cycle" %in% names(col_data))
   expect_equal(
-    unique(col_data$cell_cycle), c("G1", "S", "G2M")
+    sort(unique(col_data$cell_cycle)), c("G1", "G2M", "S")
   )
 })
 
