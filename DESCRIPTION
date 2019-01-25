@@ -38,6 +38,7 @@ Imports:
     matrixStats,
     Rtsne,
     SingleCellExperiment,
+    SummarizedExperiment,
     ComplexHeatmap,
     S4Vectors,
     MultiAssayExperiment,
@@ -71,6 +72,7 @@ Collate:
     'clustering.R'
     'data.R'
     'dims.R'
+    'enrichment.R'
     'expt-haircut.R'
     'expt.R'
     'features.R'

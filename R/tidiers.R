@@ -101,13 +101,74 @@ tidy_coldata <- function(fsce) {
 #' @family tidiers
 #'
 #' @export
-tidy_rowdata <- function(fsce) {
-  es <- as.list(experiments(fsce))
+tidy_rowdata <- function(fsce, expt) {
+  es <- as.list(experiments(fsce[, , expt]))
   cds <- purrr::map(es, rowData)
   cds <- purrr::map(cds, as.data.frame)
 
   res <- purrr::reduce(cds, left_join, by = "feature_id")
   as_tibble(res)
+}
+
+#' Tidy counts and return long format
+#'
+#' @inheritSection tidy_logcounts Tidying
+#' @inheritParams tidy_logcounts
+#
+#' @examples
+#' tidy_counts_full(fsce_small[1:10, , "haircut"])
+#' tidy_counts_full(fsce_small[1:10, , "rnaseq"])
+#'
+#' @family tidiers
+#'
+#' @export
+tidy_counts_full <- function(fsce,
+                             expt = "haircut") {
+  counts <- tidy_counts(fsce[, , expt])
+  cdata <-  tidy_coldata(fsce)
+
+  counts <- left_join(counts, cdata, by = "cell_id")
+
+  gather_cols <- unique(c("cell_id", "experiment", colnames(cdata)))
+
+  counts <- tidyr::gather(counts,
+                         "feature_id",
+                         "counts",
+                         -one_of(gather_cols))
+
+  rdata <- tidy_rowdata(fsce, expt)
+
+  left_join(counts, rdata, by = "feature_id")
+}
+
+#' Tidy logcounts and return long format
+#'
+#' @inheritSection tidy_logcounts Tidying
+#' @inheritParams tidy_logcounts
+#
+#' @examples
+#' tidy_logcounts_full(fsce_small[1:10, , "haircut"])
+#' tidy_logcounts_full(fsce_small[1:10, , "rnaseq"])
+#'
+#' @family tidiers
+#'
+#' @export
+tidy_logcounts_full <- function(fsce, expt = "haircut") {
+  counts <- tidy_logcounts(fsce[, , expt])
+  cdata <-  tidy_coldata(fsce)
+
+  counts <- left_join(counts, cdata, by = "cell_id")
+
+  gather_cols <- unique(c("cell_id", "experiment", colnames(cdata)))
+
+  counts <- tidyr::gather(counts,
+                          "feature_id",
+                          "logcounts",
+                          -one_of(gather_cols))
+
+  rdata <- tidy_rowdata(fsce[, , expt])
+
+  left_join(counts, rdata, by = "feature_id")
 }
 
 # Utilities -----------------------------------------------------------
