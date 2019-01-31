@@ -24,6 +24,7 @@
 #' @family clustering functions
 #'
 #' @export
+#'
 cluster_kmeans <- function(fsce,
                         expt = "rnaseq",
                         k,
@@ -147,6 +148,8 @@ cluster_leiden <- function(fsce,
   fsce
 }
 
+
+
 #' Install python dependencies for `cluster_leiden`.
 #'
 #' Users must run this prior to using `cluster_leiden()`.
@@ -159,4 +162,48 @@ cluster_leiden <- function(fsce,
 install_py_deps <- function(method = "auto", conda = "auto") {
   reticulate::py_install("python-igraph", method = method, conda = conda)
   reticulate::py_install("leidenalg", method = method, conda = conda)
+}
+
+#' Adds useful labels to colData.
+#' Can be used to add cell tyles to cluster numbers
+#'
+#' @param fsce An object of class [`FunctionalSingleCellExperiment`]
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#' @param from vector of labels present in colData of `expt`
+#' @param to vector of new labels to add to colData of `expt`
+#' @param match column name in colData of `expt` where `from` values are found
+#' @param new_label new column name of colData of `expt` where `to` values should go
+#' @param expt Data to use for match labels
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#'
+#' @return fsce with `new_label` in `expt` colData.
+#'
+#' @examples
+#' # Add cell_type labels to PBMC data
+#' labels <- tibble::tribble(
+#'   ~ k_cluster, ~ label,
+#'   1, "MC",
+#'   2, "NK",
+#'   3, "NK+T",
+#'   4, "MC",
+#'   5, "MK",
+#'   6, "CD4/8 T")  %>% mutate(k_cluster = as.character(k_cluster))
+#' fsce <- add_labels(fsce_small, labels$k_cluster, labels$label)
+#'
+#' colData(fsce[["rnaseq]])
+#'
+#' @family clustering functions
+#'
+#' @export
+
+add_label <- function(fsce, from, to,
+                      match = "k_cluster",
+                      new_label = "cell_type",
+                      expt = 'rnaseq') {
+
+  colData(fsce[[expt]])[new_label] <- plyr::mapvalues(colData(fsce[[expt]])[[match]],
+                                                      from,
+                                                      to)
+  fsce
 }

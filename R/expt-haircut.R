@@ -59,7 +59,10 @@ calc_hairpin_coverage <- function(fsce,
 #'
 #' @examples
 #' plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
+#'
 #' plot_hairpin_coverage(fsce_small, cell_ids = "k_cluster") + ggplot2::facet_wrap(~hairpin)
+#'
+#' @family plot functions
 
 #' @export
 plot_hairpin_coverage <- function(fsce,
