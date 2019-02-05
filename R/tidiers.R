@@ -106,13 +106,14 @@ tidy_coldata <- function(fsce) {
 #' @export
 
 tidy_all <- function(sce,
-                     dimname = NULL,
+                     dimnames = NULL,
                      dims = c(1,2),
-                     genes = NULL
+                     genes = NULL,
+                     repair = NULL
                      ) {
 
-  if (!is.null(dimname)) {
-      if(sum(!dimname %in% reducedDimNames(sce[["rnaseq"]])) > 0) {
+  if (!is.null(dimnames)) {
+      if(sum(!dimnames %in% reducedDimNames(sce[["rnaseq"]])) > 0) {
         stop(glue("dims `{dims}` not found in reducedDimNames of sce "),
              call. = FALSE)
     }
@@ -123,12 +124,16 @@ tidy_all <- function(sce,
     genes = rownames(sce[["rnaseq"]])
   }
 
+  if(is.null(repair)){
+    repair = rownames(sce[["haircut"]])
+  }
+
   res <- purrr::reduce(
     list(
-      tidy_dims(sce, dimname, dims),
+      tidy_dims(sce, dimnames, dims),
       tidy_coldata(sce),
       tidy_logcounts(sce[genes , ,"rnaseq"]),
-      tidy_logcounts(sce[ , , "haircut"])
+      tidy_logcounts(sce[repair, , "haircut"])
     ),
     left_join,
     by = "cell_id"
