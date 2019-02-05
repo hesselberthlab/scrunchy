@@ -168,16 +168,12 @@ install_py_deps <- function(method = "auto", conda = "auto") {
 #' Can be used to add cell tyles to cluster numbers
 #'
 #' @param fsce An object of class [`FunctionalSingleCellExperiment`]
-#' @param expt Data to use for calculating variable features
-#'   (default is `rnaseq`). Must be present in `names(fsce)`.
-#' @param from vector of labels present in colData of `expt`
-#' @param to vector of new labels to add to colData of `expt`
-#' @param match column name in colData of `expt` where `from` values are found
-#' @param new_label new column name of colData of `expt` where `to` values should go
+#' @param labels dataframe of new labels. Must contain at least one column of matching variables (e.g. cell_id or k_cluster)
+#' @param by column name labels to match in colData of `expt`. If NULL, will match by all matching column names
 #' @param expt Data to use for match labels
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #'
-#' @return fsce with `new_label` in `expt` colData.
+#' @return fsce with all `labels` in `expt` colData.
 #'
 #' @examples
 #' # Add cell_type labels to PBMC data
@@ -189,7 +185,7 @@ install_py_deps <- function(method = "auto", conda = "auto") {
 #'   4, "MC",
 #'   5, "MK",
 #'   6, "CD4/8 T")  %>% mutate(k_cluster = as.character(k_cluster))
-#' fsce <- add_labels(fsce_small, labels$k_cluster, labels$label)
+#' fsce <- add_labels(fsce_small, labels)
 #'
 #' colData(fsce[["rnaseq]])
 #'
@@ -197,13 +193,15 @@ install_py_deps <- function(method = "auto", conda = "auto") {
 #'
 #' @export
 
-add_label <- function(fsce, from, to,
-                      match = "k_cluster",
-                      new_label = "cell_type",
+add_label <- function(fsce,
+                      labels,
+                      by = NULL,
                       expt = 'rnaseq') {
 
-  colData(fsce[[expt]])[new_label] <- plyr::mapvalues(colData(fsce[[expt]])[[match]],
-                                                      from,
-                                                      to)
+  df = as.data.frame(colData(fsce[[expt]])) %>%
+    left_join(labels, by = by)
+
+  colData(fsce[[expt]]) <- DataFrame(df, row.names = df$cell_id)
+
   fsce
 }
