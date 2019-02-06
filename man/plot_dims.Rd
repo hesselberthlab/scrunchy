@@ -54,6 +54,7 @@ plot_dims(fsce_tidy, UMAP1, UMAP2, k_cluster,
 
 }
 \seealso{
-Other plot functions: \code{\link{plot_activity}}
+Other plot functions: \code{\link{plot_activity}},
+  \code{\link{plot_hairpin_coverage}}
 }
 \concept{plot functions}

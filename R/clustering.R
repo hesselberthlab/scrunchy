@@ -176,8 +176,9 @@ install_py_deps <- function(method = "auto", conda = "auto") {
 #' @return fsce with all `labels` in `expt` colData.
 #'
 #' @examples
-#' # Add cell_type labels to PBMC data
-#' labels <- tibble::tribble(
+#'
+#'  Add cell_type labels to PBMC data
+#'  labels <- tibble::tribble(
 #'   ~ k_cluster, ~ label,
 #'   1, "MC",
 #'   2, "NK",
@@ -185,6 +186,8 @@ install_py_deps <- function(method = "auto", conda = "auto") {
 #'   4, "MC",
 #'   5, "MK",
 #'   6, "CD4/8 T")  %>% mutate(k_cluster = as.character(k_cluster))
+
+#'
 #' fsce <- add_labels(fsce_small, labels)
 #'
 #' colData(fsce[["rnaseq]])
@@ -198,7 +201,7 @@ add_label <- function(fsce,
                       by = NULL,
                       expt = 'rnaseq') {
 
-  df = as.data.frame(colData(fsce[[expt]])) %>%
+  df <- as.data.frame(colData(fsce[[expt]])) %>%
     left_join(labels, by = by)
 
   colData(fsce[[expt]]) <- DataFrame(df, row.names = df$cell_id)

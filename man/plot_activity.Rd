@@ -25,6 +25,7 @@ plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
 
 }
 \seealso{
-Other plot functions: \code{\link{plot_dims}}
+Other plot functions: \code{\link{plot_dims}},
+  \code{\link{plot_hairpin_coverage}}
 }
 \concept{plot functions}

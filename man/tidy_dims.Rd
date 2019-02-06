@@ -36,7 +36,8 @@ tidy_dims(fsce_small, dimnames = c("UMAP"))
 
 }
 \seealso{
-Other tidiers: \code{\link{tidy_coldata}},
-  \code{\link{tidy_counts}}, \code{\link{tidy_logcounts}}
+Other tidiers: \code{\link{tidy_all}},
+  \code{\link{tidy_coldata}}, \code{\link{tidy_counts}},
+  \code{\link{tidy_logcounts}}
 }
 \concept{tidiers}

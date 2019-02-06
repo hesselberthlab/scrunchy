@@ -4,15 +4,18 @@
 \alias{calc_hairpin_coverage}
 \title{Calculate coverage across hairpins}
 \usage{
-calc_hairpin_coverage(fsce, expt = "haircut", cell_ids = NULL)
+calc_hairpin_coverage(fsce, cell_ids = NULL, expt = "haircut",
+  meta = "rnaseq")
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}
 
+\item{cell_ids}{cell ids to include in coverage calculation or category from colData in rnaseq expt}
+
 \item{expt}{Data to use for calculating variable features
 (default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
-\item{cell_ids}{cell ids to include in coverage calculation}
+\item{meta}{Data to use to find cell_ids caategories default is \code{rnaseq}}
 }
 \description{
 Calculate coverage across hairpins

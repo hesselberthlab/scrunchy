@@ -176,6 +176,7 @@ plot_activity <- function(data, activity, group = NULL, labels = NULL) {
 #'
 #' @param mtx Matrix of `logcounts` or `counts`
 #' @param rows names of rows to select for heatmap
+#' @param columns names of columns to select for heatmap
 #' @param ... params for [`ComplexHeatmap::Heatmap`]
 #'
 #' @examples

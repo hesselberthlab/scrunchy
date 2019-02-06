@@ -29,7 +29,8 @@ tidy_coldata(fsce_small)
 
 }
 \seealso{
-Other tidiers: \code{\link{tidy_counts}},
-  \code{\link{tidy_dims}}, \code{\link{tidy_logcounts}}
+Other tidiers: \code{\link{tidy_all}},
+  \code{\link{tidy_counts}}, \code{\link{tidy_dims}},
+  \code{\link{tidy_logcounts}}
 }
 \concept{tidiers}

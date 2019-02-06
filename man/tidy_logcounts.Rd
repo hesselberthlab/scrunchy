@@ -30,7 +30,8 @@ tidy_logcounts(x)
 
 }
 \seealso{
-Other tidiers: \code{\link{tidy_coldata}},
-  \code{\link{tidy_counts}}, \code{\link{tidy_dims}}
+Other tidiers: \code{\link{tidy_all}},
+  \code{\link{tidy_coldata}}, \code{\link{tidy_counts}},
+  \code{\link{tidy_dims}}
 }
 \concept{tidiers}
