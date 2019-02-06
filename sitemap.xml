@@ -10,6 +10,9 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/FunctionalSingleCellExperiment.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/add_label.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/calc_cell_cycle.html</loc>
   </url>
   <url>
@@ -128,6 +131,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/stat_anova_tukey.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/tidy_all.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/tidy_coldata.html</loc>

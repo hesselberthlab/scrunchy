@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot activities per cluster — plot_activity • scrunchy</title>
+<title>Tidy all — tidy_all • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot activities per cluster — plot_activity" />
+<meta property="og:title" content="Tidy all — tidy_all" />
 
-<meta property="og:description" content="Generates a beeswarm plot of activity across specified groups" />
+<meta property="og:description" content="Tidy all" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,49 +126,80 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot activities per cluster</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/plots.R'><code>R/plots.R</code></a></small>
-    <div class="hidden name"><code>plot_activity.Rd</code></div>
+    <h1>Tidy all</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/tidiers.R'><code>R/tidiers.R</code></a></small>
+    <div class="hidden name"><code>tidy_all.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generates a beeswarm plot of activity across specified groups</p>
+    <p>Tidy all</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_activity</span>(<span class='no'>data</span>, <span class='no'>activity</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>tidy_all</span>(<span class='no'>fsce</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>repair</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data to plot</p></td>
+      <th>fsce</th>
+      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>.</p></td>
     </tr>
     <tr>
-      <th>activity</th>
-      <td><p>activity variable</p></td>
+      <th>dimnames</th>
+      <td><p>vector of dimnames to retrieve. If <code>NULL</code>, retrieve all
+dimnames.</p></td>
     </tr>
     <tr>
-      <th>group</th>
-      <td><p>grouping variable</p></td>
+      <th>dims</th>
+      <td><p>vector of dimensions to retrieve</p></td>
     </tr>
     <tr>
-      <th>labels</th>
-      <td><p>legend labels</p></td>
+      <th>genes</th>
+      <td><p>vector of genes to retrieve. If <code>NULL</code>, retrieve all genes.</p></td>
+    </tr>
+    <tr>
+      <th>repair</th>
+      <td><p>vector of repair sites to retrieve. If <code>NULL</code> retrieve all reapir sites.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
+
+    
+    <p>This is a data tidier for a <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>. Returns data
+from <code>SingleCellExperiment</code> in a tidy format, where variables are columns
+and observations are rows.</p>
+<p>If the <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code> contains more than one
+<code>SingleCellExperiment</code>, data from each <code>sce</code> are joined using the <code>cell_id</code>
+variable name, and a new <code>experiment</code> column contains the name of the source
+<code>sce</code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other plot functions: <code><a href='plot_dims.html'>plot_dims</a></code>,
-  <code><a href='plot_hairpin_coverage.html'>plot_hairpin_coverage</a></code></p></div>
+    <div class='dont-index'><p>Other tidiers: <code><a href='tidy_coldata.html'>tidy_coldata</a></code>,
+  <code><a href='tidy_counts.html'>tidy_counts</a></code>, <code><a href='tidy_dims.html'>tidy_dims</a></code>,
+  <code><a href='tidy_logcounts.html'>tidy_logcounts</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plot_activity</span>(<span class='no'>fsce_tidy</span>, <span class='no'>Uracil_45</span>, <span class='no'>k_cluster</span>)</div><div class='img'><img src='plot_activity-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>plot_activity</span>(<span class='no'>fsce_tidy</span>, <span class='no'>riboG_44</span>, <span class='no'>k_cluster</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>6</span>])</div><div class='img'><img src='plot_activity-2.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>tidy_all</span>(<span class='no'>fsce_small</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"UMAP"</span>), <span class='kw'>genes</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"TP53"</span>), <span class='kw'>repair</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Uracil_45"</span>))</div><div class='output co'>#&gt; # A tibble: 250 x 11
+#&gt;    experiment.x cell_id  UMAP1  UMAP2 k_cluster leiden_cluster cell_cycle
+#&gt;    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     
+#&gt;  1 rnaseq       TGCGGG…  3.50    3.62 5         2              S         
+#&gt;  2 rnaseq       TGGTTC… -2.85    3.58 1         4              S         
+#&gt;  3 rnaseq       CATATT…  3.72    4.99 2         2              G2M       
+#&gt;  4 rnaseq       TCACAA… -6.17  -12.0  3         3              G1        
+#&gt;  5 rnaseq       GGAATA… -4.30    3.48 1         4              G1        
+#&gt;  6 rnaseq       CTTGGC… -5.40  -12.6  3         3              G2M       
+#&gt;  7 rnaseq       GTGAAG… -3.54    2.28 1         1              S         
+#&gt;  8 rnaseq       AGCGGT… -0.574   2.81 1         1              G1        
+#&gt;  9 rnaseq       GGATGT…  8.42   -4.22 6         6              S         
+#&gt; 10 rnaseq       GTACTC… -0.803   1.54 1         1              G1        
+#&gt; # … with 240 more rows, and 4 more variables: experiment.y &lt;chr&gt;, TP53 &lt;dbl&gt;,
+#&gt; #   experiment &lt;chr&gt;, Uracil_45 &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -176,6 +207,8 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#tidying">Tidying</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
