@@ -4,22 +4,34 @@
 \alias{plot_hairpin_coverage}
 \title{Plot coverage across hairpins}
 \usage{
-plot_hairpin_coverage(fsce, expt = "haircut", cell_ids = NULL,
-  color = "hairpin")
+plot_hairpin_coverage(fsce, cell_ids = NULL, expt = "haircut",
+  meta = "rnaseq", color = "cell_id", use_points = FALSE)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}
 
+\item{cell_ids}{cell ids to include in coverage calculation or category from colData in rnaseq expt}
+
 \item{expt}{Data to use for calculating variable features
 (default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
-\item{cell_ids}{cell ids to include in coverage calculation}
+\item{meta}{Data to use to find cell_ids caategories default is \code{rnaseq}}
 
-\item{color}{variable to use for coloring lines (defaults to "hairpin")}
+\item{color}{variable to use for coloring lines (defaults to "cell_id")}
+
+\item{use_points}{if TRUE add points to plot}
 }
 \description{
 Plot coverage across hairpins
 }
 \examples{
 plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
+
+plot_hairpin_coverage(fsce_small, cell_ids = "k_cluster") + ggplot2::facet_wrap(~hairpin)
+
 }
+\seealso{
+Other plot functions: \code{\link{plot_activity}},
+  \code{\link{plot_dims}}
+}
+\concept{plot functions}

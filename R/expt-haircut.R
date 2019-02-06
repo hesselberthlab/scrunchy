@@ -56,10 +56,14 @@ calc_hairpin_coverage <- function(fsce,
 #'
 #' @inheritParams calc_hairpin_coverage
 #' @param color variable to use for coloring lines (defaults to "cell_id")
+#' @param use_points if TRUE add points to plot
 #'
 #' @examples
 #' plot_hairpin_coverage(fsce_small) + ggplot2::facet_wrap(~hairpin)
+#'
 #' plot_hairpin_coverage(fsce_small, cell_ids = "k_cluster") + ggplot2::facet_wrap(~hairpin)
+#'
+#' @family plot functions
 
 #' @export
 plot_hairpin_coverage <- function(fsce,

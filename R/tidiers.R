@@ -90,6 +90,59 @@ tidy_coldata <- function(fsce) {
   as_tibble(res)
 }
 
+
+#' Tidy all
+#'
+#' @inheritSection tidy_logcounts Tidying
+#' @inheritParams tidy_dims
+#'
+#' @param genes vector of genes to retrieve. If `NULL`, retrieve all genes.
+#' @param repair vector of repair sites to retrieve. If `NULL` retrieve all reapir sites.
+#'
+#' @examples
+#' tidy_all(fsce_small, dimnames = c("UMAP"), genes = c("TP53"), repair = c("Uracil_45"))
+#'
+#' @family tidiers
+#'
+#' @export
+
+tidy_all <- function(fsce,
+                     dimnames = NULL,
+                     dims = c(1,2),
+                     genes = NULL,
+                     repair = NULL
+                     ) {
+
+  if (!is.null(dimnames)) {
+      if(sum(!dimnames %in% reducedDimNames(fsce[["rnaseq"]])) > 0) {
+        stop(glue("dims `{dims}` not found in reducedDimNames of fsce "),
+             call. = FALSE)
+    }
+
+  }
+
+  if(is.null(genes)){
+    genes <- rownames(fsce[["rnaseq"]])
+  }
+
+  if(is.null(repair)){
+    repair <- rownames(fsce[["haircut"]])
+  }
+
+  res <- purrr::reduce(
+    list(
+      tidy_dims(fsce, dimnames, dims),
+      tidy_coldata(fsce),
+      tidy_logcounts(fsce[genes , ,"rnaseq"]),
+      tidy_logcounts(fsce[repair , , "haircut"])
+    ),
+    left_join,
+    by = "cell_id"
+  )
+
+  res
+}
+
 # Utilities -----------------------------------------------------------
 
 counts_tbl <- function(mx) {

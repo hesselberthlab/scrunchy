@@ -4,12 +4,14 @@
 \alias{plot_heatmap}
 \title{Heatmap of signals}
 \usage{
-plot_heatmap(mtx, rows = NULL, ...)
+plot_heatmap(mtx, rows = NULL, columns = NULL, ...)
 }
 \arguments{
 \item{mtx}{Matrix of \code{logcounts} or \code{counts}}
 
 \item{rows}{names of rows to select for heatmap}
+
+\item{columns}{names of columns to select for heatmap}
 
 \item{...}{params for \code{\link[ComplexHeatmap:Heatmap]{ComplexHeatmap::Heatmap}}}
 }

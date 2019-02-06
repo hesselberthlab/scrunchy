@@ -4,6 +4,8 @@ context("test-tidiers")
 fsce_hc <- fsce_small[c("Uracil_45"), , ]
 # rnaseq subset
 fsce_rs <- fsce_small[c("TP53"), , ]
+# all subset
+fsce_all <- fsce_small[c("TP53", "Uracil_45"), , ]
 
 # tidy_logcounts ----------------------------------------------------
 
@@ -55,3 +57,23 @@ test_that("tidy_dims can filter", {
   expect_equal(dim(res), c(250, 4))
   expect_true(all(c("PCA1", "PCA3") %in% names(res)))
 })
+
+# tidy_all ----------------------------------------------------
+
+test_that("tidy_all results have expected shapes", {
+  res_all <- tidy_all(fsce_all)
+
+  expect_equal(dim(res_all), c(250, 15))
+})
+
+test_that("tidy_all can filter", {
+  expect_equal(
+    dim(tidy_all(fsce_small, dimnames = c("UMAP"), genes = c("TP53"), repair = c("Uracil_45"))),
+    c(250, 11)
+  )
+
+  res <- tidy_all(fsce_all, dimnames = c("PCA"), dims = c(1, 3))
+  expect_equal(dim(res), c(250, 11))
+  expect_true(all(c("PCA1", "PCA3") %in% names(res)))
+})
+
