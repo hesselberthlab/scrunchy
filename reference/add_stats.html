@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run k-means clustering algorithm — cluster_kmeans • scrunchy</title>
+<title>Add stats to plot activities per cluster — add_stats • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Run k-means clustering algorithm — cluster_kmeans" />
+<meta property="og:title" content="Add stats to plot activities per cluster — add_stats" />
 
-<meta property="og:description" content="Run k-means clustering algorithm" />
+<meta property="og:description" content="Adds stat comparison bars to a beeswarm plot of activity across specified groups" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,98 +126,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Run k-means clustering algorithm</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/clustering.R'><code>R/clustering.R</code></a></small>
-    <div class="hidden name"><code>cluster_kmeans.Rd</code></div>
+    <h1>Add stats to plot activities per cluster</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/plots.R'><code>R/plots.R</code></a></small>
+    <div class="hidden name"><code>add_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Run k-means clustering algorithm</p>
+    <p>Adds stat comparison bars to a beeswarm plot of activity across specified groups</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cluster_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='no'>k</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>,
-  <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_stats</span>(<span class='no'>p</span>, <span class='no'>df</span>, <span class='kw'>val</span> <span class='kw'>=</span> <span class='no'>q.value</span>, <span class='kw'>y_loc</span> <span class='kw'>=</span> <span class='no'>y_loc</span>, <span class='kw'>xmin</span> <span class='kw'>=</span> <span class='no'>group</span>,
+  <span class='kw'>xmax</span> <span class='kw'>=</span> <span class='no'>group1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fsce</th>
-      <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code></p></td>
+      <th>p</th>
+      <td><p>plot to add stats to</p></td>
     </tr>
     <tr>
-      <th>expt</th>
-      <td><p>Data to use for calculating variable features
-(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
+      <th>df</th>
+      <td><p>dataframe output from <code><a href='stat_activity_grouped.html'>stat_activity_grouped()</a></code>.
+Output must include columnw with names group, group1, q.value and/or p.value.</p></td>
     </tr>
     <tr>
-      <th>k</th>
-      <td><p>number of classes</p></td>
+      <th>val</th>
+      <td><p>values to add to plot. Default is q.value from  <code><a href='stat_activity_grouped.html'>stat_activity_grouped()</a></code> output</p></td>
     </tr>
     <tr>
-      <th>method</th>
-      <td><p>dimensionality reduction method for clustering (defaults to
-PCA)</p></td>
+      <th>y_loc</th>
+      <td><p>location of comparisson bars on graph. Default it <code>y_loc</code> column of <code>df</code>. Can also be numeric values.</p></td>
     </tr>
     <tr>
-      <th>n_dims</th>
-      <td><p>specify the number of dimensions from "dr" to use for
-clustering, defaults to all dimensions</p></td>
+      <th>xmin</th>
+      <td><p>start location of comparison bar. Default is <code>group</code> column of <code>df</code>.</p></td>
     </tr>
     <tr>
-      <th>seed</th>
-      <td><p>seed for reproducible result</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments to pass to <code><a href='https://www.rdocumentation.org/packages/stats/topics/kmeans'>stats::kmeans()</a></code></p></td>
+      <th>xmax</th>
+      <td><p>stop location of comparison bar. Default is <code>group1</code> column of <code>df</code>.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>fsce with <code>k_cluster</code> in <code>expt</code> colData.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other clustering functions: <code><a href='add_label.html'>add_label</a></code>,
-  <code><a href='cluster_leiden.html'>cluster_leiden</a></code></p></div>
+    <div class='dont-index'><p>Other plot fuctions: <code><a href='plot_heatmap.html'>plot_heatmap</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># calculate PCA for k-means default method</span>
-<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_pca.html'>calc_pca</a></span>(<span class='no'>fsce_small</span>)</div><div class='output co'>#&gt; <span class='message'>scaling data</span></div><div class='output co'>#&gt; <span class='message'>calculating pcs</span></div><div class='input'>
-<span class='no'>fsce</span> <span class='kw'>&lt;-</span> <span class='fu'>cluster_kmeans</span>(<span class='no'>fsce</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-
-<span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]], <span class='st'>"k_cluster"</span>)</div><div class='output co'>#&gt; DataFrame with 250 rows and 4 columns
-#&gt;                           cell_id   k_cluster leiden_cluster  cell_cycle
-#&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt; &lt;character&gt;
-#&gt; TGCGGGTGTAGAGTGC TGCGGGTGTAGAGTGC           1              2           S
-#&gt; TGGTTCCCATCTATGG TGGTTCCCATCTATGG           4              4           S
-#&gt; CATATTCCACGTCAGC CATATTCCACGTCAGC           1              2         G2M
-#&gt; TCACAAGTCCTGCTTG TCACAAGTCCTGCTTG           6              3          G1
-#&gt; GGAATAATCCAGGGCT GGAATAATCCAGGGCT           4              4          G1
-#&gt; ...                           ...         ...            ...         ...
-#&gt; CTACGTCCACCACGTG CTACGTCCACCACGTG           4              4          G1
-#&gt; TGTGGTAAGGTGCTTT TGTGGTAAGGTGCTTT           3              6          G1
-#&gt; AGCGTCGGTCGAGTTT AGCGTCGGTCGAGTTT           1              6          G1
-#&gt; CTCGAAAAGTTCGATC CTCGAAAAGTTCGATC           4              5         G2M
-#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           4              4           S</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
