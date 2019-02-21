@@ -47,6 +47,7 @@ Imports:
     forcats,
     broom,
     ggrepel,
+    ggsignif,
     multcomp,
     qvalue,
     reticulate,

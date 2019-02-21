@@ -146,26 +146,65 @@ plot_dims_multi <- function(df, features, ...) {
 #' @param activity activity variable
 #' @param group grouping variable
 #' @param labels legend labels
+#' @param vertical should activity be on the y axis. Default is FALSE
+#' @param stats dataframe to use to add p values on plot. Stats can be a dataframe output from [`stat_activity_grouped()`].
+#'     Output must include columsn with names group, group1, q.value and/or p.value. If sepcificied, `vertical` is TRUE
+#' @param ... params for [`add_stats()`]
+#'
 #'
 #' @examples
 #' plot_activity(fsce_tidy, Uracil_45, k_cluster)
 #'
 #' plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
 #'
+#' plot_activity(fsce_tidy, Uracil_45, k_cluster, vertical = TRUE)
+#'
+#' x <- fsce_tidy[c("k_cluster", "Uracil_45")]
+#' stats <- stat_activity_grouped(x, group = k_cluster)
+#' stats <- subset(stats, q.value < 0.01)
+#' stats[,"y_loc"] = seq(max(x$Uracil_45), max(x$Uracil_45) + 3,  length.out = length(stats$group))
+#' plot_activity(fsce_tidy, Uracil_45, k_cluster, stats = stats)
+#'
 #' @family plot functions
 #'
 #' @export
-plot_activity <- function(data, activity, group = NULL, labels = NULL) {
-  activity <- enquo(activity)
+plot_activity <- function(data, activity, group = NULL, labels = NULL, vertical = FALSE,
+                          stats = NULL, ...) {
+  x <- enquo(activity)
+  y <- enquo(group)
   group <- enquo(group)
+  groupOnX = FALSE
+  x_lab = "Activity"
+  y_lab = "Group"
 
   n_col <- n_colors(data, group, labels)
 
-  ggplot(data, aes(x = !!activity, y = !!group, color = !!group)) +
-    ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = FALSE) +
+  if(!is.null(stats)){
+    vertical <- TRUE
+  }
+
+  if(vertical){
+    x <- enquo(group)
+    y <- enquo(activity)
+    groupOnX = TRUE
+    x_lab = "Group"
+    y_lab = "Activity"
+  }
+
+
+  p <- ggplot(data, aes(x = !!x, y = !!y, color = !!group)) +
+    ggbeeswarm::geom_quasirandom(size = 0.5, groupOnX = groupOnX) +
     scale_color_OkabeIto(use_black = TRUE, labels = labels %||% n_col$f) +
     cowplot::theme_cowplot() +
-    labs(x = "Activity", y = "Group")
+    labs(x = x_lab, y = y_lab)
+
+  if(!is.null(stats)){
+    p <- add_stats(p, stats, ...)
+  }
+
+  p
+
+
 }
 
 #' Heatmap of signals
@@ -259,4 +298,42 @@ n_colors <- function(x, color, labels) {
   }
 
   n_col
+}
+
+#' Add stats to plot activities per cluster
+#'
+#' Adds stat comparison bars to a beeswarm plot of activity across specified groups
+#'
+#' @importFrom ggsignif geom_signif
+#' @param p plot to add stats to
+#' @param df dataframe output from [`stat_activity_grouped()`].
+#'     Output must include columnw with names group, group1, q.value and/or p.value.
+#' @param val values to add to plot. Default is q.value from  [`stat_activity_grouped()`] output
+#' @param y_loc location of comparisson bars on graph. Default it `y_loc` column of `df`. Can also be numeric values.
+#' @param xmin start location of comparison bar. Default is `group` column of `df`.
+#' @param xmax stop location of comparison bar. Default is `group1` column of `df`.
+#'
+#' @family plot fuctions
+#'
+#' @export
+
+add_stats <- function(p, df,
+                      val = q.value,
+                      y_loc = y_loc,
+                      xmin = group,
+                      xmax = group1) {
+
+  val <- enquo(val)
+  y_loc <- enquo(y_loc)
+  xmin <- enquo(xmin)
+  xmax = enquo(xmax)
+
+  p + geom_signif(data=df,
+                  aes(xmin = !!xmin,
+                      xmax = !!xmax,
+                      annotations = signif(!!val, digits = 3),
+                      y_position = !!y_loc
+                  ),
+                  color='black',
+                  manual = TRUE)
 }

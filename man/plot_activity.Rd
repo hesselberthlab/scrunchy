@@ -4,7 +4,8 @@
 \alias{plot_activity}
 \title{Plot activities per cluster}
 \usage{
-plot_activity(data, activity, group = NULL, labels = NULL)
+plot_activity(data, activity, group = NULL, labels = NULL,
+  vertical = FALSE, stats = NULL, ...)
 }
 \arguments{
 \item{data}{data to plot}
@@ -14,6 +15,13 @@ plot_activity(data, activity, group = NULL, labels = NULL)
 \item{group}{grouping variable}
 
 \item{labels}{legend labels}
+
+\item{vertical}{should activity be on the y axis. Default is FALSE}
+
+\item{stats}{dataframe to use to add p values on plot. Stats can be a dataframe output from \code{\link[=stat_activity_grouped]{stat_activity_grouped()}}.
+Output must include columsn with names group, group1, q.value and/or p.value. If sepcificied, \code{vertical} is TRUE}
+
+\item{...}{params for \code{\link[=add_stats]{add_stats()}}}
 }
 \description{
 Generates a beeswarm plot of activity across specified groups
@@ -22,6 +30,14 @@ Generates a beeswarm plot of activity across specified groups
 plot_activity(fsce_tidy, Uracil_45, k_cluster)
 
 plot_activity(fsce_tidy, riboG_44, k_cluster, labels = LETTERS[1:6])
+
+plot_activity(fsce_tidy, Uracil_45, k_cluster, vertical = TRUE)
+
+x <- fsce_tidy[c("k_cluster", "Uracil_45")]
+stats <- stat_activity_grouped(x, group = k_cluster)
+stats <- subset(stats, q.value < 0.01)
+stats[,"y_loc"] = seq(max(x$Uracil_45), max(x$Uracil_45) + 3,  length.out = length(stats$group))
+plot_activity(fsce_tidy, Uracil_45, k_cluster, stats = stats)
 
 }
 \seealso{

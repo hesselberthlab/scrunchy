@@ -262,3 +262,41 @@ filter_matrix <- function(matrix_path,
 
   write_matrix(mat, output_path)
 }
+
+
+#' Adds useful labels to colData.
+#' Can be used to add cell tyles to cluster numbers
+#'
+#' @param fsce An object of class [`FunctionalSingleCellExperiment`]
+#' @param labels dataframe of new labels. Must contain at least one column of matching variables (e.g. cell_id or k_cluster)
+#' @param by column name labels to match in colData of `expt`. If NULL, will match by all matching column names
+#' @param expt Data to use for match labels
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#'
+#' @return fsce with all `labels` in `expt` colData.
+#'
+#' @examples
+#' # Add cell_type labels to PBMC data
+#'
+#' labels <- data.frame(k_cluster = as.factor(c("1", "2", "3", "4", "5", "6")),
+#' label = c("MC", "NK", "NK+T", "MC", "MK", "CD4/8 T"))
+#'
+#' fsce <- add_label(fsce_small, labels)
+#'
+#' SingleCellExperiment::colData(fsce[["rnaseq"]])
+#'
+#' @export
+
+add_label <- function(fsce,
+                      labels,
+                      by = NULL,
+                      expt = 'rnaseq') {
+
+  df <- as.data.frame(colData(fsce[[expt]])) %>%
+    left_join(labels, by = by)
+
+  colData(fsce[[expt]]) <- DataFrame(df, row.names = df$cell_id)
+
+  fsce
+}
+

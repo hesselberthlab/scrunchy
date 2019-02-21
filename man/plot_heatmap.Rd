@@ -25,4 +25,7 @@ rows <- paste("Uracil", 1:61, sep = "_")
 plot_heatmap(mtx, rows, name = "Uracil")
 
 }
+\seealso{
+Other plot fuctions: \code{\link{add_stats}}
+}
 \concept{plot fuctions}
