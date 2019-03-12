@@ -41,7 +41,6 @@ SingleCellExperiment::colData(fsce[["rnaseq"]], "k_cluster")
 
 }
 \seealso{
-Other clustering functions: \code{\link{add_label}},
-  \code{\link{cluster_leiden}}
+Other clustering functions: \code{\link{cluster_leiden}}
 }
 \concept{clustering functions}

@@ -12,8 +12,9 @@
 #' create_sce_rnaseq(scrunchy_data("mrna/"))
 #'
 #' # using pre-loaded matrix
-#' mat <- counts(fsce_small[["rnaseq"]])
+#' mat <- SingleCellExperiment::counts(fsce_small[["rnaseq"]])
 #' create_sce_rnaseq(mat)
+#'
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 
@@ -56,8 +57,9 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #' create_sce_haircut(scrunchy_data("haircut/"))
 #'
 #' # using pre-loaded matrix
-#' mat <- counts(fsce_small[["haircut"]])
+#' mat <- SingleCellExperiment::counts(fsce_small[["haircut"]])
 #' create_sce_haircut(mat)
+#'
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
 
@@ -125,6 +127,7 @@ setMethod(
 )
 
 # Utilities --------------------------------------------------
+#' @importFrom methods is
 is_sparse <- function(x) {
   is(x, "dgTMatrix")
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{add_label}
 \alias{add_label}
-\title{Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers}
+\title{Adds useful labels to colData.}
 \usage{
 add_label(fsce, labels, by = NULL, expt = "rnaseq")
 }
@@ -21,10 +20,10 @@ add_label(fsce, labels, by = NULL, expt = "rnaseq")
 fsce with all \code{labels} in \code{expt} colData.
 }
 \description{
-Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers
+Can be used to add cell types to cluster numbers
 }
 \examples{
+
 # Add cell_type labels to PBMC data
 
 labels <- data.frame(k_cluster = as.factor(c("1", "2", "3", "4", "5", "6")),
@@ -33,5 +32,6 @@ label = c("MC", "NK", "NK+T", "MC", "MK", "CD4/8 T"))
 fsce <- add_label(fsce_small, labels)
 
 SingleCellExperiment::colData(fsce[["rnaseq"]])
+
 
 }

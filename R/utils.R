@@ -18,6 +18,8 @@ scrunchy_data <- function(x) {
 #'   "TTTGTCAAGGTGTGGT-1" to "TTTGTCAAGGTGTGGT" (default = TRUE)
 #' @param use_gene_symbols If TRUE use gene symbols as row.names, if false then
 #'   gene_ids will be used (default = TRUE)
+#' @param split_matrix Return a list of matrices split by feature types. Requires
+#' cellranger v.3 output.
 #' @param matrix_fn filename for matrix
 #' @param features_fn filename for genes file
 #' @param barcodes_fn filename for barcodes file
@@ -61,10 +63,10 @@ read_matrix <- function(path,
 
   # assign column names based on feature file type
   n_fcols <- count_cols(filenames$features)
-  is_seurat_v3 <- FALSE
+  is_cellranger_v3 <- FALSE
   if (n_fcols == 3) {
     col_args <- fcols_10x_v3
-    is_seurat_v3 <- TRUE
+    is_cellranger_v3 <- TRUE
   } else if (n_fcols == 2) {
     col_args <- fcols_10x_v2
   } else if (n_fcols == 1) {
@@ -105,10 +107,10 @@ read_matrix <- function(path,
   colnames(mat) <- bcs
 
   # split matrices if seurat v3
-  if(is_seurat_v3 && split_matrix){
+  if(is_cellranger_v3 && split_matrix){
     feature_types <- unique(features[["type"]])
 
-    row_indexes <- map(feature_types, ~which(features[["type"]] == .x))
+    row_indexes <- map(feature_types, ~ which(features[["type"]] == .x))
     mats <- map(row_indexes, ~ mat[.x, ])
     names(mats) <- feature_types
     return(mats)
@@ -279,7 +281,8 @@ filter_matrix <- function(matrix_path,
 
 
 #' Adds useful labels to colData.
-#' Can be used to add cell tyles to cluster numbers
+#'
+#' Can be used to add cell types to cluster numbers
 #'
 #' @param fsce An object of class [`FunctionalSingleCellExperiment`]
 #' @param labels dataframe of new labels. Must contain at least one column of matching variables (e.g. cell_id or k_cluster)
@@ -287,9 +290,8 @@ filter_matrix <- function(matrix_path,
 #' @param expt Data to use for match labels
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #'
-#' @return fsce with all `labels` in `expt` colData.
-#'
 #' @examples
+#'
 #' # Add cell_type labels to PBMC data
 #'
 #' labels <- data.frame(k_cluster = as.factor(c("1", "2", "3", "4", "5", "6")),
@@ -299,8 +301,11 @@ filter_matrix <- function(matrix_path,
 #'
 #' SingleCellExperiment::colData(fsce[["rnaseq"]])
 #'
+#'
+#' @return fsce with all `labels` in `expt` colData.
+#'
+#'
 #' @export
-
 add_label <- function(fsce,
                       labels,
                       by = NULL,
@@ -313,4 +318,3 @@ add_label <- function(fsce,
 
   fsce
 }
-

@@ -5,8 +5,9 @@
 \title{Load mtx formatted 10x or haircut matrices}
 \usage{
 read_matrix(path, cell_prefix = NULL, strip_10x_suffix = TRUE,
-  use_gene_symbols = TRUE, matrix_fn = "matrix.mtx.gz",
-  features_fn = "features.tsv.gz", barcodes_fn = "barcodes.tsv.gz")
+  use_gene_symbols = TRUE, split_matrix = FALSE,
+  matrix_fn = "matrix.mtx.gz", features_fn = "features.tsv.gz",
+  barcodes_fn = "barcodes.tsv.gz")
 }
 \arguments{
 \item{path}{path to directory with mtx matrix}
@@ -18,6 +19,9 @@ read_matrix(path, cell_prefix = NULL, strip_10x_suffix = TRUE,
 
 \item{use_gene_symbols}{If TRUE use gene symbols as row.names, if false then
 gene_ids will be used (default = TRUE)}
+
+\item{split_matrix}{Return a list of matrices split by feature types. Requires
+cellranger v.3 output.}
 
 \item{matrix_fn}{filename for matrix}
 

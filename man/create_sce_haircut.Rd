@@ -7,7 +7,7 @@
 create_sce_haircut(path, norm_method = "clr_normalize", adducts = NULL)
 }
 \arguments{
-\item{path}{path to output matrices.}
+\item{path}{path to output matrices, or R matrix object.}
 
 \item{norm_method}{Normalization method for \code{counts}. Normalized data
 is stored in \code{logcounts}. Set to \code{NULL} to skip normalization.}
@@ -23,5 +23,9 @@ Create a single-cell Haircut experiment
 }
 \examples{
 create_sce_haircut(scrunchy_data("haircut/"))
+
+# using pre-loaded matrix
+mat <- SingleCellExperiment::counts(fsce_small[["haircut"]])
+create_sce_haircut(mat)
 
 }
