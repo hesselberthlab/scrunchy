@@ -2,7 +2,7 @@
 
 #' Create a single-cell mRNA-seq experiment
 #'
-#' @param path path to output matrices.
+#' @param path path to output matrices or R matrix object.
 #' @param norm_method Normalization method for `counts`. Normalized data
 #'   is stored in `logcounts`. Set to `NULL` to skip normalization.
 #'
@@ -11,11 +11,18 @@
 #' @examples
 #' create_sce_rnaseq(scrunchy_data("mrna/"))
 #'
+#' # using pre-loaded matrix
+#' mat <- counts(fsce_small[["rnaseq"]])
+#' create_sce_rnaseq(mat)
 #' @export
 create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
-  message(glue("Loading sc-rnaseq matrix files: {path}"))
 
-  x <- read_matrix(path)
+  if(is_any_matrix(path)) {
+    x <- path
+  } else {
+    message(glue("Loading sc-rnaseq matrix files: {path}"))
+    x <- read_matrix(path)
+  }
 
   sce <- SingleCellExperiment::SingleCellExperiment(assays = list(counts = x))
 
@@ -37,7 +44,7 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 
 #' Create a single-cell Haircut experiment
 #'
-#' @param path path to output matrices.
+#' @param path path to output matrices, or R matrix object.
 #' @param norm_method Normalization method for `counts`. Normalized data
 #'   is stored in `logcounts`. Set to `NULL` to skip normalization.
 #' @param adducts `data_frame` with positions of hairpin adducts. Expects
@@ -48,11 +55,19 @@ create_sce_rnaseq <- function(path, norm_method = "log_normalize") {
 #' @examples
 #' create_sce_haircut(scrunchy_data("haircut/"))
 #'
+#' # using pre-loaded matrix
+#' mat <- counts(fsce_small[["haircut"]])
+#' create_sce_haircut(mat)
 #' @export
 create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NULL) {
-  message(glue("Loading haircut matrix files: {path}", path = path))
 
-  x <- read_matrix(path)
+  if(is_any_matrix(path)) {
+    x <- path
+  } else {
+    message(glue("Loading haircut matrix files: {path}", path = path))
+    x <- read_matrix(path)
+  }
+
 
   hairpin_info <- strsplit(rownames(x), "_")
 
@@ -108,3 +123,12 @@ setMethod(
     do.call(method, list(counts(x), ...))
   }
 )
+
+# Utilities --------------------------------------------------
+is_sparse <- function(x) {
+  is(x, "dgTMatrix")
+}
+
+is_any_matrix <- function(x) {
+  is_sparse(x) || is.matrix(x)
+}
