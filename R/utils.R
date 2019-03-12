@@ -27,6 +27,7 @@ read_matrix <- function(path,
                         cell_prefix = NULL,
                         strip_10x_suffix = TRUE,
                         use_gene_symbols = TRUE,
+                        split_matrix = FALSE,
                         matrix_fn = "matrix.mtx.gz",
                         features_fn = "features.tsv.gz",
                         barcodes_fn = "barcodes.tsv.gz") {
@@ -60,8 +61,10 @@ read_matrix <- function(path,
 
   # assign column names based on feature file type
   n_fcols <- count_cols(filenames$features)
+  is_seurat_v3 <- FALSE
   if (n_fcols == 3) {
     col_args <- fcols_10x_v3
+    is_seurat_v3 <- TRUE
   } else if (n_fcols == 2) {
     col_args <- fcols_10x_v2
   } else if (n_fcols == 1) {
@@ -100,6 +103,16 @@ read_matrix <- function(path,
   features_ids <- make.unique(features_ids)
   rownames(mat) <- features_ids
   colnames(mat) <- bcs
+
+  # split matrices if seurat v3
+  if(is_seurat_v3 && split_matrix){
+    feature_types <- unique(features[["type"]])
+
+    row_indexes <- map(feature_types, ~which(features[["type"]] == .x))
+    mats <- map(row_indexes, ~ mat[.x, ])
+    names(mats) <- feature_types
+    return(mats)
+  }
 
   mat
 }
@@ -227,6 +240,7 @@ write_matrix <- function(mat, output_path) {
   R.utils::gzip(uncomp_matrix_fn,
                 overwrite = TRUE, remove = TRUE)
 }
+
 
 #' Filter and write a sparseMatrix keeping only specified barcodes
 #'

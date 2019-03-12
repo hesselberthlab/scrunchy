@@ -41,7 +41,14 @@ test_that("gene symbols or ids can be imported",{
   expect_true(all(grepl("^ENSG", rownames(mrna_mat))))
 })
 
+test_that("split_matrix = TRUE splits v3 matrices by feature type",{
 
+  mrna_mat <- read_matrix(mrna_matrix_path,
+                          split_matrix = TRUE)
+  expect_equal(names(mrna_mat), "Gene Expression")
+  expect_equal(typeof(mrna_mat), "list")
+  expect_equal(length(mrna_mat), 1L)
+})
 
 # Writing -----------------------------------------------------------
 
