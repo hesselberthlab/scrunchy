@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers — add_label • scrunchy</title>
+<title>Adds useful labels to colData. — add_label • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -40,11 +39,9 @@ Can be used to add cell tyles to cluster numbers — add_label • scrunchy</tit
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers — add_label" />
+<meta property="og:title" content="Adds useful labels to colData. — add_label" />
 
-<meta property="og:description" content="Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers" />
+<meta property="og:description" content="Can be used to add cell types to cluster numbers" />
 
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,16 +126,14 @@ Can be used to add cell tyles to cluster numbers" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers</h1>
+    <h1>Adds useful labels to colData.</h1>
     <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>add_label.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Adds useful labels to colData.
-Can be used to add cell tyles to cluster numbers</p>
+    <p>Can be used to add cell types to cluster numbers</p>
     
     </div>
 
@@ -172,7 +167,8 @@ Can be used to add cell tyles to cluster numbers</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Add cell_type labels to PBMC data</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># Add cell_type labels to PBMC data</span>
 
 <span class='no'>labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>k_cluster</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>as.factor</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>, <span class='st'>"5"</span>, <span class='st'>"6"</span>)),
 <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"MC"</span>, <span class='st'>"NK"</span>, <span class='st'>"NK+T"</span>, <span class='st'>"MC"</span>, <span class='st'>"MK"</span>, <span class='st'>"CD4/8 T"</span>))
@@ -205,6 +201,7 @@ Can be used to add cell tyles to cluster numbers</p>
 #&gt; AGCGTCGGTCGAGTTT  CD4/8 T
 #&gt; CTCGAAAAGTTCGATC       MC
 #&gt; TGACAACGTCGCATAT       MC</div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

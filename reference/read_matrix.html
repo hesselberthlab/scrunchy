@@ -138,8 +138,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>read_matrix</span>(<span class='no'>path</span>, <span class='kw'>cell_prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>strip_10x_suffix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>use_gene_symbols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>matrix_fn</span> <span class='kw'>=</span> <span class='st'>"matrix.mtx.gz"</span>,
-  <span class='kw'>features_fn</span> <span class='kw'>=</span> <span class='st'>"features.tsv.gz"</span>, <span class='kw'>barcodes_fn</span> <span class='kw'>=</span> <span class='st'>"barcodes.tsv.gz"</span>)</pre>
+  <span class='kw'>use_gene_symbols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>split_matrix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>matrix_fn</span> <span class='kw'>=</span> <span class='st'>"matrix.mtx.gz"</span>, <span class='kw'>features_fn</span> <span class='kw'>=</span> <span class='st'>"features.tsv.gz"</span>,
+  <span class='kw'>barcodes_fn</span> <span class='kw'>=</span> <span class='st'>"barcodes.tsv.gz"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +162,11 @@
       <th>use_gene_symbols</th>
       <td><p>If TRUE use gene symbols as row.names, if false then
 gene_ids will be used (default = TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>split_matrix</th>
+      <td><p>Return a list of matrices split by feature types. Requires
+cellranger v.3 output.</p></td>
     </tr>
     <tr>
       <th>matrix_fn</th>

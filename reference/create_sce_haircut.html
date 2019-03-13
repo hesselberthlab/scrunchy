@@ -144,7 +144,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>path to output matrices.</p></td>
+      <td><p>path to output matrices, or R matrix object.</p></td>
     </tr>
     <tr>
       <th>norm_method</th>
@@ -165,6 +165,19 @@ two columns named <code>adduct</code> and <code>pos</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>create_sce_haircut</span>(<span class='fu'><a href='scrunchy_data.html'>scrunchy_data</a></span>(<span class='st'>"haircut/"</span>))</div><div class='output co'>#&gt; <span class='message'>Loading haircut matrix files: /home/travis/build/hesselberthlab/scrunchy/inst/extdata/haircut</span></div><div class='output co'>#&gt; class: SingleCellExperiment 
+#&gt; dim: 426 250 
+#&gt; metadata(0):
+#&gt; assays(2): counts logcounts
+#&gt; rownames(426): Abasic_1 Abasic_10 ... riboG_8 riboG_9
+#&gt; rowData names(2): hairpin position
+#&gt; colnames(250): TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG ... CTCGAAAAGTTCGATC
+#&gt;   TGACAACGTCGCATAT
+#&gt; colData names(1): cell_id
+#&gt; reducedDimNames(0):
+#&gt; spikeNames(0):</div><div class='input'>
+<span class='co'># using pre-loaded matrix</span>
+<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays'>counts</a></span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"haircut"</span>]])
+<span class='fu'>create_sce_haircut</span>(<span class='no'>mat</span>)</div><div class='output co'>#&gt; class: SingleCellExperiment 
 #&gt; dim: 426 250 
 #&gt; metadata(0):
 #&gt; assays(2): counts logcounts
