@@ -7,7 +7,7 @@
 create_sce_rnaseq(path, norm_method = "log_normalize")
 }
 \arguments{
-\item{path}{path to output matrices.}
+\item{path}{path to output matrices or R matrix object.}
 
 \item{norm_method}{Normalization method for \code{counts}. Normalized data
 is stored in \code{logcounts}. Set to \code{NULL} to skip normalization.}
@@ -20,5 +20,9 @@ Create a single-cell mRNA-seq experiment
 }
 \examples{
 create_sce_rnaseq(scrunchy_data("mrna/"))
+
+# using pre-loaded matrix
+mat <- SingleCellExperiment::counts(fsce_small[["rnaseq"]])
+create_sce_rnaseq(mat)
 
 }
