@@ -3,8 +3,8 @@
 \docType{data}
 \name{barcode_map_10x_v3}
 \alias{barcode_map_10x_v3}
-\title{Cell indexes for 10x Genomics V3 chemistry}
-\format{An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 6794880 rows and 2 columns.}
+\title{Cell index map for 10x Genomics V3 chemistry}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6794880 rows and 2 columns.}
 \source{
 3M-february-2018.txt.gz file from cellranger 3.0.2 source
 }
@@ -12,9 +12,13 @@
 barcode_map_10x_v3
 }
 \description{
-A tibble containing two columns \code{id1} and \code{id2}.
+A tibble containing two columns: source (\code{src}) and destionation (\code{dst}).
 }
 \details{
+It may be possible ot reduce this data by half because the index
+pairs are stored twice in the map (ID1 -> ID2 and ID2 -> ID1). Would need to
+know which codes are mRNA and which are feature.
+
 Contains a map of mRNA (i.e., oligo-dT) and feature ("CS1" and CS2")
 barcodes for 10x GEMs. Each pair is present twice in the tibble, once
 as mRNA -> feature and another as feature -> mRNA.

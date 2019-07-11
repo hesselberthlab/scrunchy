@@ -111,9 +111,13 @@ pbmc_marker_genes <- tibble::tribble(
 "fsce_tidy"
 
 
-#' Cell indexes for 10x Genomics V3 chemistry
+#' Cell index map for 10x Genomics V3 chemistry
 #'
-#' A tibble containing two columns `id1` and `id2`.
+#' A tibble containing two columns: source (`src`) and destionation (`dst`).
+#'
+#' @details It may be possible ot reduce this data by half because the index
+#' pairs are stored twice in the map (ID1 -> ID2 and ID2 -> ID1). Would need to
+#' know which codes are mRNA and which are feature.
 #'
 #' Contains a map of mRNA (i.e., oligo-dT) and feature ("CS1" and CS2")
 #' barcodes for 10x GEMs. Each pair is present twice in the tibble, once
