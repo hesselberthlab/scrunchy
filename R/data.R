@@ -111,9 +111,12 @@ pbmc_marker_genes <- tibble::tribble(
 "fsce_tidy"
 
 
-#' Cell indexes for 10x Genomics V3 chemistry
+#' Cell index map for 10x Genomics V3 chemistry
 #'
-#' A tibble containing two columns `id1` and `id2`.
+#' A tibble containing two columns: source `src` and destination (`dst`).
+#'
+#' @details This file could be reduced by half the size by identifying
+#' which of the codes are mRNA and which are feature (unless they overlap).
 #'
 #' Contains a map of mRNA (i.e., oligo-dT) and feature ("CS1" and CS2")
 #' barcodes for 10x GEMs. Each pair is present twice in the tibble, once
