@@ -104,6 +104,47 @@ create_sce_haircut <- function(path, norm_method = "clr_normalize", adducts = NU
   sce
 }
 
+#' Create a single-cell feature experiment
+#'
+#' @param path path to output matrices, or R matrix object.
+#' @param norm_method Normalization method for `counts`. Normalized data
+#'   is stored in `logcounts`. Set to `NULL` to skip normalization.
+#'
+#' @return `SingleCellExperiment` containing a `sparseMatrix` of counts
+#'
+#' @export
+create_sce_feature <- function(path, norm_method = "clr_normalize") {
+
+  if(is_any_matrix(path)) {
+    x <- path
+  } else {
+    message(glue("Loading feature matrix files: {path}", path = path))
+    x <- read_matrix(path)
+  }
+
+  sce <- SingleCellExperiment::SingleCellExperiment(
+    assays = list(counts = x),
+    rowData = DataFrame(
+      id = rownames(x)
+    )
+  )
+
+  cell_ids <- extract_cell_ids(colnames(x))
+
+  int_metadata(sce)$cells <- cell_ids
+
+  colData(sce) <- DataFrame(
+    row.names = cell_ids,
+    cell_id = cell_ids
+  )
+
+  if (!is.null(norm_method)) {
+    logcounts(sce) <- normalize(sce, method = norm_method)
+  }
+
+  sce
+}
+
 # Generics --------------------------------------------------
 
 #' Normalize data in a SingleCellExperiment
