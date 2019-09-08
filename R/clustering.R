@@ -88,8 +88,8 @@ cluster_kmeans <- function(fsce,
 #' SingleCellExperiment::colData(fsce_small[["rnaseq"]])
 #' }
 #'
-#' @importFrom reticulate r_to_py
 #' @importFrom RANN nn2
+#' @importFrom leiden leiden
 #'
 #' @return fsce with `leiden_cluster` in `expt` colData.
 #'
@@ -103,6 +103,12 @@ cluster_leiden <- function(fsce,
                            prune = 1/15,
                            seed = NULL,
                            ...){
+
+  if (!reticulate::py_module_available("leidenalg") || !reticulate::py_module_available("igraph")) {
+    warning("python modules and `leidenalg` and `igraph` are required", call. = FALSE)
+    return(NULL)
+  }
+
   ## check inputs
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce "), call. = FALSE)
@@ -123,27 +129,15 @@ cluster_leiden <- function(fsce,
   ## convert to integers and then matrix
   adj_mat <- as.matrix(ceiling(adj_mat))
 
-  ## convert to python numpy.ndarray, then list
-  adj_mat_py <- reticulate::r_to_py(adj_mat)
-  adj_mat_py <- adj_mat_py$tolist()
-
-  snn_graph <- igraph_py$Graph$Adjacency(adj_mat_py)
-
-  if (!is.null(seed)) {
-    seed <- r_to_py(as.integer(seed))
-  } else {
-    seed <- r_to_py(NULL)
-  }
-
   ## Run leidenalg
-  parts <- leidenalg_py$find_partition(
-    graph = snn_graph,
-    partition_type = leidenalg_py$ModularityVertexPartition,
+  parts <- leiden::leiden(
+    adj_mat,
+    partition_type = "ModularityVertexPartition",
     seed = seed,
     ...
   )
 
-  colData(fsce[[expt]])$leiden_cluster <- as.character(parts$membership + 1)
+  colData(fsce[[expt]])$leiden_cluster <- as.character(parts)
 
   fsce
 }
