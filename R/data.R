@@ -124,4 +124,4 @@ pbmc_marker_genes <- tibble::tribble(
 #' as mRNA -> feature and another as feature -> mRNA.
 #'
 #' @source 3M-february-2018.txt.gz file from cellranger 3.0.2 source
-"barcode_map_10x_v3"
+# "barcode_map_10x_v3"
