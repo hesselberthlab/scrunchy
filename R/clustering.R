@@ -90,6 +90,7 @@ cluster_kmeans <- function(fsce,
 #'
 #' @importFrom RANN nn2
 #' @importFrom leiden leiden
+#' @importFrom reticulate py_module_available
 #'
 #' @return fsce with `leiden_cluster` in `expt` colData.
 #'
@@ -141,21 +142,3 @@ cluster_leiden <- function(fsce,
 
   fsce
 }
-
-
-
-#' Install python dependencies for `cluster_leiden`.
-#'
-#' Users must run this prior to using `cluster_leiden()`.
-#'
-#' @param method method param for [`reticulate::py_install()`]
-#' @param conda conda param for [`reticulate::py_install()`]
-#'
-#' @importFrom reticulate py_install
-#' @export
-install_py_deps <- function(method = "auto", conda = "auto") {
-  reticulate::py_install("python-igraph", method = method, conda = conda)
-  reticulate::py_install("leidenalg", method = method, conda = conda)
-}
-
-

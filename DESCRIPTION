@@ -51,6 +51,7 @@ Imports:
     Rcpp,
     RcppEigen,
     readr,
+    reticulate,
     rlang,
     Rtsne,
     S4Vectors,
