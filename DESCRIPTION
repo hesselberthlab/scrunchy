@@ -1,16 +1,21 @@
 Package: scrunchy
 Title: Single Cell Reconstruction of Functional Heterogeneity
 Version: 0.0.0.9000
-Authors@R: c(
-    person("Jay", "Hesselberth", role = c("aut", "cre"),
-           email = "jay.hesselberth@gmail.com",
-           comment = c(ORCID = "0000-0002-6299-179X")),
-    person("Amanda", "Richer", role = "aut",
-           email = "mandy.l.richer@gmail.com"),
-    person("Kent", "Riemondy", role = "aut",
-           email = "kent.riemondy@gmail.com",
-           comment = c(ORCID = "0000-0003-0750-1273"))
-    )
+Authors@R: 
+    c(person(given = "Jay",
+             family = "Hesselberth",
+             role = c("aut", "cre"),
+             email = "jay.hesselberth@gmail.com",
+             comment = c(ORCID = "0000-0002-6299-179X")),
+      person(given = "Amanda",
+             family = "Richer",
+             role = "aut",
+             email = "mandy.l.richer@gmail.com"),
+      person(given = "Kent",
+             family = "Riemondy",
+             role = "aut",
+             email = "kent.riemondy@gmail.com",
+             comment = c(ORCID = "0000-0003-0750-1273")))
 Description: Process and analyze data from single-cell
     functional heterogeneity experiments.
 License: MIT + file LICENSE
@@ -20,51 +25,54 @@ BugReports: https://github.com/hesselberthlab/scrunchy/issues
 Depends: 
     R (>= 3.1.2)
 Imports: 
+    broom,
+    ComplexHeatmap,
     cowplot,
     dplyr,
+    forcats,
+    fs,
     ggbeeswarm,
     ggplot2,
-    glue,
-    fs,
-    magrittr,
-    methods,
-    Matrix,
-    readr,
-    tibble,
-    purrr,
-    irlba,
-    umap,
-    rlang,
-    matrixStats,
-    Rtsne,
-    SingleCellExperiment,
-    ComplexHeatmap,
-    S4Vectors,
-    MultiAssayExperiment,
-    R.utils,
-    tidyr,
-    scales,
-    forcats,
-    broom,
     ggrepel,
     ggsignif,
+    glue,
+    irlba,
+    leiden,
+    magrittr,
+    Matrix,
+    matrixStats,
+    methods,
     multcomp,
+    MultiAssayExperiment,
+    purrr,
     qvalue,
-    reticulate,
+    R.utils,
+    RANN,
     Rcpp,
     RcppEigen,
-    RANN,
-    scran
+    readr,
+    reticulate,
+    rlang,
+    Rtsne,
+    S4Vectors,
+    scales,
+    scran,
+    SingleCellExperiment,
+    tibble,
+    tidyr,
+    umap
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
-    covr,
     testthat
-VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp,
+    RcppEigen
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
-Remotes:
-    wilkelab/cowplot
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Collate: 
@@ -84,6 +92,3 @@ Collate:
     'tidiers.R'
     'utils-barcodes.R'
     'utils.R'
-    'zzz.R'
-LinkingTo: 
-    Rcpp, RcppEigen
