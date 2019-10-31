@@ -103,6 +103,7 @@ cluster_leiden <- function(fsce,
                            dims = 1:5,
                            prune = 1/15,
                            seed = NULL,
+                           partition_type = "ModularityVertexPartition",
                            ...){
 
   if (!reticulate::py_module_available("leidenalg") || !reticulate::py_module_available("igraph")) {
@@ -133,7 +134,7 @@ cluster_leiden <- function(fsce,
   ## Run leidenalg
   parts <- leiden::leiden(
     adj_mat,
-    partition_type = "ModularityVertexPartition",
+    partition_type = partition_type,
     seed = seed,
     ...
   )
