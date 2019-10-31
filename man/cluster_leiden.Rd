@@ -28,6 +28,9 @@ PCA)}
 
 \item{seed}{seed for \code{leidenalg$find_partition()}}
 
+\item{partition_type}{partitioning algorithm (see \code{\link[leiden:leiden]{leiden::leiden}}).
+(defaults to "ModularityVertexPartition")}
+
 \item{...}{Parameters to pass to the Python \code{leidenalg} function.}
 }
 \value{

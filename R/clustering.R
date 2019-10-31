@@ -77,6 +77,8 @@ cluster_kmeans <- function(fsce,
 #' @param dims dimensions to use for nearest-neighbor calculation
 #' @param prune Pruning parameter for shared nearest-neighbor calculation.
 #' @param seed seed for `leidenalg$find_partition()`
+#' @param partition_type partitioning algorithm (see [`leiden::leiden`]).
+#'  (defaults to "ModularityVertexPartition")
 #' @param ... Parameters to pass to the Python `leidenalg` function.
 #'
 #' @source <https://github.com/vtraag/leidenalg>

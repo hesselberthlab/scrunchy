@@ -4,7 +4,8 @@
 #' @param expt Data to use for calculating variable features
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @param cell_ids cell ids to include in coverage calculation or category from colData in rnaseq expt
-#' @param meta Data to use to find cell_ids caategories default is `rnaseq`
+#' @param activities vector of activites to calculate coverage over. default is all present.
+#' @param meta Data to use to find cell_ids categories default is `rnaseq`
 #'
 #' @examples
 #' calc_hairpin_coverage(fsce_small)
