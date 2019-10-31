@@ -195,5 +195,5 @@ pcvariance_tbl <- function(expt){
 #' @noRd
 #' @importFrom tidyr unnest
 unframe <- function(x, name = "name") {
-  unnest(enframe(x, name = name))
+  unnest(enframe(x, name = name, value = "value"), cols = "value")
 }

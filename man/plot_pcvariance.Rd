@@ -19,7 +19,7 @@ clustering, defaults to all dimensions}
 Plots proportion of variance explained by computed prinicpal components
 }
 \examples{
-plot_variance(fsce_small)
+plot_pcvariance(fsce_small)
 
 }
 \seealso{

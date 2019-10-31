@@ -257,7 +257,7 @@ plot_heatmap <- function(mtx, rows = NULL, columns = NULL, ...) {
 #' @param expt Data to use for calculating variable features
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @examples
-#' plot_variance(fsce_small)
+#' plot_pcvariance(fsce_small)
 #'
 #' @family plot fuctions
 #'
