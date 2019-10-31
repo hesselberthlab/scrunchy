@@ -4,8 +4,9 @@
 \alias{plot_hairpin_coverage}
 \title{Plot coverage across hairpins}
 \usage{
-plot_hairpin_coverage(fsce, cell_ids = NULL, expt = "haircut",
-  meta = "rnaseq", color = "cell_id", use_points = FALSE)
+plot_hairpin_coverage(fsce, cell_ids = NULL, activities = NULL,
+  expt = "haircut", meta = "rnaseq", color = "cell_id",
+  use_points = FALSE)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}

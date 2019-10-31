@@ -4,8 +4,8 @@
 \alias{calc_hairpin_coverage}
 \title{Calculate coverage across hairpins}
 \usage{
-calc_hairpin_coverage(fsce, cell_ids = NULL, expt = "haircut",
-  meta = "rnaseq")
+calc_hairpin_coverage(fsce, cell_ids = NULL, activities = NULL,
+  expt = "haircut", meta = "rnaseq")
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}

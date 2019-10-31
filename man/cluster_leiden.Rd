@@ -10,7 +10,8 @@
 }
 \usage{
 cluster_leiden(fsce, expt = "rnaseq", method = "PCA", dims = 1:5,
-  prune = 1/15, seed = NULL, ...)
+  prune = 1/15, seed = NULL,
+  partition_type = "ModularityVertexPartition", ...)
 }
 \arguments{
 \item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}}
