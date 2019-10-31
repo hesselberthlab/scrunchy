@@ -247,6 +247,42 @@ plot_heatmap <- function(mtx, rows = NULL, columns = NULL, ...) {
   ComplexHeatmap::Heatmap(mtx, cluster_columns = FALSE, ...)
 }
 
+#' Plot PCA variance
+#'
+#' Plots proportion of variance explained by computed prinicpal components
+#'
+#' @param fsce An object of class [`FunctionalSingleCellExperiment`].
+#' @param n_dims specify the number of dimensions from "dr" to use for
+#'   clustering, defaults to all dimensions
+#' @param expt Data to use for calculating variable features
+#'   (default is `rnaseq`). Must be present in `names(fsce)`.
+#' @examples
+#' plot_variance(fsce_small)
+#'
+#' @family plot fuctions
+#'
+#' @export
+plot_pcvariance <- function(fsce, n_dims = NULL, expt = "rnaseq") {
+
+  if (!expt %in% names(fsce)) {
+    stop(glue("expt `{expt}` not found in fsce "), call. = FALSE)
+  }
+
+  if (!"PCA" %in% names(reducedDims(fsce[[expt]]))) {
+    stop("PCA values not found in expt", call. = FALSE)
+  }
+
+  var_df <- pcvariance_tbl(fsce[[expt]])
+
+  if(!is.null(n_dims)){
+    var_df <- var_df[1:n_dims, ]
+  }
+
+  ggplot(var_df, aes(PCs, `Variance Explained`)) +
+    geom_point() +
+    cowplot::theme_cowplot()
+}
+
 # Palettes ----------------------------------------------------------
 
 loupe_palette <- rev(scales::brewer_pal(palette = "RdGy")(11)[c(1:5, 7)])

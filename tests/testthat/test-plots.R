@@ -14,3 +14,8 @@ test_that("incorrect labels throw an error", {
     "must match factors"
   )
 })
+
+test_that("plot_pcvariance works", {
+  p <- plot_pcvariance(fsce_small)
+  expect_true(is(p, "ggplot"))
+})

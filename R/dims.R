@@ -61,6 +61,17 @@ calc_pca <- function(fsce,
 
   reducedDims(fsce[[expt]]) <- SimpleList(PCA = pcs$x)
 
+  # store gene loadings and variance explained
+  gene_loadings <- pcs$rotation
+  rownames(gene_loadings) <- colnames(dr_mat)
+
+  pc_out <- list(
+    gene_loadings = gene_loadings,
+    var_explained = pcs$sdev^2 / pcs$totalvar
+  )
+
+  metadata(fsce[[expt]])[["PCA"]] <- pc_out
+
   fsce
 }
 
