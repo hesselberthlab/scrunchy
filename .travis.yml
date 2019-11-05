@@ -25,18 +25,15 @@ matrix:
       - stringi
       - yaml
       - utf8
-      - Rhdf5lib
       - locfit
       - curl
       - fs
       - igraph
       - RCurl
-      - rhdf5
       - vctrs
       - openssl
       - dplyr
       - readr
-      - HDF5Array
     after_success:
     - Rscript -e 'covr::codecov()'
     before_deploy:
