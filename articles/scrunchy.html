@@ -13,8 +13,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Introduction to scrunchy">
 <meta property="og:description" content="">
@@ -52,7 +53,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,7 +70,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/hesselberthlab/scrunchy">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -82,6 +83,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -112,10 +114,10 @@
 <div id="the-functional-single-cell-experiment-fsce" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-functional-single-cell-experiment-fsce" class="anchor"></a>The Functional Single Cell Experiment (fsce)</h2>
-<p><code>fsce</code> is an object of class <code>FunctionalSingleCellExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. It is a thin wrapper around [<code><a href="https://www.rdocumentation.org/packages/MultiAssayExperiment/topics/MultiAssayExperiment">MultiAssayExperiment::MultiAssayExperiment</a></code>].</p>
+<p><code>fsce</code> is an object of class <code>FunctionalSingleCellExperiment</code>, which can contain data from multiple modalities and does not require that each modality has the same number of cells or features. It is a thin wrapper around [<code><a href="https://rdrr.io/pkg/MultiAssayExperiment/man/MultiAssayExperiment.html">MultiAssayExperiment::MultiAssayExperiment</a></code>].</p>
 <p>A <code>FunctionalSingleCellExperiment</code> contains one or more objects of class [<code>SingleCellExperiment</code>], which contain observations and derived measurements that are linked by barcodes attached during sample work-up.</p>
 <p>scrunchy contains a subset of cells from an experiment to measure gene expression and DNA repair activities in human peripheral blood mononuclear cells.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(scrunchy)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">fsce_small</a></code></pre></div>
 <pre><code>## A FunctionalSingleCellExperiment object of 2 listed
 ##  experiments with user-defined names and respective classes. 
@@ -132,13 +134,13 @@
 <div id="individual-experiments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#individual-experiments" class="anchor"></a>Individual experiments</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(SingleCellExperiment)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(SingleCellExperiment)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># `rnaseq` stores RNA info</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">fsce_small[[<span class="st">"rnaseq"</span>]]</a></code></pre></div>
 <pre><code>## class: SingleCellExperiment 
 ## dim: 9462 250 
-## metadata(0):
+## metadata(1): PCA
 ## assays(2): counts logcounts
 ## rownames(9462): NOC2L HES4 ... AC004556.1 AC240274.1
 ## rowData names(0):
@@ -146,8 +148,9 @@
 ##   CTCGAAAAGTTCGATC TGACAACGTCGCATAT
 ## colData names(4): cell_id k_cluster leiden_cluster cell_cycle
 ## reducedDimNames(3): PCA UMAP TSNE
-## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce_small[[<span class="st">"rnaseq"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+## spikeNames(0):
+## altExpNames(0):</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/assays.html">counts</a></span>(fsce_small[[<span class="st">"rnaseq"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
 ##         TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG CATATTCCACGTCAGC
 ## NOC2L                  .                .                .
@@ -173,8 +176,9 @@
 ##   CTCGAAAAGTTCGATC TGACAACGTCGCATAT
 ## colData names(1): cell_id
 ## reducedDimNames(0):
-## spikeNames(0):</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">counts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+## spikeNames(0):
+## altExpNames(0):</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/assays.html">counts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## 5 x 5 sparse Matrix of class "dgTMatrix"
 ##           TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG CATATTCCACGTCAGC
 ## Abasic_1                13               21               14
@@ -236,7 +240,7 @@
 <p>Normalized data is calculated by the <code>create_</code> functions.</p>
 <p>RNA data is log-normalized and scaled to total UMI count for each cell. Functional data is normalized using the center log ratio method used for CITE-seq analysis.</p>
 <p>Normalized data is stored in the <code>logcounts</code> slot of each <code>SingleCellExperiment</code> object.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/assays.html">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>##           TGCGGGTGTAGAGTGC TGGTTCCCATCTATGG CATATTCCACGTCAGC
 ## Abasic_1         1.9849896         2.351059         2.053252
 ## Abasic_10        0.0000000         0.000000         0.000000
@@ -262,21 +266,21 @@
 <a class="sourceLine" id="cb21-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb21-3" data-line-number="3">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_tsne.html">calc_tsne</a></span>(fsce_small, <span class="dt">n_dims =</span> <span class="dv">6</span>)</a></code></pre></div>
 <p>Cell embeddings are stored in the <code>reducedDims</code> slot of the <code>SingleCellExperiment</code> and can be accessed as a named list.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])</a></code></pre></div>
 <pre><code>## List of length 3
 ## names(3): PCA UMAP TSNE</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-reducedDims">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDims</a></span>(fsce[[<span class="st">"rnaseq"</span>]])<span class="op">$</span>UMAP[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ]</a></code></pre></div>
 <pre><code>##                       [,1]       [,2]
-## TGCGGGTGTAGAGTGC  3.501003   3.623493
-## TGGTTCCCATCTATGG -2.851359   3.577775
-## CATATTCCACGTCAGC  3.724043   4.991723
-## TCACAAGTCCTGCTTG -6.166327 -12.030005</code></pre>
+## TGCGGGTGTAGAGTGC  1.908842  0.8429150
+## TGGTTCCCATCTATGG -4.010063  0.7808292
+## CATATTCCACGTCAGC  2.501747 -0.7414021
+## TCACAAGTCCTGCTTG  0.891331 -8.8625031</code></pre>
 </div>
 <div id="tidying-data-for-analysis-and-plotting" class="section level1">
 <h1 class="hasAnchor">
 <a href="#tidying-data-for-analysis-and-plotting" class="anchor"></a>Tidying data for analysis and plotting</h1>
 <p>Several <code>tidy_</code> functions are provided to convert <code>fsce</code> into a tidy format.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following object is masked from 'package:matrixStats':
@@ -306,7 +310,7 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(purrr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'purrr'</code></pre>
 <pre><code>## The following object is masked from 'package:DelayedArray':
@@ -319,31 +323,32 @@
 ## 
 ##     reduce</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">fsce_tidy &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3">    <span class="kw"><a href="../reference/tidy_dims.html">tidy_dims</a></span>(fsce_small) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb42-4" data-line-number="4"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(cell_id, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"UMAP"</span>), <span class="op">-</span>experiment),</a>
 <a class="sourceLine" id="cb42-5" data-line-number="5">    <span class="kw"><a href="../reference/tidy_coldata.html">tidy_coldata</a></span>(fsce_small),</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw"><a href="../reference/tidy_logcounts.html">tidy_logcounts</a></span>(fsce_small[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>), , ]) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw"><a href="../reference/tidy_logcounts.html">tidy_logcounts</a></span>(fsce_small[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Uracil_45"</span>, <span class="st">"riboG_44"</span>), , ]) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb42-7" data-line-number="7"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>experiment)</a>
 <a class="sourceLine" id="cb42-8" data-line-number="8">  ),</a>
 <a class="sourceLine" id="cb42-9" data-line-number="9">  left_join,</a>
 <a class="sourceLine" id="cb42-10" data-line-number="10">  <span class="dt">by =</span> <span class="st">"cell_id"</span></a>
-<a class="sourceLine" id="cb42-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb42-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb42-13" data-line-number="13">fsce_tidy</a></code></pre></div>
+<a class="sourceLine" id="cb42-11" data-line-number="11">)</a></code></pre></div>
+<pre><code>## harmonizing input:
+##   removing 250 sampleMap rows not in names(experiments)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">fsce_tidy</a></code></pre></div>
 <pre><code>## # A tibble: 250 x 8
 ##    cell_id  UMAP1  UMAP2 k_cluster leiden_cluster cell_cycle Uracil_45
 ##    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt;
-##  1 TGCGGG…  3.50    3.62 5         2              S              1.36 
-##  2 TGGTTC… -2.85    3.58 1         4              S              2.16 
-##  3 CATATT…  3.72    4.99 2         2              G2M            1.85 
-##  4 TCACAA… -6.17  -12.0  3         3              G1             0.477
-##  5 GGAATA… -4.30    3.48 1         4              G1             1.30 
-##  6 CTTGGC… -5.40  -12.6  3         3              G2M            1.80 
-##  7 GTGAAG… -3.54    2.28 1         1              S              0.895
-##  8 AGCGGT… -0.574   2.81 1         1              G1             1.80 
-##  9 GGATGT…  8.42   -4.22 6         6              S              0    
-## 10 GTACTC… -0.803   1.54 1         1              G1             1.39 
+##  1 TGCGGG…  1.91   0.843 2         2              S              1.36 
+##  2 TGGTTC… -4.01   0.781 6         4              S              2.16 
+##  3 CATATT…  2.50  -0.741 2         2              G2M            1.85 
+##  4 TCACAA…  0.891 -8.86  5         3              G1             0.477
+##  5 GGAATA… -2.52   3.65  4         4              G1             1.30 
+##  6 CTTGGC…  0.606 -8.65  5         3              G2M            1.80 
+##  7 GTGAAG… -3.53   2.93  6         1              S              0.895
+##  8 AGCGGT… -1.70   1.16  6         1              G1             1.80 
+##  9 GGATGT…  7.48   5.61  3         6              S              0    
+## 10 GTACTC… -2.30   1.47  6         1              G1             1.39 
 ## # … with 240 more rows, and 1 more variable: riboG_44 &lt;dbl&gt;</code></pre>
 </div>
 <div id="visualization" class="section level1">
@@ -353,33 +358,33 @@
 <h2 class="hasAnchor">
 <a href="#two-dimensional-embeddings" class="anchor"></a>Two-dimensional embeddings</h2>
 <p>Features can be visulized on a two-dimensional embedding with the <code><a href="../reference/plot_dims.html">plot_dims()</a></code> function which will plot gene/function assay values.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, Uracil_<span class="dv">45</span>, <span class="dt">size =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb44-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, riboG_<span class="dv">44</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, Uracil_<span class="dv">45</span>, <span class="dt">size =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_dims.html">plot_dims</a></span>(fsce_tidy, UMAP1, UMAP2, riboG_<span class="dv">44</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/plot_dims-1.png" width="100%"></p>
 </div>
 <div id="functional-activities" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functional-activities" class="anchor"></a>Functional activities</h2>
 <p>Activities can be visualized per-group with <code>plot_actvitiy()</code>. These two plots have uracil and ribonucleotide excision activities plotted per cluster (k-means, n = 6).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
-<a class="sourceLine" id="cb45-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">cowplot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/cowplot/man/plot_grid.html">plot_grid</a></span>(</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, Uracil_<span class="dv">45</span>, k_cluster),</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">  <span class="kw"><a href="../reference/plot_activity.html">plot_activity</a></span>(fsce_tidy, riboG_<span class="dv">44</span>, k_cluster)</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4">)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/plot_activity-1.png" width="100%"></p>
 </div>
 <div id="heatmap" class="section level2">
 <h2 class="hasAnchor">
 <a href="#heatmap" class="anchor"></a>Heatmap</h2>
 <p>These heatmaps show uracil and ribonucleotide excision activities for the U:A and riboG hairpins</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">mtx &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/SingleCellExperiment/topics/SCE-assays">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Uracil"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"Uracil"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">mtx &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/assays.html">logcounts</a></span>(fsce_small[[<span class="st">"haircut"</span>]])</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Uracil"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"Uracil"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/heatmap_uracil-1.png" width="100%"></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"riboG"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"riboG"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">rows &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"riboG"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">61</span>, <span class="dt">sep =</span> <span class="st">"_"</span>)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span>(mtx, rows, <span class="dt">name =</span> <span class="st">"riboG"</span>)</a></code></pre></div>
 <p><img src="scrunchy_files/figure-html/heatpmap_riboG-1.png" width="100%"></p>
 </div>
 </div>
@@ -389,22 +394,23 @@
 <div id="loading-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#loading-data" class="anchor"></a>Loading data</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scrunchy)</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co"># this same object is available as `fsce_small` in the package.</span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fsce.html">create_fsce</a></span>(</a>
-<a class="sourceLine" id="cb48-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb48-6" data-line-number="6">    <span class="dt">rnaseq =</span> <span class="kw"><a href="../reference/create_sce_rnaseq.html">create_sce_rnaseq</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna"</span>)),</a>
-<a class="sourceLine" id="cb48-7" data-line-number="7">    <span class="dt">haircut =</span> <span class="kw"><a href="../reference/create_sce_haircut.html">create_sce_haircut</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut"</span>))</a>
-<a class="sourceLine" id="cb48-8" data-line-number="8">  )</a>
-<a class="sourceLine" id="cb48-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb48-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb48-11" data-line-number="11">fsce</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(scrunchy)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co"># this same object is available as `fsce_small` in the package.</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4">fsce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_fsce.html">create_fsce</a></span>(</a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb50-6" data-line-number="6">    <span class="dt">rnaseq =</span> <span class="kw"><a href="../reference/create_sce_rnaseq.html">create_sce_rnaseq</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"mrna"</span>)),</a>
+<a class="sourceLine" id="cb50-7" data-line-number="7">    <span class="dt">haircut =</span> <span class="kw"><a href="../reference/create_sce_haircut.html">create_sce_haircut</a></span>(<span class="kw"><a href="../reference/scrunchy_data.html">scrunchy_data</a></span>(<span class="st">"haircut"</span>))</a>
+<a class="sourceLine" id="cb50-8" data-line-number="8">  )</a>
+<a class="sourceLine" id="cb50-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb50-11" data-line-number="11">fsce</a></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -431,17 +437,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://hesselberthlab.org">Jay Hesselberth</a>, Amanda Richer, Kent Riemondy.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

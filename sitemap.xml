@@ -49,6 +49,9 @@
     <loc>https://scrunchy.hesselberthlab.org/reference/create_fsce.html</loc>
   </url>
   <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/create_sce_feature.html</loc>
+  </url>
+  <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/create_sce_haircut.html</loc>
   </url>
   <url>
@@ -68,9 +71,6 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/human_gene_ids.html</loc>
-  </url>
-  <url>
-    <loc>https://scrunchy.hesselberthlab.org/reference/install_py_deps.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/is.molecule_df.html</loc>
@@ -107,6 +107,9 @@
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/plot_heatmap.html</loc>
+  </url>
+  <url>
+    <loc>https://scrunchy.hesselberthlab.org/reference/plot_pcvariance.html</loc>
   </url>
   <url>
     <loc>https://scrunchy.hesselberthlab.org/reference/plot_saturation.html</loc>

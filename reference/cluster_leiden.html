@@ -15,21 +15,25 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,12 +43,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Run Leiden clustering algorithm — cluster_leiden" />
-
 <meta property="og:description" content="Runs Leiden community detection algorithm to detect clusters." />
-
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -67,6 +71,7 @@
 
   gtag('config', 'UA-54095998-8');
 </script>
+
 
   </head>
 
@@ -92,7 +97,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,11 +111,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hesselberthlab/scrunchy">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -121,6 +125,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -132,14 +137,13 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Runs Leiden community detection algorithm to detect clusters.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>cluster_leiden</span>(<span class='no'>fsce</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"PCA"</span>, <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>,
-  <span class='kw'>prune</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>15</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
-    
+  <span class='kw'>prune</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fl'>15</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>partition_type</span> <span class='kw'>=</span> <span class='st'>"ModularityVertexPartition"</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -150,7 +154,7 @@
     <tr>
       <th>expt</th>
       <td><p>Data to use for calculating variable features
-(default is <code>rnaseq</code>). Must be present in <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names(fsce)</a></code>.</p></td>
+(default is <code>rnaseq</code>). Must be present in <code><a href='https://rdrr.io/r/base/names.html'>names(fsce)</a></code>.</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -170,66 +174,65 @@ PCA)</p></td>
       <td><p>seed for <code>leidenalg$find_partition()</code></p></td>
     </tr>
     <tr>
+      <th>partition_type</th>
+      <td><p>partitioning algorithm (see <code><a href='https://rdrr.io/pkg/leiden/man/leiden.html'>leiden::leiden</a></code>).
+(defaults to "ModularityVertexPartition")</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Parameters to pass to the Python <code>leidenalg</code> function.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='https://github.com/vtraag/leidenalg'>https://github.com/vtraag/leidenalg</a></p>
 <p><a href='https://github.com/TomKellyGenetics/leiden'>https://github.com/TomKellyGenetics/leiden</a></p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>fsce with <code>leiden_cluster</code> in <code>expt</code> colData.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Execute <code><a href='install_py_deps.html'>install_py_deps()</a></code> to install required python modules <code>leidenalg</code>
+    <p>Execute <code>install_py_deps()</code> to install required python modules <code>leidenalg</code>
 and <code>igraph</code>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other clustering functions: <code><a href='cluster_kmeans.html'>cluster_kmeans</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fsce_small</span> <span class='kw'>&lt;-</span> <span class='fu'>cluster_leiden</span>(<span class='no'>fsce_small</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='no'>fsce_small</span> <span class='kw'>&lt;-</span> <span class='fu'>cluster_leiden</span>(<span class='no'>fsce_small</span>)
 <span class='kw pkg'>SingleCellExperiment</span><span class='kw ns'>::</span><span class='fu'>colData</span>(<span class='no'>fsce_small</span><span class='kw'>[[</span><span class='st'>"rnaseq"</span>]])</div><div class='output co'>#&gt; DataFrame with 250 rows and 4 columns
 #&gt;                           cell_id   k_cluster leiden_cluster  cell_cycle
 #&gt;                       &lt;character&gt; &lt;character&gt;    &lt;character&gt; &lt;character&gt;
-#&gt; TGCGGGTGTAGAGTGC TGCGGGTGTAGAGTGC           5              2           S
-#&gt; TGGTTCCCATCTATGG TGGTTCCCATCTATGG           1              3           S
+#&gt; TGCGGGTGTAGAGTGC TGCGGGTGTAGAGTGC           2              2           S
+#&gt; TGGTTCCCATCTATGG TGGTTCCCATCTATGG           6              4           S
 #&gt; CATATTCCACGTCAGC CATATTCCACGTCAGC           2              2         G2M
-#&gt; TCACAAGTCCTGCTTG TCACAAGTCCTGCTTG           3              4          G1
-#&gt; GGAATAATCCAGGGCT GGAATAATCCAGGGCT           1              3          G1
+#&gt; TCACAAGTCCTGCTTG TCACAAGTCCTGCTTG           5              3          G1
+#&gt; GGAATAATCCAGGGCT GGAATAATCCAGGGCT           4              4          G1
 #&gt; ...                           ...         ...            ...         ...
-#&gt; CTACGTCCACCACGTG CTACGTCCACCACGTG           1              3          G1
-#&gt; TGTGGTAAGGTGCTTT TGTGGTAAGGTGCTTT           6              6          G1
-#&gt; AGCGTCGGTCGAGTTT AGCGTCGGTCGAGTTT           6              6          G1
-#&gt; CTCGAAAAGTTCGATC CTCGAAAAGTTCGATC           1              5         G2M
-#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           1              3           S</div><div class='input'>
+#&gt; CTACGTCCACCACGTG CTACGTCCACCACGTG           6              1          G1
+#&gt; TGTGGTAAGGTGCTTT TGTGGTAAGGTGCTTT           3              6          G1
+#&gt; AGCGTCGGTCGAGTTT AGCGTCGGTCGAGTTT           3              6          G1
+#&gt; CTCGAAAAGTTCGATC CTCGAAAAGTTCGATC           6              5         G2M
+#&gt; TGACAACGTCGCATAT TGACAACGTCGCATAT           6              4           S</div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#source">Source</a></li>
-
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -237,13 +240,16 @@ and <code>igraph</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

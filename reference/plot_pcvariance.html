@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tidy all — tidy_all • scrunchy</title>
+<title>Plot PCA variance — plot_pcvariance • scrunchy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Tidy all — tidy_all" />
-<meta property="og:description" content="Tidy all" />
+<meta property="og:title" content="Plot PCA variance — plot_pcvariance" />
+<meta property="og:description" content="Plots proportion of variance explained by computed prinicpal components" />
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -131,17 +131,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tidy all</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/tidiers.R'><code>R/tidiers.R</code></a></small>
-    <div class="hidden name"><code>tidy_all.Rd</code></div>
+    <h1>Plot PCA variance</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hesselberthlab/scrunchy/blob/master/R/plots.R'><code>R/plots.R</code></a></small>
+    <div class="hidden name"><code>plot_pcvariance.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Tidy all</p>
+    <p>Plots proportion of variance explained by computed prinicpal components</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tidy_all</span>(<span class='no'>fsce</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>repair</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_pcvariance</span>(<span class='no'>fsce</span>, <span class='kw'>n_dims</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expt</span> <span class='kw'>=</span> <span class='st'>"rnaseq"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,66 +150,30 @@
       <td><p>An object of class <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>.</p></td>
     </tr>
     <tr>
-      <th>dimnames</th>
-      <td><p>vector of dimnames to retrieve. If <code>NULL</code>, retrieve all
-dimnames.</p></td>
+      <th>n_dims</th>
+      <td><p>specify the number of dimensions from "dr" to use for
+clustering, defaults to all dimensions</p></td>
     </tr>
     <tr>
-      <th>dims</th>
-      <td><p>vector of dimensions to retrieve</p></td>
-    </tr>
-    <tr>
-      <th>genes</th>
-      <td><p>vector of genes to retrieve. If <code>NULL</code>, retrieve all genes.</p></td>
-    </tr>
-    <tr>
-      <th>repair</th>
-      <td><p>vector of repair sites to retrieve. If <code>NULL</code> retrieve all reapir sites.</p></td>
+      <th>expt</th>
+      <td><p>Data to use for calculating variable features
+(default is <code>rnaseq</code>). Must be present in <code><a href='https://rdrr.io/r/base/names.html'>names(fsce)</a></code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="tidying"><a class="anchor" href="#tidying"></a>Tidying</h2>
-
-    
-
-<p>This is a data tidier for a <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code>. Returns data
-from <code>SingleCellExperiment</code> in a tidy format, where variables are columns
-and observations are rows.</p>
-<p>If the <code><a href='FunctionalSingleCellExperiment.html'>FunctionalSingleCellExperiment</a></code> contains more than one
-<code>SingleCellExperiment</code>, data from each <code>sce</code> are joined using the <code>cell_id</code>
-variable name, and a new <code>experiment</code> column contains the name of the source
-<code>sce</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other tidiers: <code><a href='tidy_coldata.html'>tidy_coldata</a></code>,
-  <code><a href='tidy_counts.html'>tidy_counts</a></code>, <code><a href='tidy_dims.html'>tidy_dims</a></code>,
-  <code><a href='tidy_logcounts.html'>tidy_logcounts</a></code></p></div>
+    <div class='dont-index'><p>Other plot fuctions: <code><a href='add_stats.html'>add_stats</a></code>,
+  <code><a href='plot_heatmap.html'>plot_heatmap</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>tidy_all</span>(<span class='no'>fsce_small</span>, <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"UMAP"</span>), <span class='kw'>genes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TP53"</span>), <span class='kw'>repair</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Uracil_45"</span>))</div><div class='output co'>#&gt; <span class='message'>harmonizing input:</span>
-#&gt; <span class='message'>  removing 250 sampleMap rows not in names(experiments)</span></div><div class='output co'>#&gt; <span class='message'>harmonizing input:</span>
-#&gt; <span class='message'>  removing 250 sampleMap rows not in names(experiments)</span></div><div class='output co'>#&gt; # A tibble: 250 x 11
-#&gt;    experiment.x cell_id  UMAP1  UMAP2 k_cluster leiden_cluster cell_cycle
-#&gt;    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;     
-#&gt;  1 rnaseq       TGCGGG…  1.91   0.843 2         2              S         
-#&gt;  2 rnaseq       TGGTTC… -4.01   0.781 6         4              S         
-#&gt;  3 rnaseq       CATATT…  2.50  -0.741 2         2              G2M       
-#&gt;  4 rnaseq       TCACAA…  0.891 -8.86  5         3              G1        
-#&gt;  5 rnaseq       GGAATA… -2.52   3.65  4         4              G1        
-#&gt;  6 rnaseq       CTTGGC…  0.606 -8.65  5         3              G2M       
-#&gt;  7 rnaseq       GTGAAG… -3.53   2.93  6         1              S         
-#&gt;  8 rnaseq       AGCGGT… -1.70   1.16  6         1              G1        
-#&gt;  9 rnaseq       GGATGT…  7.48   5.61  3         6              S         
-#&gt; 10 rnaseq       GTACTC… -2.30   1.47  6         1              G1        
-#&gt; # … with 240 more rows, and 4 more variables: experiment.y &lt;chr&gt;, TP53 &lt;dbl&gt;,
-#&gt; #   experiment &lt;chr&gt;, Uracil_45 &lt;dbl&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>plot_pcvariance</span>(<span class='no'>fsce_small</span>)</div><div class='img'><img src='plot_pcvariance-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#tidying">Tidying</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

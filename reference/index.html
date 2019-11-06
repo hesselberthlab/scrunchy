@@ -15,21 +15,25 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,10 +43,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Function reference" />
 
+<meta property="og:title" content="Function reference" />
 <meta property="og:image" content="https://scrunchy.hesselberthlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -65,6 +70,7 @@
 
   gtag('config', 'UA-54095998-8');
 </script>
+
 
   </head>
 
@@ -90,7 +96,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -104,11 +110,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hesselberthlab/scrunchy">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,6 +124,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -148,6 +154,12 @@
           <p><code><a href="create_fsce.html">create_fsce()</a></code> </p>
         </td>
         <td><p>Create a functional single-cell experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_feature.html">create_sce_feature()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell feature experiment</p></td>
       </tr><tr>
         
         <td>
@@ -349,6 +361,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="plot_pcvariance.html">plot_pcvariance()</a></code> </p>
+        </td>
+        <td><p>Plot PCA variance</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="plot_saturation.html">plot_saturation()</a></code> </p>
         </td>
         <td><p>Plot sequencing saturation</p></td>
@@ -415,21 +433,117 @@
       <tr>
         
         <td>
-          <p><code><a href="install_py_deps.html">install_py_deps()</a></code> </p>
+          <p><code><a href="FunctionalSingleCellExperiment-class.html">FunctionalSingleCellExperiment-class</a></code> </p>
         </td>
-        <td><p>Install python dependencies for <code>cluster_leiden</code>.</p></td>
+        <td><p>An S4 class to represent a functional single cell experiment</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="molecule_df.html">molecule_df()</a></code> </p>
+          <p><code><a href="FunctionalSingleCellExperiment.html">FunctionalSingleCellExperiment()</a></code> </p>
         </td>
-        <td><p>data.frame that contains molecule info</p></td>
+        <td><p>Constructor for a <code>FunctionalSingleCellExperiment</code> object</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="is.molecule_df.html">is.molecule_df()</a></code> </p>
+          <p><code><a href="add_label.html">add_label()</a></code> </p>
         </td>
-        <td><p>Test if the object is a molecule_df.</p></td>
+        <td><p>Adds useful labels to colData.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_stats.html">add_stats()</a></code> </p>
+        </td>
+        <td><p>Add stats to plot activities per cluster</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_cell_cycle.html">calc_cell_cycle()</a></code> </p>
+        </td>
+        <td><p>Calculate cell-cycle assignments</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_hairpin_coverage.html">calc_hairpin_coverage()</a></code> </p>
+        </td>
+        <td><p>Calculate coverage across hairpins</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_pca.html">calc_pca()</a></code> </p>
+        </td>
+        <td><p>Calculate principal components using irlba</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_qvalues.html">calc_qvalues()</a></code> </p>
+        </td>
+        <td><p>Calculate q-values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_tsne.html">calc_tsne()</a></code> </p>
+        </td>
+        <td><p>Generate 2D cell embeddings using tSNE</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_umap.html">calc_umap()</a></code> </p>
+        </td>
+        <td><p>Generate 2D cell embeddings using UMAP</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="calc_var_features.html">calc_var_features()</a></code> </p>
+        </td>
+        <td><p>Calculate variable features</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clr_normalize.html">clr_normalize()</a></code> </p>
+        </td>
+        <td><p>Centered log-ratio normalize a matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cluster_kmeans.html">cluster_kmeans()</a></code> </p>
+        </td>
+        <td><p>Run k-means clustering algorithm</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cluster_leiden.html">cluster_leiden()</a></code> </p>
+        </td>
+        <td><p>Run Leiden clustering algorithm</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_fsce.html">create_fsce()</a></code> </p>
+        </td>
+        <td><p>Create a functional single-cell experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_feature.html">create_sce_feature()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell feature experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_haircut.html">create_sce_haircut()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell Haircut experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sce_rnaseq.html">create_sce_rnaseq()</a></code> </p>
+        </td>
+        <td><p>Create a single-cell mRNA-seq experiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_matrix.html">filter_matrix()</a></code> </p>
+        </td>
+        <td><p>Filter and write a sparseMatrix keeping only specified barcodes</p></td>
       </tr><tr>
         
         <td>
@@ -439,9 +553,105 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="umitools_to_mtx.html">umitools_to_mtx()</a></code> </p>
+          <p><code><a href="fsce_small.html">fsce_small</a></code> </p>
         </td>
-        <td><p>Convert umitools flat format tsv to sparseMatrix .mtx format</p></td>
+        <td><p>An example FunctionalSingleCellExperiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fsce_tidy.html">fsce_tidy</a></code> </p>
+        </td>
+        <td><p>Tidied tibble of data from fsce_small</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="human_gene_ids.html">human_gene_ids</a></code> </p>
+        </td>
+        <td><p>Human gene identifiers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is.molecule_df.html">is.molecule_df()</a></code> </p>
+        </td>
+        <td><p>Test if the object is a molecule_df.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="log_normalize.html">log_normalize()</a></code> </p>
+        </td>
+        <td><p>Log-normalize a matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="molecule_df.html">molecule_df()</a></code> </p>
+        </td>
+        <td><p>data.frame that contains molecule info</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="normalize.html">normalize()</a></code> </p>
+        </td>
+        <td><p>Normalize data in a SingleCellExperiment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="palette_OkabeIto.html">palette_OkabeIto</a></code> <code><a href="palette_OkabeIto.html">palette_OkabeIto_black</a></code> </p>
+        </td>
+        <td><p>Color palette proposed by Okabe and Ito</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pbmc_marker_genes.html">pbmc_marker_genes</a></code> </p>
+        </td>
+        <td><p>Comman human PBMC marker genes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_activity.html">plot_activity()</a></code> </p>
+        </td>
+        <td><p>Plot activities per cluster</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_barcodes.html">plot_barcodes()</a></code> </p>
+        </td>
+        <td><p>Plot UMI count distribution for barcodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_dims.html">plot_dims()</a></code> </p>
+        </td>
+        <td><p>Scatter plot of cells in a two-dimensional embedding.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_dims_multi.html">plot_dims_multi()</a></code> </p>
+        </td>
+        <td><p>Plot multiple 2D plots in a grid</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_hairpin_coverage.html">plot_hairpin_coverage()</a></code> </p>
+        </td>
+        <td><p>Plot coverage across hairpins</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_heatmap.html">plot_heatmap()</a></code> </p>
+        </td>
+        <td><p>Heatmap of signals</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_pcvariance.html">plot_pcvariance()</a></code> </p>
+        </td>
+        <td><p>Plot PCA variance</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="plot_saturation.html">plot_saturation()</a></code> </p>
+        </td>
+        <td><p>Plot sequencing saturation</p></td>
       </tr><tr>
         
         <td>
@@ -457,15 +667,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="filter_matrix.html">filter_matrix()</a></code> </p>
+          <p><code><a href="scale_OkabeIto.html">scale_color_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_fill_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_OkabeIto()</a></code> </p>
         </td>
-        <td><p>Filter and write a sparseMatrix keeping only specified barcodes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_matrix.html">write_matrix()</a></code> </p>
-        </td>
-        <td><p>Write a sparseMatrix to disk</p></td>
+        <td><p>Okabe-Ito color scale</p></td>
       </tr><tr>
         
         <td>
@@ -481,15 +685,69 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="palette_OkabeIto.html">palette_OkabeIto</a></code> <code><a href="palette_OkabeIto.html">palette_OkabeIto_black</a></code> </p>
+          <p><code><a href="stat_activity_grouped.html">stat_activity_grouped()</a></code> </p>
         </td>
-        <td><p>Color palette proposed by Okabe and Ito</p></td>
+        <td><p>Compare activity differences between groups.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="scale_OkabeIto.html">scale_color_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_fill_OkabeIto()</a></code> <code><a href="scale_OkabeIto.html">scale_OkabeIto()</a></code> </p>
+          <p><code><a href="stat_anova_grouped.html">stat_anova_grouped()</a></code> </p>
         </td>
-        <td><p>Okabe-Ito color scale</p></td>
+        <td><p>Analysis of variance of activities across groups</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="stat_anova_tukey.html">stat_anova_tukey()</a></code> </p>
+        </td>
+        <td><p>Post-hoc analysis of ANOVA results</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_all.html">tidy_all()</a></code> </p>
+        </td>
+        <td><p>Tidy all</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_coldata.html">tidy_coldata()</a></code> </p>
+        </td>
+        <td><p>Tidy colData</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_counts.html">tidy_counts()</a></code> </p>
+        </td>
+        <td><p>Tidy counts data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_dims.html">tidy_dims()</a></code> </p>
+        </td>
+        <td><p>Tidy reducedDims data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_logcounts.html">tidy_logcounts()</a></code> </p>
+        </td>
+        <td><p>Tidy logcounts data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tidy_stats_grouped.html">tidy_stats_grouped()</a></code> </p>
+        </td>
+        <td><p>Tidy grouped statistics</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="umitools_to_mtx.html">umitools_to_mtx()</a></code> </p>
+        </td>
+        <td><p>Convert umitools flat format tsv to sparseMatrix .mtx format</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="write_matrix.html">write_matrix()</a></code> </p>
+        </td>
+        <td><p>Write a sparseMatrix to disk</p></td>
       </tr>
     </tbody>
     </table>
@@ -509,19 +767,23 @@
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://hesselberthlab.org'>Jay Hesselberth</a>, Amanda Richer, Kent Riemondy.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
