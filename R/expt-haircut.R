@@ -4,15 +4,18 @@
 #' @param expt Data to use for calculating variable features
 #'   (default is `rnaseq`). Must be present in `names(fsce)`.
 #' @param cell_ids cell ids to include in coverage calculation or category from colData in rnaseq expt
-#' @param meta Data to use to find cell_ids caategories default is `rnaseq`
+#' @param activities vector of activites to calculate coverage over. default is all present.
+#' @param meta Data to use to find cell_ids categories default is `rnaseq`
 #'
 #' @examples
 #' calc_hairpin_coverage(fsce_small)
 #' @export
 calc_hairpin_coverage <- function(fsce,
                                   cell_ids = NULL,
+                                  activities = NULL,
                                   expt = "haircut",
-                                  meta = "rnaseq") {
+                                  meta = "rnaseq"
+                                  ) {
   if (!expt %in% names(fsce)) {
     stop(glue("expt `{expt}` not found in fsce"), call. = FALSE)
   }
@@ -33,7 +36,13 @@ calc_hairpin_coverage <- function(fsce,
   }
 
   metadata <- metadata[cell_ids, , drop = FALSE]
-  counts <- counts(fsce[[expt]])
+
+  if(is.null(activities)){
+    activities <- rownames(fsce[[expt]])
+  }
+
+  fsce_to_plot <- fsce[[expt]][activities, , drop = FALSE]
+  counts <- counts(fsce_to_plot)
 
   cell_ids <- split(rownames(metadata), category)
 
@@ -41,8 +50,8 @@ calc_hairpin_coverage <- function(fsce,
   res <- purrr::map_dfr(
     cell_ids,
     function(ids) {
-      hairpin_info <- as.data.frame(rowData(fsce[[expt]]))
-      hairpin_info$count <- rowSums(counts[, ids, drop = FALSE])
+      hairpin_info <- as.data.frame(rowData(fsce_to_plot))
+      hairpin_info$count <- log1p(rowMeans(counts[, ids, drop = FALSE]))
       hairpin_info
     },
     .id = "cell_id"
@@ -68,12 +77,13 @@ calc_hairpin_coverage <- function(fsce,
 #' @export
 plot_hairpin_coverage <- function(fsce,
                                   cell_ids = NULL,
+                                  activities = NULL,
                                   expt = "haircut",
                                   meta = "rnaseq",
                                   color = "cell_id",
                                   use_points = FALSE) {
 
-  res <- calc_hairpin_coverage(fsce, cell_ids, expt, meta)
+  res <- calc_hairpin_coverage(fsce, cell_ids, activities, expt, meta)
 
   color <- enquo(color)
   colorN <- quo_name(color)

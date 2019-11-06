@@ -4,18 +4,21 @@
 \alias{plot_hairpin_coverage}
 \title{Plot coverage across hairpins}
 \usage{
-plot_hairpin_coverage(fsce, cell_ids = NULL, expt = "haircut",
-  meta = "rnaseq", color = "cell_id", use_points = FALSE)
+plot_hairpin_coverage(fsce, cell_ids = NULL, activities = NULL,
+  expt = "haircut", meta = "rnaseq", color = "cell_id",
+  use_points = FALSE)
 }
 \arguments{
 \item{fsce}{\code{\link{FunctionalSingleCellExperiment}}}
 
 \item{cell_ids}{cell ids to include in coverage calculation or category from colData in rnaseq expt}
 
+\item{activities}{vector of activites to calculate coverage over. default is all present.}
+
 \item{expt}{Data to use for calculating variable features
 (default is \code{rnaseq}). Must be present in \code{names(fsce)}.}
 
-\item{meta}{Data to use to find cell_ids caategories default is \code{rnaseq}}
+\item{meta}{Data to use to find cell_ids categories default is \code{rnaseq}}
 
 \item{color}{variable to use for coloring lines (defaults to "cell_id")}
 

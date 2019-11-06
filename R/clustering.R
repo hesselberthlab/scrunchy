@@ -77,6 +77,8 @@ cluster_kmeans <- function(fsce,
 #' @param dims dimensions to use for nearest-neighbor calculation
 #' @param prune Pruning parameter for shared nearest-neighbor calculation.
 #' @param seed seed for `leidenalg$find_partition()`
+#' @param partition_type partitioning algorithm (see [`leiden::leiden`]).
+#'  (defaults to "ModularityVertexPartition")
 #' @param ... Parameters to pass to the Python `leidenalg` function.
 #'
 #' @source <https://github.com/vtraag/leidenalg>
@@ -103,6 +105,7 @@ cluster_leiden <- function(fsce,
                            dims = 1:5,
                            prune = 1/15,
                            seed = NULL,
+                           partition_type = "ModularityVertexPartition",
                            ...){
 
   if (!reticulate::py_module_available("leidenalg") || !reticulate::py_module_available("igraph")) {
@@ -133,7 +136,7 @@ cluster_leiden <- function(fsce,
   ## Run leidenalg
   parts <- leiden::leiden(
     adj_mat,
-    partition_type = "ModularityVertexPartition",
+    partition_type = partition_type,
     seed = seed,
     ...
   )

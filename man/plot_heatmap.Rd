@@ -26,6 +26,7 @@ plot_heatmap(mtx, rows, name = "Uracil")
 
 }
 \seealso{
-Other plot fuctions: \code{\link{add_stats}}
+Other plot fuctions: \code{\link{add_stats}},
+  \code{\link{plot_pcvariance}}
 }
 \concept{plot fuctions}

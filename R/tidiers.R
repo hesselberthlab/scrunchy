@@ -179,8 +179,21 @@ dim_tbl <- function(rd, dimname, dims) {
   as_tibble(rd)
 }
 
+pcvariance_tbl <- function(expt){
+  v <- metadata(expt)[["PCA"]]$var_explained
+
+  if(is.null(v)){
+    stop("PCA variance not computed, run calc_pca()", call. = FALSE)
+  }
+
+  tibble(
+    `PCs` = 1L:length(v),
+    `Variance Explained` = v
+  )
+}
+
 #' @noRd
 #' @importFrom tidyr unnest
 unframe <- function(x, name = "name") {
-  unnest(enframe(x, name = name))
+  unnest(enframe(x, name = name, value = "value"), cols = "value")
 }

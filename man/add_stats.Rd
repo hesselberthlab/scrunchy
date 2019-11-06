@@ -25,6 +25,7 @@ Output must include columnw with names group, group1, q.value and/or p.value.}
 Adds stat comparison bars to a beeswarm plot of activity across specified groups
 }
 \seealso{
-Other plot fuctions: \code{\link{plot_heatmap}}
+Other plot fuctions: \code{\link{plot_heatmap}},
+  \code{\link{plot_pcvariance}}
 }
 \concept{plot fuctions}

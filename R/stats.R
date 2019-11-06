@@ -183,10 +183,14 @@ cross_groups <- function(x, complete) {
   group <- sym("group")
   group1 <- sym("group1")
 
+  y <- x
+
   ## set standardized names for crossed data
   names(x) <- c("group", "activity", "data")
+  names(y) <- c("group1", "activity1", "data1")
 
-  xx <- crossing(x, x)
+  ## need to have unique column names for second tibble
+  xx <- crossing(x, y)
 
   if (complete) {
     return(xx)

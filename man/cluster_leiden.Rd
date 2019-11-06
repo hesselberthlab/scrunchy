@@ -10,7 +10,8 @@
 }
 \usage{
 cluster_leiden(fsce, expt = "rnaseq", method = "PCA", dims = 1:5,
-  prune = 1/15, seed = NULL, ...)
+  prune = 1/15, seed = NULL,
+  partition_type = "ModularityVertexPartition", ...)
 }
 \arguments{
 \item{fsce}{An object of class \code{\link{FunctionalSingleCellExperiment}}}
@@ -26,6 +27,9 @@ PCA)}
 \item{prune}{Pruning parameter for shared nearest-neighbor calculation.}
 
 \item{seed}{seed for \code{leidenalg$find_partition()}}
+
+\item{partition_type}{partitioning algorithm (see \code{\link[leiden:leiden]{leiden::leiden}}).
+(defaults to "ModularityVertexPartition")}
 
 \item{...}{Parameters to pass to the Python \code{leidenalg} function.}
 }

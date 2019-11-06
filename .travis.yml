@@ -11,6 +11,29 @@ before_install:
 matrix:
   include:
   - r: bioc-release
+    r_binary_packages:
+      - glue
+      - irlba
+      - matrixStats
+      - RANN
+      - rlang
+      - backports
+      - digest
+      - lazyeval
+      - jsonlite
+      - fansi
+      - stringi
+      - yaml
+      - utf8
+      - locfit
+      - curl
+      - fs
+      - igraph
+      - RCurl
+      - vctrs
+      - openssl
+      - dplyr
+      - readr
     after_success:
     - Rscript -e 'covr::codecov()'
     before_deploy:
